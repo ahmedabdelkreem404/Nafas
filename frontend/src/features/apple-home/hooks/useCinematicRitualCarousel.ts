@@ -3,7 +3,7 @@ import type { KeyboardEvent } from 'react';
 import { AUTOPLAY_INTERVAL_MS } from '../constants';
 import { wrapIndex } from '../utils/carousel';
 
-export type CinematicHeroPhase = 'idle' | 'transitioning-out' | 'switching' | 'transitioning-in';
+export type CinematicRitualPhase = 'idle' | 'transitioning-out' | 'switching' | 'transitioning-in';
 
 const TRANSITION_OUT_MS = 320;
 const SWITCH_MS = 520;
@@ -15,10 +15,10 @@ function prefersReducedMotion() {
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-export function useCinematicHeroCarousel(length: number) {
+export function useCinematicRitualCarousel(length: number) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState<number | null>(null);
-  const [phase, setPhase] = useState<CinematicHeroPhase>('idle');
+  const [phase, setPhase] = useState<CinematicRitualPhase>('idle');
   const [isReducedMotion, setIsReducedMotion] = useState(prefersReducedMotion);
   const [isPlaying, setIsPlaying] = useState(() => !prefersReducedMotion());
   const [isHoverPaused, setIsHoverPaused] = useState(false);

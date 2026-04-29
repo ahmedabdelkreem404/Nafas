@@ -5,19 +5,20 @@ const widths = [320, 360, 390, 430, 540, 640, 768, 820, 1024, 1180, 1366, 1440, 
 
 const sections = [
   'ribbon',
-  'hero',
-  'cinematic-scents',
+  'ritual',
   'highlights',
+  'emotional',
   'product-viewer',
   'story-chapters',
   'senses',
   'tester-to-bottle',
-  'ritual',
+  'hero',
   'better-together',
   'scent-selector',
   'trust',
   'comparison',
   'keep-exploring',
+  'final-cta',
 ];
 
 async function gotoHome(page: Page) {
@@ -45,10 +46,18 @@ test.describe('Apple Nafas homepage', () => {
 
     await expect(page.locator('.apple-nafas-page')).toHaveCount(1);
     await expect(page.locator('[data-section="hero"].anh-landing-hero')).toHaveCount(1);
-    await expect(page.locator('[data-section="cinematic-scents"].anh-cinematic-hero')).toHaveCount(1);
+    await expect(page.locator('[data-section="hero"].anh-ritual--cinematic')).toHaveCount(0);
+    await expect(page.locator('[data-section="ritual"].anh-ritual--cinematic')).toHaveCount(1);
+    await expect(page.locator('[data-section="cinematic-scents"]')).toHaveCount(0);
     await expect(page.locator('.page-home.nlp')).toHaveCount(0);
     await expect(page.locator('[class*="Bottle3D"], [class*="bottle3d"], .product-3d-viewer, .bottle-assembly-canvas')).toHaveCount(0);
     await expect(page.locator('[data-section="hero"] canvas')).toHaveCount(0);
+
+    const renderedSections = await page.locator('.apple-nafas-page > [data-section]').evaluateAll((elements) => (
+      elements.map((element) => element.getAttribute('data-section'))
+    ));
+
+    expect(renderedSections).toEqual(sections);
   });
 
   for (const width of widths) {
@@ -69,28 +78,28 @@ test.describe('Apple Nafas homepage', () => {
     }
   });
 
-  test('supports cinematic hero controls and keyboard navigation', async ({ page }) => {
+  test('supports cinematic ritual controls and keyboard navigation', async ({ page }) => {
     await gotoHome(page);
-    const hero = page.locator('[data-section="cinematic-scents"]');
+    const ritual = page.locator('[data-section="ritual"]');
 
-    await expect(hero).toBeVisible();
-    await expect(page.getByTestId('cinematic-hero-play-toggle')).toBeVisible();
-    await expect(page.getByTestId('cinematic-hero-dot-1')).toBeVisible();
-    await expect(page.getByTestId('cinematic-hero-next')).toBeVisible();
-    await expect(page.getByTestId('cinematic-hero-prev')).toBeVisible();
+    await expect(ritual).toBeVisible();
+    await expect(page.getByTestId('cinematic-ritual-play-toggle')).toBeVisible();
+    await expect(page.getByTestId('cinematic-ritual-dot-1')).toBeVisible();
+    await expect(page.getByTestId('cinematic-ritual-next')).toBeVisible();
+    await expect(page.getByTestId('cinematic-ritual-prev')).toBeVisible();
 
-    await page.getByTestId('cinematic-hero-dot-1').click();
-    await expect(hero).toHaveAttribute('data-active-scent', 'ghayma', { timeout: 2500 });
-    await expect(hero).toHaveAttribute('data-phase', 'idle', { timeout: 2500 });
+    await page.getByTestId('cinematic-ritual-dot-1').click();
+    await expect(ritual).toHaveAttribute('data-active-scent', 'ghayma', { timeout: 2500 });
+    await expect(ritual).toHaveAttribute('data-phase', 'idle', { timeout: 2500 });
 
-    await hero.focus();
+    await ritual.focus();
     await page.keyboard.press('ArrowRight');
-    await expect(hero).toHaveAttribute('data-active-scent', 'dafwa', { timeout: 2500 });
-    await expect(hero).toHaveAttribute('data-phase', 'idle', { timeout: 2500 });
+    await expect(ritual).toHaveAttribute('data-active-scent', 'dafwa', { timeout: 2500 });
+    await expect(ritual).toHaveAttribute('data-phase', 'idle', { timeout: 2500 });
 
-    await page.getByTestId('cinematic-hero-play-toggle').click();
-    await expect(hero).toHaveAttribute('data-autoplay', 'on');
-    await expect(hero.locator('canvas, [class*="Bottle3D"], [class*="bottle3d"]')).toHaveCount(0);
+    await page.getByTestId('cinematic-ritual-play-toggle').click();
+    await expect(ritual).toHaveAttribute('data-autoplay', 'on');
+    await expect(ritual.locator('canvas, [class*="Bottle3D"], [class*="bottle3d"]')).toHaveCount(0);
   });
 
   test('uses Nafas CTA colors instead of Apple blue on the homepage', async ({ page }) => {
@@ -154,7 +163,7 @@ test.describe('Apple Nafas homepage', () => {
     await expect(hero.locator('#hero-title')).toBeVisible();
     await expect(hero.locator('.anh-landing-hero__bottle')).toBeVisible();
     await expect(hero.getByRole('link', { name: 'اكتشف المجموعة' })).toBeVisible();
-    await expect(page.locator('[data-section="cinematic-scents"] .anh-cinematic-hero__controls')).toBeVisible();
+    await expect(page.locator('[data-section="ritual"] .anh-ritual-cinematic__controls')).toBeVisible();
     await expect(page.locator('[data-section="product-viewer"]')).toBeVisible();
     await expect(page.locator('[data-section="comparison"] .anh-compare-card').first()).toBeVisible();
     await expectNoHorizontalOverflow(page);
@@ -173,10 +182,10 @@ test.describe('Apple Nafas homepage', () => {
   test('disables autoplay when reduced motion is requested', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await gotoHome(page);
-    const hero = page.locator('[data-section="cinematic-scents"]');
+    const ritual = page.locator('[data-section="ritual"]');
 
-    await expect(hero).toHaveAttribute('data-reduced-motion', 'true');
-    await expect(hero).toHaveAttribute('data-autoplay', 'off');
-    await expect(page.getByTestId('cinematic-hero-play-toggle')).toBeDisabled();
+    await expect(ritual).toHaveAttribute('data-reduced-motion', 'true');
+    await expect(ritual).toHaveAttribute('data-autoplay', 'off');
+    await expect(page.getByTestId('cinematic-ritual-play-toggle')).toBeDisabled();
   });
 });

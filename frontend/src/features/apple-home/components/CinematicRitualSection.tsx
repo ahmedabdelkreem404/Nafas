@@ -1,16 +1,16 @@
 import type { CSSProperties } from 'react';
 import { SECTION_LABELS } from '../constants';
-import { useCinematicHeroCarousel } from '../hooks/useCinematicHeroCarousel';
+import { useCinematicRitualCarousel } from '../hooks/useCinematicRitualCarousel';
 import type { Scent } from '../types';
 import BottleVisual from './BottleVisual';
-import HeroCarouselControls from './HeroCarouselControls';
+import RitualCarouselControls from './RitualCarouselControls';
 
-type CinematicHeroSectionProps = {
+type CinematicRitualSectionProps = {
   scents: Scent[];
 };
 
-export default function CinematicHeroSection({ scents }: CinematicHeroSectionProps) {
-  const carousel = useCinematicHeroCarousel(scents.length);
+export default function CinematicRitualSection({ scents }: CinematicRitualSectionProps) {
+  const carousel = useCinematicRitualCarousel(scents.length);
   const activeScent = scents[carousel.activeIndex] ?? scents[0];
 
   const sceneStyle = {
@@ -26,17 +26,17 @@ export default function CinematicHeroSection({ scents }: CinematicHeroSectionPro
 
   return (
     <section
-      className="anh-section anh-cinematic-hero"
-      data-section={SECTION_LABELS.cinematic}
-      data-proof="cinematic-scents"
+      className="anh-ritual anh-ritual--cinematic"
+      data-section={SECTION_LABELS.ritual}
+      data-proof="ritual"
       data-phase={carousel.phase}
       data-active-scent={activeScent.id}
       data-autoplay={carousel.isPlaying ? 'on' : 'off'}
       data-reduced-motion={carousel.isReducedMotion ? 'true' : 'false'}
       data-scent={activeScent.id}
-      aria-labelledby="cinematic-title"
+      aria-labelledby="ritual-title"
       aria-roledescription="carousel"
-      aria-label="عطور نفَس الرئيسية"
+      aria-label="طقس نفَس السينمائي"
       onKeyDown={carousel.handleKeyDown}
       onMouseEnter={() => carousel.setIsHoverPaused(true)}
       onMouseLeave={() => carousel.setIsHoverPaused(false)}
@@ -49,24 +49,24 @@ export default function CinematicHeroSection({ scents }: CinematicHeroSectionPro
       style={sceneStyle}
       tabIndex={0}
     >
-      <div className="anh-hero-scene__bg" aria-hidden="true" />
-      <div className="anh-hero-scene__depth-left" aria-hidden="true" />
-      <div className="anh-hero-scene__depth-right" aria-hidden="true" />
-      <div className="anh-hero-scene__pedestal" aria-hidden="true" />
-      <div className="anh-hero-scene__mist" aria-hidden="true" />
-      <div className="anh-hero-scene__brand-flash" aria-hidden="true">نفَس</div>
+      <div className="anh-ritual-scene__bg" aria-hidden="true" />
+      <div className="anh-ritual-scene__depth-left" aria-hidden="true" />
+      <div className="anh-ritual-scene__depth-right" aria-hidden="true" />
+      <div className="anh-ritual-scene__pedestal" aria-hidden="true" />
+      <div className="anh-ritual-scene__mist" aria-hidden="true" />
+      <div className="anh-ritual-scene__brand-flash" aria-hidden="true">نفَس</div>
 
-      <div className="anh-container anh-cinematic-hero__inner">
-        <div className="anh-cinematic-hero__title-panel">
-          <div className="anh-cinematic-hero__title-stack" key={`${activeScent.id}-title`}>
-            <p className="anh-kicker">Nafas eau de parfum</p>
-            <h2 id="cinematic-title">{activeScent.nameAr}</h2>
-            <p className="anh-cinematic-hero__latin">{activeScent.name}</p>
+      <div className="anh-container anh-ritual-cinematic__inner">
+        <div className="anh-ritual-cinematic__title-panel">
+          <div className="anh-ritual-cinematic__title-stack" key={`${activeScent.id}-title`}>
+            <p className="anh-kicker">Nafas ritual</p>
+            <h2 id="ritual-title">{activeScent.nameAr}</h2>
+            <p className="anh-ritual-cinematic__latin">{activeScent.name}</p>
           </div>
         </div>
 
-        <div className="anh-cinematic-hero__stage" aria-hidden="true">
-          <div className="anh-cinematic-hero__halo" />
+        <div className="anh-ritual-cinematic__stage" aria-hidden="true">
+          <div className="anh-ritual-cinematic__halo" />
           {scents.map((scent, index) => {
             const isActive = index === carousel.activeIndex;
             const isPrevious = index === carousel.previousIndex && carousel.phase !== 'idle';
@@ -75,18 +75,18 @@ export default function CinematicHeroSection({ scents }: CinematicHeroSectionPro
               <BottleVisual
                 key={scent.id}
                 scent={scent}
-                className={`anh-cinematic-hero__bottle ${isActive ? 'is-active' : ''} ${isPrevious ? 'is-previous' : ''}`}
+                className={`anh-ritual-cinematic__bottle ${isActive ? 'is-active' : ''} ${isPrevious ? 'is-previous' : ''}`}
               />
             );
           })}
         </div>
 
-        <div className="anh-cinematic-hero__copy-panel" aria-live="polite">
-          <div className="anh-cinematic-hero__copy-stack" key={`${activeScent.id}-copy`}>
-            <p className="anh-kicker">Signature scent</p>
-            <p className="anh-cinematic-hero__line">{activeScent.line}</p>
-            <p className="anh-cinematic-hero__description">{activeScent.heroDescription}</p>
-            <p className="anh-cinematic-hero__mood">{activeScent.mood}</p>
+        <div className="anh-ritual-cinematic__copy-panel" aria-live="polite">
+          <div className="anh-ritual-cinematic__copy-stack" key={`${activeScent.id}-copy`}>
+            <p className="anh-kicker">لحظة الرشة</p>
+            <p className="anh-ritual-cinematic__line">{activeScent.line}</p>
+            <p className="anh-ritual-cinematic__description">{activeScent.heroDescription}</p>
+            <p className="anh-ritual-cinematic__mood">{activeScent.mood}</p>
             <div className="anh-actions">
               <a className="anh-button anh-button--primary" href="#choose">اكتشف المجموعة</a>
               <a className="anh-button anh-button--secondary" href="#tester-path">اطلب تستر</a>
@@ -95,7 +95,7 @@ export default function CinematicHeroSection({ scents }: CinematicHeroSectionPro
         </div>
       </div>
 
-      <HeroCarouselControls
+      <RitualCarouselControls
         activeIndex={carousel.activeIndex}
         isPlaying={carousel.isPlaying}
         isReducedMotion={carousel.isReducedMotion}

@@ -503,7 +503,7 @@
   line-height: 1.1;
 }
 
-.apple-nafas-page .anh-cinematic-hero {
+.apple-nafas-page .anh-ritual--cinematic {
   --scene-accent: #b86d3b;
   --scene-bg-start: #f5e7d5;
   --scene-bg-end: #1c1512;
@@ -522,7 +522,7 @@
   isolation: isolate;
 }
 
-.apple-nafas-page .anh-cinematic-hero::after {
+.apple-nafas-page .anh-ritual--cinematic::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -535,17 +535,17 @@
   opacity: 0.5;
 }
 
-.apple-nafas-page .anh-hero-scene__bg,
-.apple-nafas-page .anh-hero-scene__depth-left,
-.apple-nafas-page .anh-hero-scene__depth-right,
-.apple-nafas-page .anh-hero-scene__pedestal,
-.apple-nafas-page .anh-hero-scene__mist,
-.apple-nafas-page .anh-hero-scene__brand-flash {
+.apple-nafas-page .anh-ritual-scene__bg,
+.apple-nafas-page .anh-ritual-scene__depth-left,
+.apple-nafas-page .anh-ritual-scene__depth-right,
+.apple-nafas-page .anh-ritual-scene__pedestal,
+.apple-nafas-page .anh-ritual-scene__mist,
+.apple-nafas-page .anh-ritual-scene__brand-flash {
   position: absolute;
   pointer-events: none;
 }
 
-.apple-nafas-page .anh-hero-scene__bg {
+.apple-nafas-page .anh-ritual-scene__bg {
   inset: -4% -4% -2%;
   z-index: 0;
   background:
@@ -556,8 +556,8 @@
   transition: background 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.apple-nafas-page .anh-hero-scene__depth-left,
-.apple-nafas-page .anh-hero-scene__depth-right {
+.apple-nafas-page .anh-ritual-scene__depth-left,
+.apple-nafas-page .anh-ritual-scene__depth-right {
   z-index: 1;
   inset-block: -8% -10%;
   inline-size: min(34rem, 35%);
@@ -568,7 +568,7 @@
     background 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.apple-nafas-page .anh-hero-scene__depth-left {
+.apple-nafas-page .anh-ritual-scene__depth-left {
   left: -6rem;
   background:
     linear-gradient(110deg, rgba(255,255,255,0.08), transparent 32%),
@@ -576,7 +576,7 @@
   clip-path: polygon(0 0, 88% 0, 68% 23%, 92% 54%, 58% 77%, 74% 100%, 0 100%);
 }
 
-.apple-nafas-page .anh-hero-scene__depth-right {
+.apple-nafas-page .anh-ritual-scene__depth-right {
   right: -5rem;
   background:
     linear-gradient(250deg, rgba(255,255,255,0.1), transparent 30%),
@@ -584,7 +584,7 @@
   clip-path: polygon(26% 0, 100% 0, 100% 100%, 18% 100%, 42% 72%, 16% 46%, 48% 22%);
 }
 
-.apple-nafas-page .anh-hero-scene__pedestal {
+.apple-nafas-page .anh-ritual-scene__pedestal {
   z-index: 2;
   left: 50%;
   inset-block-end: 17%;
@@ -605,7 +605,7 @@
     transform 1050ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.apple-nafas-page .anh-hero-scene__mist {
+.apple-nafas-page .anh-ritual-scene__mist {
   inset: 0;
   z-index: 3;
   opacity: 0.6;
@@ -614,10 +614,10 @@
     radial-gradient(ellipse at 80% 34%, color-mix(in srgb, var(--scene-mist), transparent 48%), transparent 16rem),
     linear-gradient(115deg, transparent 0 18%, rgba(255,255,255,0.22) 36%, transparent 58% 100%);
   filter: blur(12px);
-  animation: anh-hero-mist 12s ease-in-out infinite;
+  animation: anh-ritual-mist 12s ease-in-out infinite;
 }
 
-.apple-nafas-page .anh-hero-scene__brand-flash {
+.apple-nafas-page .anh-ritual-scene__brand-flash {
   z-index: 5;
   inset: 50% auto auto 50%;
   color: color-mix(in srgb, var(--scene-flash), white 28%);
@@ -631,7 +631,7 @@
   white-space: nowrap;
 }
 
-.apple-nafas-page .anh-cinematic-hero__inner {
+.apple-nafas-page .anh-ritual-cinematic__inner {
   position: relative;
   z-index: 4;
   display: grid;
@@ -640,17 +640,17 @@
   align-items: center;
 }
 
-.apple-nafas-page .anh-cinematic-hero__title-panel,
-.apple-nafas-page .anh-cinematic-hero__copy-panel {
+.apple-nafas-page .anh-ritual-cinematic__title-panel,
+.apple-nafas-page .anh-ritual-cinematic__copy-panel {
   min-inline-size: 0;
 }
 
-.apple-nafas-page .anh-cinematic-hero__title-panel {
+.apple-nafas-page .anh-ritual-cinematic__title-panel {
   padding-inline-start: 1rem;
 }
 
-.apple-nafas-page .anh-cinematic-hero__title-stack,
-.apple-nafas-page .anh-cinematic-hero__copy-stack {
+.apple-nafas-page .anh-ritual-cinematic__title-stack,
+.apple-nafas-page .anh-ritual-cinematic__copy-stack {
   display: grid;
   gap: 0.85rem;
   transition:
@@ -659,12 +659,12 @@
     filter 620ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.apple-nafas-page .anh-cinematic-hero__title-stack {
+.apple-nafas-page .anh-ritual-cinematic__title-stack {
   justify-items: start;
   text-align: start;
 }
 
-.apple-nafas-page .anh-cinematic-hero h2 {
+.apple-nafas-page .anh-ritual--cinematic h2 {
   margin: 0;
   color: #fffaf2;
   font-family: "Noto Naskh Arabic", "Aptos", serif;
@@ -675,11 +675,11 @@
   text-shadow: 0 22px 54px rgba(0,0,0,0.3);
 }
 
-.apple-nafas-page .anh-cinematic-hero .anh-kicker {
+.apple-nafas-page .anh-ritual--cinematic .anh-kicker {
   color: rgba(255,250,242,0.72);
 }
 
-.apple-nafas-page .anh-cinematic-hero p.anh-cinematic-hero__latin {
+.apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__latin {
   color: rgba(255,250,242,0.8);
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 1.18rem;
@@ -687,7 +687,7 @@
   letter-spacing: 0;
 }
 
-.apple-nafas-page .anh-cinematic-hero__stage {
+.apple-nafas-page .anh-ritual-cinematic__stage {
   position: relative;
   min-block-size: 34rem;
   display: grid;
@@ -695,7 +695,7 @@
   transform-style: preserve-3d;
 }
 
-.apple-nafas-page .anh-cinematic-hero__halo {
+.apple-nafas-page .anh-ritual-cinematic__halo {
   position: absolute;
   inset-block-end: 22%;
   inline-size: 24rem;
@@ -706,7 +706,7 @@
   opacity: 0.8;
 }
 
-.apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+.apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
   position: absolute;
   z-index: 2;
   inline-size: 19rem;
@@ -721,29 +721,29 @@
     filter 760ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.apple-nafas-page .anh-cinematic-hero__bottle.is-active {
+.apple-nafas-page .anh-ritual-cinematic__bottle.is-active {
   opacity: 1;
   filter: blur(0) drop-shadow(0 38px 34px rgba(24, 18, 14, 0.28));
   transform: translateY(0) scale(1);
 }
 
-.apple-nafas-page .anh-cinematic-hero__bottle.is-previous {
+.apple-nafas-page .anh-ritual-cinematic__bottle.is-previous {
   opacity: 0;
   filter: blur(7px) drop-shadow(0 24px 22px rgba(24, 18, 14, 0.18));
   transform: translateY(4.4rem) scale(0.82);
 }
 
-.apple-nafas-page .anh-cinematic-hero .anh-bottle-visual__label small,
-.apple-nafas-page .anh-cinematic-hero .anh-bottle-visual__label strong {
+.apple-nafas-page .anh-ritual--cinematic .anh-bottle-visual__label small,
+.apple-nafas-page .anh-ritual--cinematic .anh-bottle-visual__label strong {
   letter-spacing: 0;
 }
 
-.apple-nafas-page .anh-cinematic-hero__copy-stack {
+.apple-nafas-page .anh-ritual-cinematic__copy-stack {
   justify-items: start;
   text-align: start;
 }
 
-.apple-nafas-page .anh-cinematic-hero p.anh-cinematic-hero__line {
+.apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__line {
   max-inline-size: 24rem;
   color: #fffaf2;
   font-size: 1.65rem;
@@ -752,14 +752,14 @@
   text-shadow: 0 16px 38px rgba(0,0,0,0.25);
 }
 
-.apple-nafas-page .anh-cinematic-hero p.anh-cinematic-hero__description {
+.apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__description {
   max-inline-size: 23rem;
   color: rgba(255,250,242,0.78);
   font-size: 1.04rem;
   line-height: 1.9;
 }
 
-.apple-nafas-page .anh-cinematic-hero p.anh-cinematic-hero__mood {
+.apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__mood {
   color: rgba(255,250,242,0.66);
   font-size: 0.84rem;
   font-weight: 850;
@@ -767,24 +767,24 @@
   text-transform: uppercase;
 }
 
-.apple-nafas-page .anh-cinematic-hero .anh-actions {
+.apple-nafas-page .anh-ritual--cinematic .anh-actions {
   justify-content: flex-start;
 }
 
-.apple-nafas-page .anh-cinematic-hero .anh-button--primary {
+.apple-nafas-page .anh-ritual--cinematic .anh-button--primary {
   background: #fffaf2;
   color: #17120f;
   box-shadow: 0 16px 44px rgba(0,0,0,0.22);
 }
 
-.apple-nafas-page .anh-cinematic-hero .anh-button--secondary {
+.apple-nafas-page .anh-ritual--cinematic .anh-button--secondary {
   border-color: rgba(255,250,242,0.36);
   background: rgba(255,250,242,0.14);
   color: #fffaf2;
   backdrop-filter: blur(16px);
 }
 
-.apple-nafas-page .anh-cinematic-hero__controls {
+.apple-nafas-page .anh-ritual-cinematic__controls {
   position: absolute;
   z-index: 6;
   inset-block-end: 1.2rem;
@@ -801,8 +801,8 @@
   transform: translateX(-50%);
 }
 
-.apple-nafas-page .anh-hero-control,
-.apple-nafas-page .anh-hero-dots button {
+.apple-nafas-page .anh-ritual-control,
+.apple-nafas-page .anh-ritual-dots button {
   position: relative;
   display: inline-grid;
   place-items: center;
@@ -811,7 +811,7 @@
   cursor: pointer;
 }
 
-.apple-nafas-page .anh-hero-control {
+.apple-nafas-page .anh-ritual-control {
   inline-size: 2.75rem;
   block-size: 2.75rem;
   border-radius: 999px;
@@ -819,24 +819,24 @@
   transition: transform 180ms ease, background 180ms ease, opacity 180ms ease;
 }
 
-.apple-nafas-page .anh-hero-control:hover {
+.apple-nafas-page .anh-ritual-control:hover {
   background: rgba(255,255,255,0.22);
   transform: translateY(-1px);
 }
 
-.apple-nafas-page .anh-hero-control:disabled {
+.apple-nafas-page .anh-ritual-control:disabled {
   cursor: not-allowed;
   opacity: 0.48;
   transform: none;
 }
 
-.apple-nafas-page .anh-hero-dots {
+.apple-nafas-page .anh-ritual-dots {
   display: flex;
   align-items: center;
   gap: 0.2rem;
 }
 
-.apple-nafas-page .anh-hero-dots button {
+.apple-nafas-page .anh-ritual-dots button {
   inline-size: 2.25rem;
   block-size: 2.25rem;
   border-radius: 999px;
@@ -844,7 +844,7 @@
   background: transparent;
 }
 
-.apple-nafas-page .anh-hero-dots button::before {
+.apple-nafas-page .anh-ritual-dots button::before {
   content: "";
   inline-size: 0.48rem;
   block-size: 0.48rem;
@@ -855,84 +855,84 @@
     background 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.apple-nafas-page .anh-hero-dots button.is-active::before {
+.apple-nafas-page .anh-ritual-dots button.is-active::before {
   inline-size: 1.65rem;
   background: #fffaf2;
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="idle"] .anh-cinematic-hero__bottle.is-active {
-  animation: anh-hero-bottle-float 6.5s ease-in-out infinite;
+.apple-nafas-page .anh-ritual--cinematic[data-phase="idle"] .anh-ritual-cinematic__bottle.is-active {
+  animation: anh-ritual-bottle-float 6.5s ease-in-out infinite;
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-cinematic-hero__title-stack {
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-out"] .anh-ritual-cinematic__title-stack {
   opacity: 0;
   filter: blur(4px);
   transform: translateX(-2.4rem);
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-cinematic-hero__copy-stack {
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-out"] .anh-ritual-cinematic__copy-stack {
   opacity: 0;
   filter: blur(4px);
   transform: translateX(2.1rem);
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-cinematic-hero__bottle.is-active {
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-out"] .anh-ritual-cinematic__bottle.is-active {
   opacity: 0;
   filter: blur(7px) drop-shadow(0 24px 22px rgba(24, 18, 14, 0.16));
   transform: translateY(4rem) scale(0.84);
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-cinematic-hero__title-stack,
-.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-cinematic-hero__copy-stack {
+.apple-nafas-page .anh-ritual--cinematic[data-phase="switching"] .anh-ritual-cinematic__title-stack,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="switching"] .anh-ritual-cinematic__copy-stack {
   opacity: 0;
   filter: blur(5px);
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-cinematic-hero__bottle.is-active {
+.apple-nafas-page .anh-ritual--cinematic[data-phase="switching"] .anh-ritual-cinematic__bottle.is-active {
   opacity: 0;
   transform: translateY(-3rem) scale(0.72);
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-cinematic-hero__title-stack {
-  animation: anh-hero-title-in 720ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-in"] .anh-ritual-cinematic__title-stack {
+  animation: anh-ritual-title-in 720ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-cinematic-hero__copy-stack {
-  animation: anh-hero-copy-in 720ms cubic-bezier(0.22, 1, 0.36, 1) 160ms both;
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-in"] .anh-ritual-cinematic__copy-stack {
+  animation: anh-ritual-copy-in 720ms cubic-bezier(0.22, 1, 0.36, 1) 160ms both;
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-cinematic-hero__bottle.is-active {
-  animation: anh-hero-bottle-in 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-in"] .anh-ritual-cinematic__bottle.is-active {
+  animation: anh-ritual-bottle-in 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-hero-scene__bg,
-.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-hero-scene__bg,
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-hero-scene__bg {
-  animation: anh-hero-bg-transition 1180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-out"] .anh-ritual-scene__bg,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="switching"] .anh-ritual-scene__bg,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-in"] .anh-ritual-scene__bg {
+  animation: anh-ritual-bg-transition 1180ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-hero-scene__depth-left,
-.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-hero-scene__depth-left,
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-hero-scene__depth-left {
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-out"] .anh-ritual-scene__depth-left,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="switching"] .anh-ritual-scene__depth-left,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-in"] .anh-ritual-scene__depth-left {
   transform: translateX(-1.4rem) scale(1.025);
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-hero-scene__depth-right,
-.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-hero-scene__depth-right,
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-hero-scene__depth-right {
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-out"] .anh-ritual-scene__depth-right,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="switching"] .anh-ritual-scene__depth-right,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-in"] .anh-ritual-scene__depth-right {
   transform: translateX(1.4rem) scale(1.025);
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-hero-scene__pedestal,
-.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-hero-scene__pedestal,
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-hero-scene__pedestal {
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-out"] .anh-ritual-scene__pedestal,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="switching"] .anh-ritual-scene__pedestal,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-in"] .anh-ritual-scene__pedestal {
   transform: translateX(-50%) perspective(42rem) rotateX(64deg) scale(1.04);
 }
 
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-hero-scene__brand-flash,
-.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-hero-scene__brand-flash,
-.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-hero-scene__brand-flash {
-  animation: anh-hero-brand-flash 1180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-out"] .anh-ritual-scene__brand-flash,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="switching"] .anh-ritual-scene__brand-flash,
+.apple-nafas-page .anh-ritual--cinematic[data-phase="transitioning-in"] .anh-ritual-scene__brand-flash {
+  animation: anh-ritual-brand-flash 1180ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .apple-nafas-page .anh-highlights,
@@ -1416,7 +1416,7 @@
   inline-size: 100%;
 }
 
-.apple-nafas-page .anh-ritual {
+.apple-nafas-page .anh-ritual:not(.anh-ritual--cinematic) {
   position: relative;
   min-block-size: clamp(620px, 76vw, 980px);
   display: grid;
@@ -1427,7 +1427,7 @@
   text-align: center;
 }
 
-.apple-nafas-page .anh-ritual img {
+.apple-nafas-page .anh-ritual:not(.anh-ritual--cinematic) img {
   position: absolute;
   inset: 0;
   inline-size: 100%;
@@ -1436,25 +1436,25 @@
   opacity: 0.52;
 }
 
-.apple-nafas-page .anh-ritual::after {
+.apple-nafas-page .anh-ritual:not(.anh-ritual--cinematic)::after {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 50% 52%, transparent 0 18rem, rgba(0,0,0,0.42) 42rem), linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.72));
 }
 
-.apple-nafas-page .anh-ritual div {
+.apple-nafas-page .anh-ritual:not(.anh-ritual--cinematic) div {
   position: relative;
   z-index: 1;
   inline-size: min(820px, calc(100% - 2rem));
 }
 
-.apple-nafas-page .anh-ritual h2 {
+.apple-nafas-page .anh-ritual:not(.anh-ritual--cinematic) h2 {
   color: #fff;
   font-size: clamp(4rem, 10vw, 10rem);
 }
 
-.apple-nafas-page .anh-ritual p:not(.anh-kicker) {
+.apple-nafas-page .anh-ritual:not(.anh-ritual--cinematic) p:not(.anh-kicker) {
   max-inline-size: 34rem;
   margin: 1rem auto 0;
   color: rgba(255,255,255,0.78);
@@ -1703,7 +1703,7 @@
   }
 }
 
-@keyframes anh-hero-mist {
+@keyframes anh-ritual-mist {
   0%, 100% {
     transform: translate3d(0, 0, 0) scale(1);
     opacity: 0.52;
@@ -1715,7 +1715,7 @@
   }
 }
 
-@keyframes anh-hero-bottle-float {
+@keyframes anh-ritual-bottle-float {
   0%, 100% {
     transform: translateY(0) scale(1);
   }
@@ -1725,7 +1725,7 @@
   }
 }
 
-@keyframes anh-hero-bottle-in {
+@keyframes anh-ritual-bottle-in {
   0% {
     opacity: 0;
     filter: blur(8px) drop-shadow(0 24px 22px rgba(24, 18, 14, 0.16));
@@ -1739,7 +1739,7 @@
   }
 }
 
-@keyframes anh-hero-title-in {
+@keyframes anh-ritual-title-in {
   0% {
     opacity: 0;
     filter: blur(5px);
@@ -1753,7 +1753,7 @@
   }
 }
 
-@keyframes anh-hero-copy-in {
+@keyframes anh-ritual-copy-in {
   0% {
     opacity: 0;
     filter: blur(5px);
@@ -1767,7 +1767,7 @@
   }
 }
 
-@keyframes anh-hero-bg-transition {
+@keyframes anh-ritual-bg-transition {
   0% {
     transform: scale(1.02) translate3d(0, 0, 0);
   }
@@ -1781,7 +1781,7 @@
   }
 }
 
-@keyframes anh-hero-brand-flash {
+@keyframes anh-ritual-brand-flash {
   0%, 20% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.86);
@@ -1873,49 +1873,49 @@
     display: none;
   }
 
-  .apple-nafas-page .anh-cinematic-hero {
+  .apple-nafas-page .anh-ritual--cinematic {
     min-block-size: auto;
     padding-block: 1.25rem 1.4rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero h2 {
+  .apple-nafas-page .anh-ritual--cinematic h2 {
     font-size: 3.55rem;
     line-height: 1.12;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__line {
+  .apple-nafas-page .anh-ritual-cinematic__line {
     font-size: 1.22rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__description {
+  .apple-nafas-page .anh-ritual-cinematic__description {
     font-size: 0.94rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__stage {
+  .apple-nafas-page .anh-ritual-cinematic__stage {
     min-block-size: 17.75rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
     inline-size: 10.7rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__halo {
+  .apple-nafas-page .anh-ritual-cinematic__halo {
     inline-size: 14rem;
     block-size: 7rem;
   }
 
-  .apple-nafas-page .anh-hero-scene__pedestal {
+  .apple-nafas-page .anh-ritual-scene__pedestal {
     inset-block-end: 37%;
     inline-size: min(19rem, 82%);
     block-size: 5.2rem;
   }
 
-  .apple-nafas-page .anh-hero-scene__brand-flash {
+  .apple-nafas-page .anh-ritual-scene__brand-flash {
     font-size: 4.4rem;
   }
 
-  .apple-nafas-page .anh-hero-scene__depth-left,
-  .apple-nafas-page .anh-hero-scene__depth-right {
+  .apple-nafas-page .anh-ritual-scene__depth-left,
+  .apple-nafas-page .anh-ritual-scene__depth-right {
     inline-size: 54%;
     opacity: 0.68;
   }
@@ -2037,24 +2037,24 @@
     display: none;
   }
 
-  .apple-nafas-page .anh-cinematic-hero {
+  .apple-nafas-page .anh-ritual--cinematic {
     min-block-size: auto;
     padding-block: 1.7rem 1.8rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero h2 {
+  .apple-nafas-page .anh-ritual--cinematic h2 {
     font-size: 4.15rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__stage {
+  .apple-nafas-page .anh-ritual-cinematic__stage {
     min-block-size: 20rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
     inline-size: 12.4rem;
   }
 
-  .apple-nafas-page .anh-hero-scene__pedestal {
+  .apple-nafas-page .anh-ritual-scene__pedestal {
     inset-block-end: 35%;
     inline-size: min(24rem, 80%);
     block-size: 6rem;
@@ -2074,7 +2074,7 @@
 }
 
 @media (max-width: 767px) {
-  .apple-nafas-page .anh-cinematic-hero__inner,
+  .apple-nafas-page .anh-ritual-cinematic__inner,
   .apple-nafas-page .anh-viewer-panel,
   .apple-nafas-page .anh-together__grid,
   .apple-nafas-page .anh-selector__panel,
@@ -2098,37 +2098,37 @@
     right: -9rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero::after {
+  .apple-nafas-page .anh-ritual--cinematic::after {
     background:
       linear-gradient(180deg, rgba(16,13,11,0.58), rgba(16,13,11,0.08) 30%, rgba(16,13,11,0.48) 100%),
       linear-gradient(90deg, rgba(16,13,11,0.36), transparent 50%, rgba(16,13,11,0.32));
     opacity: 0.72;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__inner {
+  .apple-nafas-page .anh-ritual-cinematic__inner {
     gap: 0.8rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__title-stack,
-  .apple-nafas-page .anh-cinematic-hero__copy-stack {
+  .apple-nafas-page .anh-ritual-cinematic__title-stack,
+  .apple-nafas-page .anh-ritual-cinematic__copy-stack {
     justify-items: center;
     text-align: center;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__copy-stack {
+  .apple-nafas-page .anh-ritual-cinematic__copy-stack {
     gap: 0.65rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__line,
-  .apple-nafas-page .anh-cinematic-hero__description {
+  .apple-nafas-page .anh-ritual-cinematic__line,
+  .apple-nafas-page .anh-ritual-cinematic__description {
     max-inline-size: min(100%, 24rem);
   }
 
-  .apple-nafas-page .anh-cinematic-hero .anh-actions {
+  .apple-nafas-page .anh-ritual--cinematic .anh-actions {
     justify-content: center;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__controls {
+  .apple-nafas-page .anh-ritual-cinematic__controls {
     position: relative;
     inset: auto;
     inline-size: max-content;
@@ -2138,12 +2138,12 @@
     transform: none;
   }
 
-  .apple-nafas-page .anh-hero-control {
+  .apple-nafas-page .anh-ritual-control {
     inline-size: 2.45rem;
     block-size: 2.45rem;
   }
 
-  .apple-nafas-page .anh-hero-dots button {
+  .apple-nafas-page .anh-ritual-dots button {
     inline-size: 2rem;
     block-size: 2rem;
   }
@@ -2169,7 +2169,7 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .apple-nafas-page .anh-landing-hero__content,
-  .apple-nafas-page .anh-cinematic-hero__inner,
+  .apple-nafas-page .anh-ritual-cinematic__inner,
   .apple-nafas-page .anh-viewer-panel,
   .apple-nafas-page .anh-together__grid,
   .apple-nafas-page .anh-selector__panel,
@@ -2214,34 +2214,34 @@
     display: none;
   }
 
-  .apple-nafas-page .anh-cinematic-hero {
+  .apple-nafas-page .anh-ritual--cinematic {
     min-block-size: auto;
     padding-block: 2.2rem 5rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__title-stack,
-  .apple-nafas-page .anh-cinematic-hero__copy-stack {
+  .apple-nafas-page .anh-ritual-cinematic__title-stack,
+  .apple-nafas-page .anh-ritual-cinematic__copy-stack {
     justify-items: center;
     text-align: center;
   }
 
-  .apple-nafas-page .anh-cinematic-hero h2 {
+  .apple-nafas-page .anh-ritual--cinematic h2 {
     font-size: 5.6rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__stage {
+  .apple-nafas-page .anh-ritual-cinematic__stage {
     min-block-size: 26rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
     inline-size: 15rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero .anh-actions {
+  .apple-nafas-page .anh-ritual--cinematic .anh-actions {
     justify-content: center;
   }
 
-  .apple-nafas-page .anh-hero-scene__pedestal {
+  .apple-nafas-page .anh-ritual-scene__pedestal {
     inset-block-end: 29%;
     inline-size: min(34rem, 74%);
     block-size: 7.6rem;
@@ -2282,24 +2282,24 @@
     grid-template-columns: 1fr;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__inner {
+  .apple-nafas-page .anh-ritual-cinematic__inner {
     grid-template-columns: minmax(12rem, 0.72fr) minmax(18rem, 0.92fr) minmax(13rem, 0.72fr);
     gap: 1.1rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero h2 {
+  .apple-nafas-page .anh-ritual--cinematic h2 {
     font-size: 6.35rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero p.anh-cinematic-hero__line {
+  .apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__line {
     font-size: 1.4rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__stage {
+  .apple-nafas-page .anh-ritual-cinematic__stage {
     min-block-size: 30rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
     inline-size: 16.5rem;
   }
 
@@ -2324,7 +2324,7 @@
 }
 
 @media (min-width: 1366px) {
-  .apple-nafas-page .anh-cinematic-hero h2 {
+  .apple-nafas-page .anh-ritual--cinematic h2 {
     font-size: 7.9rem;
   }
 
@@ -2334,11 +2334,11 @@
 }
 
 @media (min-width: 1536px) {
-  .apple-nafas-page .anh-cinematic-hero h2 {
+  .apple-nafas-page .anh-ritual--cinematic h2 {
     font-size: 8.4rem;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
     inline-size: 20.5rem;
   }
 }
@@ -2353,9 +2353,10 @@
     transition-duration: 0.001ms !important;
   }
 
-  .apple-nafas-page .anh-cinematic-hero__bottle.is-active,
-  .apple-nafas-page .anh-hero-scene__mist,
-  .apple-nafas-page .anh-hero-scene__brand-flash {
+  .apple-nafas-page .anh-ritual-cinematic__bottle.is-active,
+  .apple-nafas-page .anh-ritual-scene__mist,
+  .apple-nafas-page .anh-ritual-scene__brand-flash {
     animation: none !important;
   }
 }
+

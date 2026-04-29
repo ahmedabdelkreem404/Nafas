@@ -1,5 +1,5 @@
 import BetterTogetherSection from './components/BetterTogetherSection';
-import CinematicHeroSection from './components/CinematicHeroSection';
+import CinematicRitualSection from './components/CinematicRitualSection';
 import ComparisonSection from './components/ComparisonSection';
 import EmotionalMomentSection from './components/EmotionalMomentSection';
 import FinalCtaSection from './components/FinalCtaSection';
@@ -8,7 +8,6 @@ import HighlightsSection from './components/HighlightsSection';
 import HomeRibbon from './components/HomeRibbon';
 import KeepExploringSection from './components/KeepExploringSection';
 import ProductViewerSection from './components/ProductViewerSection';
-import RitualSection from './components/RitualSection';
 import ScentSelectorSection from './components/ScentSelectorSection';
 import SensesSection from './components/SensesSection';
 import StoryChaptersSection from './components/StoryChaptersSection';
@@ -27,15 +26,14 @@ export default function AppleNafasHome() {
   return (
     <div className="apple-nafas-page" dir="rtl">
       <HomeRibbon />
-      <HeroSection scents={scents} />
-      <CinematicHeroSection scents={scents} />
+      <CinematicRitualSection scents={scents} />
       <HighlightsSection highlights={highlights} scents={scents} />
       <EmotionalMomentSection scents={scents} />
       <ProductViewerSection scents={scents} />
       <StoryChaptersSection chapters={storyChapters} />
       <SensesSection layers={sensoryLayers} />
       <TesterToBottleSection steps={testerFlowSteps} />
-      <RitualSection />
+      <HeroSection scents={scents} />
       <BetterTogetherSection featuredScent={scents[1]} />
       <ScentSelectorSection options={selectorOptions} scents={scents} />
       <TrustSection cards={trustCards} />

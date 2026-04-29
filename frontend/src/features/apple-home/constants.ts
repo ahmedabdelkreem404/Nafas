@@ -3,7 +3,6 @@ import type { ViewerTabOption } from './types';
 export const SECTION_LABELS = {
   ribbon: 'ribbon',
   hero: 'hero',
-  cinematic: 'cinematic-scents',
   highlights: 'highlights',
   emotional: 'emotional',
   viewer: 'product-viewer',
