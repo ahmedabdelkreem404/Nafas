@@ -33,6 +33,27 @@ type Highlight = {
   tone: string;
 };
 
+function BottleVisual({ scent, className = '' }: { scent: Scent; className?: string }) {
+  return (
+    <div
+      className={`anh-bottle-visual anh-bottle-visual--${scent.id} ${className}`}
+      style={{ '--accent': scent.accent } as CSSProperties}
+      aria-hidden="true"
+    >
+      <span className="anh-bottle-visual__cap" />
+      <span className="anh-bottle-visual__neck" />
+      <span className="anh-bottle-visual__body">
+        <span className="anh-bottle-visual__shine" />
+        <span className="anh-bottle-visual__label">
+          <small>Nafas</small>
+          <strong>{scent.name}</strong>
+        </span>
+      </span>
+      <span className="anh-bottle-visual__shadow" />
+    </div>
+  );
+}
+
 const scents: Scent[] = [
   {
     id: 'sharara',
@@ -279,13 +300,10 @@ export default function Home() {
           <div className="anh-hero__stage" aria-label="زجاجات عطور نفَس الأربع">
             <div className="anh-hero__glow" />
             {scents.map((scent, index) => (
-              <img
+              <BottleVisual
                 key={scent.id}
+                scent={scent}
                 className={`anh-hero__bottle anh-hero__bottle--${index + 1}`}
-                src={scent.image}
-                alt={`زجاجة عطر ${scent.nameAr}`}
-                loading={index === 0 ? 'eager' : 'lazy'}
-                decoding="async"
               />
             ))}
           </div>
@@ -326,7 +344,11 @@ export default function Home() {
                     <h3>{item.title}</h3>
                     <p>{item.copy}</p>
                   </div>
-                  <img src={item.image} alt="" loading="lazy" decoding="async" />
+                  {scents.some((scent) => scent.id === item.id) ? (
+                    <BottleVisual scent={scents.find((scent) => scent.id === item.id) ?? scents[0]} className="anh-highlight-bottle" />
+                  ) : (
+                    <img src={item.image} alt="" loading="lazy" decoding="async" />
+                  )}
                 </article>
               ))}
             </div>
@@ -367,7 +389,7 @@ export default function Home() {
           </div>
           <div className="anh-love__orbit" aria-hidden="true">
             {scents.map((scent) => (
-              <img key={scent.id} src={scent.image} alt="" loading="lazy" decoding="async" />
+              <BottleVisual key={scent.id} scent={scent} />
             ))}
           </div>
         </div>
@@ -399,7 +421,7 @@ export default function Home() {
 
             <div className="anh-viewer-panel__visual">
               <div className="anh-viewer-panel__halo" />
-              <img key={activeScent.id} src={activeScent.image} alt={`زجاجة عطر ${activeScent.nameAr}`} />
+              <BottleVisual key={activeScent.id} scent={activeScent} />
             </div>
 
             <div className="anh-viewer-panel__copy" aria-live="polite">
@@ -520,7 +542,7 @@ export default function Home() {
           </div>
           <div className="anh-together__visual" aria-hidden="true">
             <img src="/assets/stock/optimized/hero-perfume-fabric.webp" alt="" loading="lazy" decoding="async" />
-            <img src={scents[1].image} alt="" loading="lazy" decoding="async" />
+            <BottleVisual scent={scents[1]} />
           </div>
         </div>
       </section>
@@ -582,7 +604,9 @@ export default function Home() {
           <div className="anh-compare__grid">
             {scents.map((scent) => (
               <article key={scent.id} className="anh-compare-card" style={{ '--accent': scent.accent } as CSSProperties}>
-                <img src={scent.image} alt={`زجاجة عطر ${scent.nameAr}`} loading="lazy" decoding="async" />
+                <div className="anh-compare-card__visual" aria-label={`زجاجة عطر ${scent.nameAr}`} role="img">
+                  <BottleVisual scent={scent} />
+                </div>
                 <span>{scent.name}</span>
                 <h3>{scent.nameAr}</h3>
                 <p>{scent.line}</p>

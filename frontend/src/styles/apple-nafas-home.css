@@ -74,6 +74,13 @@
 
 .anh-section {
   padding-block: clamp(4.5rem, 10vw, 10rem);
+  scroll-margin-block-start: calc(var(--navh) + 1.5rem);
+}
+
+.anh-hero,
+.anh-ritual,
+.anh-final {
+  scroll-margin-block-start: calc(var(--navh) + 1.5rem);
 }
 
 .anh-section-head {
@@ -151,6 +158,121 @@
   gap: 0.75rem;
   align-items: center;
   justify-content: center;
+}
+
+.anh-bottle-visual {
+  --accent: #b86d3b;
+  position: relative;
+  inline-size: min(300px, 52vw);
+  aspect-ratio: 0.62;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 34px 30px rgba(38, 29, 21, 0.24));
+}
+
+.anh-bottle-visual__cap,
+.anh-bottle-visual__neck,
+.anh-bottle-visual__body,
+.anh-bottle-visual__label,
+.anh-bottle-visual__shadow,
+.anh-bottle-visual__shine {
+  position: absolute;
+  display: block;
+}
+
+.anh-bottle-visual__cap {
+  inset-block-start: 1.5%;
+  inline-size: 34%;
+  block-size: 10%;
+  border-radius: 22% 22% 14% 14%;
+  background: linear-gradient(180deg, #fff5dd, color-mix(in srgb, var(--accent), #5d4230 28%));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.38);
+}
+
+.anh-bottle-visual__neck {
+  inset-block-start: 10%;
+  inline-size: 18%;
+  block-size: 10%;
+  border-radius: 18px 18px 8px 8px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent), white 45%), color-mix(in srgb, var(--accent), #161616 34%));
+}
+
+.anh-bottle-visual__body {
+  inset-block-start: 17%;
+  inline-size: 74%;
+  block-size: 68%;
+  overflow: hidden;
+  border-radius: 24% 24% 18% 18%;
+  background:
+    linear-gradient(110deg, rgba(255,255,255,0.35), transparent 26% 67%, rgba(255,255,255,0.2)),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent), white 58%), color-mix(in srgb, var(--accent), #191919 34%));
+  box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.44), inset 0 -48px 80px rgba(0,0,0,0.14);
+}
+
+.anh-bottle-visual--sharara .anh-bottle-visual__body,
+.anh-bottle-visual--zell .anh-bottle-visual__body {
+  background:
+    linear-gradient(110deg, rgba(255,255,255,0.22), transparent 25% 68%, rgba(255,255,255,0.14)),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent), #121212 62%), #151515);
+}
+
+.anh-bottle-visual--ghayma .anh-bottle-visual__body {
+  background:
+    linear-gradient(110deg, rgba(255,255,255,0.62), transparent 26% 70%, rgba(255,255,255,0.28)),
+    linear-gradient(180deg, #fff9ef, color-mix(in srgb, var(--accent), white 54%));
+}
+
+.anh-bottle-visual__shine {
+  inset-block-start: 12%;
+  inset-inline-start: 16%;
+  inline-size: 18%;
+  block-size: 58%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.52), transparent);
+  opacity: 0.58;
+  filter: blur(2px);
+}
+
+.anh-bottle-visual__label {
+  inset-block-end: 19%;
+  inset-inline: 15%;
+  display: grid;
+  place-items: center;
+  gap: 0.16rem;
+  min-block-size: 27%;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.82);
+  color: #171717;
+  text-align: center;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.72);
+}
+
+.anh-bottle-visual--sharara .anh-bottle-visual__label,
+.anh-bottle-visual--zell .anh-bottle-visual__label {
+  background: rgba(12,12,14,0.86);
+  color: #f5eee3;
+}
+
+.anh-bottle-visual__label small {
+  font-size: clamp(0.5rem, 1vw, 0.72rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.anh-bottle-visual__label strong {
+  font-size: clamp(0.95rem, 2vw, 1.45rem);
+  letter-spacing: -0.03em;
+}
+
+.anh-bottle-visual__shadow {
+  inset-block-end: 5%;
+  inline-size: 82%;
+  block-size: 8%;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent), #000 44%);
+  opacity: 0.24;
+  filter: blur(12px);
 }
 
 .anh-ribbon {
@@ -233,10 +355,7 @@
 
 .anh-hero__bottle {
   position: absolute;
-  max-inline-size: min(38vw, 390px);
-  max-block-size: 84%;
-  object-fit: contain;
-  filter: drop-shadow(0 34px 32px rgba(45, 34, 26, 0.22));
+  inline-size: min(33vw, 380px);
   transform-origin: 50% 100%;
 }
 
@@ -264,6 +383,7 @@
 }
 
 .anh-highlights {
+  padding-block-start: clamp(8rem, 14vw, 15rem);
   background: #fff;
 }
 
@@ -309,10 +429,11 @@
 .anh-highlight-card--gift { background: linear-gradient(135deg, #f7eee7, #ead2b8); }
 .anh-highlight-card--quality { background: linear-gradient(135deg, #f1f3f4, #d9cab7); }
 
-.anh-highlight-card img {
+.anh-highlight-card img,
+.anh-highlight-bottle {
   position: absolute;
   inset-block-end: clamp(2.5rem, 5vw, 5rem);
-  inset-inline-start: 50%;
+  left: 50%;
   inline-size: min(58%, 580px);
   max-block-size: 76%;
   object-fit: contain;
@@ -321,6 +442,10 @@
 }
 
 [dir='rtl'] .anh-highlight-card img {
+  transform: translateX(-50%);
+}
+
+[dir='rtl'] .anh-highlight-bottle {
   transform: translateX(-50%);
 }
 
@@ -456,7 +581,12 @@
   filter: drop-shadow(0 28px 24px rgba(64, 43, 25, 0.18));
 }
 
+.anh-love__orbit .anh-bottle-visual {
+  inline-size: min(22vw, 170px);
+}
+
 .anh-viewer {
+  padding-block-start: clamp(8rem, 14vw, 15rem);
   background: #f5f5f7;
 }
 
@@ -523,13 +653,11 @@
   opacity: 0.66;
 }
 
-.anh-viewer-panel__visual img {
+.anh-viewer-panel__visual img,
+.anh-viewer-panel__visual .anh-bottle-visual {
   position: relative;
   z-index: 1;
-  max-inline-size: min(72%, 440px);
-  max-block-size: 94%;
-  object-fit: contain;
-  filter: drop-shadow(0 36px 30px rgba(0, 0, 0, 0.22));
+  inline-size: min(72%, 420px);
   animation: anh-fade-up 420ms ease both;
 }
 
@@ -687,6 +815,7 @@
 }
 
 .anh-flow {
+  padding-block-start: clamp(8rem, 14vw, 15rem);
   background: #fff;
 }
 
@@ -838,6 +967,14 @@
   filter: drop-shadow(0 30px 28px rgba(0,0,0,0.2));
 }
 
+.anh-together__visual .anh-bottle-visual {
+  position: absolute;
+  inset-block-end: 5%;
+  inset-inline-start: 50%;
+  inline-size: min(38%, 320px);
+  transform: translateX(-50%);
+}
+
 .anh-selector {
   background: #f5f5f7;
 }
@@ -917,12 +1054,17 @@
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9);
 }
 
-.anh-compare-card img {
+.anh-compare-card__visual {
   inline-size: 100%;
   block-size: 260px;
+  display: grid;
+  place-items: center;
   border-radius: 26px;
-  object-fit: contain;
   background: radial-gradient(circle, color-mix(in srgb, var(--accent), white 68%), #f5f5f7 68%);
+}
+
+.anh-compare-card__visual .anh-bottle-visual {
+  inline-size: min(54%, 170px);
 }
 
 .anh-compare-card h3 {
@@ -1050,7 +1192,7 @@
   }
 
   .anh-hero__bottle {
-    max-inline-size: 68vw;
+    inline-size: 58vw;
   }
 
   .anh-highlight-card {
@@ -1062,7 +1204,8 @@
     gap: 0.85rem;
   }
 
-  .anh-highlight-card img {
+  .anh-highlight-card img,
+  .anh-highlight-bottle {
     inline-size: 78%;
     inset-block-end: 4rem;
   }
@@ -1176,8 +1319,9 @@
     min-block-size: 390px;
   }
 
-  .anh-viewer-panel__visual img {
-    max-inline-size: 82%;
+  .anh-viewer-panel__visual img,
+  .anh-viewer-panel__visual .anh-bottle-visual {
+    inline-size: 74%;
   }
 
   .anh-viewer-panel__copy p {
@@ -1196,7 +1340,7 @@
     grid-template-columns: 1fr;
   }
 
-  .anh-compare-card img {
+  .anh-compare-card__visual {
     block-size: 230px;
   }
 
