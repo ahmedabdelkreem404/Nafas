@@ -1,6 +1,4 @@
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
-import BrandLoader from './components/BrandLoader';
-import AtelierBackground from './components/AtelierBackground';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import OffcanvasCart from './components/OffcanvasCart';
@@ -44,8 +42,6 @@ import AdminSettings from './pages/admin/AdminSettings';
 function PublicLayout() {
   return (
     <>
-      <AtelierBackground />
-      <BrandLoader />
       <div className="app-shell">
         <Navbar />
         <main className="page-shell">
