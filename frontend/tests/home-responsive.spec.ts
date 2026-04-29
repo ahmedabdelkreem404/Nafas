@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 
-const widths = [320, 360, 390, 430, 540, 640, 768, 820, 1024, 1180, 1366, 1440, 1536, 1920];
+const widths = [320, 360, 390, 430, 540, 640, 768, 820, 1024, 1180, 1366, 1440, 1480, 1536, 1920];
 
 const sections = [
   'ribbon',
@@ -78,6 +78,124 @@ test.describe('Apple Nafas homepage', () => {
     }
   });
 
+  test('uses the shared 1480 by 920 section frame at desktop size', async ({ page }) => {
+    await page.setViewportSize({ width: 1480, height: 920 });
+    await gotoHome(page);
+
+    const sectionFrames = await page.locator('.apple-nafas-page > [data-section]:not(.anh-ribbon)').evaluateAll((elements) => (
+      elements.map((element) => {
+        const rect = element.getBoundingClientRect();
+        const styles = window.getComputedStyle(element);
+
+        return {
+          height: rect.height,
+          paddingBottom: Number.parseFloat(styles.paddingBottom),
+          paddingTop: Number.parseFloat(styles.paddingTop),
+          width: rect.width,
+        };
+      })
+    ));
+
+    for (const frame of sectionFrames) {
+      expect(Math.round(frame.width)).toBe(1480);
+      expect(frame.height).toBeGreaterThanOrEqual(920);
+      expect(frame.paddingTop).toBeGreaterThanOrEqual(47.8);
+      expect(frame.paddingTop).toBeLessThanOrEqual(48);
+      expect(frame.paddingBottom).toBeGreaterThanOrEqual(89.7);
+      expect(frame.paddingBottom).toBeLessThanOrEqual(90);
+    }
+  });
+
+  test('scales the section frame on compact laptop heights', async ({ page }) => {
+    await page.setViewportSize({ width: 1366, height: 768 });
+    await gotoHome(page);
+
+    const compactSizing = await page.evaluate(() => {
+      const headingSelectors = [
+        '[data-section="ritual"] h2',
+        '[data-section="highlights"] .anh-section-head h2',
+        '[data-section="emotional"] h2',
+        '[data-section="product-viewer"] .anh-section-head h2',
+        '[data-section="product-viewer"] h3',
+        '[data-section="story-chapters"] .anh-section-head h2',
+        '[data-section="story-chapters"] h3',
+        '[data-section="senses"] h2',
+        '[data-section="tester-to-bottle"] .anh-section-head h2',
+        '[data-section="hero"] h1',
+        '[data-section="better-together"] h2',
+        '[data-section="scent-selector"] h2',
+        '[data-section="trust"] h2',
+        '[data-section="comparison"] h2',
+        '[data-section="keep-exploring"] h2',
+        '[data-section="final-cta"] h2',
+      ];
+
+      const headings = headingSelectors.map((selector) => {
+        const element = document.querySelector(selector);
+        return {
+          fontSize: element ? Number.parseFloat(window.getComputedStyle(element).fontSize) : 0,
+          selector,
+        };
+      });
+
+      const heightSelectors = [
+        '[data-section="ritual"] .anh-ritual-cinematic__stage',
+        '[data-section="highlights"] .anh-highlight-card',
+        '[data-section="emotional"] .anh-love__inner',
+        '[data-section="product-viewer"] .anh-viewer-panel',
+        '[data-section="story-chapters"] .anh-chapter',
+        '[data-section="senses"] .anh-senses__stage',
+        '[data-section="tester-to-bottle"] .anh-flow__steps article',
+        '[data-section="hero"] .anh-landing-hero__content',
+        '[data-section="better-together"] .anh-together__visual',
+        '[data-section="trust"] .anh-why__grid article',
+        '[data-section="comparison"] .anh-compare-card__visual',
+        '[data-section="keep-exploring"] .anh-explore-card',
+      ];
+
+      const blocks = heightSelectors.map((selector) => {
+        const element = document.querySelector(selector);
+        return {
+          height: element?.getBoundingClientRect().height ?? 0,
+          selector,
+        };
+      });
+
+      return { blocks, headings };
+    });
+
+    const sectionFrames = await page.locator('.apple-nafas-page > [data-section]:not(.anh-ribbon)').evaluateAll((elements) => (
+      elements.map((element) => {
+        const styles = window.getComputedStyle(element);
+
+        return {
+          minHeight: Number.parseFloat(styles.minHeight),
+          paddingBottom: Number.parseFloat(styles.paddingBottom),
+          paddingTop: Number.parseFloat(styles.paddingTop),
+          width: Math.round(element.getBoundingClientRect().width),
+        };
+      })
+    ));
+
+    for (const frame of sectionFrames) {
+      expect(frame.width).toBe(1366);
+      expect(frame.minHeight).toBeLessThanOrEqual(700);
+      expect(frame.minHeight).toBeGreaterThanOrEqual(560);
+      expect(frame.paddingTop).toBeLessThan(48);
+      expect(frame.paddingBottom).toBeLessThan(90);
+    }
+
+    for (const heading of compactSizing.headings) {
+      expect(heading.fontSize, heading.selector).toBeGreaterThan(0);
+      expect(heading.fontSize, heading.selector).toBeLessThanOrEqual(96);
+    }
+
+    for (const block of compactSizing.blocks) {
+      expect(block.height, block.selector).toBeGreaterThan(0);
+      expect(block.height, block.selector).toBeLessThanOrEqual(640);
+    }
+  });
+
   test('supports cinematic ritual controls and keyboard navigation', async ({ page }) => {
     await gotoHome(page);
     const ritual = page.locator('[data-section="ritual"]');
@@ -85,8 +203,36 @@ test.describe('Apple Nafas homepage', () => {
     await expect(ritual).toBeVisible();
     await expect(page.getByTestId('cinematic-ritual-play-toggle')).toBeVisible();
     await expect(page.getByTestId('cinematic-ritual-dot-1')).toBeVisible();
-    await expect(page.getByTestId('cinematic-ritual-next')).toBeVisible();
-    await expect(page.getByTestId('cinematic-ritual-prev')).toBeVisible();
+    await expect(page.getByTestId('cinematic-ritual-next')).toHaveCount(0);
+    await expect(page.getByTestId('cinematic-ritual-prev')).toHaveCount(0);
+
+    const ritualControlChildren = await ritual.locator('.anh-ritual-cinematic__controls').evaluate((element) => (
+      [...element.children].map((child) => child.className)
+    ));
+
+    expect(ritualControlChildren).toEqual([
+      'anh-dock-button anh-ritual-control anh-ritual-control--play',
+      'anh-dots anh-ritual-dots',
+    ]);
+
+    const ritualControlLayout = await ritual.locator('.anh-ritual-cinematic__controls').evaluate((element) => {
+      const buttonElement = element.querySelector('.anh-dock-button');
+      const dotsElement = element.querySelector('.anh-dots');
+      const button = buttonElement?.getBoundingClientRect();
+      const dots = dotsElement?.getBoundingClientRect();
+
+      return {
+        buttonBackground: buttonElement ? window.getComputedStyle(buttonElement).backgroundColor : '',
+        buttonLeft: button?.left ?? 0,
+        direction: window.getComputedStyle(element).direction,
+        dotsBackground: dotsElement ? window.getComputedStyle(dotsElement).backgroundColor : '',
+        dotsRight: dots?.right ?? 0,
+      };
+    });
+
+    expect(ritualControlLayout.direction).toBe('rtl');
+    expect(ritualControlLayout.buttonLeft).toBeGreaterThan(ritualControlLayout.dotsRight);
+    expect(ritualControlLayout.buttonBackground).toBe(ritualControlLayout.dotsBackground);
 
     await page.getByTestId('cinematic-ritual-dot-1').click();
     await expect(ritual).toHaveAttribute('data-active-scent', 'ghayma', { timeout: 2500 });
@@ -126,6 +272,20 @@ test.describe('Apple Nafas homepage', () => {
     await expect(highlights).toBeVisible();
     await expect(highlights.getByRole('button', { name: /إيقاف|تشغيل/ })).toBeVisible();
     await expect(page.getByTestId('highlight-dot-1')).toBeVisible();
+
+    const highlightControlLayout = await highlights.locator('.anh-carousel-dock').evaluate((element) => {
+      const button = element.querySelector('.anh-dock-button')?.getBoundingClientRect();
+      const dots = element.querySelector('.anh-dots')?.getBoundingClientRect();
+
+      return {
+        buttonLeft: button?.left ?? 0,
+        direction: window.getComputedStyle(element).direction,
+        dotsRight: dots?.right ?? 0,
+      };
+    });
+
+    expect(highlightControlLayout.direction).toBe('rtl');
+    expect(highlightControlLayout.buttonLeft).toBeGreaterThan(highlightControlLayout.dotsRight);
 
     await page.getByTestId('highlight-dot-1').click();
     await expect(highlights.locator('.anh-highlight-card').nth(1)).toHaveAttribute('data-active', 'true');

@@ -1,3 +1,4 @@
+import { Pause, Play } from 'lucide-react';
 import { SECTION_LABELS } from '../constants';
 import { useHighlightsCarousel } from '../hooks/useHighlightsCarousel';
 import type { Highlight, Scent } from '../types';
@@ -64,7 +65,11 @@ export default function HighlightsSection({ highlights, scents }: HighlightsSect
             onClick={carousel.togglePlay}
             aria-label={carousel.isPlaying ? 'إيقاف التشغيل التلقائي' : 'تشغيل العرض التلقائي'}
           >
-            {carousel.isPlaying ? 'Pause' : 'Play'}
+            {carousel.isPlaying ? (
+              <Pause aria-hidden="true" size={18} strokeWidth={2} />
+            ) : (
+              <Play aria-hidden="true" size={18} strokeWidth={2} />
+            )}
           </button>
           <div className="anh-dots" role="tablist" aria-label="Highlight slides">
             {highlights.map((item, index) => (

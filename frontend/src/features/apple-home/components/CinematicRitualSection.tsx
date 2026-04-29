@@ -99,8 +99,6 @@ export default function CinematicRitualSection({ scents }: CinematicRitualSectio
         activeIndex={carousel.activeIndex}
         isPlaying={carousel.isPlaying}
         isReducedMotion={carousel.isReducedMotion}
-        onNext={() => carousel.next()}
-        onPrevious={() => carousel.previous()}
         onSelect={(index) => carousel.goTo(index)}
         onTogglePlay={carousel.togglePlay}
         scents={scents}
