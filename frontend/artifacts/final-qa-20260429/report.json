@@ -1,0 +1,532 @@
+{
+  "generatedAt": "2026-04-29T16:21:19.498Z",
+  "api": {
+    "sharara": {
+      "status": 200,
+      "variants": 4,
+      "name_ar": "شرارة",
+      "name_en": "Sharara"
+    },
+    "ghayma": {
+      "status": 200,
+      "variants": 2,
+      "name_ar": "غيمة",
+      "name_en": "Ghayma"
+    },
+    "dafwa": {
+      "status": 200,
+      "variants": 2,
+      "name_ar": "دفوة",
+      "name_en": "Dafwa"
+    },
+    "zell": {
+      "status": 200,
+      "variants": 2,
+      "name_ar": "ظلّ",
+      "name_en": "Zell"
+    },
+    "list": {
+      "status": 200,
+      "count": 8,
+      "slugs": [
+        "sharara",
+        "madar",
+        "athar",
+        "barq",
+        "nada",
+        "ghayma",
+        "dafwa",
+        "zell"
+      ]
+    }
+  },
+  "breakpoints": [
+    {
+      "width": 390,
+      "height": 900,
+      "locale": "ar",
+      "dir": "rtl",
+      "overflow": {
+        "viewport": 390,
+        "docScrollWidth": 390,
+        "bodyScrollWidth": 390,
+        "hasOverflow": false
+      },
+      "keyTargets": 31,
+      "screenshot": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-390-ar.png"
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "locale": "en",
+      "dir": "ltr",
+      "overflow": {
+        "viewport": 430,
+        "docScrollWidth": 430,
+        "bodyScrollWidth": 430,
+        "hasOverflow": false
+      },
+      "keyTargets": 31,
+      "screenshot": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-430-en.png"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "locale": "ar",
+      "dir": "rtl",
+      "overflow": {
+        "viewport": 768,
+        "docScrollWidth": 768,
+        "bodyScrollWidth": 768,
+        "hasOverflow": false
+      },
+      "keyTargets": 36,
+      "screenshot": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-768-ar.png"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "locale": "en",
+      "dir": "ltr",
+      "overflow": {
+        "viewport": 1024,
+        "docScrollWidth": 1024,
+        "bodyScrollWidth": 1024,
+        "hasOverflow": false
+      },
+      "keyTargets": 36,
+      "screenshot": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-1024-en.png"
+    },
+    {
+      "width": 1440,
+      "height": 920,
+      "locale": "ar",
+      "dir": "rtl",
+      "overflow": {
+        "viewport": 1440,
+        "docScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "hasOverflow": false
+      },
+      "keyTargets": 36,
+      "screenshot": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-1440-ar.png"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "locale": "en",
+      "dir": "ltr",
+      "overflow": {
+        "viewport": 1920,
+        "docScrollWidth": 1920,
+        "bodyScrollWidth": 1920,
+        "hasOverflow": false
+      },
+      "keyTargets": 36,
+      "screenshot": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-1920-en.png"
+    }
+  ],
+  "products": [
+    {
+      "slug": "sharara",
+      "title": "شرارة",
+      "variants": 4,
+      "addVisible": true,
+      "overflow": {
+        "viewport": 1440,
+        "docScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "hasOverflow": false
+      },
+      "screenshot": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\product-sharara.png"
+    },
+    {
+      "slug": "ghayma",
+      "title": "غيمة",
+      "variants": 2,
+      "addVisible": true,
+      "overflow": {
+        "viewport": 1440,
+        "docScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "hasOverflow": false
+      },
+      "screenshot": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\product-ghayma.png"
+    },
+    {
+      "slug": "dafwa",
+      "title": "دفوة",
+      "variants": 2,
+      "addVisible": true,
+      "overflow": {
+        "viewport": 1440,
+        "docScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "hasOverflow": false
+      },
+      "screenshot": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\product-dafwa.png"
+    },
+    {
+      "slug": "zell",
+      "title": "ظلّ",
+      "variants": 2,
+      "addVisible": true,
+      "overflow": {
+        "viewport": 1440,
+        "docScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "hasOverflow": false
+      },
+      "screenshot": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\product-zell.png"
+    }
+  ],
+  "flow": {
+    "shopCardAddDrawer": true,
+    "productDetailAddDrawer": true
+  },
+  "screenshots": {
+    "home-390-ar": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-390-ar.png",
+    "home-430-en": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-430-en.png",
+    "home-768-ar": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-768-ar.png",
+    "home-1024-en": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-1024-en.png",
+    "home-1440-ar": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-1440-ar.png",
+    "home-1920-en": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\home-1920-en.png",
+    "product-sharara": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\product-sharara.png",
+    "product-ghayma": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\product-ghayma.png",
+    "product-dafwa": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\product-dafwa.png",
+    "product-zell": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\product-zell.png",
+    "cart-drawer-mobile": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\cart-drawer-mobile.png",
+    "cart-page-mobile": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\cart-page-mobile.png",
+    "checkout-page-mobile": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\checkout-page-mobile.png",
+    "mobile-nav-drawer": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\mobile-nav-drawer.png",
+    "admin-mobile-drawer": "D:\\Nafas\\frontend\\artifacts\\final-qa-20260429\\admin-mobile-drawer.png"
+  },
+  "checks": [
+    {
+      "name": "API product sharara",
+      "passed": true,
+      "detail": "status=200, variants=4"
+    },
+    {
+      "name": "API product ghayma",
+      "passed": true,
+      "detail": "status=200, variants=2"
+    },
+    {
+      "name": "API product dafwa",
+      "passed": true,
+      "detail": "status=200, variants=2"
+    },
+    {
+      "name": "API product zell",
+      "passed": true,
+      "detail": "status=200, variants=2"
+    },
+    {
+      "name": "API product list",
+      "passed": true,
+      "detail": "status=200"
+    },
+    {
+      "name": "document direction rtl",
+      "passed": true,
+      "detail": "actual=rtl"
+    },
+    {
+      "name": "home overflow 390 ar",
+      "passed": true,
+      "detail": "{\"viewport\":390,\"docScrollWidth\":390,\"bodyScrollWidth\":390,\"hasOverflow\":false}"
+    },
+    {
+      "name": "landing hero exists 390 ar",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "cinematic ritual exists 390 ar",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "tap targets 390 ar",
+      "passed": true,
+      "detail": "small=[]"
+    },
+    {
+      "name": "navbar visible 390 ar",
+      "passed": true,
+      "detail": "{\"x\":6.40625,\"y\":7.1875,\"width\":377.1875,\"height\":60.375}"
+    },
+    {
+      "name": "document direction ltr",
+      "passed": true,
+      "detail": "actual=ltr"
+    },
+    {
+      "name": "home overflow 430 en",
+      "passed": true,
+      "detail": "{\"viewport\":430,\"docScrollWidth\":430,\"bodyScrollWidth\":430,\"hasOverflow\":false}"
+    },
+    {
+      "name": "landing hero exists 430 en",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "cinematic ritual exists 430 en",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "tap targets 430 en",
+      "passed": true,
+      "detail": "small=[]"
+    },
+    {
+      "name": "navbar visible 430 en",
+      "passed": true,
+      "detail": "{\"x\":6.40625,\"y\":7.1875,\"width\":417.1875,\"height\":60.375}"
+    },
+    {
+      "name": "document direction rtl",
+      "passed": true,
+      "detail": "actual=rtl"
+    },
+    {
+      "name": "home overflow 768 ar",
+      "passed": true,
+      "detail": "{\"viewport\":768,\"docScrollWidth\":768,\"bodyScrollWidth\":768,\"hasOverflow\":false}"
+    },
+    {
+      "name": "landing hero exists 768 ar",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "cinematic ritual exists 768 ar",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "tap targets 768 ar",
+      "passed": true,
+      "detail": "small=[]"
+    },
+    {
+      "name": "navbar visible 768 ar",
+      "passed": true,
+      "detail": "{\"x\":7.6875,\"y\":7.671875,\"width\":752.625,\"height\":72}"
+    },
+    {
+      "name": "document direction ltr",
+      "passed": true,
+      "detail": "actual=ltr"
+    },
+    {
+      "name": "home overflow 1024 en",
+      "passed": true,
+      "detail": "{\"viewport\":1024,\"docScrollWidth\":1024,\"bodyScrollWidth\":1024,\"hasOverflow\":false}"
+    },
+    {
+      "name": "landing hero exists 1024 en",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "cinematic ritual exists 1024 en",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "tap targets 1024 en",
+      "passed": true,
+      "detail": "small=[]"
+    },
+    {
+      "name": "navbar visible 1024 en",
+      "passed": true,
+      "detail": "{\"x\":10.234375,\"y\":10.234375,\"width\":1003.515625,\"height\":72}"
+    },
+    {
+      "name": "document direction rtl",
+      "passed": true,
+      "detail": "actual=rtl"
+    },
+    {
+      "name": "home overflow 1440 ar",
+      "passed": true,
+      "detail": "{\"viewport\":1440,\"docScrollWidth\":1440,\"bodyScrollWidth\":1440,\"hasOverflow\":false}"
+    },
+    {
+      "name": "landing hero exists 1440 ar",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "cinematic ritual exists 1440 ar",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "tap targets 1440 ar",
+      "passed": true,
+      "detail": "small=[]"
+    },
+    {
+      "name": "navbar visible 1440 ar",
+      "passed": true,
+      "detail": "{\"x\":14.40625,\"y\":12.796875,\"width\":1411.1875,\"height\":72}"
+    },
+    {
+      "name": "document direction ltr",
+      "passed": true,
+      "detail": "actual=ltr"
+    },
+    {
+      "name": "home overflow 1920 en",
+      "passed": true,
+      "detail": "{\"viewport\":1920,\"docScrollWidth\":1920,\"bodyScrollWidth\":1920,\"hasOverflow\":false}"
+    },
+    {
+      "name": "landing hero exists 1920 en",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "cinematic ritual exists 1920 en",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "tap targets 1920 en",
+      "passed": true,
+      "detail": "small=[]"
+    },
+    {
+      "name": "navbar visible 1920 en",
+      "passed": true,
+      "detail": "{\"x\":220,\"y\":12.796875,\"width\":1480,\"height\":72}"
+    },
+    {
+      "name": "product detail sharara",
+      "passed": true,
+      "detail": "title=شرارة, variants=4, addVisible=true"
+    },
+    {
+      "name": "product sharara not generic fallback",
+      "passed": true,
+      "detail": "fallbackShell=0"
+    },
+    {
+      "name": "product overflow sharara",
+      "passed": true,
+      "detail": "{\"viewport\":1440,\"docScrollWidth\":1440,\"bodyScrollWidth\":1440,\"hasOverflow\":false}"
+    },
+    {
+      "name": "product detail ghayma",
+      "passed": true,
+      "detail": "title=غيمة, variants=2, addVisible=true"
+    },
+    {
+      "name": "product ghayma not generic fallback",
+      "passed": true,
+      "detail": "fallbackShell=0"
+    },
+    {
+      "name": "product overflow ghayma",
+      "passed": true,
+      "detail": "{\"viewport\":1440,\"docScrollWidth\":1440,\"bodyScrollWidth\":1440,\"hasOverflow\":false}"
+    },
+    {
+      "name": "product detail dafwa",
+      "passed": true,
+      "detail": "title=دفوة, variants=2, addVisible=true"
+    },
+    {
+      "name": "product dafwa not generic fallback",
+      "passed": true,
+      "detail": "fallbackShell=0"
+    },
+    {
+      "name": "product overflow dafwa",
+      "passed": true,
+      "detail": "{\"viewport\":1440,\"docScrollWidth\":1440,\"bodyScrollWidth\":1440,\"hasOverflow\":false}"
+    },
+    {
+      "name": "product detail zell",
+      "passed": true,
+      "detail": "title=ظلّ, variants=2, addVisible=true"
+    },
+    {
+      "name": "product zell not generic fallback",
+      "passed": true,
+      "detail": "fallbackShell=0"
+    },
+    {
+      "name": "product overflow zell",
+      "passed": true,
+      "detail": "{\"viewport\":1440,\"docScrollWidth\":1440,\"bodyScrollWidth\":1440,\"hasOverflow\":false}"
+    },
+    {
+      "name": "cart drawer closes via Escape",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "cart page has item",
+      "passed": true,
+      "detail": "emptyPanels=0"
+    },
+    {
+      "name": "cart page no overflow",
+      "passed": true,
+      "detail": "{\"viewport\":390,\"docScrollWidth\":390,\"bodyScrollWidth\":390,\"hasOverflow\":false}"
+    },
+    {
+      "name": "checkout page form visible",
+      "passed": true,
+      "detail": "inputs=8"
+    },
+    {
+      "name": "checkout page no overflow",
+      "passed": true,
+      "detail": "{\"viewport\":390,\"docScrollWidth\":390,\"bodyScrollWidth\":390,\"hasOverflow\":false}"
+    },
+    {
+      "name": "language switch Arabic to English",
+      "passed": true,
+      "detail": "dir=ltr"
+    },
+    {
+      "name": "mobile drawer tap targets",
+      "passed": true,
+      "detail": "small=[]"
+    },
+    {
+      "name": "footer links visible",
+      "passed": true,
+      "detail": "links=12"
+    },
+    {
+      "name": "footer links usable",
+      "passed": true,
+      "detail": "small=[]"
+    },
+    {
+      "name": "admin login API",
+      "passed": true,
+      "detail": "status=200"
+    },
+    {
+      "name": "admin dashboard no overflow",
+      "passed": true,
+      "detail": "{\"viewport\":390,\"docScrollWidth\":390,\"bodyScrollWidth\":390,\"hasOverflow\":false}"
+    },
+    {
+      "name": "admin mobile drawer tap targets",
+      "passed": true,
+      "detail": "small=[]"
+    }
+  ],
+  "failed": []
+}

@@ -5641,7 +5641,9 @@ p { margin: 0; color: var(--nts); }
   display: flex;
   align-items: center;
   gap: 0.7rem;
+  min-block-size: 2.75rem;
   min-inline-size: 0;
+  padding-block: 0.25rem;
 }
 
 .mobile-panel__brand span {
