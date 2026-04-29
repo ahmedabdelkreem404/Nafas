@@ -1,4 +1,6 @@
+import { useLocale } from '../../../context/LocaleContext';
 import { SECTION_LABELS } from '../constants';
+import { appleHomeCopy, sensoryCopy, text } from '../data/appleHomeCopy';
 import type { SensoryLayer } from '../types';
 
 type SensesSectionProps = {
@@ -6,6 +8,9 @@ type SensesSectionProps = {
 };
 
 export default function SensesSection({ layers }: SensesSectionProps) {
+  const { locale } = useLocale();
+  const copy = appleHomeCopy.senses;
+
   return (
     <section className="anh-section anh-senses" data-section={SECTION_LABELS.senses} aria-labelledby="senses-title">
       <div className="anh-container">
@@ -16,14 +21,18 @@ export default function SensesSection({ layers }: SensesSectionProps) {
             <span className="anh-senses__mist anh-senses__mist--two" />
           </div>
           <div className="anh-senses__copy">
-            <p className="anh-kicker">A feast for the senses</p>
-            <h2 id="senses-title">وليمة للحواس.</h2>
-            {layers.map((layer) => (
-              <article key={layer.id}>
-                <strong>{layer.title}</strong>
-                <p>{layer.copy}</p>
-              </article>
-            ))}
+            <p className="anh-kicker">{text(copy.kicker, locale)}</p>
+            <h2 id="senses-title">{text(copy.title, locale)}</h2>
+            {layers.map((layer) => {
+              const layerCopy = sensoryCopy[layer.id];
+
+              return (
+                <article key={layer.id}>
+                  <strong>{text(layerCopy.title, locale)}</strong>
+                  <p>{text(layerCopy.copy, locale)}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>

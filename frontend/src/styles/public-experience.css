@@ -1407,7 +1407,7 @@ body[data-locale='en'] .cart-drawer__panel {
 }
 
 .editorial-gallery__stage {
-  perspective: 1400px;
+  perspective: none;
 }
 
 .editorial-gallery__card {
@@ -1418,15 +1418,7 @@ body[data-locale='en'] .cart-drawer__panel {
   border: 1px solid var(--n-border-gold);
   background: linear-gradient(180deg, rgba(22, 17, 28, 0.96), rgba(10, 8, 14, 0.98));
   box-shadow: var(--n-shadow);
-  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
-  transition: transform 140ms ease;
-  will-change: transform;
-}
-
-@media (hover: none) {
-  .editorial-gallery__card {
-    animation: autoTiltSubtle 5s ease-in-out infinite;
-  }
+  transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .editorial-gallery__image,
@@ -2713,11 +2705,6 @@ body[data-locale='en'] .cart-drawer__panel {
 @keyframes bottleRise {
   0% { opacity: 0; transform: translateY(36px); }
   100% { opacity: 1; transform: none; }
-}
-
-@keyframes autoTiltSubtle {
-  0%, 100% { transform: rotateY(-5deg); }
-  50% { transform: rotateY(5deg); }
 }
 
 @keyframes noteFloat {

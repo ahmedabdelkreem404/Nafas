@@ -1,0 +1,99 @@
+:root {
+  color-scheme: light;
+  --nafas-ink: #15100d;
+  --nafas-ink-soft: #211713;
+  --nafas-brown: #3a2419;
+  --nafas-cream: #fbf2e4;
+  --nafas-beige: #f4eadb;
+  --nafas-panel: #efe3d2;
+  --nafas-panel-soft: #fff8ee;
+  --nafas-gold: #c9a15a;
+  --nafas-gold-soft: #e7c985;
+  --nafas-amber: #b86d3b;
+  --nafas-rose-gold: #c99788;
+  --nafas-mocha-gold: #b88a48;
+  --nafas-silver: #8e969b;
+  --nafas-muted: rgba(33, 23, 19, 0.68);
+  --nafas-line: rgba(58, 36, 25, 0.14);
+  --nafas-line-strong: rgba(58, 36, 25, 0.24);
+  --nafas-dark-line: rgba(251, 242, 228, 0.12);
+  --nafas-radius-xs: 8px;
+  --nafas-radius-sm: 12px;
+  --nafas-radius-md: 18px;
+  --nafas-radius-lg: 26px;
+  --nafas-radius-xl: 34px;
+  --nafas-radius-pill: 999px;
+  --nafas-space-1: 0.35rem;
+  --nafas-space-2: 0.6rem;
+  --nafas-space-3: 0.9rem;
+  --nafas-space-4: 1.25rem;
+  --nafas-space-5: 1.75rem;
+  --nafas-space-6: 2.4rem;
+  --nafas-space-7: 3.2rem;
+  --nafas-font-ar: 'Noto Naskh Arabic', 'Tahoma', serif;
+  --nafas-font-body: 'Noto Naskh Arabic', 'Segoe UI', sans-serif;
+  --nafas-font-display: 'Cormorant Garamond', 'Noto Naskh Arabic', serif;
+  --nafas-font-mono: 'JetBrains Mono', monospace;
+  --nafas-step--1: clamp(0.82rem, 0.78rem + 0.16vw, 0.94rem);
+  --nafas-step-0: clamp(0.95rem, 0.9rem + 0.22vw, 1.08rem);
+  --nafas-step-1: clamp(1.1rem, 1rem + 0.42vw, 1.34rem);
+  --nafas-step-2: clamp(1.35rem, 1.16rem + 0.85vw, 1.85rem);
+  --nafas-step-3: clamp(1.8rem, 1.35rem + 1.8vw, 3rem);
+  --nafas-step-4: clamp(2.35rem, 1.62rem + 3vw, 4.8rem);
+  --nafas-step-5: clamp(3rem, 2rem + 4.2vw, 7rem);
+  --nafas-container: min(1180px, calc(100vw - clamp(1.25rem, 4vw, 4rem)));
+  --nafas-container-wide: min(1480px, calc(100vw - clamp(1rem, 3vw, 3.75rem)));
+  --nafas-section-space: clamp(3.8rem, 7vw, 7rem);
+  --nafas-nav-height: 72px;
+  --nafas-z-nav: 40;
+  --nafas-z-drawer: 80;
+  --nafas-z-modal: 100;
+  --nafas-shadow-card: 0 18px 55px rgba(58, 36, 25, 0.12);
+  --nafas-shadow-card-soft: 0 10px 28px rgba(58, 36, 25, 0.08);
+  --nafas-shadow-dark: 0 22px 70px rgba(0, 0, 0, 0.34);
+  --nafas-focus-ring: 0 0 0 3px rgba(201, 161, 90, 0.38);
+
+  --nb: var(--nafas-ink);
+  --nb2: var(--nafas-ink-soft);
+  --nb3: var(--nafas-brown);
+  --nt: var(--nafas-cream);
+  --nts: rgba(251, 242, 228, 0.74);
+  --ntm: rgba(251, 242, 228, 0.52);
+  --ng: var(--nafas-gold);
+  --ngh: var(--nafas-gold-soft);
+  --ngl: #a97d3f;
+  --na: var(--nafas-amber);
+  --nr: var(--nafas-rose-gold);
+  --nbr: rgba(251, 242, 228, 0.13);
+  --nbg: rgba(201, 161, 90, 0.28);
+  --nsh: var(--nafas-shadow-dark);
+  --nshs: 0 12px 36px rgba(0, 0, 0, 0.22);
+  --rr: var(--nafas-radius-xs);
+  --rs: var(--nafas-radius-sm);
+  --rm: var(--nafas-radius-md);
+  --rl: var(--nafas-radius-lg);
+  --rx: var(--nafas-radius-xl);
+  --rp: var(--nafas-radius-pill);
+  --fd: var(--nafas-font-display);
+  --fb: var(--nafas-font-body);
+  --fm: var(--nafas-font-mono);
+  --maxw: var(--nafas-container-wide);
+  --navh: var(--nafas-nav-height);
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(184, 109, 59, 0.1), transparent 32rem),
+    linear-gradient(180deg, var(--nafas-beige), var(--nafas-panel));
+}
+
+:focus-visible {
+  outline: 0;
+  box-shadow: var(--nafas-focus-ring);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --nafas-nav-height: 64px;
+  }
+}

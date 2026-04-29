@@ -1,42 +1,32 @@
 import type { SelectorOption, TrustCard } from '../types';
 
 export const selectorOptions: SelectorOption[] = [
-  { id: 'sharara', label: 'فريش ولافت' },
-  { id: 'ghayma', label: 'ناعم وهادي' },
-  { id: 'dafwa', label: 'دافئ وحلو' },
-  { id: 'zell', label: 'غامض وخشبي' },
-  { id: 'discovery', label: 'لسه محتار' },
+  { id: 'sharara', label: 'sharara' },
+  { id: 'ghayma', label: 'ghayma' },
+  { id: 'dafwa', label: 'dafwa' },
+  { id: 'zell', label: 'zell' },
+  { id: 'discovery', label: 'discovery' },
 ];
 
 export const trustCards: TrustCard[] = [
   {
+    id: 'fixed-formulas',
+    title: 'fixed-formulas',
+    copy: 'fixed-formulas',
+  },
+  {
+    id: 'batch-checks',
+    title: 'batch-checks',
+    copy: 'batch-checks',
+  },
+  {
     id: 'tester-first',
-    title: 'Tester-first experience',
-    copy: 'جرّب قبل ما تختار الزجاجة الكاملة.',
+    title: 'tester-first',
+    copy: 'tester-first',
   },
   {
-    id: 'personalities',
-    title: 'Clear scent personalities',
-    copy: 'كل رائحة لها مود واضح يساعدك تختار أسرع.',
-  },
-  {
-    id: 'presentation',
-    title: 'Premium presentation',
-    copy: 'تجربة هادئة من أول نظرة لآخر رشة.',
-  },
-  {
-    id: 'quality',
-    title: 'Batch quality ritual',
-    copy: 'مراجعة للصفاء، الرش، والتقديم العام.',
-  },
-  {
-    id: 'ordering',
-    title: 'Easy ordering',
-    copy: 'اسأل، اختار، واطلب بخطوات واضحة.',
-  },
-  {
-    id: 'sizes',
-    title: 'Sizes for every need',
-    copy: 'تستر، حجم سفر، زجاجة كاملة، وخيارات هدية.',
+    id: 'support',
+    title: 'support',
+    copy: 'support',
   },
 ];

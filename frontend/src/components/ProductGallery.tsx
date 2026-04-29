@@ -7,15 +7,12 @@ import ProductMedia from './ProductMedia';
 
 const Bottle3D = lazy(() => import('./Bottle3D'));
 
-const MAX_TILT = 7;
-
 export default function ProductGallery({ product }: { product: Product }) {
   const { locale } = useLocale();
   const sources = useMemo(() => getProductMediaSources(product), [product]);
   const [active, setActive] = useState(0);
   const [show3D, setShow3D] = useState(false);
   const [canUse3D, setCanUse3D] = useState(false);
-  const [transform, setTransform] = useState('rotateX(0deg) rotateY(0deg)');
 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
@@ -35,15 +32,6 @@ export default function ProductGallery({ product }: { product: Product }) {
     query.addEventListener('change', applyState);
     return () => query.removeEventListener('change', applyState);
   }, []);
-
-  const handleMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const normalizedX = ((event.clientX - rect.left) / rect.width) - 0.5;
-    const normalizedY = ((event.clientY - rect.top) / rect.height) - 0.5;
-    const rotateX = Math.max(-MAX_TILT, Math.min(MAX_TILT, normalizedY * -MAX_TILT)).toFixed(1);
-    const rotateY = Math.max(-MAX_TILT, Math.min(MAX_TILT, normalizedX * MAX_TILT)).toFixed(1);
-    setTransform(`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`);
-  };
 
   return (
     <div className="product-gallery editorial-gallery">
@@ -72,7 +60,7 @@ export default function ProductGallery({ product }: { product: Product }) {
         <Suspense
           fallback={(
             <div className="product-gallery__stage editorial-gallery__stage">
-              <div className="product-gallery__tilt editorial-gallery__card editorial-gallery__card--3d">
+              <div className="product-gallery__media-frame editorial-gallery__card editorial-gallery__card--3d">
                 <ProductMedia
                   product={product}
                   alt={locale === 'ar' ? product.name_ar : product.name_en}
@@ -84,18 +72,14 @@ export default function ProductGallery({ product }: { product: Product }) {
           )}
         >
           <div className="product-gallery__stage editorial-gallery__stage">
-            <div className="product-gallery__tilt editorial-gallery__card editorial-gallery__card--3d">
+            <div className="product-gallery__media-frame editorial-gallery__card editorial-gallery__card--3d">
               <Bottle3D accent={product.accent || 'gold'} height="100%" />
             </div>
           </div>
         </Suspense>
       ) : (
-        <div
-          className="product-gallery__stage editorial-gallery__stage"
-          onMouseMove={handleMove}
-          onMouseLeave={() => setTransform('rotateX(0deg) rotateY(0deg)')}
-        >
-          <div className="product-gallery__tilt editorial-gallery__card" style={{ transform }}>
+        <div className="product-gallery__stage editorial-gallery__stage">
+          <div className="product-gallery__media-frame editorial-gallery__card">
             <img src={sources[active]} alt={locale === 'ar' ? product.name_ar : product.name_en} className="product-gallery__image" />
           </div>
           <div className="product-gallery__notes editorial-gallery__notes">

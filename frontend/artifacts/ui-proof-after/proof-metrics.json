@@ -1,0 +1,1745 @@
+[
+  {
+    "width": 390,
+    "height": 1000,
+    "locale": "ar",
+    "name": "390-mobile-ar",
+    "metrics": {
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": 0,
+      "navBottom": 67.5625,
+      "firstTop": 77.59375,
+      "tinyTargets": [
+        {
+          "text": "دار نفَس",
+          "cls": "site-nav__brand",
+          "width": 87.0625,
+          "height": 33.59375,
+          "top": 20.578125,
+          "left": 16.203125,
+          "right": 103.265625
+        },
+        {
+          "text": "دار نفَس",
+          "cls": "mobile-panel__brand",
+          "width": 103.4375,
+          "height": 26.640625,
+          "top": 32.859375,
+          "left": 653.0515747070312,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "ابدأ بالتستر",
+          "cls": "",
+          "width": 283.34375,
+          "height": 34,
+          "top": 139.8125,
+          "left": 53.328125,
+          "right": 336.671875
+        },
+        {
+          "text": "كل العطور",
+          "cls": "",
+          "width": 374,
+          "height": 34,
+          "top": 13566.328125,
+          "left": 8,
+          "right": 382
+        },
+        {
+          "text": "المفضلة",
+          "cls": "",
+          "width": 374,
+          "height": 34,
+          "top": 13600.328125,
+          "left": 8,
+          "right": 382
+        },
+        {
+          "text": "الجودة",
+          "cls": "",
+          "width": 374,
+          "height": 34,
+          "top": 13634.328125,
+          "left": 8,
+          "right": 382
+        },
+        {
+          "text": "الأسئلة",
+          "cls": "",
+          "width": 374,
+          "height": 34,
+          "top": 13718.71875,
+          "left": 8,
+          "right": 382
+        },
+        {
+          "text": "الحساب",
+          "cls": "",
+          "width": 374,
+          "height": 34,
+          "top": 13752.71875,
+          "left": 8,
+          "right": 382
+        },
+        {
+          "text": "عن نفَس",
+          "cls": "",
+          "width": 374,
+          "height": 34,
+          "top": 13786.71875,
+          "left": 8,
+          "right": 382
+        },
+        {
+          "text": "الخصوصية",
+          "cls": "",
+          "width": 374,
+          "height": 34,
+          "top": 13871.109375,
+          "left": 8,
+          "right": 382
+        },
+        {
+          "text": "الاسترجاع",
+          "cls": "",
+          "width": 374,
+          "height": 34,
+          "top": 13905.109375,
+          "left": 8,
+          "right": 382
+        },
+        {
+          "text": "الشروط",
+          "cls": "",
+          "width": 374,
+          "height": 34,
+          "top": 13939.109375,
+          "left": 8,
+          "right": 382
+        }
+      ],
+      "offscreenTargets": [
+        {
+          "text": "دار نفَس",
+          "cls": "mobile-panel__brand",
+          "width": 103.4375,
+          "height": 26.640625,
+          "top": 32.859375,
+          "left": 653.0515747070312,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "إغلاق القائمة",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 24.1875,
+          "left": 431.69219970703125,
+          "right": 475.69219970703125
+        },
+        {
+          "text": "الرئيسية",
+          "cls": "mobile-panel__link active",
+          "width": 324.796875,
+          "height": 61.96875,
+          "top": 117.265625,
+          "left": 431.69219970703125,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "المتجر",
+          "cls": "mobile-panel__link",
+          "width": 324.796875,
+          "height": 61.96875,
+          "top": 189.625,
+          "left": 431.69219970703125,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "قصتنا",
+          "cls": "mobile-panel__link",
+          "width": 324.796875,
+          "height": 61.96875,
+          "top": 261.984375,
+          "left": 431.69219970703125,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "الأسئلة",
+          "cls": "mobile-panel__link",
+          "width": 324.796875,
+          "height": 61.96875,
+          "top": 334.34375,
+          "left": 431.69219970703125,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "كل العطور",
+          "cls": "mobile-panel__link",
+          "width": 324.796875,
+          "height": 61.96875,
+          "top": 445.390625,
+          "left": 431.69219970703125,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "المفضلة",
+          "cls": "mobile-panel__link",
+          "width": 324.796875,
+          "height": 61.96875,
+          "top": 517.75,
+          "left": 431.69219970703125,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "السلة٠",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 324.796875,
+          "height": 61.96875,
+          "top": 590.109375,
+          "left": 431.69219970703125,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "الحساب",
+          "cls": "mobile-panel__link",
+          "width": 324.796875,
+          "height": 61.96875,
+          "top": 701.15625,
+          "left": 431.69219970703125,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "تواصل واتساب",
+          "cls": "mobile-panel__link mobile-panel__link--gold",
+          "width": 324.796875,
+          "height": 61.96875,
+          "top": 773.515625,
+          "left": 431.69219970703125,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "English",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 324.796875,
+          "height": 61.96875,
+          "top": 845.875,
+          "left": 431.69219970703125,
+          "right": 756.4890747070312
+        },
+        {
+          "text": "إيقاف العرض التلقائي",
+          "cls": "anh-dock-button",
+          "width": 48,
+          "height": 48,
+          "top": 1719.609375,
+          "left": 364.71875,
+          "right": 412.71875
+        },
+        {
+          "text": "اعرض طقس الجودة",
+          "cls": "",
+          "width": 44,
+          "height": 48,
+          "top": 1719.609375,
+          "left": -4.328125,
+          "right": 39.671875
+        },
+        {
+          "text": "إغلاق السلة",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 28.46875,
+          "left": 431.69219970703125,
+          "right": 475.69219970703125
+        },
+        {
+          "text": "إتمام الطلب",
+          "cls": "n-btn n-btn--primary",
+          "width": 107.578125,
+          "height": 52,
+          "top": 858.984375,
+          "left": 648.9109497070312,
+          "right": 756.4890747070312
+        }
+      ],
+      "title": "شرارة",
+      "finalTitle": "نفَس قريب منك."
+    }
+  },
+  {
+    "width": 430,
+    "height": 1000,
+    "locale": "en",
+    "name": "430-mobile-en",
+    "metrics": {
+      "lang": "en",
+      "dir": "ltr",
+      "overflow": 0,
+      "navBottom": 67.5625,
+      "firstTop": 77.59375,
+      "tinyTargets": [
+        {
+          "text": "Maison Nafas",
+          "cls": "site-nav__brand",
+          "width": 87.0625,
+          "height": 33.59375,
+          "top": 20.578125,
+          "left": 16.203125,
+          "right": 103.265625
+        },
+        {
+          "text": "Maison Nafas",
+          "cls": "mobile-panel__brand",
+          "width": 153.640625,
+          "height": 26.640625,
+          "top": 32.859375,
+          "left": -400.8125,
+          "right": -247.171875
+        },
+        {
+          "text": "Start with testers",
+          "cls": "",
+          "width": 273.234375,
+          "height": 34,
+          "top": 160.921875,
+          "left": 78.375,
+          "right": 351.609375
+        },
+        {
+          "text": "All perfumes",
+          "cls": "",
+          "width": 414,
+          "height": 34,
+          "top": 14791.015625,
+          "left": 8,
+          "right": 422
+        },
+        {
+          "text": "Favorites",
+          "cls": "",
+          "width": 414,
+          "height": 34,
+          "top": 14825.015625,
+          "left": 8,
+          "right": 422
+        },
+        {
+          "text": "Quality",
+          "cls": "",
+          "width": 414,
+          "height": 34,
+          "top": 14859.015625,
+          "left": 8,
+          "right": 422
+        },
+        {
+          "text": "FAQ",
+          "cls": "",
+          "width": 414,
+          "height": 34,
+          "top": 14943.40625,
+          "left": 8,
+          "right": 422
+        },
+        {
+          "text": "Account",
+          "cls": "",
+          "width": 414,
+          "height": 34,
+          "top": 14977.40625,
+          "left": 8,
+          "right": 422
+        },
+        {
+          "text": "About Nafas",
+          "cls": "",
+          "width": 414,
+          "height": 34,
+          "top": 15011.40625,
+          "left": 8,
+          "right": 422
+        },
+        {
+          "text": "Privacy",
+          "cls": "",
+          "width": 414,
+          "height": 34,
+          "top": 15095.796875,
+          "left": 8,
+          "right": 422
+        },
+        {
+          "text": "Returns",
+          "cls": "",
+          "width": 414,
+          "height": 34,
+          "top": 15129.796875,
+          "left": 8,
+          "right": 422
+        },
+        {
+          "text": "Terms",
+          "cls": "",
+          "width": 414,
+          "height": 34,
+          "top": 15163.796875,
+          "left": 8,
+          "right": 422
+        }
+      ],
+      "offscreenTargets": [
+        {
+          "text": "Maison Nafas",
+          "cls": "mobile-panel__brand",
+          "width": 153.640625,
+          "height": 26.640625,
+          "top": 32.859375,
+          "left": -400.8125,
+          "right": -247.171875
+        },
+        {
+          "text": "Close menu",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 24.1875,
+          "left": -88.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Home",
+          "cls": "mobile-panel__link active",
+          "width": 356,
+          "height": 61.96875,
+          "top": 117.265625,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Shop",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 189.625,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "About",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 261.984375,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "FAQ",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 334.34375,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "All perfumes",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 445.390625,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Favorites",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 517.75,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Cart0",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 356,
+          "height": 61.96875,
+          "top": 590.109375,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Account",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 701.15625,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "WhatsApp support",
+          "cls": "mobile-panel__link mobile-panel__link--gold",
+          "width": 356,
+          "height": 61.96875,
+          "top": 773.515625,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "العربية",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 356,
+          "height": 61.96875,
+          "top": 845.875,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Pause carousel",
+          "cls": "anh-dock-button",
+          "width": 48,
+          "height": 48,
+          "top": 1907.34375,
+          "left": 384.71875,
+          "right": 432.71875
+        },
+        {
+          "text": "Close cart",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 28.640625,
+          "left": -89.37188720703125,
+          "right": -45.37188720703125
+        },
+        {
+          "text": "Checkout",
+          "cls": "n-btn n-btn--primary",
+          "width": 112.484375,
+          "height": 52,
+          "top": 858.984375,
+          "left": -406.96563720703125,
+          "right": -294.48126220703125
+        },
+        {
+          "text": "View cart",
+          "cls": "n-btn n-btn--ghost",
+          "width": 113.859375,
+          "height": 52,
+          "top": 923.78125,
+          "left": -406.96563720703125,
+          "right": -293.10626220703125
+        }
+      ],
+      "title": "Sharara",
+      "finalTitle": "Nafas, worn close."
+    }
+  },
+  {
+    "width": 768,
+    "height": 1100,
+    "locale": "ar",
+    "name": "768-tablet-ar",
+    "metrics": {
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": 0,
+      "navBottom": 79.671875,
+      "firstTop": 88.796875,
+      "tinyTargets": [
+        {
+          "text": "دار نفَس",
+          "cls": "site-nav__brand",
+          "width": 99.671875,
+          "height": 37.59375,
+          "top": 24.875,
+          "left": 648.125,
+          "right": 747.796875
+        },
+        {
+          "text": "الرئيسية",
+          "cls": "site-nav__link site-nav__link--primary is-active",
+          "width": 68.28125,
+          "height": 42,
+          "top": 22.671875,
+          "left": 528.40625,
+          "right": 596.6875
+        },
+        {
+          "text": "المتجر",
+          "cls": "site-nav__link site-nav__link--primary ",
+          "width": 58.625,
+          "height": 42,
+          "top": 22.671875,
+          "left": 461.78125,
+          "right": 520.40625
+        },
+        {
+          "text": "قصتنا",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 55.890625,
+          "height": 42,
+          "top": 22.671875,
+          "left": 397.890625,
+          "right": 453.78125
+        },
+        {
+          "text": "الأسئلة",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 60.203125,
+          "height": 42,
+          "top": 22.671875,
+          "left": 329.6875,
+          "right": 389.890625
+        },
+        {
+          "text": "دار نفَس",
+          "cls": "mobile-panel__brand",
+          "width": 103.4375,
+          "height": 26.640625,
+          "top": 33.34375,
+          "left": 1065.375,
+          "right": 1168.8125
+        },
+        {
+          "text": "ابدأ بالتستر",
+          "cls": "",
+          "width": 60.96875,
+          "height": 34,
+          "top": 98.703125,
+          "left": 101.03125,
+          "right": 162
+        },
+        {
+          "text": "كل العطور",
+          "cls": "",
+          "width": 150,
+          "height": 34,
+          "top": 14044.21875,
+          "left": 357.59375,
+          "right": 507.59375
+        },
+        {
+          "text": "المفضلة",
+          "cls": "",
+          "width": 150,
+          "height": 34,
+          "top": 14078.21875,
+          "left": 357.59375,
+          "right": 507.59375
+        },
+        {
+          "text": "الجودة",
+          "cls": "",
+          "width": 150,
+          "height": 34,
+          "top": 14112.21875,
+          "left": 357.59375,
+          "right": 507.59375
+        },
+        {
+          "text": "الأسئلة",
+          "cls": "",
+          "width": 150,
+          "height": 34,
+          "top": 14044.21875,
+          "left": 184.5625,
+          "right": 334.5625
+        },
+        {
+          "text": "الحساب",
+          "cls": "",
+          "width": 150,
+          "height": 34,
+          "top": 14078.21875,
+          "left": 184.5625,
+          "right": 334.5625
+        },
+        {
+          "text": "عن نفَس",
+          "cls": "",
+          "width": 150,
+          "height": 34,
+          "top": 14112.21875,
+          "left": 184.5625,
+          "right": 334.5625
+        },
+        {
+          "text": "الخصوصية",
+          "cls": "",
+          "width": 150,
+          "height": 34,
+          "top": 14044.21875,
+          "left": 11.53125,
+          "right": 161.53125
+        },
+        {
+          "text": "الاسترجاع",
+          "cls": "",
+          "width": 150,
+          "height": 34,
+          "top": 14078.21875,
+          "left": 11.53125,
+          "right": 161.53125
+        },
+        {
+          "text": "الشروط",
+          "cls": "",
+          "width": 150,
+          "height": 34,
+          "top": 14112.21875,
+          "left": 11.53125,
+          "right": 161.53125
+        }
+      ],
+      "offscreenTargets": [
+        {
+          "text": "دار نفَس",
+          "cls": "mobile-panel__brand",
+          "width": 103.4375,
+          "height": 26.640625,
+          "top": 33.34375,
+          "left": 1065.375,
+          "right": 1168.8125
+        },
+        {
+          "text": "إغلاق القائمة",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 24.671875,
+          "left": 812.8125,
+          "right": 856.8125
+        },
+        {
+          "text": "الرئيسية",
+          "cls": "mobile-panel__link active",
+          "width": 356,
+          "height": 61.96875,
+          "top": 117.75,
+          "left": 812.8125,
+          "right": 1168.8125
+        },
+        {
+          "text": "المتجر",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 190.109375,
+          "left": 812.8125,
+          "right": 1168.8125
+        },
+        {
+          "text": "قصتنا",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 262.46875,
+          "left": 812.8125,
+          "right": 1168.8125
+        },
+        {
+          "text": "الأسئلة",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 334.828125,
+          "left": 812.8125,
+          "right": 1168.8125
+        },
+        {
+          "text": "كل العطور",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 445.875,
+          "left": 812.8125,
+          "right": 1168.8125
+        },
+        {
+          "text": "المفضلة",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 518.234375,
+          "left": 812.8125,
+          "right": 1168.8125
+        },
+        {
+          "text": "السلة٠",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 356,
+          "height": 61.96875,
+          "top": 590.59375,
+          "left": 812.8125,
+          "right": 1168.8125
+        },
+        {
+          "text": "الحساب",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 701.640625,
+          "left": 812.8125,
+          "right": 1168.8125
+        },
+        {
+          "text": "تواصل واتساب",
+          "cls": "mobile-panel__link mobile-panel__link--gold",
+          "width": 356,
+          "height": 61.96875,
+          "top": 774,
+          "left": 812.8125,
+          "right": 1168.8125
+        },
+        {
+          "text": "English",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 356,
+          "height": 61.96875,
+          "top": 846.359375,
+          "left": 812.8125,
+          "right": 1168.8125
+        },
+        {
+          "text": "ظلّ",
+          "cls": "",
+          "width": 44,
+          "height": 48,
+          "top": 1052.640625,
+          "left": -24.78125,
+          "right": 19.21875
+        },
+        {
+          "text": "إغلاق السلة",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 30.640625,
+          "left": 816.8125,
+          "right": 860.8125
+        },
+        {
+          "text": "إتمام الطلب",
+          "cls": "n-btn n-btn--primary",
+          "width": 107.578125,
+          "height": 52,
+          "top": 958.5,
+          "left": 1105.234375,
+          "right": 1212.8125
+        },
+        {
+          "text": "صفحة السلة",
+          "cls": "n-btn n-btn--ghost",
+          "width": 111.15625,
+          "height": 52,
+          "top": 1023.296875,
+          "left": 1101.65625,
+          "right": 1212.8125
+        }
+      ],
+      "title": "غيمة",
+      "finalTitle": "نفَس قريب منك."
+    }
+  },
+  {
+    "width": 1024,
+    "height": 900,
+    "locale": "en",
+    "name": "1024-laptop-en",
+    "metrics": {
+      "lang": "en",
+      "dir": "ltr",
+      "overflow": 0,
+      "navBottom": 82.234375,
+      "firstTop": 88.796875,
+      "tinyTargets": [
+        {
+          "text": "Maison Nafas",
+          "cls": "site-nav__brand",
+          "width": 99.671875,
+          "height": 37.59375,
+          "top": 27.4375,
+          "left": 26.59375,
+          "right": 126.265625
+        },
+        {
+          "text": "Home",
+          "cls": "site-nav__link site-nav__link--primary is-active",
+          "width": 66.640625,
+          "height": 42,
+          "top": 25.234375,
+          "left": 286.421875,
+          "right": 353.0625
+        },
+        {
+          "text": "Shop",
+          "cls": "site-nav__link site-nav__link--primary ",
+          "width": 59.734375,
+          "height": 42,
+          "top": 25.234375,
+          "left": 361.0625,
+          "right": 420.796875
+        },
+        {
+          "text": "About",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 67.109375,
+          "height": 42,
+          "top": 25.234375,
+          "left": 428.796875,
+          "right": 495.90625
+        },
+        {
+          "text": "FAQ",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 53.640625,
+          "height": 42,
+          "top": 25.234375,
+          "left": 503.90625,
+          "right": 557.546875
+        },
+        {
+          "text": "Maison Nafas",
+          "cls": "mobile-panel__brand",
+          "width": 153.640625,
+          "height": 26.640625,
+          "top": 35.90625,
+          "left": -400.8125,
+          "right": -247.171875
+        },
+        {
+          "text": "Start with testers",
+          "cls": "",
+          "width": 125.15625,
+          "height": 34,
+          "top": 98.703125,
+          "left": 791.296875,
+          "right": 916.453125
+        },
+        {
+          "text": "All perfumes",
+          "cls": "",
+          "width": 193.09375,
+          "height": 34,
+          "top": 12420.046875,
+          "left": 367.890625,
+          "right": 560.984375
+        },
+        {
+          "text": "Favorites",
+          "cls": "",
+          "width": 193.09375,
+          "height": 34,
+          "top": 12454.046875,
+          "left": 367.890625,
+          "right": 560.984375
+        },
+        {
+          "text": "Quality",
+          "cls": "",
+          "width": 193.09375,
+          "height": 34,
+          "top": 12488.046875,
+          "left": 367.890625,
+          "right": 560.984375
+        },
+        {
+          "text": "FAQ",
+          "cls": "",
+          "width": 193.09375,
+          "height": 34,
+          "top": 12420.046875,
+          "left": 591.703125,
+          "right": 784.796875
+        },
+        {
+          "text": "Account",
+          "cls": "",
+          "width": 193.09375,
+          "height": 34,
+          "top": 12454.046875,
+          "left": 591.703125,
+          "right": 784.796875
+        },
+        {
+          "text": "About Nafas",
+          "cls": "",
+          "width": 193.09375,
+          "height": 34,
+          "top": 12488.046875,
+          "left": 591.703125,
+          "right": 784.796875
+        },
+        {
+          "text": "Privacy",
+          "cls": "",
+          "width": 193.09375,
+          "height": 34,
+          "top": 12420.046875,
+          "left": 815.515625,
+          "right": 1008.609375
+        },
+        {
+          "text": "Returns",
+          "cls": "",
+          "width": 193.09375,
+          "height": 34,
+          "top": 12454.046875,
+          "left": 815.515625,
+          "right": 1008.609375
+        },
+        {
+          "text": "Terms",
+          "cls": "",
+          "width": 193.09375,
+          "height": 34,
+          "top": 12488.046875,
+          "left": 815.515625,
+          "right": 1008.609375
+        }
+      ],
+      "offscreenTargets": [
+        {
+          "text": "Maison Nafas",
+          "cls": "mobile-panel__brand",
+          "width": 153.640625,
+          "height": 26.640625,
+          "top": 35.90625,
+          "left": -400.8125,
+          "right": -247.171875
+        },
+        {
+          "text": "Close menu",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 27.234375,
+          "left": -88.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Home",
+          "cls": "mobile-panel__link active",
+          "width": 356,
+          "height": 61.96875,
+          "top": 120.3125,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Shop",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 192.671875,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "About",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 265.03125,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "FAQ",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 337.390625,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "All perfumes",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 448.4375,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Favorites",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 520.796875,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Cart0",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 356,
+          "height": 61.96875,
+          "top": 593.15625,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Account",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 704.203125,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "WhatsApp support",
+          "cls": "mobile-panel__link mobile-panel__link--gold",
+          "width": 356,
+          "height": 61.96875,
+          "top": 776.5625,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "العربية",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 356,
+          "height": 61.96875,
+          "top": 848.921875,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Close cart",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 34.34375,
+          "left": -92.8125,
+          "right": -48.8125
+        },
+        {
+          "text": "Checkout",
+          "cls": "n-btn n-btn--primary",
+          "width": 112.484375,
+          "height": 52,
+          "top": 755.953125,
+          "left": -444.8125,
+          "right": -332.328125
+        },
+        {
+          "text": "View cart",
+          "cls": "n-btn n-btn--ghost",
+          "width": 113.859375,
+          "height": 52,
+          "top": 820.75,
+          "left": -444.8125,
+          "right": -330.953125
+        }
+      ],
+      "title": "Ghayma",
+      "finalTitle": "Nafas, worn close."
+    }
+  },
+  {
+    "width": 1440,
+    "height": 1000,
+    "locale": "ar",
+    "name": "1440-desktop-ar",
+    "metrics": {
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": 0,
+      "navBottom": 84.796875,
+      "firstTop": 88.796875,
+      "tinyTargets": [
+        {
+          "text": "دار نفَس",
+          "cls": "site-nav__brand",
+          "width": 106.546875,
+          "height": 42.5,
+          "top": 27.546875,
+          "left": 1302.046875,
+          "right": 1408.59375
+        },
+        {
+          "text": "الرئيسية",
+          "cls": "site-nav__link site-nav__link--primary is-active",
+          "width": 71.125,
+          "height": 42,
+          "top": 27.796875,
+          "left": 873.625,
+          "right": 944.75
+        },
+        {
+          "text": "المتجر",
+          "cls": "site-nav__link site-nav__link--primary ",
+          "width": 60.828125,
+          "height": 42,
+          "top": 27.796875,
+          "left": 804.796875,
+          "right": 865.625
+        },
+        {
+          "text": "قصتنا",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 57.90625,
+          "height": 42,
+          "top": 27.796875,
+          "left": 738.890625,
+          "right": 796.796875
+        },
+        {
+          "text": "الأسئلة",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 62.515625,
+          "height": 42,
+          "top": 27.796875,
+          "left": 668.375,
+          "right": 730.890625
+        },
+        {
+          "text": "دار نفَس",
+          "cls": "mobile-panel__brand",
+          "width": 103.4375,
+          "height": 26.640625,
+          "top": 38.46875,
+          "left": 1737.375,
+          "right": 1840.8125
+        },
+        {
+          "text": "ابدأ بالتستر",
+          "cls": "",
+          "width": 60.96875,
+          "height": 34,
+          "top": 98.703125,
+          "left": 437.03125,
+          "right": 498
+        },
+        {
+          "text": "كل العطور",
+          "cls": "",
+          "width": 271.546875,
+          "height": 34,
+          "top": 13745.0625,
+          "left": 651.09375,
+          "right": 922.640625
+        },
+        {
+          "text": "المفضلة",
+          "cls": "",
+          "width": 271.546875,
+          "height": 34,
+          "top": 13779.0625,
+          "left": 651.09375,
+          "right": 922.640625
+        },
+        {
+          "text": "الجودة",
+          "cls": "",
+          "width": 271.546875,
+          "height": 34,
+          "top": 13813.0625,
+          "left": 651.09375,
+          "right": 922.640625
+        },
+        {
+          "text": "الأسئلة",
+          "cls": "",
+          "width": 271.546875,
+          "height": 34,
+          "top": 13745.0625,
+          "left": 336.359375,
+          "right": 607.90625
+        },
+        {
+          "text": "الحساب",
+          "cls": "",
+          "width": 271.546875,
+          "height": 34,
+          "top": 13779.0625,
+          "left": 336.359375,
+          "right": 607.90625
+        },
+        {
+          "text": "عن نفَس",
+          "cls": "",
+          "width": 271.546875,
+          "height": 34,
+          "top": 13813.0625,
+          "left": 336.359375,
+          "right": 607.90625
+        },
+        {
+          "text": "الخصوصية",
+          "cls": "",
+          "width": 271.5625,
+          "height": 34,
+          "top": 13745.0625,
+          "left": 21.609375,
+          "right": 293.171875
+        },
+        {
+          "text": "الاسترجاع",
+          "cls": "",
+          "width": 271.5625,
+          "height": 34,
+          "top": 13779.0625,
+          "left": 21.609375,
+          "right": 293.171875
+        },
+        {
+          "text": "الشروط",
+          "cls": "",
+          "width": 271.5625,
+          "height": 34,
+          "top": 13813.0625,
+          "left": 21.609375,
+          "right": 293.171875
+        }
+      ],
+      "offscreenTargets": [
+        {
+          "text": "دار نفَس",
+          "cls": "mobile-panel__brand",
+          "width": 103.4375,
+          "height": 26.640625,
+          "top": 38.46875,
+          "left": 1737.375,
+          "right": 1840.8125
+        },
+        {
+          "text": "إغلاق القائمة",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 29.796875,
+          "left": 1484.8125,
+          "right": 1528.8125
+        },
+        {
+          "text": "الرئيسية",
+          "cls": "mobile-panel__link active",
+          "width": 356,
+          "height": 61.96875,
+          "top": 122.875,
+          "left": 1484.8125,
+          "right": 1840.8125
+        },
+        {
+          "text": "المتجر",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 195.234375,
+          "left": 1484.8125,
+          "right": 1840.8125
+        },
+        {
+          "text": "قصتنا",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 267.59375,
+          "left": 1484.8125,
+          "right": 1840.8125
+        },
+        {
+          "text": "الأسئلة",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 339.953125,
+          "left": 1484.8125,
+          "right": 1840.8125
+        },
+        {
+          "text": "كل العطور",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 451,
+          "left": 1484.8125,
+          "right": 1840.8125
+        },
+        {
+          "text": "المفضلة",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 523.359375,
+          "left": 1484.8125,
+          "right": 1840.8125
+        },
+        {
+          "text": "السلة٠",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 356,
+          "height": 61.96875,
+          "top": 595.71875,
+          "left": 1484.8125,
+          "right": 1840.8125
+        },
+        {
+          "text": "الحساب",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 706.765625,
+          "left": 1484.8125,
+          "right": 1840.8125
+        },
+        {
+          "text": "تواصل واتساب",
+          "cls": "mobile-panel__link mobile-panel__link--gold",
+          "width": 356,
+          "height": 61.96875,
+          "top": 779.125,
+          "left": 1484.8125,
+          "right": 1840.8125
+        },
+        {
+          "text": "English",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 356,
+          "height": 61.96875,
+          "top": 851.484375,
+          "left": 1484.8125,
+          "right": 1840.8125
+        },
+        {
+          "text": "إغلاق السلة",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 38.125,
+          "left": 1488.8125,
+          "right": 1532.8125
+        },
+        {
+          "text": "إتمام الطلب",
+          "cls": "n-btn n-btn--primary",
+          "width": 107.578125,
+          "height": 52,
+          "top": 853.390625,
+          "left": 1777.234375,
+          "right": 1884.8125
+        },
+        {
+          "text": "صفحة السلة",
+          "cls": "n-btn n-btn--ghost",
+          "width": 111.15625,
+          "height": 52,
+          "top": 918.1875,
+          "left": 1773.65625,
+          "right": 1884.8125
+        }
+      ],
+      "title": "غيمة",
+      "finalTitle": "نفَس قريب منك."
+    }
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "name": "1920-desktop-en",
+    "metrics": {
+      "lang": "en",
+      "dir": "ltr",
+      "overflow": 0,
+      "navBottom": 84.796875,
+      "firstTop": 88.796875,
+      "tinyTargets": [
+        {
+          "text": "Maison Nafas",
+          "cls": "site-nav__brand",
+          "width": 128.15625,
+          "height": 42.5,
+          "top": 27.546875,
+          "left": 237,
+          "right": 365.15625
+        },
+        {
+          "text": "Home",
+          "cls": "site-nav__link site-nav__link--primary is-active",
+          "width": 69.375,
+          "height": 42,
+          "top": 27.796875,
+          "left": 743.859375,
+          "right": 813.234375
+        },
+        {
+          "text": "Shop",
+          "cls": "site-nav__link site-nav__link--primary ",
+          "width": 62,
+          "height": 42,
+          "top": 27.796875,
+          "left": 821.234375,
+          "right": 883.234375
+        },
+        {
+          "text": "About",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 69.890625,
+          "height": 42,
+          "top": 27.796875,
+          "left": 891.234375,
+          "right": 961.125
+        },
+        {
+          "text": "FAQ",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 55.5,
+          "height": 42,
+          "top": 27.796875,
+          "left": 969.125,
+          "right": 1024.625
+        },
+        {
+          "text": "Maison Nafas",
+          "cls": "mobile-panel__brand",
+          "width": 153.640625,
+          "height": 26.640625,
+          "top": 38.46875,
+          "left": -400.8125,
+          "right": -247.171875
+        },
+        {
+          "text": "Start with testers",
+          "cls": "",
+          "width": 125.15625,
+          "height": 34,
+          "top": 98.703125,
+          "left": 1239.296875,
+          "right": 1364.453125
+        },
+        {
+          "text": "All perfumes",
+          "cls": "",
+          "width": 286.28125,
+          "height": 34,
+          "top": 15653.515625,
+          "left": 745.140625,
+          "right": 1031.421875
+        },
+        {
+          "text": "Favorites",
+          "cls": "",
+          "width": 286.28125,
+          "height": 34,
+          "top": 15687.515625,
+          "left": 745.140625,
+          "right": 1031.421875
+        },
+        {
+          "text": "Quality",
+          "cls": "",
+          "width": 286.28125,
+          "height": 34,
+          "top": 15721.515625,
+          "left": 745.140625,
+          "right": 1031.421875
+        },
+        {
+          "text": "FAQ",
+          "cls": "",
+          "width": 286.28125,
+          "height": 34,
+          "top": 15653.515625,
+          "left": 1079.421875,
+          "right": 1365.703125
+        },
+        {
+          "text": "Account",
+          "cls": "",
+          "width": 286.28125,
+          "height": 34,
+          "top": 15687.515625,
+          "left": 1079.421875,
+          "right": 1365.703125
+        },
+        {
+          "text": "About Nafas",
+          "cls": "",
+          "width": 286.28125,
+          "height": 34,
+          "top": 15721.515625,
+          "left": 1079.421875,
+          "right": 1365.703125
+        },
+        {
+          "text": "Privacy",
+          "cls": "",
+          "width": 286.296875,
+          "height": 34,
+          "top": 15653.515625,
+          "left": 1413.703125,
+          "right": 1700
+        },
+        {
+          "text": "Returns",
+          "cls": "",
+          "width": 286.296875,
+          "height": 34,
+          "top": 15687.515625,
+          "left": 1413.703125,
+          "right": 1700
+        },
+        {
+          "text": "Terms",
+          "cls": "",
+          "width": 286.296875,
+          "height": 34,
+          "top": 15721.515625,
+          "left": 1413.703125,
+          "right": 1700
+        }
+      ],
+      "offscreenTargets": [
+        {
+          "text": "Maison Nafas",
+          "cls": "mobile-panel__brand",
+          "width": 153.640625,
+          "height": 26.640625,
+          "top": 38.46875,
+          "left": -400.8125,
+          "right": -247.171875
+        },
+        {
+          "text": "Close menu",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 29.796875,
+          "left": -88.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Home",
+          "cls": "mobile-panel__link active",
+          "width": 356,
+          "height": 61.96875,
+          "top": 122.875,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Shop",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 195.234375,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "About",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 267.59375,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "FAQ",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 339.953125,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "All perfumes",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 451,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Favorites",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 523.359375,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Cart0",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 356,
+          "height": 61.96875,
+          "top": 595.71875,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Account",
+          "cls": "mobile-panel__link",
+          "width": 356,
+          "height": 61.96875,
+          "top": 706.765625,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "WhatsApp support",
+          "cls": "mobile-panel__link mobile-panel__link--gold",
+          "width": 356,
+          "height": 61.96875,
+          "top": 779.125,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "العربية",
+          "cls": "mobile-panel__link mobile-panel__button",
+          "width": 356,
+          "height": 61.96875,
+          "top": 851.484375,
+          "left": -400.8125,
+          "right": -44.8125
+        },
+        {
+          "text": "Close cart",
+          "cls": "site-icon",
+          "width": 44,
+          "height": 44,
+          "top": 38.125,
+          "left": -92.8125,
+          "right": -48.8125
+        },
+        {
+          "text": "Checkout",
+          "cls": "n-btn n-btn--primary",
+          "width": 112.484375,
+          "height": 52,
+          "top": 933.390625,
+          "left": -444.8125,
+          "right": -332.328125
+        },
+        {
+          "text": "View cart",
+          "cls": "n-btn n-btn--ghost",
+          "width": 113.859375,
+          "height": 52,
+          "top": 998.1875,
+          "left": -444.8125,
+          "right": -330.953125
+        }
+      ],
+      "title": "Ghayma",
+      "finalTitle": "Nafas, worn close."
+    }
+  }
+]

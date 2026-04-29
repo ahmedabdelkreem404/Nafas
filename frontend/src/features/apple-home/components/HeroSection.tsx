@@ -1,4 +1,6 @@
+import { useLocale } from '../../../context/LocaleContext';
 import { SECTION_LABELS } from '../constants';
+import { appleHomeCopy, scentCopy, text } from '../data/appleHomeCopy';
 import type { Scent } from '../types';
 import BottleVisual from './BottleVisual';
 
@@ -7,7 +9,9 @@ type HeroSectionProps = {
 };
 
 export default function HeroSection({ scents }: HeroSectionProps) {
+  const { locale } = useLocale();
   const featuredScent = scents[0];
+  const copy = appleHomeCopy.hero;
 
   return (
     <section className="anh-section anh-hero anh-landing-hero" data-section={SECTION_LABELS.hero} aria-labelledby="hero-title" data-proof="hero">
@@ -28,18 +32,18 @@ export default function HeroSection({ scents }: HeroSectionProps) {
 
       <div className="anh-container anh-landing-hero__content">
         <div className="anh-landing-hero__copy">
-          <p className="anh-kicker">Maison Nafas</p>
-          <h1 id="hero-title">نفَس قريب منك.</h1>
-          <p className="anh-landing-hero__lead">أربع روائح محلية بهوية هادئة: شرارة، غيمة، دفوة، وظلّ. ابدأ بتستر صغير، واختار الرائحة التي تشبه حضورك.</p>
+          <p className="anh-kicker">{text(copy.kicker, locale)}</p>
+          <h1 id="hero-title">{text(copy.title, locale)}</h1>
+          <p className="anh-landing-hero__lead">{text(copy.lead, locale)}</p>
           <div className="anh-actions">
-            <a className="anh-button anh-button--primary" href="#choose">اكتشف المجموعة</a>
-            <a className="anh-button anh-button--secondary" href="#tester-path">اطلب تستر</a>
+            <a className="anh-button anh-button--primary" href="#choose">{text(appleHomeCopy.ritual.primaryCta, locale)}</a>
+            <a className="anh-button anh-button--secondary" href="#tester-path">{text(appleHomeCopy.ritual.secondaryCta, locale)}</a>
           </div>
         </div>
 
         <div className="anh-landing-hero__caption" aria-hidden="true">
-          <span>Nafas eau de parfum</span>
-          <strong>{featuredScent.nameAr}</strong>
+          <span>{text(copy.caption, locale)}</span>
+          <strong>{text(scentCopy[featuredScent.id].name, locale)}</strong>
         </div>
       </div>
     </section>

@@ -1,15 +1,18 @@
 import { useMemo, useState } from 'react';
+import type { Locale } from '../../../context/LocaleContext';
+import { scentCopy, text } from '../data/appleHomeCopy';
 import type { ChoiceId, Scent } from '../types';
 
-export function useScentChoice(scents: Scent[]) {
+export function useScentChoice(scents: Scent[], locale: Locale) {
   const [selectedChoice, setSelectedChoice] = useState<ChoiceId>('discovery');
   const recommendation = useMemo(() => {
     if (selectedChoice === 'discovery') {
       return 'Discovery Mini';
     }
 
-    return scents.find((scent) => scent.id === selectedChoice)?.nameAr ?? 'Discovery Mini';
-  }, [scents, selectedChoice]);
+    const scent = scents.find((item) => item.id === selectedChoice);
+    return scent ? text(scentCopy[scent.id].name, locale) : 'Discovery Mini';
+  }, [locale, scents, selectedChoice]);
 
   return {
     recommendation,

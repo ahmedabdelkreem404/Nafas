@@ -1,7 +1,9 @@
 import type { CSSProperties } from 'react';
 import { SECTION_LABELS } from '../constants';
+import { appleHomeCopy, scentCopy, text } from '../data/appleHomeCopy';
 import { useCinematicRitualCarousel } from '../hooks/useCinematicRitualCarousel';
 import type { Scent } from '../types';
+import { useLocale } from '../../../context/LocaleContext';
 import BottleVisual from './BottleVisual';
 import RitualCarouselControls from './RitualCarouselControls';
 
@@ -10,8 +12,11 @@ type CinematicRitualSectionProps = {
 };
 
 export default function CinematicRitualSection({ scents }: CinematicRitualSectionProps) {
+  const { locale } = useLocale();
   const carousel = useCinematicRitualCarousel(scents.length);
   const activeScent = scents[carousel.activeIndex] ?? scents[0];
+  const activeCopy = scentCopy[activeScent.id];
+  const copy = appleHomeCopy.ritual;
 
   const sceneStyle = {
     '--scene-accent': activeScent.accent,
@@ -36,7 +41,7 @@ export default function CinematicRitualSection({ scents }: CinematicRitualSectio
       data-scent={activeScent.id}
       aria-labelledby="ritual-title"
       aria-roledescription="carousel"
-      aria-label="طقس نفَس السينمائي"
+      aria-label={text(copy.aria, locale)}
       onKeyDown={carousel.handleKeyDown}
       onMouseEnter={() => carousel.setIsHoverPaused(true)}
       onMouseLeave={() => carousel.setIsHoverPaused(false)}
@@ -59,8 +64,8 @@ export default function CinematicRitualSection({ scents }: CinematicRitualSectio
       <div className="anh-container anh-ritual-cinematic__inner">
         <div className="anh-ritual-cinematic__title-panel">
           <div className="anh-ritual-cinematic__title-stack" key={`${activeScent.id}-title`}>
-            <p className="anh-kicker">Nafas ritual</p>
-            <h2 id="ritual-title">{activeScent.nameAr}</h2>
+            <p className="anh-kicker">{text(copy.kicker, locale)}</p>
+            <h2 id="ritual-title">{text(activeCopy.name, locale)}</h2>
             <p className="anh-ritual-cinematic__latin">{activeScent.name}</p>
           </div>
         </div>
@@ -83,13 +88,13 @@ export default function CinematicRitualSection({ scents }: CinematicRitualSectio
 
         <div className="anh-ritual-cinematic__copy-panel" aria-live="polite">
           <div className="anh-ritual-cinematic__copy-stack" key={`${activeScent.id}-copy`}>
-            <p className="anh-kicker">لحظة الرشة</p>
-            <p className="anh-ritual-cinematic__line">{activeScent.line}</p>
-            <p className="anh-ritual-cinematic__description">{activeScent.heroDescription}</p>
-            <p className="anh-ritual-cinematic__mood">{activeScent.mood}</p>
+            <p className="anh-kicker">{text(copy.moment, locale)}</p>
+            <p className="anh-ritual-cinematic__line">{text(activeCopy.line, locale)}</p>
+            <p className="anh-ritual-cinematic__description">{text(activeCopy.heroDescription, locale)}</p>
+            <p className="anh-ritual-cinematic__mood">{text(activeCopy.mood, locale)}</p>
             <div className="anh-actions">
-              <a className="anh-button anh-button--primary" href="#choose">اكتشف المجموعة</a>
-              <a className="anh-button anh-button--secondary" href="#tester-path">اطلب تستر</a>
+              <a className="anh-button anh-button--primary" href="#choose">{text(copy.primaryCta, locale)}</a>
+              <a className="anh-button anh-button--secondary" href="#tester-path">{text(copy.secondaryCta, locale)}</a>
             </div>
           </div>
         </div>

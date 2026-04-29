@@ -1,7 +1,6 @@
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import BrandLoader from './components/BrandLoader';
 import AtelierBackground from './components/AtelierBackground';
-import CustomCursor from './components/CustomCursor';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import OffcanvasCart from './components/OffcanvasCart';
@@ -47,7 +46,6 @@ function PublicLayout() {
     <>
       <AtelierBackground />
       <BrandLoader />
-      <CustomCursor />
       <div className="app-shell">
         <Navbar />
         <main className="page-shell">

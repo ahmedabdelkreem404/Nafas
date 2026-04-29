@@ -1,0 +1,150 @@
+{
+  "screenshots": [
+    {
+      "name": "390-mobile-ar",
+      "path": "D:\\Nafas\\frontend\\artifacts\\ui-proof-final\\390-mobile-ar.png"
+    },
+    {
+      "name": "430-mobile-en",
+      "path": "D:\\Nafas\\frontend\\artifacts\\ui-proof-final\\430-mobile-en.png"
+    },
+    {
+      "name": "768-tablet-ar",
+      "path": "D:\\Nafas\\frontend\\artifacts\\ui-proof-final\\768-tablet-ar.png"
+    },
+    {
+      "name": "1024-laptop-en",
+      "path": "D:\\Nafas\\frontend\\artifacts\\ui-proof-final\\1024-laptop-en.png"
+    },
+    {
+      "name": "1440-desktop-ar",
+      "path": "D:\\Nafas\\frontend\\artifacts\\ui-proof-final\\1440-desktop-ar.png"
+    },
+    {
+      "name": "1920-desktop-en",
+      "path": "D:\\Nafas\\frontend\\artifacts\\ui-proof-final\\1920-desktop-en.png"
+    }
+  ],
+  "metrics": [
+    {
+      "caseName": "390-mobile-ar",
+      "lang": "ar",
+      "dir": "rtl",
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "scrollWidth": 390,
+      "horizontalOverflow": 0,
+      "bodyOverflowX": 0,
+      "navBottom": 68,
+      "ribbonTop": 78,
+      "firstInteractiveTop": 140,
+      "navOverlapsFirstInteractive": false,
+      "tinyTargets": [],
+      "offscreenTargets": [],
+      "heroHeading": "غيمة",
+      "sectionCount": 15,
+      "imagesPending": [],
+      "consoleErrors": []
+    },
+    {
+      "caseName": "430-mobile-en",
+      "lang": "en",
+      "dir": "ltr",
+      "viewportWidth": 430,
+      "viewportHeight": 932,
+      "scrollWidth": 430,
+      "horizontalOverflow": 0,
+      "bodyOverflowX": 0,
+      "navBottom": 68,
+      "ribbonTop": 78,
+      "firstInteractiveTop": 161,
+      "navOverlapsFirstInteractive": false,
+      "tinyTargets": [],
+      "offscreenTargets": [],
+      "heroHeading": "Sharara",
+      "sectionCount": 15,
+      "imagesPending": [],
+      "consoleErrors": []
+    },
+    {
+      "caseName": "768-tablet-ar",
+      "lang": "ar",
+      "dir": "rtl",
+      "viewportWidth": 768,
+      "viewportHeight": 1024,
+      "scrollWidth": 768,
+      "horizontalOverflow": 0,
+      "bodyOverflowX": 0,
+      "navBottom": 80,
+      "ribbonTop": 89,
+      "firstInteractiveTop": 99,
+      "navOverlapsFirstInteractive": false,
+      "tinyTargets": [],
+      "offscreenTargets": [],
+      "heroHeading": "شرارة",
+      "sectionCount": 15,
+      "imagesPending": [],
+      "consoleErrors": []
+    },
+    {
+      "caseName": "1024-laptop-en",
+      "lang": "en",
+      "dir": "ltr",
+      "viewportWidth": 1024,
+      "viewportHeight": 768,
+      "scrollWidth": 1024,
+      "horizontalOverflow": 0,
+      "bodyOverflowX": 0,
+      "navBottom": 82,
+      "ribbonTop": 89,
+      "firstInteractiveTop": 99,
+      "navOverlapsFirstInteractive": false,
+      "tinyTargets": [],
+      "offscreenTargets": [],
+      "heroHeading": "Sharara",
+      "sectionCount": 15,
+      "imagesPending": [],
+      "consoleErrors": []
+    },
+    {
+      "caseName": "1440-desktop-ar",
+      "lang": "ar",
+      "dir": "rtl",
+      "viewportWidth": 1440,
+      "viewportHeight": 1000,
+      "scrollWidth": 1440,
+      "horizontalOverflow": 0,
+      "bodyOverflowX": 0,
+      "navBottom": 85,
+      "ribbonTop": 89,
+      "firstInteractiveTop": 99,
+      "navOverlapsFirstInteractive": false,
+      "tinyTargets": [],
+      "offscreenTargets": [],
+      "heroHeading": "غيمة",
+      "sectionCount": 15,
+      "imagesPending": [],
+      "consoleErrors": []
+    },
+    {
+      "caseName": "1920-desktop-en",
+      "lang": "en",
+      "dir": "ltr",
+      "viewportWidth": 1920,
+      "viewportHeight": 1080,
+      "scrollWidth": 1920,
+      "horizontalOverflow": 0,
+      "bodyOverflowX": 0,
+      "navBottom": 85,
+      "ribbonTop": 89,
+      "firstInteractiveTop": 99,
+      "navOverlapsFirstInteractive": false,
+      "tinyTargets": [],
+      "offscreenTargets": [],
+      "heroHeading": "Sharara",
+      "sectionCount": 15,
+      "imagesPending": [],
+      "consoleErrors": []
+    }
+  ]
+}

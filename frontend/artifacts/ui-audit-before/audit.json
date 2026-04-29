@@ -1,0 +1,1227 @@
+[
+  {
+    "width": 360,
+    "height": 1000,
+    "locale": "ar",
+    "metrics": {
+      "lang": "ar",
+      "dir": "rtl",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "overflow": 0,
+      "navBottom": 83.1875,
+      "firstTop": 72,
+      "ritualHeight": 964,
+      "overflowers": [
+        {
+          "tag": "ASIDE",
+          "cls": "mobile-panel mobile-panel--ar ",
+          "left": 382.65155029296875,
+          "right": 721.0421752929688,
+          "width": 338.390625
+        },
+        {
+          "tag": "DIV",
+          "cls": "mobile-panel__head",
+          "left": 399.65155029296875,
+          "right": 704.0421752929688,
+          "width": 304.390625
+        },
+        {
+          "tag": "IMG",
+          "cls": "mobile-panel__logo",
+          "left": 654.1046752929688,
+          "right": 704.0421752929688,
+          "width": 49.9375
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "site-icon",
+          "left": 399.65155029296875,
+          "right": 439.65155029296875,
+          "width": 40
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "left": 410.65155029296875,
+          "right": 428.65155029296875,
+          "width": 18
+        },
+        {
+          "tag": "path",
+          "cls": "[object SVGAnimatedString]",
+          "left": 415.15155029296875,
+          "right": 424.15155029296875,
+          "width": 9
+        },
+        {
+          "tag": "path",
+          "cls": "[object SVGAnimatedString]",
+          "left": 415.15155029296875,
+          "right": 424.15155029296875,
+          "width": 9
+        },
+        {
+          "tag": "DIV",
+          "cls": "mobile-panel__links",
+          "left": 399.65155029296875,
+          "right": 704.0421752929688,
+          "width": 304.390625
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": 399.65155029296875,
+          "right": 704.0421752929688,
+          "width": 304.390625
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": 399.65155029296875,
+          "right": 704.0421752929688,
+          "width": 304.390625
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": 399.65155029296875,
+          "right": 704.0421752929688,
+          "width": 304.390625
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": 399.65155029296875,
+          "right": 704.0421752929688,
+          "width": 304.390625
+        }
+      ],
+      "tinyTargets": [
+        {
+          "text": "دار نفَس",
+          "cls": "site-nav__brand",
+          "width": 101.6875,
+          "height": 41.59375
+        },
+        {
+          "text": "عEN",
+          "cls": "lang-toggle",
+          "width": 50.640625,
+          "height": 40
+        },
+        {
+          "text": "Account",
+          "cls": "site-icon ",
+          "width": 40,
+          "height": 40
+        },
+        {
+          "text": "٠",
+          "cls": "site-icon ",
+          "width": 56.90625,
+          "height": 40
+        },
+        {
+          "text": "Menu",
+          "cls": "site-icon site-icon--menu",
+          "width": 40,
+          "height": 40
+        },
+        {
+          "text": "Close menu",
+          "cls": "site-icon",
+          "width": 40,
+          "height": 40
+        },
+        {
+          "text": "اطلب Discovery Mini",
+          "cls": "",
+          "width": 130.03125,
+          "height": 19.1875
+        },
+        {
+          "text": "إيقاف التشغيل التلقائي",
+          "cls": "anh-dock-button anh-ritual-control anh-ritual-control--play",
+          "width": 42.390625,
+          "height": 42.390625
+        },
+        {
+          "text": "شرارة",
+          "cls": "is-active",
+          "width": 32,
+          "height": 42.390625
+        },
+        {
+          "text": "غيمة",
+          "cls": "",
+          "width": 32,
+          "height": 42.390625
+        },
+        {
+          "text": "دفوة",
+          "cls": "",
+          "width": 32,
+          "height": 42.390625
+        },
+        {
+          "text": "ظلّ",
+          "cls": "",
+          "width": 32,
+          "height": 42.390625
+        }
+      ]
+    }
+  },
+  {
+    "width": 390,
+    "height": 1000,
+    "locale": "ar",
+    "metrics": {
+      "lang": "ar",
+      "dir": "rtl",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "overflow": 0,
+      "navBottom": 83.1875,
+      "firstTop": 72,
+      "ritualHeight": 920,
+      "overflowers": [
+        {
+          "tag": "ASIDE",
+          "cls": "mobile-panel mobile-panel--ar ",
+          "left": 414.8125,
+          "right": 774.8125,
+          "width": 360
+        },
+        {
+          "tag": "DIV",
+          "cls": "mobile-panel__head",
+          "left": 431.8125,
+          "right": 757.8125,
+          "width": 326
+        },
+        {
+          "tag": "IMG",
+          "cls": "mobile-panel__logo",
+          "left": 707.875,
+          "right": 757.8125,
+          "width": 49.9375
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "site-icon",
+          "left": 431.8125,
+          "right": 471.8125,
+          "width": 40
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "left": 442.8125,
+          "right": 460.8125,
+          "width": 18
+        },
+        {
+          "tag": "path",
+          "cls": "[object SVGAnimatedString]",
+          "left": 447.3125,
+          "right": 456.3125,
+          "width": 9
+        },
+        {
+          "tag": "path",
+          "cls": "[object SVGAnimatedString]",
+          "left": 447.3125,
+          "right": 456.3125,
+          "width": 9
+        },
+        {
+          "tag": "DIV",
+          "cls": "mobile-panel__links",
+          "left": 431.8125,
+          "right": 757.8125,
+          "width": 326
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": 431.8125,
+          "right": 757.8125,
+          "width": 326
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": 431.8125,
+          "right": 757.8125,
+          "width": 326
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": 431.8125,
+          "right": 757.8125,
+          "width": 326
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": 431.8125,
+          "right": 757.8125,
+          "width": 326
+        }
+      ],
+      "tinyTargets": [
+        {
+          "text": "دار نفَس",
+          "cls": "site-nav__brand",
+          "width": 101.6875,
+          "height": 41.59375
+        },
+        {
+          "text": "عEN",
+          "cls": "lang-toggle",
+          "width": 50.640625,
+          "height": 40
+        },
+        {
+          "text": "Account",
+          "cls": "site-icon ",
+          "width": 40,
+          "height": 40
+        },
+        {
+          "text": "٠",
+          "cls": "site-icon ",
+          "width": 56.90625,
+          "height": 40
+        },
+        {
+          "text": "Menu",
+          "cls": "site-icon site-icon--menu",
+          "width": 40,
+          "height": 40
+        },
+        {
+          "text": "Close menu",
+          "cls": "site-icon",
+          "width": 40,
+          "height": 40
+        },
+        {
+          "text": "اطلب Discovery Mini",
+          "cls": "",
+          "width": 130.03125,
+          "height": 19.1875
+        },
+        {
+          "text": "شرارة",
+          "cls": "is-active",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "غيمة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "دفوة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "ظلّ",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "اعرض شرارة",
+          "cls": "is-active",
+          "width": 32.796875,
+          "height": 48
+        }
+      ]
+    }
+  },
+  {
+    "width": 430,
+    "height": 1000,
+    "locale": "en",
+    "metrics": {
+      "lang": "en",
+      "dir": "ltr",
+      "scrollWidth": 430,
+      "innerWidth": 430,
+      "overflow": 0,
+      "navBottom": 83.1875,
+      "firstTop": 72,
+      "ritualHeight": 920,
+      "overflowers": [
+        {
+          "tag": "ASIDE",
+          "cls": "mobile-panel mobile-panel--en ",
+          "left": -384.8125,
+          "right": -24.8125,
+          "width": 360
+        },
+        {
+          "tag": "DIV",
+          "cls": "mobile-panel__head",
+          "left": -367.8125,
+          "right": -41.8125,
+          "width": 326
+        },
+        {
+          "tag": "IMG",
+          "cls": "mobile-panel__logo",
+          "left": -367.8125,
+          "right": -317.875,
+          "width": 49.9375
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "site-icon",
+          "left": -81.8125,
+          "right": -41.8125,
+          "width": 40
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "left": -70.8125,
+          "right": -52.8125,
+          "width": 18
+        },
+        {
+          "tag": "path",
+          "cls": "[object SVGAnimatedString]",
+          "left": -66.3125,
+          "right": -57.3125,
+          "width": 9
+        },
+        {
+          "tag": "path",
+          "cls": "[object SVGAnimatedString]",
+          "left": -66.3125,
+          "right": -57.3125,
+          "width": 9
+        },
+        {
+          "tag": "DIV",
+          "cls": "mobile-panel__links",
+          "left": -367.8125,
+          "right": -41.8125,
+          "width": 326
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": -367.8125,
+          "right": -41.8125,
+          "width": 326
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": -367.8125,
+          "right": -41.8125,
+          "width": 326
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": -367.8125,
+          "right": -41.8125,
+          "width": 326
+        },
+        {
+          "tag": "A",
+          "cls": "mobile-panel__link",
+          "left": -367.8125,
+          "right": -41.8125,
+          "width": 326
+        }
+      ],
+      "tinyTargets": [
+        {
+          "text": "Maison Nafas",
+          "cls": "site-nav__brand",
+          "width": 101.6875,
+          "height": 41.59375
+        },
+        {
+          "text": "عEN",
+          "cls": "lang-toggle",
+          "width": 50.640625,
+          "height": 40
+        },
+        {
+          "text": "Account",
+          "cls": "site-icon ",
+          "width": 40,
+          "height": 40
+        },
+        {
+          "text": "0",
+          "cls": "site-icon ",
+          "width": 56.90625,
+          "height": 40
+        },
+        {
+          "text": "Menu",
+          "cls": "site-icon site-icon--menu",
+          "width": 40,
+          "height": 40
+        },
+        {
+          "text": "Close menu",
+          "cls": "site-icon",
+          "width": 40,
+          "height": 40
+        },
+        {
+          "text": "اطلب Discovery Mini",
+          "cls": "",
+          "width": 130.03125,
+          "height": 19.1875
+        },
+        {
+          "text": "شرارة",
+          "cls": "is-active",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "غيمة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "دفوة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "ظلّ",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "اعرض شرارة",
+          "cls": "is-active",
+          "width": 32.796875,
+          "height": 48
+        }
+      ]
+    }
+  },
+  {
+    "width": 768,
+    "height": 1100,
+    "locale": "ar",
+    "metrics": {
+      "lang": "ar",
+      "dir": "rtl",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "overflow": 0,
+      "navBottom": 83.1875,
+      "firstTop": 72,
+      "ritualHeight": 1034.40625,
+      "overflowers": [
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__bg",
+          "left": -39.01312255859375,
+          "right": 807.0131225585938,
+          "width": 846.0262451171875
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__depth-left",
+          "left": -96,
+          "right": 172.796875,
+          "width": 268.796875
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__depth-right",
+          "left": 579.203125,
+          "right": 848,
+          "width": 268.796875
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__mist",
+          "left": -25.27215576171875,
+          "right": 763.8859252929688,
+          "width": 789.1580810546875
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-cinematic__copy-stack",
+          "left": -4.168750762939453,
+          "right": 717.7687492370605,
+          "width": 721.9375
+        },
+        {
+          "tag": "ARTICLE",
+          "cls": "anh-highlight-card anh-highlight-card--rose is-active",
+          "left": 668.78125,
+          "right": 1298.53125,
+          "width": 629.75
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-highlight-card__copy",
+          "left": 722.53125,
+          "right": 1298.53125,
+          "width": 576
+        },
+        {
+          "tag": "SPAN",
+          "cls": "",
+          "left": 1164.828125,
+          "right": 1267.8125,
+          "width": 102.984375
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "left": 753.25,
+          "right": 1267.8125,
+          "width": 514.5625
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "left": 867.8125,
+          "right": 1267.8125,
+          "width": 400
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-bottle-visual anh-bottle-visual--ghayma anh-highlight-bottle",
+          "left": 801.03125,
+          "right": 1166.28125,
+          "width": 365.25
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__cap",
+          "left": 921.578125,
+          "right": 1045.75,
+          "width": 124.171875
+        }
+      ],
+      "tinyTargets": [
+        {
+          "text": "دار نفَس",
+          "cls": "site-nav__brand",
+          "width": 102.875,
+          "height": 37.59375
+        },
+        {
+          "text": "الرئيسية",
+          "cls": "site-nav__link site-nav__link--primary is-active",
+          "width": 42.6875,
+          "height": 25.59375
+        },
+        {
+          "text": "المتجر",
+          "cls": "site-nav__link site-nav__link--primary ",
+          "width": 33.03125,
+          "height": 25.59375
+        },
+        {
+          "text": "اطلب Discovery Mini",
+          "cls": "",
+          "width": 149.53125,
+          "height": 27.21875
+        },
+        {
+          "text": "شرارة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "غيمة",
+          "cls": "is-active",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "دفوة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "ظلّ",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "اعرض شرارة",
+          "cls": "",
+          "width": 32.796875,
+          "height": 48
+        },
+        {
+          "text": "اعرض غيمة",
+          "cls": "is-active",
+          "width": 32.796875,
+          "height": 48
+        },
+        {
+          "text": "اعرض دفوة",
+          "cls": "",
+          "width": 32.796875,
+          "height": 48
+        },
+        {
+          "text": "اعرض ظلّ",
+          "cls": "",
+          "width": 32.796875,
+          "height": 48
+        }
+      ]
+    }
+  },
+  {
+    "width": 1024,
+    "height": 900,
+    "locale": "en",
+    "metrics": {
+      "lang": "en",
+      "dir": "ltr",
+      "scrollWidth": 1024,
+      "innerWidth": 1024,
+      "overflow": 0,
+      "navBottom": 83.1875,
+      "firstTop": 72,
+      "ritualHeight": 720,
+      "overflowers": [
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__bg",
+          "left": -52.01220703125,
+          "right": 1076.01220703125,
+          "width": 1128.0244140625
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__depth-left",
+          "left": -96,
+          "right": 262.390625,
+          "width": 358.390625
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__depth-right",
+          "left": 745.609375,
+          "right": 1104,
+          "width": 358.390625
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__mist",
+          "left": -28.942352294921875,
+          "right": 1023.4093322753906,
+          "width": 1052.3516845703125
+        },
+        {
+          "tag": "ARTICLE",
+          "cls": "anh-highlight-card anh-highlight-card--rose is-active",
+          "left": 829.421875,
+          "right": 1607.65625,
+          "width": 778.234375
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-highlight-card__copy",
+          "left": 1031.65625,
+          "right": 1607.65625,
+          "width": 576
+        },
+        {
+          "tag": "SPAN",
+          "cls": "",
+          "left": 1478.0625,
+          "right": 1581.046875,
+          "width": 102.984375
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "left": 1058.265625,
+          "right": 1581.046875,
+          "width": 522.78125
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "left": 1181.046875,
+          "right": 1581.046875,
+          "width": 400
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-bottle-visual anh-bottle-visual--ghayma anh-highlight-bottle",
+          "left": 1031.7578125,
+          "right": 1405.3046875,
+          "width": 373.546875
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__cap",
+          "left": 1155.0390625,
+          "right": 1282.0390625,
+          "width": 127
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__neck",
+          "left": 1184.9296875,
+          "right": 1252.1640625,
+          "width": 67.234375
+        }
+      ],
+      "tinyTargets": [
+        {
+          "text": "Maison Nafas",
+          "cls": "site-nav__brand",
+          "width": 102.875,
+          "height": 37.59375
+        },
+        {
+          "text": "Home",
+          "cls": "site-nav__link site-nav__link--primary is-active",
+          "width": 41.046875,
+          "height": 25.59375
+        },
+        {
+          "text": "Shop",
+          "cls": "site-nav__link site-nav__link--primary ",
+          "width": 34.140625,
+          "height": 25.59375
+        },
+        {
+          "text": "اطلب Discovery Mini",
+          "cls": "",
+          "width": 149.53125,
+          "height": 27.21875
+        },
+        {
+          "text": "شرارة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "غيمة",
+          "cls": "is-active",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "دفوة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "ظلّ",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "اعرض شرارة",
+          "cls": "",
+          "width": 32.796875,
+          "height": 48
+        },
+        {
+          "text": "اعرض غيمة",
+          "cls": "is-active",
+          "width": 32.796875,
+          "height": 48
+        },
+        {
+          "text": "اعرض دفوة",
+          "cls": "",
+          "width": 32.796875,
+          "height": 48
+        },
+        {
+          "text": "اعرض ظلّ",
+          "cls": "",
+          "width": 32.796875,
+          "height": 48
+        }
+      ]
+    }
+  },
+  {
+    "width": 1440,
+    "height": 1000,
+    "locale": "ar",
+    "metrics": {
+      "lang": "ar",
+      "dir": "rtl",
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "overflow": 0,
+      "navBottom": 83.1875,
+      "firstTop": 72,
+      "ritualHeight": 920,
+      "overflowers": [
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__bg",
+          "left": -73.1456298828125,
+          "right": 1513.1456298828125,
+          "width": 1586.291259765625
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__depth-left",
+          "left": -124.69985961914062,
+          "right": 391.9000549316406,
+          "width": 516.5999145507812
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__depth-right",
+          "left": 1032.0999755859375,
+          "right": 1548.699951171875,
+          "width": 516.5999755859375
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-ritual-scene__mist",
+          "left": -35.19134521484375,
+          "right": 1445.2412719726562,
+          "width": 1480.4326171875
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-highlight-track",
+          "left": -1093.8575439453125,
+          "right": 259.7674560546875,
+          "width": 1353.625
+        },
+        {
+          "tag": "ARTICLE",
+          "cls": "anh-highlight-card anh-highlight-card--copper ",
+          "left": -1093.8575439453125,
+          "right": 26.1424560546875,
+          "width": 1120
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-highlight-card__copy",
+          "left": -549.8575439453125,
+          "right": 26.1424560546875,
+          "width": 576
+        },
+        {
+          "tag": "SPAN",
+          "cls": "",
+          "left": -117.9044189453125,
+          "right": -31.4512939453125,
+          "width": 86.453125
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "left": -492.2637939453125,
+          "right": -31.4512939453125,
+          "width": 460.8125
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "left": -431.4512939453125,
+          "right": -31.4512939453125,
+          "width": 400
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-bottle-visual anh-bottle-visual--sharara anh-highlight-bottle",
+          "left": -823.8575439453125,
+          "right": -243.8575439453125,
+          "width": 580
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__cap",
+          "left": -632.4512939453125,
+          "right": -435.2637939453125,
+          "width": 197.1875
+        }
+      ],
+      "tinyTargets": [
+        {
+          "text": "دار نفَس",
+          "cls": "site-nav__brand",
+          "width": 113.75,
+          "height": 43.4375
+        },
+        {
+          "text": "الرئيسية",
+          "cls": "site-nav__link site-nav__link--primary is-active",
+          "width": 45.53125,
+          "height": 26.546875
+        },
+        {
+          "text": "المتجر",
+          "cls": "site-nav__link site-nav__link--primary ",
+          "width": 35.234375,
+          "height": 26.546875
+        },
+        {
+          "text": "قصتنا",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 32.3125,
+          "height": 26.546875
+        },
+        {
+          "text": "الأسئلة",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 36.921875,
+          "height": 26.546875
+        },
+        {
+          "text": "اطلب Discovery Mini",
+          "cls": "",
+          "width": 149.53125,
+          "height": 27.21875
+        },
+        {
+          "text": "شرارة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "غيمة",
+          "cls": "is-active",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "دفوة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "ظلّ",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "اعرض شرارة",
+          "cls": "",
+          "width": 32.796875,
+          "height": 48
+        },
+        {
+          "text": "اعرض غيمة",
+          "cls": "is-active",
+          "width": 32.796875,
+          "height": 48
+        }
+      ]
+    }
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "locale": "en",
+    "metrics": {
+      "lang": "en",
+      "dir": "ltr",
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "overflow": 0,
+      "navBottom": 83.1875,
+      "firstTop": 72,
+      "ritualHeight": 920,
+      "overflowers": [
+        {
+          "tag": "DIV",
+          "cls": "anh-highlight-track",
+          "left": -894.56005859375,
+          "right": 489.43994140625,
+          "width": 1384
+        },
+        {
+          "tag": "ARTICLE",
+          "cls": "anh-highlight-card anh-highlight-card--copper ",
+          "left": -894.56005859375,
+          "right": 225.43994140625,
+          "width": 1120
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-highlight-card__copy",
+          "left": -350.56005859375,
+          "right": 225.43994140625,
+          "width": 576
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "left": -286.56005859375,
+          "right": 161.43994140625,
+          "width": 448
+        },
+        {
+          "tag": "P",
+          "cls": "",
+          "left": -238.56005859375,
+          "right": 161.43994140625,
+          "width": 400
+        },
+        {
+          "tag": "DIV",
+          "cls": "anh-bottle-visual anh-bottle-visual--sharara anh-highlight-bottle",
+          "left": -624.56005859375,
+          "right": -44.56005859375,
+          "width": 580
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__cap",
+          "left": -433.15380859375,
+          "right": -235.96630859375,
+          "width": 197.1875
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__neck",
+          "left": -386.74755859375,
+          "right": -282.35693359375,
+          "width": 104.390625
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__body",
+          "left": -549.15380859375,
+          "right": -119.96630859375,
+          "width": 429.1875
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__shine",
+          "left": -265.87255859375,
+          "right": -188.62255859375,
+          "width": 77.25
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "left": -484.77880859375,
+          "right": -184.34130859375,
+          "width": 300.4375
+        },
+        {
+          "tag": "SMALL",
+          "cls": "",
+          "left": -357.74755859375,
+          "right": -311.37255859375,
+          "width": 46.375
+        }
+      ],
+      "tinyTargets": [
+        {
+          "text": "Maison Nafas",
+          "cls": "site-nav__brand",
+          "width": 140.828125,
+          "height": 43.4375
+        },
+        {
+          "text": "Home",
+          "cls": "site-nav__link site-nav__link--primary is-active",
+          "width": 43.78125,
+          "height": 26.546875
+        },
+        {
+          "text": "Shop",
+          "cls": "site-nav__link site-nav__link--primary ",
+          "width": 36.40625,
+          "height": 26.546875
+        },
+        {
+          "text": "About",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 44.296875,
+          "height": 26.546875
+        },
+        {
+          "text": "FAQ",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "width": 29.90625,
+          "height": 26.546875
+        },
+        {
+          "text": "اطلب Discovery Mini",
+          "cls": "",
+          "width": 149.53125,
+          "height": 27.21875
+        },
+        {
+          "text": "شرارة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "غيمة",
+          "cls": "is-active",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "دفوة",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "ظلّ",
+          "cls": "",
+          "width": 32,
+          "height": 48
+        },
+        {
+          "text": "اعرض شرارة",
+          "cls": "",
+          "width": 32.796875,
+          "height": 48
+        },
+        {
+          "text": "اعرض غيمة",
+          "cls": "is-active",
+          "width": 32.796875,
+          "height": 48
+        }
+      ]
+    }
+  }
+]

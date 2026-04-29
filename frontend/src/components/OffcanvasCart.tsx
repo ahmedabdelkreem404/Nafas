@@ -6,12 +6,42 @@ import { useCart } from '../hooks/useCart';
 import { formatCurrency } from '../utils/format';
 import ProductMedia from './ProductMedia';
 
+const cartCopy = {
+  ar: {
+    checkout: 'إتمام الطلب',
+    close: 'إغلاق السلة',
+    confirmNo: 'لا',
+    confirmRemove: 'إزالة هذا المنتج؟',
+    confirmYes: 'نعم',
+    empty: 'السلة فارغة الآن.',
+    heading: 'سلة نفَس',
+    remove: 'إزالة',
+    subtotal: 'المجموع',
+    title: 'سلة سريعة',
+    viewCart: 'صفحة السلة',
+  },
+  en: {
+    checkout: 'Checkout',
+    close: 'Close cart',
+    confirmNo: 'No',
+    confirmRemove: 'Remove this item?',
+    confirmYes: 'Yes',
+    empty: 'Your cart is empty.',
+    heading: 'Nafas cart',
+    remove: 'Remove',
+    subtotal: 'Subtotal',
+    title: 'Quick cart',
+    viewCart: 'View cart',
+  },
+} as const;
+
 export default function OffcanvasCart() {
   const { pathname } = useLocation();
   const { locale } = useLocale();
   const { closeCart, isOpen, items, removeFromCart, total } = useCart();
   const previousPathname = useRef(pathname);
   const [confirmingId, setConfirmingId] = useState<number | null>(null);
+  const copy = cartCopy[locale];
 
   useEffect(() => {
     if (previousPathname.current !== pathname) {
@@ -23,7 +53,7 @@ export default function OffcanvasCart() {
 
   useEffect(() => {
     if (!isOpen) {
-      return;
+      return undefined;
     }
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -38,7 +68,7 @@ export default function OffcanvasCart() {
 
   useEffect(() => {
     if (!confirmingId) {
-      return;
+      return undefined;
     }
 
     const timer = window.setTimeout(() => setConfirmingId(null), 4000);
@@ -48,14 +78,14 @@ export default function OffcanvasCart() {
   return (
     <>
       <div className={`drawer-backdrop ${isOpen ? 'is-open' : ''}`} onClick={closeCart} />
-      <aside className={`cart-drawer cart-drawer--${locale} ${isOpen ? 'is-open' : ''}`}>
+      <aside className={`cart-drawer cart-drawer--${locale} ${isOpen ? 'is-open' : ''}`} aria-label={copy.heading} aria-hidden={!isOpen}>
         <header className="cart-drawer__head">
           <div>
-            <small>{locale === 'ar' ? 'سلة سريعة' : 'Quick cart'}</small>
-            <h3>{locale === 'ar' ? 'سلة نفَس' : 'Nafas cart'}</h3>
+            <small>{copy.title}</small>
+            <h3>{copy.heading}</h3>
           </div>
-          <button type="button" className="site-icon" onClick={closeCart} aria-label="Close cart">
-            <X size={18} />
+          <button type="button" className="site-icon" onClick={closeCart} aria-label={copy.close}>
+            <X size={18} aria-hidden="true" />
           </button>
         </header>
         <div className="cart-drawer__items">
@@ -69,29 +99,29 @@ export default function OffcanvasCart() {
                 <span>{item.variant.label}</span>
                 <small>{formatCurrency((item.variant.retail_price || 0) * item.quantity, locale)}</small>
                 <button type="button" className="text-button" onClick={() => setConfirmingId(item.id)}>
-                  {locale === 'ar' ? 'إزالة' : 'Remove'}
+                  {copy.remove}
                 </button>
                 <div className={`inline-confirm ${confirmingId === item.id ? 'is-open' : ''}`}>
-                  <span>{locale === 'ar' ? 'إزالة هذا المنتج؟' : 'Remove this item?'}</span>
-                  <button type="button" className="text-button" onClick={() => removeFromCart(item.id).then(() => setConfirmingId(null))}>{locale === 'ar' ? 'نعم' : 'Yes'}</button>
-                  <button type="button" className="text-button" onClick={() => setConfirmingId(null)}>{locale === 'ar' ? 'لا' : 'No'}</button>
+                  <span>{copy.confirmRemove}</span>
+                  <button type="button" className="text-button" onClick={() => removeFromCart(item.id).then(() => setConfirmingId(null))}>{copy.confirmYes}</button>
+                  <button type="button" className="text-button" onClick={() => setConfirmingId(null)}>{copy.confirmNo}</button>
                 </div>
               </div>
             </article>
           )) : (
-            <div className="empty-panel">{locale === 'ar' ? 'السلة فارغة الآن.' : 'Your cart is empty.'}</div>
+            <div className="empty-panel">{copy.empty}</div>
           )}
         </div>
         <footer className="cart-drawer__foot">
           <div className="price-line">
-            <span>{locale === 'ar' ? 'المجموع' : 'Subtotal'}</span>
+            <span>{copy.subtotal}</span>
             <strong>{formatCurrency(total, locale)}</strong>
           </div>
           <Link to="/checkout" className="n-btn n-btn--primary" onClick={closeCart}>
-            {locale === 'ar' ? 'إتمام الطلب' : 'Checkout'}
+            {copy.checkout}
           </Link>
           <Link to="/cart" className="n-btn n-btn--ghost" onClick={closeCart}>
-            {locale === 'ar' ? 'صفحة السلة' : 'View cart'}
+            {copy.viewCart}
           </Link>
         </footer>
       </aside>

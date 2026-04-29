@@ -19,12 +19,14 @@ import { highlights } from './data/highlights';
 import { scents } from './data/scents';
 import { selectorOptions, trustCards } from './data/trust';
 import { useBodyHomeClass } from './hooks/useBodyHomeClass';
+import { useLocale } from '../../context/LocaleContext';
 
 export default function AppleNafasHome() {
+  const { dir, locale } = useLocale();
   useBodyHomeClass();
 
   return (
-    <div className="apple-nafas-page" dir="rtl">
+    <div className={`apple-nafas-page apple-nafas-page--${locale}`} dir={dir} lang={locale}>
       <HomeRibbon />
       <CinematicRitualSection scents={scents} />
       <HighlightsSection highlights={highlights} scents={scents} />

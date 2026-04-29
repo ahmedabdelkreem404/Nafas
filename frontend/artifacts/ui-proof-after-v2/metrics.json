@@ -1,0 +1,166 @@
+[
+  {
+    "name": "390-mobile-ar",
+    "metrics": {
+      "overflow": 0,
+      "navBottom": 67.5625,
+      "firstTop": 77.59375,
+      "tiny": [],
+      "offscreen": [
+        {
+          "text": "اعرض طقس الجودة",
+          "cls": "",
+          "w": 44,
+          "h": 48,
+          "l": -16.25,
+          "rr": 27.75,
+          "t": 1729.609375,
+          "visible": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "430-mobile-en",
+    "metrics": {
+      "overflow": 0,
+      "navBottom": 67.5625,
+      "firstTop": 77.59375,
+      "tiny": [],
+      "offscreen": []
+    }
+  },
+  {
+    "name": "1024-laptop-en",
+    "metrics": {
+      "overflow": 0,
+      "navBottom": 82.234375,
+      "firstTop": 88.796875,
+      "tiny": [
+        {
+          "text": "Home",
+          "cls": "site-nav__link site-nav__link--primary is-active",
+          "w": 66.640625,
+          "h": 42,
+          "l": 286.421875,
+          "rr": 353.0625,
+          "t": 25.234375,
+          "visible": true
+        },
+        {
+          "text": "Shop",
+          "cls": "site-nav__link site-nav__link--primary ",
+          "w": 59.734375,
+          "h": 42,
+          "l": 361.0625,
+          "rr": 420.796875,
+          "t": 25.234375,
+          "visible": true
+        },
+        {
+          "text": "About",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "w": 67.109375,
+          "h": 42,
+          "l": 428.796875,
+          "rr": 495.90625,
+          "t": 25.234375,
+          "visible": true
+        },
+        {
+          "text": "FAQ",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "w": 53.640625,
+          "h": 42,
+          "l": 503.90625,
+          "rr": 557.546875,
+          "t": 25.234375,
+          "visible": true
+        }
+      ],
+      "offscreen": [
+        {
+          "text": "Ghayma",
+          "cls": "is-active",
+          "w": 44,
+          "h": 48,
+          "l": -28,
+          "rr": 16,
+          "t": 667.359375,
+          "visible": true
+        },
+        {
+          "text": "Dafwa",
+          "cls": "",
+          "w": 44,
+          "h": 48,
+          "l": -76,
+          "rr": -32,
+          "t": 667.359375,
+          "visible": true
+        },
+        {
+          "text": "Zell",
+          "cls": "",
+          "w": 44,
+          "h": 48,
+          "l": -124,
+          "rr": -80,
+          "t": 667.359375,
+          "visible": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "1440-desktop-ar",
+    "metrics": {
+      "overflow": 0,
+      "navBottom": 84.796875,
+      "firstTop": 88.796875,
+      "tiny": [
+        {
+          "text": "الرئيسية",
+          "cls": "site-nav__link site-nav__link--primary is-active",
+          "w": 71.125,
+          "h": 42,
+          "l": 873.625,
+          "rr": 944.75,
+          "t": 27.796875,
+          "visible": true
+        },
+        {
+          "text": "المتجر",
+          "cls": "site-nav__link site-nav__link--primary ",
+          "w": 60.828125,
+          "h": 42,
+          "l": 804.796875,
+          "rr": 865.625,
+          "t": 27.796875,
+          "visible": true
+        },
+        {
+          "text": "قصتنا",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "w": 57.90625,
+          "h": 42,
+          "l": 738.890625,
+          "rr": 796.796875,
+          "t": 27.796875,
+          "visible": true
+        },
+        {
+          "text": "الأسئلة",
+          "cls": "site-nav__link site-nav__link--secondary ",
+          "w": 62.515625,
+          "h": 42,
+          "l": 668.375,
+          "rr": 730.890625,
+          "t": 27.796875,
+          "visible": true
+        }
+      ],
+      "offscreen": []
+    }
+  }
+]
