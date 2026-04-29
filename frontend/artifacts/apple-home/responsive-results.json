@@ -1,12 +1,23 @@
 [
   {
+    "width": 320,
+    "scrollWidth": 320,
+    "bodyScrollWidth": 320,
+    "height": 15596,
+    "hasApplePage": true,
+    "hasNlpHome": false,
+    "bottle3DRelated": false,
+    "verticalControls": false,
+    "overflow": 0
+  },
+  {
     "width": 360,
     "scrollWidth": 360,
     "bodyScrollWidth": 360,
-    "height": 16619,
+    "height": 15395,
     "hasApplePage": true,
     "hasNlpHome": false,
-    "canvasCount": 1,
+    "bottle3DRelated": false,
     "verticalControls": false,
     "overflow": 0
   },
@@ -14,10 +25,10 @@
     "width": 390,
     "scrollWidth": 390,
     "bodyScrollWidth": 390,
-    "height": 16526,
+    "height": 15352,
     "hasApplePage": true,
     "hasNlpHome": false,
-    "canvasCount": 1,
+    "bottle3DRelated": false,
     "verticalControls": false,
     "overflow": 0
   },
@@ -25,10 +36,32 @@
     "width": 430,
     "scrollWidth": 430,
     "bodyScrollWidth": 430,
-    "height": 16545,
+    "height": 15416,
     "hasApplePage": true,
     "hasNlpHome": false,
-    "canvasCount": 1,
+    "bottle3DRelated": false,
+    "verticalControls": false,
+    "overflow": 0
+  },
+  {
+    "width": 540,
+    "scrollWidth": 540,
+    "bodyScrollWidth": 540,
+    "height": 17302,
+    "hasApplePage": true,
+    "hasNlpHome": false,
+    "bottle3DRelated": false,
+    "verticalControls": false,
+    "overflow": 0
+  },
+  {
+    "width": 640,
+    "scrollWidth": 640,
+    "bodyScrollWidth": 640,
+    "height": 17453,
+    "hasApplePage": true,
+    "hasNlpHome": false,
+    "bottle3DRelated": false,
     "verticalControls": false,
     "overflow": 0
   },
@@ -36,10 +69,21 @@
     "width": 768,
     "scrollWidth": 768,
     "bodyScrollWidth": 768,
-    "height": 16307,
+    "height": 14943,
     "hasApplePage": true,
     "hasNlpHome": false,
-    "canvasCount": 1,
+    "bottle3DRelated": false,
+    "verticalControls": false,
+    "overflow": 0
+  },
+  {
+    "width": 820,
+    "scrollWidth": 820,
+    "bodyScrollWidth": 820,
+    "height": 15176,
+    "hasApplePage": true,
+    "hasNlpHome": false,
+    "bottle3DRelated": false,
     "verticalControls": false,
     "overflow": 0
   },
@@ -50,7 +94,18 @@
     "height": 15914,
     "hasApplePage": true,
     "hasNlpHome": false,
-    "canvasCount": 1,
+    "bottle3DRelated": false,
+    "verticalControls": false,
+    "overflow": 0
+  },
+  {
+    "width": 1180,
+    "scrollWidth": 1180,
+    "bodyScrollWidth": 1180,
+    "height": 17519,
+    "hasApplePage": true,
+    "hasNlpHome": false,
+    "bottle3DRelated": false,
     "verticalControls": false,
     "overflow": 0
   },
@@ -61,7 +116,7 @@
     "height": 16333,
     "hasApplePage": true,
     "hasNlpHome": false,
-    "canvasCount": 1,
+    "bottle3DRelated": false,
     "verticalControls": false,
     "overflow": 0
   },
@@ -72,7 +127,18 @@
     "height": 16634,
     "hasApplePage": true,
     "hasNlpHome": false,
-    "canvasCount": 1,
+    "bottle3DRelated": false,
+    "verticalControls": false,
+    "overflow": 0
+  },
+  {
+    "width": 1536,
+    "scrollWidth": 1536,
+    "bodyScrollWidth": 1536,
+    "height": 16988,
+    "hasApplePage": true,
+    "hasNlpHome": false,
+    "bottle3DRelated": false,
     "verticalControls": false,
     "overflow": 0
   },
@@ -83,7 +149,7 @@
     "height": 17238,
     "hasApplePage": true,
     "hasNlpHome": false,
-    "canvasCount": 1,
+    "bottle3DRelated": false,
     "verticalControls": false,
     "overflow": 0
   }

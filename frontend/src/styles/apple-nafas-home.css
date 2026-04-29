@@ -28,7 +28,6 @@
 .apple-nafas-page {
   --anh-ink: #1d1d1f;
   --anh-muted: #6e6e73;
-  --anh-soft: #f7f1e8;
   --anh-cream: #fbf7ef;
   --anh-panel: #f5f5f7;
   --anh-line: rgba(29, 29, 31, 0.12);
@@ -39,7 +38,7 @@
   overflow: clip;
   background:
     radial-gradient(circle at 10% 0%, rgba(191, 136, 82, 0.12), transparent 30rem),
-    linear-gradient(180deg, #fbf7ef 0%, #f7f1e8 40%, #f5f5f7 100%);
+    linear-gradient(180deg, #fbf7ef 0%, #f7f1e8 42%, #f5f5f7 100%);
   color: var(--anh-ink);
   font-family: "Aptos", "Segoe UI", "Tahoma", sans-serif;
 }
@@ -67,35 +66,45 @@
   outline-offset: 4px;
 }
 
-.anh-container {
-  inline-size: min(calc(100% - clamp(1.25rem, 5vw, 5rem)), var(--anh-max));
+.apple-nafas-page .anh-sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.apple-nafas-page .anh-container {
+  inline-size: min(calc(100% - clamp(1rem, 5vw, 5rem)), var(--anh-max));
   margin-inline: auto;
 }
 
-.anh-section {
+.apple-nafas-page .anh-section {
   padding-block: clamp(4.5rem, 10vw, 10rem);
   scroll-margin-block-start: calc(var(--navh) + 1.5rem);
 }
 
-.anh-hero,
-.anh-ritual,
-.anh-final {
+.apple-nafas-page .anh-hero,
+.apple-nafas-page .anh-ritual,
+.apple-nafas-page .anh-final {
   scroll-margin-block-start: calc(var(--navh) + 1.5rem);
 }
 
-.anh-section-head {
+.apple-nafas-page .anh-section-head {
   display: grid;
   gap: 0.6rem;
   margin-block-end: clamp(1.8rem, 4vw, 3.8rem);
   text-align: start;
 }
 
-.anh-section-head h2,
-.anh-love h2,
-.anh-hero h1,
-.anh-viewer-panel h3,
-.anh-ritual h2,
-.anh-final h2 {
+.apple-nafas-page .anh-section-head h2,
+.apple-nafas-page .anh-love h2,
+.apple-nafas-page .anh-hero h1,
+.apple-nafas-page .anh-viewer-panel h3,
+.apple-nafas-page .anh-ritual h2,
+.apple-nafas-page .anh-final h2 {
   margin: 0;
   color: var(--anh-ink);
   font-weight: 800;
@@ -103,19 +112,19 @@
   line-height: 0.96;
 }
 
-.anh-section-head h2 {
+.apple-nafas-page .anh-section-head h2 {
   max-inline-size: 12ch;
   font-size: clamp(3.2rem, 8vw, 7.5rem);
 }
 
-.anh-section p,
-.anh-section dd,
-.anh-ribbon p,
-.anh-final p {
+.apple-nafas-page .anh-section p,
+.apple-nafas-page .anh-section dd,
+.apple-nafas-page .anh-ribbon p,
+.apple-nafas-page .anh-final p {
   color: var(--anh-muted);
 }
 
-.anh-kicker {
+.apple-nafas-page .anh-kicker {
   color: rgba(29, 29, 31, 0.62);
   font-size: clamp(0.78rem, 1vw, 0.92rem);
   font-weight: 800;
@@ -123,7 +132,7 @@
   text-transform: uppercase;
 }
 
-.anh-button {
+.apple-nafas-page .anh-button {
   min-block-size: 44px;
   display: inline-flex;
   align-items: center;
@@ -137,22 +146,22 @@
   transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
-.anh-button:hover {
+.apple-nafas-page .anh-button:hover {
   transform: translateY(-1px);
 }
 
-.anh-button--primary {
+.apple-nafas-page .anh-button--primary {
   background: #0071e3;
   color: #fff;
 }
 
-.anh-button--secondary {
+.apple-nafas-page .anh-button--secondary {
   border-color: rgba(0, 113, 227, 0.22);
   background: rgba(255, 255, 255, 0.72);
   color: #0066cc;
 }
 
-.anh-actions {
+.apple-nafas-page .anh-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -160,7 +169,7 @@
   justify-content: center;
 }
 
-.anh-bottle-visual {
+.apple-nafas-page .anh-bottle-visual {
   --accent: #b86d3b;
   position: relative;
   inline-size: min(300px, 52vw);
@@ -170,17 +179,17 @@
   filter: drop-shadow(0 34px 30px rgba(38, 29, 21, 0.24));
 }
 
-.anh-bottle-visual__cap,
-.anh-bottle-visual__neck,
-.anh-bottle-visual__body,
-.anh-bottle-visual__label,
-.anh-bottle-visual__shadow,
-.anh-bottle-visual__shine {
+.apple-nafas-page .anh-bottle-visual__cap,
+.apple-nafas-page .anh-bottle-visual__neck,
+.apple-nafas-page .anh-bottle-visual__body,
+.apple-nafas-page .anh-bottle-visual__label,
+.apple-nafas-page .anh-bottle-visual__shadow,
+.apple-nafas-page .anh-bottle-visual__shine {
   position: absolute;
   display: block;
 }
 
-.anh-bottle-visual__cap {
+.apple-nafas-page .anh-bottle-visual__cap {
   inset-block-start: 1.5%;
   inline-size: 34%;
   block-size: 10%;
@@ -189,7 +198,7 @@
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.38);
 }
 
-.anh-bottle-visual__neck {
+.apple-nafas-page .anh-bottle-visual__neck {
   inset-block-start: 10%;
   inline-size: 18%;
   block-size: 10%;
@@ -197,7 +206,7 @@
   background: linear-gradient(180deg, color-mix(in srgb, var(--accent), white 45%), color-mix(in srgb, var(--accent), #161616 34%));
 }
 
-.anh-bottle-visual__body {
+.apple-nafas-page .anh-bottle-visual__body {
   inset-block-start: 17%;
   inline-size: 74%;
   block-size: 68%;
@@ -209,20 +218,20 @@
   box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.44), inset 0 -48px 80px rgba(0,0,0,0.14);
 }
 
-.anh-bottle-visual--sharara .anh-bottle-visual__body,
-.anh-bottle-visual--zell .anh-bottle-visual__body {
+.apple-nafas-page .anh-bottle-visual--sharara .anh-bottle-visual__body,
+.apple-nafas-page .anh-bottle-visual--zell .anh-bottle-visual__body {
   background:
     linear-gradient(110deg, rgba(255,255,255,0.22), transparent 25% 68%, rgba(255,255,255,0.14)),
     linear-gradient(180deg, color-mix(in srgb, var(--accent), #121212 62%), #151515);
 }
 
-.anh-bottle-visual--ghayma .anh-bottle-visual__body {
+.apple-nafas-page .anh-bottle-visual--ghayma .anh-bottle-visual__body {
   background:
     linear-gradient(110deg, rgba(255,255,255,0.62), transparent 26% 70%, rgba(255,255,255,0.28)),
     linear-gradient(180deg, #fff9ef, color-mix(in srgb, var(--accent), white 54%));
 }
 
-.anh-bottle-visual__shine {
+.apple-nafas-page .anh-bottle-visual__shine {
   inset-block-start: 12%;
   inset-inline-start: 16%;
   inline-size: 18%;
@@ -233,7 +242,7 @@
   filter: blur(2px);
 }
 
-.anh-bottle-visual__label {
+.apple-nafas-page .anh-bottle-visual__label {
   inset-block-end: 19%;
   inset-inline: 15%;
   display: grid;
@@ -247,25 +256,25 @@
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.72);
 }
 
-.anh-bottle-visual--sharara .anh-bottle-visual__label,
-.anh-bottle-visual--zell .anh-bottle-visual__label {
+.apple-nafas-page .anh-bottle-visual--sharara .anh-bottle-visual__label,
+.apple-nafas-page .anh-bottle-visual--zell .anh-bottle-visual__label {
   background: rgba(12,12,14,0.86);
   color: #f5eee3;
 }
 
-.anh-bottle-visual__label small {
+.apple-nafas-page .anh-bottle-visual__label small {
   font-size: clamp(0.5rem, 1vw, 0.72rem);
   font-weight: 900;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.anh-bottle-visual__label strong {
+.apple-nafas-page .anh-bottle-visual__label strong {
   font-size: clamp(0.95rem, 2vw, 1.45rem);
   letter-spacing: -0.03em;
 }
 
-.anh-bottle-visual__shadow {
+.apple-nafas-page .anh-bottle-visual__shadow {
   inset-block-end: 5%;
   inline-size: 82%;
   block-size: 8%;
@@ -275,7 +284,7 @@
   filter: blur(12px);
 }
 
-.anh-ribbon {
+.apple-nafas-page .anh-ribbon {
   min-block-size: 48px;
   display: flex;
   flex-wrap: wrap;
@@ -289,110 +298,476 @@
   font-size: 0.92rem;
 }
 
-.anh-ribbon a {
+.apple-nafas-page .anh-ribbon a {
   color: #0066cc;
   font-weight: 800;
 }
 
-.anh-hero {
+.apple-nafas-page .anh-cinematic-hero {
+  --scene-accent: #b86d3b;
+  --scene-bg-start: #f5e7d5;
+  --scene-bg-end: #1c1512;
+  --scene-depth-left: #171313;
+  --scene-depth-right: #4b2a1d;
+  --scene-mist: #ffd6a0;
+  --scene-surface: #b77945;
+  --scene-flash: #d18a4d;
+  position: relative;
   min-block-size: calc(100svh - var(--navh) - 48px);
   display: grid;
   align-items: center;
-  padding-block: clamp(2rem, 5vw, 5rem) clamp(5rem, 8vw, 8rem);
+  overflow: clip;
+  padding-block: 3rem 5.6rem;
+  background: #f7f1e8;
+  isolation: isolate;
 }
 
-.anh-hero__inner {
+.apple-nafas-page .anh-cinematic-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.3), transparent 26%, rgba(18, 16, 14, 0.24) 100%),
+    linear-gradient(90deg, rgba(14, 12, 10, 0.48), transparent 34% 66%, rgba(14, 12, 10, 0.38));
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+.apple-nafas-page .anh-hero-scene__bg,
+.apple-nafas-page .anh-hero-scene__depth-left,
+.apple-nafas-page .anh-hero-scene__depth-right,
+.apple-nafas-page .anh-hero-scene__pedestal,
+.apple-nafas-page .anh-hero-scene__mist,
+.apple-nafas-page .anh-hero-scene__brand-flash {
+  position: absolute;
+  pointer-events: none;
+}
+
+.apple-nafas-page .anh-hero-scene__bg {
+  inset: -4% -4% -2%;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 50% 38%, color-mix(in srgb, var(--scene-mist), transparent 54%), transparent 28rem),
+    radial-gradient(ellipse at 50% 72%, rgba(255,255,255,0.72), transparent 19rem),
+    linear-gradient(135deg, var(--scene-bg-start), color-mix(in srgb, var(--scene-bg-start), white 28%) 42%, var(--scene-bg-end));
+  transform: scale(1.02);
+  transition: background 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.apple-nafas-page .anh-hero-scene__depth-left,
+.apple-nafas-page .anh-hero-scene__depth-right {
+  z-index: 1;
+  inset-block: -8% -10%;
+  inline-size: min(34rem, 35%);
+  filter: saturate(0.98) contrast(1.04);
+  opacity: 0.9;
+  transition:
+    transform 1050ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.apple-nafas-page .anh-hero-scene__depth-left {
+  left: -6rem;
+  background:
+    linear-gradient(110deg, rgba(255,255,255,0.08), transparent 32%),
+    radial-gradient(ellipse at 70% 42%, color-mix(in srgb, var(--scene-depth-left), white 10%), var(--scene-depth-left) 64%, transparent 66%);
+  clip-path: polygon(0 0, 88% 0, 68% 23%, 92% 54%, 58% 77%, 74% 100%, 0 100%);
+}
+
+.apple-nafas-page .anh-hero-scene__depth-right {
+  right: -5rem;
+  background:
+    linear-gradient(250deg, rgba(255,255,255,0.1), transparent 30%),
+    radial-gradient(ellipse at 36% 48%, color-mix(in srgb, var(--scene-depth-right), white 14%), var(--scene-depth-right) 62%, transparent 65%);
+  clip-path: polygon(26% 0, 100% 0, 100% 100%, 18% 100%, 42% 72%, 16% 46%, 48% 22%);
+}
+
+.apple-nafas-page .anh-hero-scene__pedestal {
+  z-index: 2;
+  left: 50%;
+  inset-block-end: 17%;
+  inline-size: min(44rem, 58%);
+  block-size: 10rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 28%, rgba(255,255,255,0.44), transparent 48%),
+    linear-gradient(180deg, color-mix(in srgb, var(--scene-surface), white 30%), color-mix(in srgb, var(--scene-surface), #221712 30%));
+  box-shadow:
+    0 26px 70px rgba(25, 18, 14, 0.28),
+    inset 0 10px 20px rgba(255,255,255,0.24),
+    inset 0 -26px 36px rgba(0,0,0,0.12);
+  transform: translateX(-50%) perspective(42rem) rotateX(62deg);
+  transform-origin: 50% 50%;
+  transition:
+    background 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1050ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.apple-nafas-page .anh-hero-scene__mist {
+  inset: 0;
+  z-index: 3;
+  opacity: 0.6;
+  background-image:
+    radial-gradient(ellipse at 18% 62%, rgba(255,255,255,0.48), transparent 14rem),
+    radial-gradient(ellipse at 80% 34%, color-mix(in srgb, var(--scene-mist), transparent 48%), transparent 16rem),
+    linear-gradient(115deg, transparent 0 18%, rgba(255,255,255,0.22) 36%, transparent 58% 100%);
+  filter: blur(12px);
+  animation: anh-hero-mist 12s ease-in-out infinite;
+}
+
+.apple-nafas-page .anh-hero-scene__brand-flash {
+  z-index: 5;
+  inset: 50% auto auto 50%;
+  color: color-mix(in srgb, var(--scene-flash), white 28%);
+  font-family: "Noto Naskh Arabic", "Aptos", serif;
+  font-size: 10rem;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0;
+  text-shadow: 0 24px 60px rgba(0,0,0,0.18);
+  transform: translate(-50%, -50%) scale(0.86);
+  white-space: nowrap;
+}
+
+.apple-nafas-page .anh-cinematic-hero__inner {
+  position: relative;
+  z-index: 4;
   display: grid;
-  grid-template-columns: minmax(300px, 0.78fr) minmax(420px, 1.22fr);
-  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(13rem, 0.74fr) minmax(20rem, 0.9fr) minmax(15rem, 0.74fr);
+  gap: 1.5rem;
   align-items: center;
 }
 
-.anh-hero__copy {
+.apple-nafas-page .anh-cinematic-hero__title-panel,
+.apple-nafas-page .anh-cinematic-hero__copy-panel {
+  min-inline-size: 0;
+}
+
+.apple-nafas-page .anh-cinematic-hero__title-panel {
+  padding-inline-start: 1rem;
+}
+
+.apple-nafas-page .anh-cinematic-hero__title-stack,
+.apple-nafas-page .anh-cinematic-hero__copy-stack {
   display: grid;
-  gap: 1rem;
-  text-align: center;
+  gap: 0.85rem;
+  transition:
+    opacity 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 620ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.anh-hero h1 {
-  font-size: clamp(5.5rem, 13vw, 13rem);
+.apple-nafas-page .anh-cinematic-hero__title-stack {
+  justify-items: start;
+  text-align: start;
 }
 
-.anh-hero__sub {
-  color: var(--anh-ink);
-  font-size: clamp(2rem, 4.3vw, 4.8rem);
+.apple-nafas-page .anh-cinematic-hero h1 {
+  margin: 0;
+  color: #fffaf2;
+  font-family: "Noto Naskh Arabic", "Aptos", serif;
+  font-size: 7.4rem;
   font-weight: 800;
-  letter-spacing: -0.045em;
+  letter-spacing: 0;
+  line-height: 1.08;
+  text-shadow: 0 22px 54px rgba(0,0,0,0.3);
 }
 
-.anh-hero__text {
-  max-inline-size: 38rem;
-  margin-inline: auto;
-  font-size: clamp(1.05rem, 1.8vw, 1.55rem);
-  line-height: 1.65;
+.apple-nafas-page .anh-cinematic-hero .anh-kicker {
+  color: rgba(255,250,242,0.72);
 }
 
-.anh-hero__stage {
+.apple-nafas-page .anh-cinematic-hero p.anh-cinematic-hero__latin {
+  color: rgba(255,250,242,0.8);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.apple-nafas-page .anh-cinematic-hero__stage {
   position: relative;
-  min-block-size: clamp(460px, 62vw, 760px);
+  min-block-size: 34rem;
   display: grid;
   place-items: center;
-  border-radius: var(--anh-radius);
-  background:
-    radial-gradient(circle at 50% 52%, rgba(255, 255, 255, 0.95), transparent 20rem),
-    linear-gradient(135deg, #f7ede0, #f9f9fb 56%, #eee7dd);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.88), 0 34px 90px rgba(97, 74, 48, 0.16);
-  overflow: hidden;
+  transform-style: preserve-3d;
 }
 
-.anh-hero__glow {
+.apple-nafas-page .anh-cinematic-hero__halo {
   position: absolute;
-  inset: 18% 13%;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(205, 156, 100, 0.28), transparent 64%);
-  filter: blur(12px);
+  inset-block-end: 22%;
+  inline-size: 24rem;
+  block-size: 12rem;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--scene-mist), transparent 42%), transparent 68%);
+  filter: blur(24px);
+  opacity: 0.8;
 }
 
-.anh-hero__bottle {
+.apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
   position: absolute;
-  inline-size: min(33vw, 380px);
-  transform-origin: 50% 100%;
-}
-
-.anh-hero__bottle--1 {
-  z-index: 4;
-  transform: translateX(20%) translateY(2%) rotate(0deg) scale(1.08);
-}
-
-.anh-hero__bottle--2 {
-  z-index: 3;
-  transform: translateX(-34%) translateY(7%) rotate(-8deg) scale(0.86);
-  opacity: 0.92;
-}
-
-.anh-hero__bottle--3 {
   z-index: 2;
-  transform: translateX(54%) translateY(10%) rotate(7deg) scale(0.83);
-  opacity: 0.88;
+  inline-size: 19rem;
+  max-inline-size: 82%;
+  opacity: 0;
+  filter: blur(8px) drop-shadow(0 38px 34px rgba(24, 18, 14, 0.24));
+  transform: translateY(-3rem) scale(0.72);
+  transform-origin: 50% 86%;
+  transition:
+    opacity 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 760ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.anh-hero__bottle--4 {
-  z-index: 1;
-  transform: translateX(-62%) translateY(13%) rotate(-13deg) scale(0.76);
-  opacity: 0.82;
+.apple-nafas-page .anh-cinematic-hero__bottle.is-active {
+  opacity: 1;
+  filter: blur(0) drop-shadow(0 38px 34px rgba(24, 18, 14, 0.28));
+  transform: translateY(0) scale(1);
 }
 
-.anh-highlights {
+.apple-nafas-page .anh-cinematic-hero__bottle.is-previous {
+  opacity: 0;
+  filter: blur(7px) drop-shadow(0 24px 22px rgba(24, 18, 14, 0.18));
+  transform: translateY(4.4rem) scale(0.82);
+}
+
+.apple-nafas-page .anh-cinematic-hero .anh-bottle-visual__label small,
+.apple-nafas-page .anh-cinematic-hero .anh-bottle-visual__label strong {
+  letter-spacing: 0;
+}
+
+.apple-nafas-page .anh-cinematic-hero__copy-stack {
+  justify-items: start;
+  text-align: start;
+}
+
+.apple-nafas-page .anh-cinematic-hero p.anh-cinematic-hero__line {
+  max-inline-size: 24rem;
+  color: #fffaf2;
+  font-size: 1.65rem;
+  font-weight: 850;
+  line-height: 1.55;
+  text-shadow: 0 16px 38px rgba(0,0,0,0.25);
+}
+
+.apple-nafas-page .anh-cinematic-hero p.anh-cinematic-hero__description {
+  max-inline-size: 23rem;
+  color: rgba(255,250,242,0.78);
+  font-size: 1.04rem;
+  line-height: 1.9;
+}
+
+.apple-nafas-page .anh-cinematic-hero p.anh-cinematic-hero__mood {
+  color: rgba(255,250,242,0.66);
+  font-size: 0.84rem;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.apple-nafas-page .anh-cinematic-hero .anh-actions {
+  justify-content: flex-start;
+}
+
+.apple-nafas-page .anh-cinematic-hero .anh-button--primary {
+  background: #fffaf2;
+  color: #17120f;
+  box-shadow: 0 16px 44px rgba(0,0,0,0.22);
+}
+
+.apple-nafas-page .anh-cinematic-hero .anh-button--secondary {
+  border-color: rgba(255,250,242,0.36);
+  background: rgba(255,250,242,0.14);
+  color: #fffaf2;
+  backdrop-filter: blur(16px);
+}
+
+.apple-nafas-page .anh-cinematic-hero__controls {
+  position: absolute;
+  z-index: 6;
+  inset-block-end: 1.2rem;
+  inset-inline-start: 50%;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 999px;
+  background: rgba(20, 17, 16, 0.34);
+  box-shadow: 0 18px 50px rgba(18, 14, 12, 0.22);
+  backdrop-filter: blur(18px);
+  transform: translateX(-50%);
+}
+
+.apple-nafas-page .anh-hero-control,
+.apple-nafas-page .anh-hero-dots button {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  color: #fffaf2;
+  cursor: pointer;
+}
+
+.apple-nafas-page .anh-hero-control {
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  transition: transform 180ms ease, background 180ms ease, opacity 180ms ease;
+}
+
+.apple-nafas-page .anh-hero-control:hover {
+  background: rgba(255,255,255,0.22);
+  transform: translateY(-1px);
+}
+
+.apple-nafas-page .anh-hero-control:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+  transform: none;
+}
+
+.apple-nafas-page .anh-hero-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.apple-nafas-page .anh-hero-dots button {
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  border-radius: 999px;
+  padding: 0;
+  background: transparent;
+}
+
+.apple-nafas-page .anh-hero-dots button::before {
+  content: "";
+  inline-size: 0.48rem;
+  block-size: 0.48rem;
+  border-radius: 999px;
+  background: rgba(255,250,242,0.48);
+  transition:
+    inline-size 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.apple-nafas-page .anh-hero-dots button.is-active::before {
+  inline-size: 1.65rem;
+  background: #fffaf2;
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="idle"] .anh-cinematic-hero__bottle.is-active {
+  animation: anh-hero-bottle-float 6.5s ease-in-out infinite;
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-cinematic-hero__title-stack {
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateX(-2.4rem);
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-cinematic-hero__copy-stack {
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateX(2.1rem);
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-cinematic-hero__bottle.is-active {
+  opacity: 0;
+  filter: blur(7px) drop-shadow(0 24px 22px rgba(24, 18, 14, 0.16));
+  transform: translateY(4rem) scale(0.84);
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-cinematic-hero__title-stack,
+.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-cinematic-hero__copy-stack {
+  opacity: 0;
+  filter: blur(5px);
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-cinematic-hero__bottle.is-active {
+  opacity: 0;
+  transform: translateY(-3rem) scale(0.72);
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-cinematic-hero__title-stack {
+  animation: anh-hero-title-in 720ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-cinematic-hero__copy-stack {
+  animation: anh-hero-copy-in 720ms cubic-bezier(0.22, 1, 0.36, 1) 160ms both;
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-cinematic-hero__bottle.is-active {
+  animation: anh-hero-bottle-in 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-hero-scene__bg,
+.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-hero-scene__bg,
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-hero-scene__bg {
+  animation: anh-hero-bg-transition 1180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-hero-scene__depth-left,
+.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-hero-scene__depth-left,
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-hero-scene__depth-left {
+  transform: translateX(-1.4rem) scale(1.025);
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-hero-scene__depth-right,
+.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-hero-scene__depth-right,
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-hero-scene__depth-right {
+  transform: translateX(1.4rem) scale(1.025);
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-hero-scene__pedestal,
+.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-hero-scene__pedestal,
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-hero-scene__pedestal {
+  transform: translateX(-50%) perspective(42rem) rotateX(64deg) scale(1.04);
+}
+
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-out"] .anh-hero-scene__brand-flash,
+.apple-nafas-page .anh-cinematic-hero[data-phase="switching"] .anh-hero-scene__brand-flash,
+.apple-nafas-page .anh-cinematic-hero[data-phase="transitioning-in"] .anh-hero-scene__brand-flash {
+  animation: anh-hero-brand-flash 1180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.apple-nafas-page .anh-highlights,
+.apple-nafas-page .anh-viewer,
+.apple-nafas-page .anh-flow {
   padding-block-start: clamp(8rem, 14vw, 15rem);
+}
+
+.apple-nafas-page .anh-highlights,
+.apple-nafas-page .anh-flow,
+.apple-nafas-page .anh-why,
+.apple-nafas-page .anh-final {
   background: #fff;
 }
 
-.anh-highlight-shell {
+.apple-nafas-page .anh-viewer,
+.apple-nafas-page .anh-senses,
+.apple-nafas-page .anh-selector,
+.apple-nafas-page .anh-compare {
+  background: var(--anh-panel);
+}
+
+.apple-nafas-page .anh-love,
+.apple-nafas-page .anh-chapters,
+.apple-nafas-page .anh-together,
+.apple-nafas-page .anh-explore {
+  background: var(--anh-cream);
+}
+
+.apple-nafas-page .anh-highlight-shell {
   overflow: hidden;
   padding-block-end: 0.5rem;
 }
 
-.anh-highlight-track {
+.apple-nafas-page .anh-highlight-track {
   display: flex;
   gap: clamp(1rem, 2vw, 1.5rem);
   direction: ltr;
@@ -400,7 +775,7 @@
   will-change: transform;
 }
 
-.anh-highlight-card {
+.apple-nafas-page .anh-highlight-card {
   position: relative;
   direction: rtl;
   flex: 0 0 min(82vw, 1120px);
@@ -413,7 +788,7 @@
   box-shadow: 0 28px 70px rgba(29, 29, 31, 0.12);
 }
 
-.anh-highlight-card::before {
+.apple-nafas-page .anh-highlight-card::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -421,16 +796,16 @@
   pointer-events: none;
 }
 
-.anh-highlight-card--copper { background: linear-gradient(135deg, #211916, #f2d4b8); }
-.anh-highlight-card--rose { background: linear-gradient(135deg, #fff8f2, #f1d8d2); }
-.anh-highlight-card--mocha { background: linear-gradient(135deg, #3b261b, #d2ab70); }
-.anh-highlight-card--silver { background: linear-gradient(135deg, #202326, #d8dde0); }
-.anh-highlight-card--cream { background: linear-gradient(135deg, #fffaf3, #ece6dc); }
-.anh-highlight-card--gift { background: linear-gradient(135deg, #f7eee7, #ead2b8); }
-.anh-highlight-card--quality { background: linear-gradient(135deg, #f1f3f4, #d9cab7); }
+.apple-nafas-page .anh-highlight-card--copper { background: linear-gradient(135deg, #211916, #f2d4b8); }
+.apple-nafas-page .anh-highlight-card--rose { background: linear-gradient(135deg, #fff8f2, #f1d8d2); }
+.apple-nafas-page .anh-highlight-card--mocha { background: linear-gradient(135deg, #3b261b, #d2ab70); }
+.apple-nafas-page .anh-highlight-card--silver { background: linear-gradient(135deg, #202326, #d8dde0); }
+.apple-nafas-page .anh-highlight-card--cream { background: linear-gradient(135deg, #fffaf3, #ece6dc); }
+.apple-nafas-page .anh-highlight-card--gift { background: linear-gradient(135deg, #f7eee7, #ead2b8); }
+.apple-nafas-page .anh-highlight-card--quality { background: linear-gradient(135deg, #f1f3f4, #d9cab7); }
 
-.anh-highlight-card img,
-.anh-highlight-bottle {
+.apple-nafas-page .anh-highlight-card img,
+.apple-nafas-page .anh-highlight-bottle {
   position: absolute;
   inset-block-end: clamp(2.5rem, 5vw, 5rem);
   left: 50%;
@@ -441,48 +816,40 @@
   filter: drop-shadow(0 34px 30px rgba(0, 0, 0, 0.24));
 }
 
-[dir='rtl'] .anh-highlight-card img {
-  transform: translateX(-50%);
-}
-
-[dir='rtl'] .anh-highlight-bottle {
-  transform: translateX(-50%);
-}
-
-.anh-highlight-card__copy {
+.apple-nafas-page .anh-highlight-card__copy {
   position: relative;
   z-index: 2;
   max-inline-size: 36rem;
   padding: clamp(1.6rem, 4vw, 4rem);
 }
 
-.anh-highlight-card__copy span {
+.apple-nafas-page .anh-highlight-card__copy span {
   display: inline-flex;
   margin-block-end: 0.75rem;
   color: rgba(29, 29, 31, 0.72);
   font-weight: 900;
 }
 
-.anh-highlight-card--copper .anh-highlight-card__copy,
-.anh-highlight-card--mocha .anh-highlight-card__copy {
+.apple-nafas-page .anh-highlight-card--copper .anh-highlight-card__copy,
+.apple-nafas-page .anh-highlight-card--mocha .anh-highlight-card__copy {
   color: #fff;
 }
 
-.anh-highlight-card--copper .anh-highlight-card__copy span,
-.anh-highlight-card--mocha .anh-highlight-card__copy span,
-.anh-highlight-card--copper .anh-highlight-card__copy p,
-.anh-highlight-card--mocha .anh-highlight-card__copy p {
-  color: rgba(255, 255, 255, 0.76);
+.apple-nafas-page .anh-highlight-card--copper .anh-highlight-card__copy span,
+.apple-nafas-page .anh-highlight-card--mocha .anh-highlight-card__copy span,
+.apple-nafas-page .anh-highlight-card--copper .anh-highlight-card__copy p,
+.apple-nafas-page .anh-highlight-card--mocha .anh-highlight-card__copy p {
+  color: rgba(255, 255, 255, 0.78);
 }
 
-.anh-highlight-card__copy h3 {
+.apple-nafas-page .anh-highlight-card__copy h3 {
   margin: 0;
   font-size: clamp(3rem, 7vw, 7rem);
   letter-spacing: -0.055em;
   line-height: 0.95;
 }
 
-.anh-highlight-card__copy p {
+.apple-nafas-page .anh-highlight-card__copy p {
   max-inline-size: 25rem;
   margin-block-start: 0.75rem;
   color: rgba(29, 29, 31, 0.7);
@@ -490,7 +857,7 @@
   line-height: 1.65;
 }
 
-.anh-carousel-dock {
+.apple-nafas-page .anh-carousel-dock {
   inline-size: max-content;
   max-inline-size: calc(100% - 2rem);
   display: flex;
@@ -504,15 +871,15 @@
   box-shadow: 0 10px 34px rgba(29, 29, 31, 0.1);
 }
 
-.anh-dock-button,
-.anh-dots button,
-.anh-viewer-panel button,
-.anh-selector button {
+.apple-nafas-page .anh-dock-button,
+.apple-nafas-page .anh-dots button,
+.apple-nafas-page .anh-viewer-panel button,
+.apple-nafas-page .anh-selector button {
   font: inherit;
   cursor: pointer;
 }
 
-.anh-dock-button {
+.apple-nafas-page .anh-dock-button {
   border: 0;
   border-radius: 999px;
   padding: 0.55rem 0.78rem;
@@ -522,31 +889,39 @@
   font-weight: 900;
 }
 
-.anh-dots {
+.apple-nafas-page .anh-dots {
   display: flex;
   gap: 0.45rem;
 }
 
-.anh-dots button {
-  inline-size: 9px;
-  block-size: 9px;
+.apple-nafas-page .anh-dots button {
+  position: relative;
+  inline-size: 32px;
+  block-size: 32px;
   border: 0;
   border-radius: 999px;
   padding: 0;
+  background: transparent;
+}
+
+.apple-nafas-page .anh-dots button::before {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  inline-size: 9px;
+  block-size: 9px;
+  border-radius: 999px;
   background: rgba(29, 29, 31, 0.25);
+  transform: translate(-50%, -50%);
   transition: inline-size 200ms ease, background 200ms ease;
 }
 
-.anh-dots button.is-active {
+.apple-nafas-page .anh-dots button.is-active::before {
   inline-size: 28px;
   background: rgba(29, 29, 31, 0.82);
 }
 
-.anh-love {
-  background: #fbf7ef;
-}
-
-.anh-love__inner {
+.apple-nafas-page .anh-love__inner {
   min-block-size: clamp(640px, 70vw, 920px);
   display: grid;
   place-items: center;
@@ -554,19 +929,18 @@
   text-align: center;
 }
 
-.anh-love h2 {
+.apple-nafas-page .anh-love h2 {
   font-size: clamp(4rem, 11vw, 11rem);
 }
 
-.anh-love p:not(.anh-kicker) {
+.apple-nafas-page .anh-love p:not(.anh-kicker) {
   max-inline-size: 44rem;
   margin: 1rem auto 0;
   font-size: clamp(1.1rem, 2vw, 1.65rem);
   line-height: 1.65;
 }
 
-.anh-love__orbit {
-  position: relative;
+.apple-nafas-page .anh-love__orbit {
   inline-size: min(820px, 100%);
   min-block-size: clamp(230px, 28vw, 360px);
   display: flex;
@@ -575,22 +949,11 @@
   gap: clamp(0.1rem, 1vw, 1rem);
 }
 
-.anh-love__orbit img {
-  inline-size: min(24vw, 185px);
-  object-fit: contain;
-  filter: drop-shadow(0 28px 24px rgba(64, 43, 25, 0.18));
-}
-
-.anh-love__orbit .anh-bottle-visual {
+.apple-nafas-page .anh-love__orbit .anh-bottle-visual {
   inline-size: min(22vw, 170px);
 }
 
-.anh-viewer {
-  padding-block-start: clamp(8rem, 14vw, 15rem);
-  background: #f5f5f7;
-}
-
-.anh-viewer-panel {
+.apple-nafas-page .anh-viewer-panel {
   --accent: #b86d3b;
   min-block-size: clamp(620px, 66vw, 820px);
   display: grid;
@@ -605,22 +968,22 @@
   box-shadow: inset 0 0 0 1px #fff, 0 28px 80px rgba(29, 29, 31, 0.1);
 }
 
-.anh-viewer-panel__controls,
-.anh-viewer-panel__tabs,
-.anh-selector__options {
+.apple-nafas-page .anh-viewer-panel__controls,
+.apple-nafas-page .anh-viewer-panel__tabs,
+.apple-nafas-page .anh-selector__options {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
 }
 
-.anh-viewer-panel__controls {
+.apple-nafas-page .anh-viewer-panel__controls {
   align-self: center;
   flex-direction: column;
 }
 
-.anh-viewer-panel button,
-.anh-selector button {
-  min-block-size: 42px;
+.apple-nafas-page .anh-viewer-panel button,
+.apple-nafas-page .anh-selector button {
+  min-block-size: 44px;
   border: 1px solid rgba(29, 29, 31, 0.1);
   border-radius: 999px;
   padding: 0.65rem 0.9rem;
@@ -629,21 +992,21 @@
   font-weight: 900;
 }
 
-.anh-viewer-panel button.is-active,
-.anh-selector button.is-active {
+.apple-nafas-page .anh-viewer-panel button.is-active,
+.apple-nafas-page .anh-selector button.is-active {
   border-color: color-mix(in srgb, var(--accent, #0071e3), #111 16%);
   background: var(--anh-ink);
   color: #fff;
 }
 
-.anh-viewer-panel__visual {
+.apple-nafas-page .anh-viewer-panel__visual {
   position: relative;
   min-block-size: clamp(380px, 48vw, 640px);
   display: grid;
   place-items: center;
 }
 
-.anh-viewer-panel__halo {
+.apple-nafas-page .anh-viewer-panel__halo {
   position: absolute;
   inline-size: min(76%, 560px);
   aspect-ratio: 1;
@@ -653,44 +1016,39 @@
   opacity: 0.66;
 }
 
-.anh-viewer-panel__visual img,
-.anh-viewer-panel__visual .anh-bottle-visual {
+.apple-nafas-page .anh-viewer-panel__visual .anh-bottle-visual {
   position: relative;
   z-index: 1;
   inline-size: min(72%, 420px);
   animation: anh-fade-up 420ms ease both;
 }
 
-.anh-viewer-panel__copy {
+.apple-nafas-page .anh-viewer-panel__copy {
   display: grid;
   gap: 1rem;
 }
 
-.anh-viewer-panel__copy span {
+.apple-nafas-page .anh-viewer-panel__copy span {
   color: color-mix(in srgb, var(--accent), #111 18%);
   font-weight: 900;
 }
 
-.anh-viewer-panel h3 {
+.apple-nafas-page .anh-viewer-panel h3 {
   font-size: clamp(3.2rem, 7vw, 7.2rem);
 }
 
-.anh-viewer-panel__copy p {
+.apple-nafas-page .anh-viewer-panel__copy p {
   min-block-size: 6.2em;
   font-size: clamp(1.05rem, 1.5vw, 1.35rem);
   line-height: 1.7;
 }
 
-.anh-chapters {
-  background: #fbf7ef;
-}
-
-.anh-chapter-grid {
+.apple-nafas-page .anh-chapter-grid {
   display: grid;
   gap: clamp(1rem, 2vw, 1.5rem);
 }
 
-.anh-chapter {
+.apple-nafas-page .anh-chapter {
   min-block-size: clamp(430px, 48vw, 620px);
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.65fr);
@@ -703,15 +1061,15 @@
   box-shadow: 0 18px 54px rgba(29, 29, 31, 0.08);
 }
 
-.anh-chapter:nth-child(even) {
+.apple-nafas-page .anh-chapter:nth-child(even) {
   grid-template-columns: minmax(300px, 0.65fr) minmax(0, 1.05fr);
 }
 
-.anh-chapter:nth-child(even) img {
+.apple-nafas-page .anh-chapter:nth-child(even) img {
   order: 2;
 }
 
-.anh-chapter img {
+.apple-nafas-page .anh-chapter img {
   inline-size: 100%;
   block-size: 100%;
   max-block-size: 520px;
@@ -719,30 +1077,26 @@
   object-fit: cover;
 }
 
-.anh-chapter span,
-.anh-compare-card span,
-.anh-flow__steps span {
+.apple-nafas-page .anh-chapter span,
+.apple-nafas-page .anh-compare-card span,
+.apple-nafas-page .anh-flow__steps span {
   color: rgba(29, 29, 31, 0.44);
   font-weight: 900;
 }
 
-.anh-chapter h3 {
+.apple-nafas-page .anh-chapter h3 {
   margin: 0.45rem 0;
   font-size: clamp(2.7rem, 5.5vw, 5.8rem);
   letter-spacing: -0.05em;
 }
 
-.anh-chapter p {
+.apple-nafas-page .anh-chapter p {
   max-inline-size: 30rem;
   font-size: clamp(1.05rem, 1.55vw, 1.35rem);
   line-height: 1.7;
 }
 
-.anh-senses {
-  background: #f5f5f7;
-}
-
-.anh-senses__stage {
+.apple-nafas-page .anh-senses__stage {
   min-block-size: clamp(640px, 68vw, 880px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(310px, 0.58fr);
@@ -756,7 +1110,7 @@
     linear-gradient(135deg, #fffaf2, #eceff1);
 }
 
-.anh-senses__visual {
+.apple-nafas-page .anh-senses__visual {
   position: relative;
   min-block-size: clamp(380px, 48vw, 650px);
   border-radius: calc(var(--anh-radius) * 0.72);
@@ -764,62 +1118,57 @@
   background: #dccbb7;
 }
 
-.anh-senses__visual img {
+.apple-nafas-page .anh-senses__visual img {
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
   opacity: 0.9;
 }
 
-.anh-senses__mist {
+.apple-nafas-page .anh-senses__mist {
   position: absolute;
   border-radius: 999px;
   background: rgba(255,255,255,0.56);
   filter: blur(24px);
 }
 
-.anh-senses__mist--one {
+.apple-nafas-page .anh-senses__mist--one {
   inset: 18% 10% auto auto;
   inline-size: 45%;
   block-size: 20%;
 }
 
-.anh-senses__mist--two {
+.apple-nafas-page .anh-senses__mist--two {
   inset: auto auto 18% 12%;
   inline-size: 58%;
   block-size: 24%;
 }
 
-.anh-senses__copy {
+.apple-nafas-page .anh-senses__copy {
   display: grid;
   gap: 1rem;
 }
 
-.anh-senses__copy h2 {
+.apple-nafas-page .anh-senses__copy h2 {
   margin: 0;
   font-size: clamp(3.4rem, 7vw, 7rem);
   letter-spacing: -0.055em;
   line-height: 0.96;
 }
 
-.anh-senses__copy article {
+.apple-nafas-page .anh-senses__copy article {
   padding-block: 1rem;
   border-block-start: 1px solid var(--anh-line);
 }
 
-.anh-senses__copy strong {
+.apple-nafas-page .anh-senses__copy strong {
   display: block;
   color: var(--anh-ink);
   font-size: 1.1rem;
   margin-block-end: 0.35rem;
 }
 
-.anh-flow {
-  padding-block-start: clamp(8rem, 14vw, 15rem);
-  background: #fff;
-}
-
-.anh-flow__panel {
+.apple-nafas-page .anh-flow__panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
   gap: clamp(1.2rem, 4vw, 4rem);
@@ -831,13 +1180,13 @@
     linear-gradient(135deg, #f7efe4, #f5f5f7);
 }
 
-.anh-flow__steps {
+.apple-nafas-page .anh-flow__steps {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.8rem;
 }
 
-.anh-flow__steps article {
+.apple-nafas-page .anh-flow__steps article {
   min-block-size: 280px;
   display: grid;
   align-content: end;
@@ -847,14 +1196,14 @@
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.92);
 }
 
-.anh-flow__steps h3 {
+.apple-nafas-page .anh-flow__steps h3 {
   margin: 0.4rem 0 0;
   font-size: clamp(1.6rem, 2.4vw, 2.4rem);
   line-height: 1.08;
   letter-spacing: -0.04em;
 }
 
-.anh-flow__actions {
+.apple-nafas-page .anh-flow__actions {
   display: grid;
   align-content: center;
   gap: 0.8rem;
@@ -863,11 +1212,11 @@
   background: #fff;
 }
 
-.anh-flow__actions .anh-button {
+.apple-nafas-page .anh-flow__actions .anh-button {
   inline-size: 100%;
 }
 
-.anh-ritual {
+.apple-nafas-page .anh-ritual {
   position: relative;
   min-block-size: clamp(620px, 76vw, 980px);
   display: grid;
@@ -878,7 +1227,7 @@
   text-align: center;
 }
 
-.anh-ritual img {
+.apple-nafas-page .anh-ritual img {
   position: absolute;
   inset: 0;
   inline-size: 100%;
@@ -887,61 +1236,57 @@
   opacity: 0.52;
 }
 
-.anh-ritual::after {
+.apple-nafas-page .anh-ritual::after {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 50% 52%, transparent 0 18rem, rgba(0,0,0,0.42) 42rem), linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.72));
 }
 
-.anh-ritual div {
+.apple-nafas-page .anh-ritual div {
   position: relative;
   z-index: 1;
   inline-size: min(820px, calc(100% - 2rem));
 }
 
-.anh-ritual h2 {
+.apple-nafas-page .anh-ritual h2 {
   color: #fff;
   font-size: clamp(4rem, 10vw, 10rem);
 }
 
-.anh-ritual p:not(.anh-kicker) {
+.apple-nafas-page .anh-ritual p:not(.anh-kicker) {
   max-inline-size: 34rem;
   margin: 1rem auto 0;
   color: rgba(255,255,255,0.78);
   font-size: clamp(1.05rem, 1.7vw, 1.35rem);
 }
 
-.anh-together {
-  background: #fbf7ef;
-}
-
-.anh-together__grid {
+.apple-nafas-page .anh-together__grid {
   display: grid;
   grid-template-columns: minmax(320px, 0.58fr) minmax(0, 1fr);
   gap: clamp(1.5rem, 5vw, 5rem);
   align-items: center;
 }
 
-.anh-together h2,
-.anh-selector h2,
-.anh-why h2,
-.anh-compare h2,
-.anh-explore h2 {
+.apple-nafas-page .anh-together h2,
+.apple-nafas-page .anh-selector h2,
+.apple-nafas-page .anh-why h2,
+.apple-nafas-page .anh-compare h2,
+.apple-nafas-page .anh-explore h2 {
   margin: 0;
   font-size: clamp(3.4rem, 7vw, 7rem);
   letter-spacing: -0.055em;
   line-height: 0.96;
 }
 
-.anh-together p {
+.apple-nafas-page .anh-together p {
   max-inline-size: 34rem;
   margin: 1rem 0 1.4rem;
   font-size: clamp(1.05rem, 1.6vw, 1.35rem);
   line-height: 1.7;
 }
 
-.anh-together__visual {
+.apple-nafas-page .anh-together__visual {
   position: relative;
   min-block-size: clamp(420px, 48vw, 660px);
   border-radius: var(--anh-radius);
@@ -949,7 +1294,7 @@
   overflow: hidden;
 }
 
-.anh-together__visual img:first-child {
+.apple-nafas-page .anh-together__visual img {
   position: absolute;
   inset: 0;
   inline-size: 100%;
@@ -958,16 +1303,7 @@
   opacity: 0.72;
 }
 
-.anh-together__visual img:last-child {
-  position: absolute;
-  inset-block-end: 5%;
-  inset-inline-start: 50%;
-  inline-size: min(42%, 360px);
-  transform: translateX(-50%);
-  filter: drop-shadow(0 30px 28px rgba(0,0,0,0.2));
-}
-
-.anh-together__visual .anh-bottle-visual {
+.apple-nafas-page .anh-together__visual .anh-bottle-visual {
   position: absolute;
   inset-block-end: 5%;
   inset-inline-start: 50%;
@@ -975,11 +1311,7 @@
   transform: translateX(-50%);
 }
 
-.anh-selector {
-  background: #f5f5f7;
-}
-
-.anh-selector__panel {
+.apple-nafas-page .anh-selector__panel {
   display: grid;
   grid-template-columns: minmax(300px, 0.7fr) minmax(0, 1fr);
   gap: clamp(1.2rem, 4vw, 4rem);
@@ -989,61 +1321,49 @@
   background: #fff;
 }
 
-.anh-selector__options {
-  justify-content: flex-start;
-}
-
-.anh-selector__result {
+.apple-nafas-page .anh-selector__result {
   grid-column: 1 / -1;
   border-radius: 28px;
   padding: 1rem 1.2rem;
-  background: #f5f5f7;
+  background: var(--anh-panel);
   color: var(--anh-muted);
 }
 
-.anh-selector__result strong {
+.apple-nafas-page .anh-selector__result strong {
   color: var(--anh-ink);
 }
 
-.anh-why {
-  background: #fff;
-}
-
-.anh-why__grid,
-.anh-explore__grid {
+.apple-nafas-page .anh-why__grid,
+.apple-nafas-page .anh-explore__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
-.anh-why__grid article,
-.anh-explore-card {
+.apple-nafas-page .anh-why__grid article,
+.apple-nafas-page .anh-explore-card {
   min-block-size: 250px;
   display: grid;
   align-content: end;
   border-radius: 34px;
   padding: clamp(1.1rem, 2vw, 1.8rem);
-  background: #f5f5f7;
+  background: var(--anh-panel);
 }
 
-.anh-why__grid h3,
-.anh-explore-card h3 {
+.apple-nafas-page .anh-why__grid h3,
+.apple-nafas-page .anh-explore-card h3 {
   margin: 0 0 0.5rem;
   font-size: clamp(1.35rem, 2vw, 2rem);
   letter-spacing: -0.035em;
 }
 
-.anh-compare {
-  background: #f5f5f7;
-}
-
-.anh-compare__grid {
+.apple-nafas-page .anh-compare__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
-.anh-compare-card {
+.apple-nafas-page .anh-compare-card {
   --accent: #b86d3b;
   display: grid;
   gap: 0.85rem;
@@ -1054,7 +1374,7 @@
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9);
 }
 
-.anh-compare-card__visual {
+.apple-nafas-page .anh-compare-card__visual {
   inline-size: 100%;
   block-size: 260px;
   display: grid;
@@ -1063,50 +1383,46 @@
   background: radial-gradient(circle, color-mix(in srgb, var(--accent), white 68%), #f5f5f7 68%);
 }
 
-.anh-compare-card__visual .anh-bottle-visual {
+.apple-nafas-page .anh-compare-card__visual .anh-bottle-visual {
   inline-size: min(54%, 170px);
 }
 
-.anh-compare-card h3 {
+.apple-nafas-page .anh-compare-card h3 {
   margin: 0;
   font-size: clamp(2.1rem, 3.2vw, 3.4rem);
   letter-spacing: -0.05em;
 }
 
-.anh-compare-card p {
+.apple-nafas-page .anh-compare-card p {
   min-block-size: 3.8em;
   line-height: 1.55;
 }
 
-.anh-compare-card dl {
+.apple-nafas-page .anh-compare-card dl {
   display: grid;
   gap: 0.7rem;
   margin: 0;
   padding-block: 0.4rem 0.8rem;
 }
 
-.anh-compare-card div {
+.apple-nafas-page .anh-compare-card div {
   display: grid;
   gap: 0.1rem;
 }
 
-.anh-compare-card dt {
+.apple-nafas-page .anh-compare-card dt {
   color: rgba(29,29,31,0.48);
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
 }
 
-.anh-compare-card dd {
+.apple-nafas-page .anh-compare-card dd {
   margin: 0;
   line-height: 1.45;
 }
 
-.anh-explore {
-  background: #fbf7ef;
-}
-
-.anh-explore-card {
+.apple-nafas-page .anh-explore-card {
   position: relative;
   min-block-size: 320px;
   overflow: hidden;
@@ -1116,25 +1432,24 @@
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.anh-explore-card:hover {
+.apple-nafas-page .anh-explore-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 22px 54px rgba(29,29,31,0.1);
 }
 
-.anh-final {
+.apple-nafas-page .anh-final {
   display: grid;
   place-items: center;
   gap: 1rem;
   padding: clamp(4rem, 8vw, 8rem) 1.25rem;
-  background: #fff;
   text-align: center;
 }
 
-.anh-final h2 {
+.apple-nafas-page .anh-final h2 {
   font-size: clamp(3.5rem, 8vw, 8rem);
 }
 
-.anh-final p {
+.apple-nafas-page .anh-final p {
   font-size: clamp(1.05rem, 1.6vw, 1.35rem);
 }
 
@@ -1143,209 +1458,505 @@
     opacity: 0;
     transform: translateY(14px) scale(0.985);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
-@media (max-width: 1180px) {
-  .anh-hero__inner,
-  .anh-viewer-panel,
-  .anh-together__grid,
-  .anh-selector__panel {
+@keyframes anh-hero-mist {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.52;
+  }
+
+  50% {
+    transform: translate3d(-1rem, -0.7rem, 0) scale(1.03);
+    opacity: 0.72;
+  }
+}
+
+@keyframes anh-hero-bottle-float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-0.75rem) scale(1.012);
+  }
+}
+
+@keyframes anh-hero-bottle-in {
+  0% {
+    opacity: 0;
+    filter: blur(8px) drop-shadow(0 24px 22px rgba(24, 18, 14, 0.16));
+    transform: translateY(-3rem) scale(0.72);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0) drop-shadow(0 38px 34px rgba(24, 18, 14, 0.28));
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes anh-hero-title-in {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(2rem);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes anh-hero-copy-in {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-1.7rem);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes anh-hero-bg-transition {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+
+  45% {
+    transform: scale(1.08) translate3d(0, -0.8rem, 0);
+  }
+
+  100% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes anh-hero-brand-flash {
+  0%, 20% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.86);
+  }
+
+  42% {
+    opacity: 0.24;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  72%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@media (max-width: 430px) {
+  .apple-nafas-page .anh-container {
+    inline-size: min(calc(100% - 0.8rem), var(--anh-max));
+  }
+
+  .apple-nafas-page .anh-section {
+    padding-block: 3.5rem;
+  }
+
+  .apple-nafas-page .anh-section-head h2,
+  .apple-nafas-page .anh-together h2,
+  .apple-nafas-page .anh-selector h2,
+  .apple-nafas-page .anh-why h2,
+  .apple-nafas-page .anh-compare h2,
+  .apple-nafas-page .anh-explore h2 {
+    font-size: clamp(2.6rem, 13vw, 4rem);
+  }
+
+  .apple-nafas-page .anh-ribbon {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero {
+    min-block-size: auto;
+    padding-block: 1.25rem 1.4rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero h1 {
+    font-size: 3.55rem;
+    line-height: 1.12;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__line {
+    font-size: 1.22rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__description {
+    font-size: 0.94rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__stage {
+    min-block-size: 17.75rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+    inline-size: 10.7rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__halo {
+    inline-size: 14rem;
+    block-size: 7rem;
+  }
+
+  .apple-nafas-page .anh-hero-scene__pedestal {
+    inset-block-end: 37%;
+    inline-size: min(19rem, 82%);
+    block-size: 5.2rem;
+  }
+
+  .apple-nafas-page .anh-hero-scene__brand-flash {
+    font-size: 4.4rem;
+  }
+
+  .apple-nafas-page .anh-hero-scene__depth-left,
+  .apple-nafas-page .anh-hero-scene__depth-right {
+    inline-size: 54%;
+    opacity: 0.68;
+  }
+
+  .apple-nafas-page .anh-actions,
+  .apple-nafas-page .anh-carousel-dock {
+    inline-size: 100%;
+  }
+
+  .apple-nafas-page .anh-actions .anh-button {
+    flex: 1 1 145px;
+  }
+
+  .apple-nafas-page .anh-highlight-card {
+    flex-basis: calc(100vw - 1.4rem);
+    min-block-size: 560px;
+    border-radius: 34px;
+  }
+
+  .apple-nafas-page .anh-highlight-card img,
+  .apple-nafas-page .anh-highlight-bottle {
+    inline-size: 78%;
+    inset-block-end: 4rem;
+  }
+
+  .apple-nafas-page .anh-highlight-card__copy {
+    padding: 1.35rem;
+  }
+
+  .apple-nafas-page .anh-carousel-dock {
+    justify-content: center;
+    border-radius: 26px;
+  }
+
+  .apple-nafas-page .anh-dots {
+    gap: 0.32rem;
+  }
+
+  .apple-nafas-page .anh-viewer-panel,
+  .apple-nafas-page .anh-senses__stage,
+  .apple-nafas-page .anh-flow__panel,
+  .apple-nafas-page .anh-together__visual,
+  .apple-nafas-page .anh-selector__panel,
+  .apple-nafas-page .anh-chapter {
+    border-radius: 34px;
+  }
+
+  .apple-nafas-page .anh-viewer-panel {
+    min-block-size: auto;
+    padding: 1rem;
+  }
+
+  .apple-nafas-page .anh-viewer-panel__visual {
+    min-block-size: 360px;
+  }
+
+  .apple-nafas-page .anh-viewer-panel__visual .anh-bottle-visual {
+    inline-size: 74%;
+  }
+
+  .apple-nafas-page .anh-viewer-panel__copy p {
+    min-block-size: auto;
+  }
+
+  .apple-nafas-page .anh-compare__grid {
     grid-template-columns: 1fr;
   }
 
-  .anh-viewer-panel__controls {
+  .apple-nafas-page .anh-compare-card__visual {
+    block-size: 230px;
+  }
+}
+
+@media (min-width: 431px) and (max-width: 767px) {
+  .apple-nafas-page .anh-section {
+    padding-block: 4.25rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero {
+    min-block-size: auto;
+    padding-block: 1.7rem 1.8rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero h1 {
+    font-size: 4.15rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__stage {
+    min-block-size: 20rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+    inline-size: 12.4rem;
+  }
+
+  .apple-nafas-page .anh-hero-scene__pedestal {
+    inset-block-end: 35%;
+    inline-size: min(24rem, 80%);
+    block-size: 6rem;
+  }
+
+  .apple-nafas-page .anh-highlight-card {
+    flex-basis: 88vw;
+    min-block-size: 590px;
+  }
+
+  .apple-nafas-page .anh-flow__steps,
+  .apple-nafas-page .anh-why__grid,
+  .apple-nafas-page .anh-explore__grid,
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .apple-nafas-page .anh-cinematic-hero__inner,
+  .apple-nafas-page .anh-viewer-panel,
+  .apple-nafas-page .anh-together__grid,
+  .apple-nafas-page .anh-selector__panel,
+  .apple-nafas-page .anh-flow__panel,
+  .apple-nafas-page .anh-senses__stage,
+  .apple-nafas-page .anh-chapter,
+  .apple-nafas-page .anh-chapter:nth-child(even) {
+    grid-template-columns: 1fr;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero::after {
+    background:
+      linear-gradient(180deg, rgba(16,13,11,0.58), rgba(16,13,11,0.08) 30%, rgba(16,13,11,0.48) 100%),
+      linear-gradient(90deg, rgba(16,13,11,0.36), transparent 50%, rgba(16,13,11,0.32));
+    opacity: 0.72;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__inner {
+    gap: 0.8rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__title-stack,
+  .apple-nafas-page .anh-cinematic-hero__copy-stack {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__copy-stack {
+    gap: 0.65rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__line,
+  .apple-nafas-page .anh-cinematic-hero__description {
+    max-inline-size: min(100%, 24rem);
+  }
+
+  .apple-nafas-page .anh-cinematic-hero .anh-actions {
+    justify-content: center;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__controls {
+    position: relative;
+    inset: auto;
+    inline-size: max-content;
+    max-inline-size: calc(100% - 1rem);
+    justify-self: center;
+    margin-block-start: 0.85rem;
+    transform: none;
+  }
+
+  .apple-nafas-page .anh-hero-control {
+    inline-size: 2.45rem;
+    block-size: 2.45rem;
+  }
+
+  .apple-nafas-page .anh-hero-dots button {
+    inline-size: 2rem;
+    block-size: 2rem;
+  }
+
+  .apple-nafas-page .anh-chapter:nth-child(even) img {
+    order: 0;
+  }
+
+  .apple-nafas-page .anh-chapter img {
+    block-size: 300px;
+  }
+
+  .apple-nafas-page .anh-flow__steps {
+    grid-template-columns: 1fr;
+  }
+
+  .apple-nafas-page .anh-flow__steps article,
+  .apple-nafas-page .anh-why__grid article,
+  .apple-nafas-page .anh-explore-card {
+    min-block-size: 210px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .apple-nafas-page .anh-cinematic-hero__inner,
+  .apple-nafas-page .anh-viewer-panel,
+  .apple-nafas-page .anh-together__grid,
+  .apple-nafas-page .anh-selector__panel,
+  .apple-nafas-page .anh-flow__panel,
+  .apple-nafas-page .anh-senses__stage {
+    grid-template-columns: 1fr;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero {
+    min-block-size: auto;
+    padding-block: 2.2rem 5rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__title-stack,
+  .apple-nafas-page .anh-cinematic-hero__copy-stack {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero h1 {
+    font-size: 5.6rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__stage {
+    min-block-size: 26rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+    inline-size: 15rem;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero .anh-actions {
+    justify-content: center;
+  }
+
+  .apple-nafas-page .anh-hero-scene__pedestal {
+    inset-block-end: 29%;
+    inline-size: min(34rem, 74%);
+    block-size: 7.6rem;
+  }
+
+  .apple-nafas-page .anh-viewer-panel__controls {
     flex-direction: row;
     justify-content: center;
     order: 2;
   }
 
-  .anh-viewer-panel__copy {
+  .apple-nafas-page .anh-viewer-panel__copy {
     order: 3;
     text-align: center;
   }
 
-  .anh-viewer-panel__tabs {
+  .apple-nafas-page .anh-viewer-panel__tabs {
     justify-content: center;
   }
 
-  .anh-compare__grid {
+  .apple-nafas-page .anh-flow__steps,
+  .apple-nafas-page .anh-compare__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .anh-flow__panel,
-  .anh-senses__stage {
-    grid-template-columns: 1fr;
+  .apple-nafas-page .anh-why__grid,
+  .apple-nafas-page .anh-explore__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 820px) {
-  .anh-section {
-    padding-block: clamp(3.5rem, 12vw, 5rem);
-  }
-
-  .anh-hero__stage {
-    min-block-size: 520px;
-  }
-
-  .anh-hero__bottle {
-    inline-size: 58vw;
-  }
-
-  .anh-highlight-card {
-    flex-basis: 86vw;
-    min-block-size: 620px;
-  }
-
-  .anh-highlight-track {
-    gap: 0.85rem;
-  }
-
-  .anh-highlight-card img,
-  .anh-highlight-bottle {
-    inline-size: 78%;
-    inset-block-end: 4rem;
-  }
-
-  .anh-highlight-card__copy {
-    padding: 1.4rem;
-  }
-
-  .anh-chapter,
-  .anh-chapter:nth-child(even) {
-    grid-template-columns: 1fr;
-    min-block-size: auto;
-  }
-
-  .anh-chapter:nth-child(even) img {
-    order: 0;
-  }
-
-  .anh-chapter img {
-    block-size: 300px;
-  }
-
-  .anh-flow__steps,
-  .anh-why__grid,
-  .anh-explore__grid {
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .apple-nafas-page .anh-viewer-panel,
+  .apple-nafas-page .anh-together__grid,
+  .apple-nafas-page .anh-selector__panel,
+  .apple-nafas-page .anh-flow__panel,
+  .apple-nafas-page .anh-senses__stage {
     grid-template-columns: 1fr;
   }
 
-  .anh-flow__steps article,
-  .anh-why__grid article,
-  .anh-explore-card {
-    min-block-size: 210px;
+  .apple-nafas-page .anh-cinematic-hero__inner {
+    grid-template-columns: minmax(12rem, 0.72fr) minmax(18rem, 0.92fr) minmax(13rem, 0.72fr);
+    gap: 1.1rem;
   }
 
-  .anh-senses__visual {
-    min-block-size: 360px;
-  }
-}
-
-@media (max-width: 560px) {
-  .anh-container {
-    inline-size: min(calc(100% - 1rem), var(--anh-max));
+  .apple-nafas-page .anh-cinematic-hero h1 {
+    font-size: 6.35rem;
   }
 
-  .anh-ribbon {
-    align-items: center;
-    font-size: 0.82rem;
-    line-height: 1.55;
+  .apple-nafas-page .anh-cinematic-hero p.anh-cinematic-hero__line {
+    font-size: 1.4rem;
   }
 
-  .anh-hero {
-    min-block-size: auto;
+  .apple-nafas-page .anh-cinematic-hero__stage {
+    min-block-size: 30rem;
   }
 
-  .anh-hero__inner {
-    gap: 1.4rem;
+  .apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+    inline-size: 16.5rem;
   }
 
-  .anh-hero__stage {
-    min-block-size: 430px;
-    border-radius: 34px;
-  }
-
-  .anh-hero__bottle--1 {
-    transform: translateX(12%) translateY(0) scale(0.98);
-  }
-
-  .anh-hero__bottle--2 {
-    transform: translateX(-36%) translateY(10%) rotate(-8deg) scale(0.72);
-  }
-
-  .anh-hero__bottle--3 {
-    transform: translateX(46%) translateY(14%) rotate(7deg) scale(0.68);
-  }
-
-  .anh-hero__bottle--4 {
-    transform: translateX(-54%) translateY(17%) rotate(-13deg) scale(0.62);
-  }
-
-  .anh-actions,
-  .anh-carousel-dock {
-    inline-size: 100%;
-  }
-
-  .anh-actions .anh-button {
-    flex: 1 1 150px;
-  }
-
-  .anh-highlight-card {
-    flex-basis: calc(100vw - 1.5rem);
-    min-block-size: 560px;
-    border-radius: 34px;
-  }
-
-  .anh-carousel-dock {
+  .apple-nafas-page .anh-viewer-panel__controls {
+    flex-direction: row;
     justify-content: center;
-    border-radius: 26px;
+    order: 2;
   }
 
-  .anh-dots {
-    gap: 0.32rem;
+  .apple-nafas-page .anh-viewer-panel__copy {
+    order: 3;
+    text-align: center;
   }
 
-  .anh-viewer-panel {
-    min-block-size: auto;
-    border-radius: 34px;
-    padding: 1rem;
+  .apple-nafas-page .anh-viewer-panel__tabs {
+    justify-content: center;
   }
 
-  .anh-viewer-panel__visual {
-    min-block-size: 390px;
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1366px) {
+  .apple-nafas-page .anh-cinematic-hero h1 {
+    font-size: 7.9rem;
   }
 
-  .anh-viewer-panel__visual img,
-  .anh-viewer-panel__visual .anh-bottle-visual {
-    inline-size: 74%;
+  .apple-nafas-page .anh-viewer-panel {
+    grid-template-columns: 180px minmax(360px, 1fr) minmax(320px, 0.72fr);
+  }
+}
+
+@media (min-width: 1536px) {
+  .apple-nafas-page .anh-cinematic-hero h1 {
+    font-size: 8.4rem;
   }
 
-  .anh-viewer-panel__copy p {
-    min-block-size: auto;
-  }
-
-  .anh-senses__stage,
-  .anh-flow__panel,
-  .anh-together__visual,
-  .anh-selector__panel,
-  .anh-chapter {
-    border-radius: 34px;
-  }
-
-  .anh-compare__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .anh-compare-card__visual {
-    block-size: 230px;
-  }
-
-  .anh-selector__result {
-    grid-column: auto;
+  .apple-nafas-page .anh-cinematic-hero__bottle.anh-bottle-visual {
+    inline-size: 20.5rem;
   }
 }
 
@@ -1357,5 +1968,11 @@
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .apple-nafas-page .anh-cinematic-hero__bottle.is-active,
+  .apple-nafas-page .anh-hero-scene__mist,
+  .apple-nafas-page .anh-hero-scene__brand-flash {
+    animation: none !important;
   }
 }
