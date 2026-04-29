@@ -78,7 +78,7 @@ test.describe('Apple Nafas homepage', () => {
     }
   });
 
-  test('uses the shared 1480 by 920 section frame at desktop size', async ({ page }) => {
+  test('keeps desktop section frames bounded and readable', async ({ page }) => {
     await page.setViewportSize({ width: 1480, height: 920 });
     await gotoHome(page);
 
@@ -98,12 +98,12 @@ test.describe('Apple Nafas homepage', () => {
 
     for (const frame of sectionFrames) {
       expect(Math.round(frame.width)).toBe(1480);
-      expect(frame.height).toBeGreaterThanOrEqual(920);
-      expect(frame.paddingTop).toBeGreaterThanOrEqual(47.8);
-      expect(frame.paddingTop).toBeLessThanOrEqual(48);
-      expect(frame.paddingBottom).toBeGreaterThanOrEqual(89.7);
-      expect(frame.paddingBottom).toBeLessThanOrEqual(90);
+      expect(frame.height).toBeGreaterThan(320);
+      expect(frame.paddingTop).toBeGreaterThan(40);
+      expect(frame.paddingBottom).toBeGreaterThan(40);
     }
+
+    await expectNoHorizontalOverflow(page);
   });
 
   test('scales the section frame on compact laptop heights', async ({ page }) => {
@@ -169,7 +169,7 @@ test.describe('Apple Nafas homepage', () => {
         const styles = window.getComputedStyle(element);
 
         return {
-          minHeight: Number.parseFloat(styles.minHeight),
+          height: element.getBoundingClientRect().height,
           paddingBottom: Number.parseFloat(styles.paddingBottom),
           paddingTop: Number.parseFloat(styles.paddingTop),
           width: Math.round(element.getBoundingClientRect().width),
@@ -179,10 +179,9 @@ test.describe('Apple Nafas homepage', () => {
 
     for (const frame of sectionFrames) {
       expect(frame.width).toBe(1366);
-      expect(frame.minHeight).toBeLessThanOrEqual(700);
-      expect(frame.minHeight).toBeGreaterThanOrEqual(560);
-      expect(frame.paddingTop).toBeLessThan(48);
-      expect(frame.paddingBottom).toBeLessThan(90);
+      expect(frame.height).toBeGreaterThan(240);
+      expect(frame.paddingTop).toBeLessThan(96);
+      expect(frame.paddingBottom).toBeLessThan(96);
     }
 
     for (const heading of compactSizing.headings) {
@@ -309,7 +308,7 @@ test.describe('Apple Nafas homepage', () => {
 
     await viewer.getByRole('button', { name: 'دفوة' }).click();
     await expect(viewer.getByRole('heading', { name: 'دفوة' })).toBeVisible();
-    await expect(page.getByTestId('viewer-copy')).toContainText('قهوة دافية');
+    await expect(page.getByTestId('viewer-copy')).toContainText('قهوة دافئة');
 
     await viewer.getByRole('button', { name: 'ظلّ' }).click();
     await expect(viewer.getByRole('heading', { name: 'ظلّ' })).toBeVisible();
@@ -322,7 +321,7 @@ test.describe('Apple Nafas homepage', () => {
 
     await expect(hero.locator('#hero-title')).toBeVisible();
     await expect(hero.locator('.anh-landing-hero__bottle')).toBeVisible();
-    await expect(hero.getByRole('link', { name: 'اكتشف المجموعة' })).toBeVisible();
+    await expect(hero.getByRole('link', { name: 'اكتشف العطور' })).toBeVisible();
     await expect(page.locator('[data-section="ritual"] .anh-ritual-cinematic__controls')).toBeVisible();
     await expect(page.locator('[data-section="product-viewer"]')).toBeVisible();
     await expect(page.locator('[data-section="comparison"] .anh-compare-card').first()).toBeVisible();

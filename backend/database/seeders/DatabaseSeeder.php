@@ -15,12 +15,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Super Admin',
-            'email' => 'admin@nafas.com',
-            'password' => bcrypt('password123'),
-            'role' => 'super_admin',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@nafas.com'],
+            [
+                'name' => 'Super Admin',
+                'password' => bcrypt('password123'),
+                'role' => 'super_admin',
+            ]
+        );
 
         $this->call([
             ProductSeeder::class,

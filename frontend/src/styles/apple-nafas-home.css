@@ -2762,7 +2762,7 @@
 .apple-nafas-page .anh-carousel-dock {
   inline-size: min(100%, 32rem);
   max-inline-size: 100%;
-  direction: ltr;
+  direction: rtl;
 }
 
 .apple-nafas-page .anh-dots {
@@ -2995,18 +2995,18 @@
   }
 
   .apple-nafas-page .anh-dock-button {
-    order: 2;
+    order: 1;
     flex: 0 0 48px;
   }
 
   .apple-nafas-page .anh-dots {
-    order: 1;
+    order: 2;
     flex: 1 1 auto;
     flex-basis: 100%;
     max-inline-size: 100%;
     justify-content: center;
     padding-inline: 0.35rem;
-    direction: ltr;
+    direction: rtl;
   }
 
   .apple-nafas-page .anh-love__inner {
@@ -3227,6 +3227,38 @@
 
   .apple-nafas-page .anh-ritual--cinematic {
     min-block-size: min(920px, calc(100svh - var(--nafas-nav-height)));
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 900px) {
+  .apple-nafas-page > [data-section]:not(.anh-ribbon) {
+    padding-block: clamp(2.6rem, 5.3vw, 4.7rem);
+  }
+
+  .apple-nafas-page .anh-section-head h2,
+  .apple-nafas-page .anh-love h2,
+  .apple-nafas-page .anh-viewer-panel h3,
+  .apple-nafas-page .anh-together h2,
+  .apple-nafas-page .anh-selector h2,
+  .apple-nafas-page .anh-why h2,
+  .apple-nafas-page .anh-compare h2,
+  .apple-nafas-page .anh-explore h2,
+  .apple-nafas-page .anh-final h2 {
+    font-size: clamp(2.6rem, 5.25vw, 5.35rem);
+    line-height: 1.04;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic h2 {
+    font-size: clamp(3.4rem, 6vw, 5.75rem);
+    line-height: 1.08;
+  }
+
+  .apple-nafas-page .anh-landing-hero h1 {
+    font-size: clamp(3.2rem, 5.6vw, 5.5rem);
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__stage {
+    min-block-size: clamp(22rem, 52svh, 29rem);
   }
 }
 

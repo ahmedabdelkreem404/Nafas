@@ -121,7 +121,10 @@ class ProductSeeder extends Seeder
             unset($productData['variants']);
 
             $productData['slug'] = Str::slug($productData['name_en']);
-            $product = Product::create($productData);
+            $product = Product::updateOrCreate(
+                ['slug' => $productData['slug']],
+                $productData
+            );
 
             foreach ($variants as $variant) {
                 $variant += [
@@ -137,7 +140,10 @@ class ProductSeeder extends Seeder
                     'alcohol_percentage' => 76,
                 ];
 
-                $product->variants()->create($variant);
+                $product->variants()->updateOrCreate(
+                    ['sku' => $variant['sku']],
+                    $variant
+                );
             }
         }
     }

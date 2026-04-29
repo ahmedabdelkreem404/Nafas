@@ -1,4 +1,5 @@
 import { publicApi } from '../api/publicApi';
+import { getLocalCoreProduct, localCoreProducts } from '../content/localProducts';
 import type { Product } from '../types/store';
 import { extractResponseData, toProduct, toProducts } from '../utils/products';
 
@@ -27,13 +28,14 @@ export async function getCachedProducts(): Promise<Product[]> {
     .then((response) => {
       const data = extractResponseData<unknown[]>(response.data);
       const products = toProducts(data || []);
-      cache = { data: products, fetchedAt: Date.now() };
+      cache = { data: products.length ? products : localCoreProducts, fetchedAt: Date.now() };
       inflight = null;
-      return products;
+      return cache.data;
     })
-    .catch((error) => {
+    .catch(() => {
       inflight = null;
-      throw error;
+      cache = { data: localCoreProducts, fetchedAt: Date.now() };
+      return cache.data;
     });
 
   return inflight;
@@ -48,9 +50,19 @@ export async function getCachedProduct(slug: string): Promise<Product> {
     return found;
   }
 
-  const response = await publicApi.getProduct(slug);
-  const product = extractResponseData<unknown>(response.data);
-  return toProduct(product);
+  try {
+    const response = await publicApi.getProduct(slug);
+    const product = extractResponseData<unknown>(response.data);
+    return toProduct(product);
+  } catch (error) {
+    const fallback = getLocalCoreProduct(slug);
+
+    if (fallback) {
+      return fallback;
+    }
+
+    throw error;
+  }
 }
 
 export function invalidateCache() {
