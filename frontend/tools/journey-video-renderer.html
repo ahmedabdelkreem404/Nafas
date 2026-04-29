@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nafas Journey Video Renderer</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 22% 24%, rgba(188, 139, 78, 0.16), transparent 34%),
+          radial-gradient(circle at 72% 32%, rgba(88, 103, 145, 0.14), transparent 28%),
+          linear-gradient(180deg, #050506 0%, #09070a 52%, #060507 100%);
+        font-family: Inter, system-ui, sans-serif;
+        color: rgba(255, 244, 228, 0.88);
+        display: grid;
+        place-items: center;
+      }
+
+      .shell {
+        width: min(100vw, 1680px);
+        padding: 24px;
+        display: grid;
+        gap: 16px;
+      }
+
+      canvas {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        border-radius: 28px;
+        box-shadow:
+          0 20px 80px rgba(0, 0, 0, 0.55),
+          0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+      }
+
+      .status {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+      }
+
+      .status code {
+        color: #f0bb68;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/node_modules/three/build/three.module.js",
+          "three/addons/": "/node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="status">
+        <strong id="status-label">Preparing renderer...</strong>
+        <code id="status-detail">0%</code>
+      </div>
+      <canvas id="journey-canvas" width="1280" height="720"></canvas>
+    </div>
+    <script type="module" src="/tools/journey-video-renderer.js"></script>
+  </body>
+</html>

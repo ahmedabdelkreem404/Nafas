@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 720" fill="none">
+  <defs>
+    <linearGradient id="glass" x1="260" y1="110" x2="260" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f5dfb4" stop-opacity="0.26"/>
+      <stop offset="0.28" stop-color="#f5dfb4" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#1b1714" stop-opacity="0.94"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="260" y1="60" x2="260" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f5dfb4"/>
+      <stop offset="1" stop-color="#a96033"/>
+    </linearGradient>
+  </defs>
+  <rect width="520" height="720" rx="56" fill="#060709"/>
+  <ellipse cx="260" cy="585" rx="148" ry="38" fill="#d9ab66" fill-opacity="0.16"/>
+  <rect x="172" y="78" width="176" height="78" rx="26" fill="url(#metal)"/>
+  <rect x="138" y="132" width="244" height="450" rx="72" fill="url(#glass)" stroke="rgba(255,255,255,0.18)"/>
+  <rect x="214" y="222" width="92" height="282" rx="34" fill="#d9ab66" fill-opacity="0.76"/>
+  <rect x="160" y="312" width="200" height="120" rx="28" fill="#0f0d11" fill-opacity="0.92" stroke="rgba(255,255,255,0.1)"/>
+</svg>

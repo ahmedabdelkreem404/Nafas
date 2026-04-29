@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "es2023",
+    "lib": ["ES2023", "DOM"],
+    "module": "esnext",
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "src/animations/**",
+    "src/components/admin/**",
+    "src/pages/admin/**",
+    "src/components/BottleAssemblyScroll.tsx",
+    "src/components/CheckoutSummary.tsx",
+    "src/components/FavoriteButton.tsx",
+    "src/components/Hero3DScene.tsx",
+    "src/components/Loading3D.tsx",
+    "src/components/MistLayer.tsx",
+    "src/components/PerfumeBottle3D.tsx",
+    "src/components/Product3DViewer.tsx",
+    "src/components/ProductDetailEnhanced.tsx",
+    "src/components/QuantitySelector.tsx",
+    "src/components/ScrollIndicator.tsx",
+    "src/components/ScrollScrubPerfumeVideo.tsx",
+    "src/components/SectionReveal.tsx",
+    "src/components/VariantSelector.tsx",
+    "src/components/ui/**",
+    "src/pages/HomeEnhanced.tsx",
+    "src/test/**",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
+  ]
+}

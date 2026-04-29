@@ -1,0 +1,293 @@
+﻿/* frontend/src/styles/theme.css */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap');
+
+:root {
+  color-scheme: dark;
+  --bg: #080709;
+  --bg-elevated: #121014;
+  --bg-soft: rgba(255, 255, 255, 0.04);
+  --surface: rgba(18, 16, 20, 0.78);
+  --surface-strong: rgba(26, 23, 30, 0.92);
+  --surface-muted: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(197, 160, 89, 0.3);
+  --text: #f7f4ee;
+  --text-soft: rgba(247, 244, 238, 0.78);
+  --text-muted: rgba(247, 244, 238, 0.58);
+  --gold: #c7a15f;
+  --gold-strong: #e6c280;
+  --copper: #b16a39;
+  --rose: #c88f9f;
+  --success: #6fcf97;
+  --danger: #ff7a7a;
+  --warning: #f2c94c;
+  --shadow-lg: 0 32px 90px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.28);
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+  --container: min(1280px, calc(100vw - clamp(1rem, 4vw, 3rem)));
+  --container-wide: min(1520px, calc(100vw - clamp(1rem, 5vw, 4rem)));
+  --section-gap: clamp(4rem, 8vw, 8rem);
+  --page-top: clamp(5.75rem, 9vw, 7.5rem);
+  --font-ar: 'Cairo', sans-serif;
+  --font-en: 'Inter', 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display', serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+#root {
+  overflow-x: clip;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-ar);
+  background:
+    radial-gradient(circle at top, rgba(177, 106, 57, 0.18), transparent 28%),
+    radial-gradient(circle at 15% 20%, rgba(200, 143, 159, 0.16), transparent 30%),
+    linear-gradient(180deg, #09080a 0%, #0d0b0f 40%, #080709 100%);
+  color: var(--text);
+  direction: rtl;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body[data-locale='ar'] {
+  direction: rtl;
+  font-family: var(--font-ar);
+}
+
+body[data-locale='en'] {
+  direction: ltr;
+  font-family: var(--font-en);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+video,
+img {
+  object-fit: cover;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+::selection {
+  background: rgba(199, 161, 95, 0.3);
+}
+
+.app-shell {
+  min-height: 100vh;
+  isolation: isolate;
+  overflow-x: clip;
+}
+
+.page-shell {
+  position: relative;
+  padding-top: var(--page-top);
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+.page-shell::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 80% 12%, rgba(199, 161, 95, 0.08), transparent 24%),
+    radial-gradient(circle at 20% 20%, rgba(200, 143, 159, 0.08), transparent 18%);
+  z-index: -1;
+}
+
+.container,
+.container-wide {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 3vw, 1.5rem);
+}
+
+.container {
+  max-width: var(--container);
+}
+
+.container-wide {
+  max-width: var(--container-wide);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.9rem, 2vw, 1.35rem);
+}
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.luxury-panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.mist-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 24%),
+    radial-gradient(circle at 70% 60%, rgba(199,161,95,0.09), transparent 20%),
+    radial-gradient(circle at 50% 100%, rgba(200,143,159,0.08), transparent 28%);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-gap);
+}
+
+.section-tight {
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+.heading-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.heading-eyebrow::before {
+  content: '';
+  inline-size: 2.25rem;
+  block-size: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.display {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 5.8rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.subtitle,
+.copy {
+  color: var(--text-soft);
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  line-height: 1.9;
+}
+
+.copy-muted {
+  color: var(--text-muted);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #fff8e7 0%, var(--gold) 52%, var(--rose) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-min-height {
+  min-height: calc(100vh - 1rem);
+}
+
+.soft-divider {
+  block-size: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+.flow-grid {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.flow-grid > * {
+  min-width: 0;
+}
+
+.reveal-up {
+  animation: revealUp 0.8s ease both;
+}
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .hide-mobile { display: none !important; }
+}
+
+@media (min-width: 768px) {
+  .hide-desktop { display: none !important; }
+}
