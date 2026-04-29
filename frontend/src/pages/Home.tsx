@@ -3,7 +3,7 @@ import type { CSSProperties, KeyboardEvent } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/apple-nafas-home.css';
 
-const WHATSAPP_URL = 'https://wa.me/200000000000';
+const WHATSAPP_URL = 'https://wa.me/21007489872?text=أريد بناء Discovery Set من Nafas';
 
 type ScentId = 'sharara' | 'ghayma' | 'dafwa' | 'zell';
 
