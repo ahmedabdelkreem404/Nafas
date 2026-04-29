@@ -26,15 +26,15 @@ export default function CinematicHeroSection({ scents }: CinematicHeroSectionPro
 
   return (
     <section
-      className="anh-section anh-hero anh-cinematic-hero"
-      data-section={SECTION_LABELS.hero}
-      data-proof="hero"
+      className="anh-section anh-cinematic-hero"
+      data-section={SECTION_LABELS.cinematic}
+      data-proof="cinematic-scents"
       data-phase={carousel.phase}
       data-active-scent={activeScent.id}
       data-autoplay={carousel.isPlaying ? 'on' : 'off'}
       data-reduced-motion={carousel.isReducedMotion ? 'true' : 'false'}
       data-scent={activeScent.id}
-      aria-labelledby="hero-title"
+      aria-labelledby="cinematic-title"
       aria-roledescription="carousel"
       aria-label="عطور نفَس الرئيسية"
       onKeyDown={carousel.handleKeyDown}
@@ -60,7 +60,7 @@ export default function CinematicHeroSection({ scents }: CinematicHeroSectionPro
         <div className="anh-cinematic-hero__title-panel">
           <div className="anh-cinematic-hero__title-stack" key={`${activeScent.id}-title`}>
             <p className="anh-kicker">Nafas eau de parfum</p>
-            <h1 id="hero-title">{activeScent.nameAr}</h1>
+            <h2 id="cinematic-title">{activeScent.nameAr}</h2>
             <p className="anh-cinematic-hero__latin">{activeScent.name}</p>
           </div>
         </div>

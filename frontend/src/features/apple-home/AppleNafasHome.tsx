@@ -3,6 +3,7 @@ import CinematicHeroSection from './components/CinematicHeroSection';
 import ComparisonSection from './components/ComparisonSection';
 import EmotionalMomentSection from './components/EmotionalMomentSection';
 import FinalCtaSection from './components/FinalCtaSection';
+import HeroSection from './components/HeroSection';
 import HighlightsSection from './components/HighlightsSection';
 import HomeRibbon from './components/HomeRibbon';
 import KeepExploringSection from './components/KeepExploringSection';
@@ -26,6 +27,7 @@ export default function AppleNafasHome() {
   return (
     <div className="apple-nafas-page" dir="rtl">
       <HomeRibbon />
+      <HeroSection scents={scents} />
       <CinematicHeroSection scents={scents} />
       <HighlightsSection highlights={highlights} scents={scents} />
       <EmotionalMomentSection scents={scents} />

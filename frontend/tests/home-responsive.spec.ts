@@ -6,6 +6,7 @@ const widths = [320, 360, 390, 430, 540, 640, 768, 820, 1024, 1180, 1366, 1440, 
 const sections = [
   'ribbon',
   'hero',
+  'cinematic-scents',
   'highlights',
   'product-viewer',
   'story-chapters',
@@ -43,7 +44,8 @@ test.describe('Apple Nafas homepage', () => {
     await gotoHome(page);
 
     await expect(page.locator('.apple-nafas-page')).toHaveCount(1);
-    await expect(page.locator('[data-section="hero"].anh-cinematic-hero')).toHaveCount(1);
+    await expect(page.locator('[data-section="hero"].anh-landing-hero')).toHaveCount(1);
+    await expect(page.locator('[data-section="cinematic-scents"].anh-cinematic-hero')).toHaveCount(1);
     await expect(page.locator('.page-home.nlp')).toHaveCount(0);
     await expect(page.locator('[class*="Bottle3D"], [class*="bottle3d"], .product-3d-viewer, .bottle-assembly-canvas')).toHaveCount(0);
     await expect(page.locator('[data-section="hero"] canvas')).toHaveCount(0);
@@ -69,7 +71,7 @@ test.describe('Apple Nafas homepage', () => {
 
   test('supports cinematic hero controls and keyboard navigation', async ({ page }) => {
     await gotoHome(page);
-    const hero = page.locator('[data-section="hero"]');
+    const hero = page.locator('[data-section="cinematic-scents"]');
 
     await expect(hero).toBeVisible();
     await expect(page.getByTestId('cinematic-hero-play-toggle')).toBeVisible();
@@ -89,6 +91,23 @@ test.describe('Apple Nafas homepage', () => {
     await page.getByTestId('cinematic-hero-play-toggle').click();
     await expect(hero).toHaveAttribute('data-autoplay', 'on');
     await expect(hero.locator('canvas, [class*="Bottle3D"], [class*="bottle3d"]')).toHaveCount(0);
+  });
+
+  test('uses Nafas CTA colors instead of Apple blue on the homepage', async ({ page }) => {
+    await gotoHome(page);
+
+    const hasAppleBlue = await page.evaluate(() => {
+      const appleBlue = ['rgb(0, 113, 227)', '#0071e3', 'rgb(0, 102, 204)', '#0066cc'];
+
+      return [...document.querySelectorAll('.apple-nafas-page .anh-button')]
+        .some((element) => {
+          const styles = window.getComputedStyle(element);
+          const paint = `${styles.backgroundColor} ${styles.backgroundImage} ${styles.color} ${styles.borderColor}`.toLowerCase();
+          return appleBlue.some((token) => paint.includes(token));
+        });
+    });
+
+    expect(hasAppleBlue).toBe(false);
   });
 
   test('supports highlights carousel controls and keyboard navigation', async ({ page }) => {
@@ -133,10 +152,9 @@ test.describe('Apple Nafas homepage', () => {
     const hero = page.locator('[data-section="hero"]');
 
     await expect(hero.locator('#hero-title')).toBeVisible();
-    await expect(hero.locator('.anh-cinematic-hero__bottle.is-active')).toBeVisible();
+    await expect(hero.locator('.anh-landing-hero__bottle')).toBeVisible();
     await expect(hero.getByRole('link', { name: 'اكتشف المجموعة' })).toBeVisible();
-    await expect(page.getByTestId('cinematic-hero-play-toggle')).toBeVisible();
-    await expect(page.getByTestId('cinematic-hero-dot-0')).toBeVisible();
+    await expect(page.locator('[data-section="cinematic-scents"] .anh-cinematic-hero__controls')).toBeVisible();
     await expect(page.locator('[data-section="product-viewer"]')).toBeVisible();
     await expect(page.locator('[data-section="comparison"] .anh-compare-card').first()).toBeVisible();
     await expectNoHorizontalOverflow(page);
@@ -155,7 +173,7 @@ test.describe('Apple Nafas homepage', () => {
   test('disables autoplay when reduced motion is requested', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await gotoHome(page);
-    const hero = page.locator('[data-section="hero"]');
+    const hero = page.locator('[data-section="cinematic-scents"]');
 
     await expect(hero).toHaveAttribute('data-reduced-motion', 'true');
     await expect(hero).toHaveAttribute('data-autoplay', 'off');
