@@ -831,6 +831,19 @@ select {
   background: rgba(255, 248, 238, 0.94);
 }
 
+body:has(.page-product) .whatsapp-float,
+body:has(.content-page) .whatsapp-float,
+body:has(.checkout-page) .whatsapp-float {
+  display: none;
+}
+
+.content-cta-bridge small,
+.content-cta-bridge h2,
+.content-cta-bridge p {
+  color: var(--nf-ink);
+  opacity: 1;
+}
+
 /* Content, auth, cart, checkout */
 .content-page {
   max-inline-size: none;
@@ -1610,6 +1623,7 @@ select {
   .content-cta-bridge {
     flex-direction: column;
     align-items: stretch;
+    gap: var(--nf-space-4);
   }
 
   .toolbar__inner,
@@ -1659,6 +1673,47 @@ select {
   .apple-nafas-page .anh-landing-hero__media {
     min-block-size: 19rem;
     border-radius: var(--nf-radius-lg);
+  }
+
+  .apple-nafas-page .anh-landing-hero {
+    gap: 0.9rem;
+    padding-block: 1.25rem 2rem !important;
+  }
+
+  .page-product {
+    padding-block-end: 6.25rem;
+  }
+
+  .mobile-buybar {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.7rem;
+    inset-block-end: max(0.55rem, env(safe-area-inset-bottom));
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--nf-line);
+    border-radius: var(--nf-radius-pill);
+    box-shadow: 0 14px 34px rgba(33, 23, 19, 0.16);
+  }
+
+  .mobile-buybar strong {
+    white-space: nowrap;
+    font-size: 0.95rem;
+  }
+
+  .mobile-buybar .n-btn {
+    min-block-size: 44px;
+    padding-inline: 0.75rem;
+  }
+
+  .checkout-page .page-head,
+  .checkout-page .form-card,
+  .checkout-page .summary-card {
+    color: var(--nf-ink);
+  }
+
+  .content-cta-bridge .n-btn {
+    margin-block-start: 0.35rem;
   }
 
   .apple-nafas-page .anh-landing-hero__copy,
