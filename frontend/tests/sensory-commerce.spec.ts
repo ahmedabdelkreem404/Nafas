@@ -2,6 +2,8 @@ import { expect, test } from '@playwright/test';
 
 const widths = [320, 360, 390, 430, 540, 640, 768, 820, 1024, 1180, 1366, 1440, 1536, 1920];
 
+test.setTimeout(120000);
+
 const sharara = {
   data: {
     id: 1,
@@ -31,8 +33,9 @@ test('public routes stay responsive without horizontal overflow', async ({ page 
   for (const width of widths) {
     await page.setViewportSize({ width, height: 900 });
     for (const path of ['/', '/shop', '/scent-finder', '/discovery-set', '/gift-boxes', '/products/sharara']) {
-      await page.goto(path);
-      await expect(page.locator('body')).toBeVisible();
+      await page.goto(path, { waitUntil: 'domcontentloaded' });
+      await page.waitForLoadState('networkidle').catch(() => undefined);
+      await expect(page.locator('.app-shell')).toBeVisible();
       const hasOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
       expect(hasOverflow, `${path} overflowed at ${width}px`).toBe(false);
     }

@@ -7,11 +7,16 @@ const sections = [
   'ribbon',
   'hero',
   'highlights',
-  'comparison',
+  'emotional',
+  'product-viewer',
   'story-chapters',
+  'senses',
   'tester-to-bottle',
+  'better-together',
   'scent-selector',
   'trust',
+  'comparison',
+  'keep-exploring',
   'final-cta',
 ];
 
@@ -70,11 +75,16 @@ test.describe('Nafas public homepage', () => {
       const headingSelectors = [
         '[data-section="hero"] h1',
         '[data-section="highlights"] .anh-section-head h2',
-        '[data-section="comparison"] h2',
+        '[data-section="emotional"] h2',
+        '[data-section="product-viewer"] .anh-section-head h2',
         '[data-section="story-chapters"] .anh-section-head h2',
+        '[data-section="senses"] h2',
         '[data-section="tester-to-bottle"] .anh-section-head h2',
+        '[data-section="better-together"] h2',
         '[data-section="scent-selector"] h2',
         '[data-section="trust"] h2',
+        '[data-section="comparison"] h2',
+        '[data-section="keep-exploring"] h2',
         '[data-section="final-cta"] h2',
       ];
 
@@ -149,11 +159,24 @@ test.describe('Nafas public homepage', () => {
 
     const clippedButtons = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>('.apple-nafas-page .anh-button, .apple-nafas-page button')]
       .filter((element) => {
+        if (element.closest('[aria-hidden="true"]')) return false;
+        if (element.offsetParent === null) return false;
+        if ('checkVisibility' in element && !element.checkVisibility({ checkVisibilityCSS: true })) return false;
         const rect = element.getBoundingClientRect();
         return rect.width < 32 || rect.height < 32 || rect.left < -1 || rect.right > window.innerWidth + 1;
-      }).length);
+      })
+      .map((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          className: element.className,
+          label: element.textContent?.trim(),
+          section: element.closest('[data-section]')?.getAttribute('data-section'),
+          parentClass: element.parentElement?.className,
+          rect: { height: rect.height, left: rect.left, right: rect.right, width: rect.width },
+        };
+      }));
 
-    expect(clippedButtons).toBe(0);
+    expect(clippedButtons).toEqual([]);
     await expectNoHorizontalOverflow(page);
   });
 

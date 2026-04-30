@@ -299,3 +299,84 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (min-width: 360px) and (max-width: 767px) {
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.55rem, 2.6vw, 0.9rem);
+  }
+
+  .product-card {
+    min-inline-size: 0;
+  }
+
+  .product-card__body,
+  .ncard__body {
+    padding: clamp(0.7rem, 2.5vw, 0.95rem);
+  }
+
+  .product-card__body h3 {
+    font-size: clamp(1rem, 4.5vw, 1.35rem);
+    line-height: 1.1;
+  }
+
+  .product-card__body p {
+    min-block-size: auto;
+    font-size: clamp(0.72rem, 3.1vw, 0.84rem);
+    line-height: 1.45;
+  }
+
+  .product-card__foot {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .product-card__add {
+    inline-size: 100%;
+    justify-content: center;
+    padding-inline: 0.55rem;
+    font-size: clamp(0.72rem, 3vw, 0.82rem);
+  }
+}
+
+@media (max-width: 359px) {
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 341px) and (max-width: 767px) {
+  .apple-nafas-page .anh-compare__grid {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    grid-template-columns: repeat(2, minmax(0, calc((100vw - 2rem - 0.8rem) / 2)));
+    justify-content: center;
+    gap: clamp(0.45rem, 2.4vw, 0.8rem);
+    direction: ltr;
+  }
+
+  .apple-nafas-page .anh-compare-card {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    direction: rtl;
+    padding: clamp(0.65rem, 2.5vw, 0.95rem);
+  }
+
+  .apple-nafas-page .anh-compare-card .anh-button {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    justify-self: stretch;
+  }
+
+  .apple-nafas-page .anh-selector__options,
+  .apple-nafas-page .anh-viewer-panel__controls,
+  .apple-nafas-page .anh-viewer-panel__tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: visible;
+  }
+}

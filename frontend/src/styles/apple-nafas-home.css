@@ -3260,6 +3260,40 @@
   .apple-nafas-page .anh-ritual-cinematic__stage {
     min-block-size: clamp(22rem, 52svh, 29rem);
   }
+
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .apple-nafas-page .anh-compare-card {
+    gap: 0.55rem;
+    padding: 0.8rem;
+    border-radius: 1.35rem;
+  }
+
+  .apple-nafas-page .anh-compare-card__visual {
+    block-size: clamp(8rem, 17vw, 11rem);
+    border-radius: 1.1rem;
+  }
+
+  .apple-nafas-page .anh-compare-card__visual .anh-bottle-visual {
+    inline-size: min(60%, 7rem);
+  }
+
+  .apple-nafas-page .anh-compare-card h3 {
+    font-size: clamp(1.25rem, 2vw, 1.8rem);
+    letter-spacing: 0;
+  }
+
+  .apple-nafas-page .anh-compare-card p,
+  .apple-nafas-page .anh-compare-card dd {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+
+  .apple-nafas-page .anh-compare-card dl {
+    gap: 0.45rem;
+  }
 }
 
 .apple-nafas-page .anh-highlight-card--gold {
@@ -3275,6 +3309,108 @@
 .apple-nafas-page .anh-selector__actions {
   justify-content: flex-start;
   margin-block-start: 1rem;
+}
+
+.apple-nafas-page.anh-commerce-page {
+  min-block-size: 100%;
+}
+
+.apple-nafas-page .anh-commerce-hero h1,
+.apple-nafas-page .anh-discovery-hero h1,
+.apple-nafas-page .anh-together h1 {
+  margin: 0;
+  max-inline-size: 11ch;
+  color: var(--anh-ink);
+  font-size: clamp(2.7rem, 7vw, 6.8rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.apple-nafas-page .anh-commerce-price {
+  display: block;
+  margin-block: 1rem;
+  color: var(--anh-brown);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+}
+
+.apple-nafas-page .anh-finder-panel {
+  align-items: center;
+}
+
+.apple-nafas-page .anh-finder-visual {
+  min-block-size: clamp(15rem, 34vw, 25rem);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: clamp(0.4rem, 2vw, 1rem);
+  border-radius: var(--anh-radius);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(201, 161, 90, 0.2), transparent 20rem),
+    linear-gradient(135deg, rgba(255, 248, 238, 0.84), rgba(239, 227, 210, 0.72));
+}
+
+.apple-nafas-page .anh-finder-visual .anh-bottle-visual:first-child {
+  inline-size: min(42vw, 15rem);
+}
+
+.apple-nafas-page .anh-finder-visual .anh-bottle-visual:last-child {
+  inline-size: min(28vw, 9rem);
+  opacity: 0.74;
+}
+
+.apple-nafas-page .anh-finder-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+}
+
+.apple-nafas-page .anh-finder-questions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.7rem, 2vw, 1rem);
+}
+
+.apple-nafas-page .anh-finder-question {
+  min-inline-size: 0;
+  padding: clamp(0.85rem, 2vw, 1.2rem);
+  border: 1px solid var(--anh-line);
+  border-radius: clamp(1rem, 2vw, 1.4rem);
+  background: rgba(255, 248, 238, 0.75);
+}
+
+.apple-nafas-page .anh-finder-question strong {
+  display: block;
+  margin-block-end: 0.75rem;
+  color: var(--anh-ink);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+}
+
+.apple-nafas-page .anh-finder-question div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.apple-nafas-page .anh-finder-result {
+  position: sticky;
+  inset-block-start: calc(var(--navh) + 1rem);
+}
+
+.apple-nafas-page .anh-discovery-mini-lineup {
+  position: absolute;
+  inset-inline: 8%;
+  inset-block-end: 8%;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: clamp(0.25rem, 1vw, 0.7rem);
+}
+
+.apple-nafas-page .anh-discovery-mini-lineup .anh-bottle-visual {
+  inline-size: min(12vw, 4.5rem);
+  filter: drop-shadow(0 1rem 1.2rem rgba(38, 29, 21, 0.2));
 }
 
 @media (max-width: 767px) {
@@ -3304,10 +3440,12 @@
   .apple-nafas-page .anh-compare__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(0.45rem, 2.4vw, 0.8rem);
+    direction: ltr;
   }
 
   .apple-nafas-page .anh-compare-card {
     min-inline-size: 0;
+    direction: rtl;
     border-radius: clamp(1rem, 4vw, 1.35rem);
     padding: clamp(0.65rem, 2.5vw, 0.95rem);
   }
@@ -3336,14 +3474,64 @@
 
   .apple-nafas-page .anh-compare-card .anh-button {
     inline-size: 100%;
+    justify-self: stretch;
     min-block-size: 42px;
     padding-inline: 0.55rem;
     font-size: clamp(0.72rem, 3vw, 0.82rem);
   }
 
+  .apple-nafas-page .anh-button,
+  .apple-nafas-page button {
+    max-inline-size: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .apple-nafas-page .anh-dots button {
+    inline-size: 2.4rem;
+    min-inline-size: 2.4rem;
+  }
+
+  .apple-nafas-page .anh-selector__options,
+  .apple-nafas-page .anh-viewer-panel__controls,
+  .apple-nafas-page .anh-viewer-panel__tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: visible;
+  }
+
+  .apple-nafas-page .anh-selector__options button,
+  .apple-nafas-page .anh-viewer-panel__controls button,
+  .apple-nafas-page .anh-viewer-panel__tabs button {
+    inline-size: 100%;
+    min-inline-size: 0;
+    min-block-size: 42px;
+    justify-content: center;
+  }
+
   .apple-nafas-page .anh-explore__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(0.5rem, 2.4vw, 0.85rem);
+  }
+
+  .apple-nafas-page .anh-finder-grid,
+  .apple-nafas-page .anh-finder-questions {
+    grid-template-columns: 1fr;
+  }
+
+  .apple-nafas-page .anh-finder-result {
+    position: static;
+  }
+
+  .apple-nafas-page .anh-commerce-hero h1,
+  .apple-nafas-page .anh-discovery-hero h1,
+  .apple-nafas-page .anh-together h1 {
+    max-inline-size: 12ch;
+    font-size: clamp(2.1rem, 10vw, 3.2rem);
+  }
+
+  .apple-nafas-page .anh-discovery-mini-lineup .anh-bottle-visual {
+    inline-size: min(12vw, 3.2rem);
   }
 }
 
@@ -3351,6 +3539,21 @@
   .apple-nafas-page .anh-compare__grid,
   .apple-nafas-page .anh-explore__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 341px) and (max-width: 767px) {
+  .apple-nafas-page .anh-compare__grid {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    grid-template-columns: repeat(2, minmax(0, calc((100vw - 2rem - 0.8rem) / 2)));
+    justify-content: center;
+  }
+
+  .apple-nafas-page .anh-compare-card,
+  .apple-nafas-page .anh-compare-card .anh-button {
+    inline-size: 100%;
+    max-inline-size: 100%;
   }
 }
 

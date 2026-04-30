@@ -1,6 +1,4 @@
 ﻿/* frontend/src/styles/theme.css */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap');
-
 :root {
   color-scheme: dark;
   --bg: #080709;
