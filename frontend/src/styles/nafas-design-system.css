@@ -599,6 +599,13 @@ select {
   gap: 0.55rem;
 }
 
+.inline-link,
+.text-button {
+  min-block-size: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+}
+
 .product-grid,
 .atelier-grid {
   display: grid;

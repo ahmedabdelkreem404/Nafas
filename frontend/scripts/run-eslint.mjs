@@ -12,7 +12,7 @@ const ignored = new Set([
   'src/components/PerfumeBottle3D.tsx',
   'src/components/Product3DViewer.tsx',
 ]);
-const chunkSize = 1;
+const chunkSize = 12;
 
 function normalize(path) {
   return path.replaceAll('\\', '/');
@@ -48,6 +48,7 @@ const files = [
 
 for (let index = 0; index < files.length; index += chunkSize) {
   const chunk = files.slice(index, index + chunkSize);
+  console.log(`Linting ${index + 1}-${Math.min(index + chunkSize, files.length)} of ${files.length}`);
   const result = spawnSync(process.execPath, [eslintBin, '--no-warn-ignored', ...chunk], {
     cwd: root,
     shell: false,

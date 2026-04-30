@@ -1,0 +1,771 @@
+{
+  "generatedAt": "2026-04-30T06:39:28.920Z",
+  "screenshotDir": "D:\\Nafas\\frontend\\artifacts\\readiness-20260430",
+  "routeMetrics": [
+    {
+      "path": "/?lang=ar",
+      "width": 1440,
+      "height": 920,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/shop?lang=ar",
+      "width": 1440,
+      "height": 920,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/products/sharara?lang=ar",
+      "width": 1440,
+      "height": 920,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/login",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/shop?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/shop?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/products/sharara?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/products/sharara?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/products/ghayma?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/products/ghayma?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/products/dafwa?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/products/dafwa?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/products/zell?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/products/zell?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/favorites?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/favorites?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/cart?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/cart?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/checkout?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/checkout?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/login?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/login?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/register?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/register?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/account?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/account?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/account/orders?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/account/orders?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/about?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/about?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/faq?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/faq?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/quality?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/quality?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/privacy-policy?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/privacy-policy?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/return-policy?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/return-policy?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/terms?lang=ar",
+      "width": 390,
+      "height": 900,
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/terms?lang=en",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/dashboard",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/dashboard",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/products",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/products",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/products/create",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/products/create",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/orders",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/orders",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/coupons",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/coupons",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/content",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/content",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/quality",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/quality",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/formulas",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/formulas",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/batches",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/batches",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/inventory",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/inventory",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/customers",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/customers",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/analytics",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/analytics",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/settings",
+      "width": 390,
+      "height": 900,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    },
+    {
+      "path": "/admin/settings",
+      "width": 1440,
+      "height": 920,
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0
+    }
+  ],
+  "apiResponseCount": 294,
+  "apiStatuses": [
+    200
+  ],
+  "apiSample": [
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara/reviews",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara/reviews",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/auth/login",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/admin/dashboard",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara/reviews",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara/reviews",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/cart",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara/reviews",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8001/api/products/sharara/reviews",
+      "status": 200
+    }
+  ],
+  "bottle3D": {
+    "chunkBeforeClicking3D": 0,
+    "chunkAfterClicking3D": 1,
+    "chunks": [
+      {
+        "url": "http://localhost:5173/src/components/Bottle3D.tsx?t=1777530887717",
+        "status": 200,
+        "page": "http://localhost:5173/products/sharara?lang=ar"
+      }
+    ]
+  },
+  "consoleErrors": [],
+  "pageErrors": [],
+  "requestFailures": [
+    {
+      "url": "http://localhost:8001/api/admin/dashboard",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "serverErrors": [],
+  "overflowFailures": [],
+  "tapTargetWarnings": [],
+  "screenshots": [
+    "admin-dashboard-1440.png",
+    "admin-dashboard-390.png",
+    "admin-sidebar-mobile-390.png",
+    "cart-drawer-mobile-390.png",
+    "cart-page-mobile-390.png",
+    "checkout-mobile-390.png",
+    "content-faq-1440.png",
+    "content-privacy-policy-1440.png",
+    "content-return-policy-1440.png",
+    "content-terms-1440.png",
+    "home-1024-en.png",
+    "home-1366-ar.png",
+    "home-1440-ar.png",
+    "home-1536-en.png",
+    "home-1920-en.png",
+    "home-320-ar.png",
+    "home-360-ar.png",
+    "home-390-ar.png",
+    "home-430-en.png",
+    "home-768-ar.png",
+    "home-820-ar.png",
+    "mobile-drawer-390.png",
+    "navbar-content-1440.png",
+    "navbar-home-1440.png",
+    "navbar-product-1440.png",
+    "navbar-shop-1440.png",
+    "order-confirmation-mobile-390.png",
+    "product-dafwa-1440.png",
+    "product-ghayma-1440.png",
+    "product-sharara-1440.png",
+    "product-zell-1440.png"
+  ]
+}

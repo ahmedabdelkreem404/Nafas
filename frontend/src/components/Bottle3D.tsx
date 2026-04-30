@@ -1,6 +1,6 @@
 import { Suspense, useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment, Float, MeshTransmissionMaterial, RoundedBox } from '@react-three/drei';
+import { Float, MeshTransmissionMaterial, RoundedBox } from '@react-three/drei';
 import * as THREE from 'three';
 
 const MAX_ROTATION = THREE.MathUtils.degToRad(10);
@@ -25,18 +25,13 @@ function BottleMesh({ accent = 'gold' }: { accent?: string }) {
     }
 
     const targetY = THREE.MathUtils.clamp(
-      Math.sin(state.clock.elapsedTime * 0.4) * 0.08 + state.mouse.x * 0.07,
-      -MAX_ROTATION,
-      MAX_ROTATION,
-    );
-    const targetX = THREE.MathUtils.clamp(
-      state.mouse.y * -0.06,
+      Math.sin(state.clock.elapsedTime * 0.4) * 0.08,
       -MAX_ROTATION,
       MAX_ROTATION,
     );
 
     bottleRef.current.rotation.y = targetY;
-    bottleRef.current.rotation.x = targetX;
+    bottleRef.current.rotation.x = 0;
   });
 
   return (
@@ -101,7 +96,6 @@ export default function Bottle3D({ accent = 'gold', className, height = '100%' }
           <Float speed={1.4} rotationIntensity={0.02} floatIntensity={0.18}>
             <BottleMesh accent={accent} />
           </Float>
-          <Environment preset="night" />
         </Suspense>
       </Canvas>
     </div>
