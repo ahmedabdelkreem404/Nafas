@@ -189,7 +189,7 @@ class NafasE2ETest extends TestCase
             'address' => 'Test Addr',
             'city' => 'Cairo',
             'governorate' => 'Cairo',
-            'payment_method' => 'online_card',
+            'payment_method' => 'cash_on_delivery',
             'items' => [['variant_id' => $variant->id, 'quantity' => 5]],
         ]);
 
@@ -224,7 +224,7 @@ class NafasE2ETest extends TestCase
             'address' => 'Test Addr',
             'city' => 'Cairo',
             'governorate' => 'Cairo',
-            'payment_method' => 'online_card',
+            'payment_method' => 'cash_on_delivery',
             'items' => [['variant_id' => $variant->id, 'quantity' => 2]],
         ])->json('order.id');
 

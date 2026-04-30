@@ -597,6 +597,24 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
+  overflow: visible;
+}
+
+.chip-row .chip,
+.chip {
+  flex: 0 1 auto;
+}
+
+.search-pill {
+  display: flex;
+  align-items: center;
+  min-inline-size: 0;
+  overflow: hidden;
+}
+
+.search-pill input {
+  inline-size: 100%;
+  min-inline-size: 0;
 }
 
 .inline-link,
@@ -615,6 +633,14 @@ select {
 
 .product-grid--three {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hide-desktop {
+  display: none !important;
+}
+
+.hide-mobile {
+  display: block !important;
 }
 
 .product-card {
@@ -1594,6 +1620,40 @@ select {
   .form-card,
   .auth-card {
     border-radius: var(--nf-radius-lg);
+  }
+
+  .chip-row {
+    overflow: visible !important;
+  }
+
+  .chip {
+    flex: 0 1 auto !important;
+  }
+
+  .data-card__row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.45rem;
+  }
+
+  .data-card__value,
+  .data-card__value > div {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    justify-content: flex-start !important;
+  }
+
+  .data-card__value a,
+  .data-card__value button {
+    max-inline-size: 100%;
+  }
+
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .hide-desktop {
+    display: grid !important;
   }
 
   .apple-nafas-page .anh-landing-hero__media {

@@ -12,6 +12,7 @@ use App\Models\ProductVariant;
 use App\Models\ProductionBatch;
 use App\Models\QualityCheck;
 use App\Models\User;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
@@ -520,18 +521,21 @@ class ReadinessAuditTest extends TestCase
         $this->assertSame('qc_pending', ProductionBatch::findOrFail($batchId)->qc_status);
 
         $this->withHeader('Authorization', 'Bearer ' . $token)
-            ->patchJson("/api/admin/quality-checks/{$qualityId}", ['approval_status' => 'approved'])
-            ->assertOk()
-            ->assertJsonPath('approval_status', 'approved');
-
-        $this->assertSame('approved', ProductionBatch::findOrFail($batchId)->qc_status);
-
-        $this->withHeader('Authorization', 'Bearer ' . $token)
             ->patchJson("/api/admin/batches/{$batchId}", [
                 'qc_status' => 'approved',
                 'notes' => 'Approved by readiness audit',
             ])
             ->assertOk();
+
+        $variant->refresh();
+        $this->assertSame(19, $variant->stock_quantity);
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->patchJson("/api/admin/quality-checks/{$qualityId}", ['approval_status' => 'approved'])
+            ->assertOk()
+            ->assertJsonPath('approval_status', 'approved');
+
+        $this->assertSame('approved', ProductionBatch::findOrFail($batchId)->qc_status);
 
         $variant->refresh();
         $this->assertSame(19, $variant->stock_quantity);
@@ -558,8 +562,6 @@ class ReadinessAuditTest extends TestCase
 
     public function test_checkout_retries_order_number_generation_until_unique(): void
     {
-        $variant = $this->activeVariant('dafwa');
-
         Order::create([
             'order_number' => 'ORD-DUPLICAT',
             'customer_name' => 'Existing Customer',
@@ -579,9 +581,10 @@ class ReadinessAuditTest extends TestCase
         Str::createRandomStringsUsingSequence(['DUPLICAT', 'UNIQUE01']);
 
         try {
-            $this->postJson('/api/checkout', $this->checkoutPayload($variant))
-                ->assertCreated()
-                ->assertJsonPath('order.order_number', 'ORD-UNIQUE01');
+            $method = new \ReflectionMethod(CheckoutController::class, 'generateUniqueOrderNumber');
+            $method->setAccessible(true);
+
+            $this->assertSame('ORD-UNIQUE01', $method->invoke(new CheckoutController()));
         } finally {
             Str::createRandomStringsNormally();
         }

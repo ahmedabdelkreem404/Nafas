@@ -1,0 +1,427 @@
+{
+  "generatedAt": "2026-04-30T07:31:35.192Z",
+  "frontendBase": "http://localhost:5173",
+  "apiBase": "http://127.0.0.1:8001/api",
+  "screenshotDir": "D:\\Nafas\\frontend\\artifacts\\final-acceptance-20260430",
+  "screenshotCount": 27,
+  "screenshots": [
+    "admin-dashboard-1440.png",
+    "admin-dashboard-390.png",
+    "admin-sidebar-mobile-390.png",
+    "cart-drawer-mobile-390.png",
+    "checkout-mobile-390.png",
+    "faq-1440.png",
+    "home-1024-en.png",
+    "home-1440-ar.png",
+    "home-1920-en.png",
+    "home-390-ar.png",
+    "home-430-en.png",
+    "home-768-ar.png",
+    "navbar-home-1440.png",
+    "navbar-product-1440.png",
+    "navbar-shop-1440.png",
+    "navbar-terms-1440.png",
+    "order-confirmation-mobile-390.png",
+    "privacy-1440.png",
+    "product-after-3d-click-1440.png",
+    "product-dafwa-1440.png",
+    "product-ghayma-1440.png",
+    "product-initial-no-3d-1440.png",
+    "product-sharara-1440.png",
+    "product-zell-1440.png",
+    "quality-1440.png",
+    "shop-1440-en.png",
+    "terms-1440.png"
+  ],
+  "apiResponseCount": 231,
+  "apiStatuses": [
+    200,
+    201
+  ],
+  "apiFailures": [],
+  "requestFailures": [],
+  "navigationAborts": [
+    {
+      "url": "http://localhost:5173/assets/stock/optimized/product-perfume-closeup.webp",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:5173/assets/stock/optimized/fragrance-spray-moment.webp",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:5173/assets/stock/optimized/hero-perfume-dark.webp",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:8001/api/admin/dashboard",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:8001/api/admin/dashboard",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:5173/assets/products/nada-visual.webp",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:5173/assets/stock/optimized/shop-perfume-black.webp",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "bottle3D": {
+    "chunkCounts": {
+      "home": 0,
+      "shop": 0,
+      "productInitial": 0,
+      "after3DClick": 1
+    },
+    "requests": [
+      {
+        "url": "http://localhost:5173/src/components/Bottle3D.tsx?t=1777530887717",
+        "status": 200,
+        "page": "http://localhost:5173/products/sharara?lang=en"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/@react-three_fiber.js?v=d53357f2",
+        "status": 200,
+        "page": "http://localhost:5173/products/sharara?lang=en"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/three.js?v=d53357f2",
+        "status": 200,
+        "page": "http://localhost:5173/products/sharara?lang=en"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/react-three-fiber.esm-Y7l0yKNu.js?v=d53357f2",
+        "status": 200,
+        "page": "http://localhost:5173/products/sharara?lang=en"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/@react-three_drei.js?v=d53357f2",
+        "status": 200,
+        "page": "http://localhost:5173/products/sharara?lang=en"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/three.module-cLrRfqXO.js?v=d53357f2",
+        "status": 200,
+        "page": "http://localhost:5173/products/sharara?lang=en"
+      }
+    ]
+  },
+  "overflowFailures": [],
+  "tapTargetWarnings": [],
+  "metrics": [
+    {
+      "route": "/?lang=ar",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/?lang=ar",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/shop?lang=en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/shop?lang=en",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/products/sharara?lang=ar",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/products/sharara?lang=ar",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/products/ghayma?lang=en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/products/ghayma?lang=en",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/products/dafwa?lang=ar",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/products/dafwa?lang=ar",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/products/zell?lang=en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/products/zell?lang=en",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/checkout?lang=ar",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/checkout?lang=ar",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/terms?lang=en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/terms?lang=en",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/privacy-policy?lang=en",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/privacy-policy?lang=en",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "ltr",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/faq?lang=ar",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/faq?lang=ar",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/quality?lang=ar",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/quality?lang=ar",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/admin/dashboard",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/admin/dashboard",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/admin/products",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/admin/products",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/admin/orders",
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    },
+    {
+      "route": "/admin/orders",
+      "viewport": {
+        "width": 1440,
+        "height": 920
+      },
+      "dir": "rtl",
+      "overflow": 0,
+      "tinyTargets": 0,
+      "title": "Nafas — The Essence of Presence"
+    }
+  ]
+}
