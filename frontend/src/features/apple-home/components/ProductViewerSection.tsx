@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import { Link } from 'react-router-dom';
 import { useLocale } from '../../../context/LocaleContext';
 import { SECTION_LABELS, viewerTabs } from '../constants';
 import { appleHomeCopy, scentCopy, text, viewerTabCopy } from '../data/appleHomeCopy';
@@ -61,7 +62,7 @@ export default function ProductViewerSection({ scents }: ProductViewerSectionPro
                 </button>
               ))}
             </div>
-            <a className="anh-button anh-button--primary" href="#tester-path">{text(copy.cta, locale)}</a>
+            <Link className="anh-button anh-button--primary" to={`/products/${viewer.activeScent.id}`}>{text(copy.cta, locale)}</Link>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ export default function FinalCtaSection() {
     <section className="anh-final" data-section={SECTION_LABELS.final} aria-labelledby="final-title">
       <h2 id="final-title">{text(copy.title, locale)}</h2>
       <p>{text(copy.body, locale)}</p>
-      <a className="anh-button anh-button--primary" href="#tester-path">{text(copy.cta, locale)}</a>
+      <a className="anh-button anh-button--primary" href="/scent-finder">{text(copy.cta, locale)}</a>
     </section>
   );
 }

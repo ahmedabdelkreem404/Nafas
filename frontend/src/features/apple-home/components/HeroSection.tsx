@@ -37,7 +37,7 @@ export default function HeroSection({ scents }: HeroSectionProps) {
           <p className="anh-landing-hero__lead">{text(copy.lead, locale)}</p>
           <div className="anh-actions">
             <a className="anh-button anh-button--primary" href="#choose">{text(appleHomeCopy.ritual.primaryCta, locale)}</a>
-            <a className="anh-button anh-button--secondary" href="#tester-path">{text(appleHomeCopy.ritual.secondaryCta, locale)}</a>
+            <a className="anh-button anh-button--secondary" href="/discovery-set">{text(appleHomeCopy.ritual.secondaryCta, locale)}</a>
           </div>
         </div>
 

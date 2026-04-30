@@ -9,7 +9,7 @@ export default function HomeRibbon() {
   return (
     <section className="anh-ribbon" data-section={SECTION_LABELS.ribbon} aria-label={text(copy.aria, locale)}>
       <p>{text(copy.body, locale)}</p>
-      <a href="#tester-path">{text(copy.cta, locale)}</a>
+      <a href="/discovery-set">{text(copy.cta, locale)}</a>
     </section>
   );
 }

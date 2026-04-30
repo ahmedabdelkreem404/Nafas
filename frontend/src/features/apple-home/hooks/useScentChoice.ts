@@ -7,11 +7,11 @@ export function useScentChoice(scents: Scent[], locale: Locale) {
   const [selectedChoice, setSelectedChoice] = useState<ChoiceId>('discovery');
   const recommendation = useMemo(() => {
     if (selectedChoice === 'discovery') {
-      return 'Discovery Mini';
+      return locale === 'ar' ? 'مجموعة التجربة' : 'Discovery Set';
     }
 
     const scent = scents.find((item) => item.id === selectedChoice);
-    return scent ? text(scentCopy[scent.id].name, locale) : 'Discovery Mini';
+    return scent ? text(scentCopy[scent.id].name, locale) : (locale === 'ar' ? 'مجموعة التجربة' : 'Discovery Set');
   }, [locale, scents, selectedChoice]);
 
   return {

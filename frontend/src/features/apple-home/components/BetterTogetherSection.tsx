@@ -19,7 +19,7 @@ export default function BetterTogetherSection({ featuredScent }: BetterTogetherS
           <p className="anh-kicker">{text(copy.kicker, locale)}</p>
           <h2 id="together-title">{text(copy.title, locale)}</h2>
           <p>{text(copy.body, locale)}</p>
-          <a className="anh-button anh-button--primary" href="#tester-path">{text(copy.cta, locale)}</a>
+          <a className="anh-button anh-button--primary" href="/discovery-set">{text(copy.cta, locale)}</a>
         </div>
         <div className="anh-together__visual" aria-hidden="true">
           <img src="/assets/stock/optimized/hero-perfume-fabric.webp" alt="" loading="lazy" decoding="async" />

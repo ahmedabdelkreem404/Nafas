@@ -7,26 +7,26 @@ export const text = <T,>(value: Localized<T>, locale: Locale): T => value[locale
 
 export const appleHomeCopy = {
   ribbon: {
-    aria: { ar: 'إعلان نفَس', en: 'Nafas announcement' },
+    aria: { ar: 'إعلان نفس', en: 'Nafas announcement' },
     body: {
-      ar: 'اكتشف مجموعة نفَس الأولى: أربع روائح، أربع حالات مزاجية، وتجربة تستر قبل اختيار الزجاجة.',
-      en: 'Discover the first Nafas collection: four scent moods, tester-first discovery, and a calmer way to choose.',
+      ar: 'مجموعة نفس الأولى كاملة الآن: ست روائح، مجموعة تجربة، واختيار أهدأ قبل الزجاجة.',
+      en: 'The first Nafas collection is here: six scents, a discovery set, and a calmer way to choose.',
     },
-    cta: { ar: 'ابدأ بالتستر', en: 'Start with testers' },
+    cta: { ar: 'جرّب قبل ما تختار', en: 'Try before choosing' },
   },
   ritual: {
-    aria: { ar: 'طقس نفَس السينمائي', en: 'Nafas cinematic ritual' },
-    kicker: { ar: 'طقس نفَس', en: 'Nafas ritual' },
+    aria: { ar: 'طقس نفس السينمائي', en: 'Nafas cinematic ritual' },
+    kicker: { ar: 'دار نفس', en: 'Maison Nafas' },
     moment: { ar: 'لحظة الرشة', en: 'First spray' },
-    primaryCta: { ar: 'اكتشف العطور', en: 'Shop the collection' },
-    secondaryCta: { ar: 'جرّب التستر', en: 'Start with testers' },
+    primaryCta: { ar: 'تسوق الكولكشن', en: 'Shop the collection' },
+    secondaryCta: { ar: 'مجموعة التجربة', en: 'Discovery Set' },
     play: { ar: 'تشغيل العرض التلقائي', en: 'Play carousel' },
     pause: { ar: 'إيقاف العرض التلقائي', en: 'Pause carousel' },
     select: { ar: 'اعرض', en: 'Show' },
   },
   highlights: {
     kicker: { ar: 'لمحات المجموعة', en: 'Collection highlights' },
-    title: { ar: 'اكتشف نفَسك من أول رشة.', en: 'Meet the mood behind every bottle.' },
+    title: { ar: 'اكتشف نفسك من أول رشة.', en: 'Meet the mood behind every bottle.' },
     carousel: { ar: 'عرض لمحات العطور', en: 'Highlights carousel' },
     controls: { ar: 'أدوات عرض اللمحات', en: 'Highlight controls' },
     slides: { ar: 'شرائح اللمحات', en: 'Highlight slides' },
@@ -35,8 +35,8 @@ export const appleHomeCopy = {
     kicker: { ar: 'لحظة العلامة', en: 'Brand moment' },
     title: { ar: 'رائحة تشبه حضورك.', en: 'A scent that feels close to you.' },
     body: {
-      ar: 'أربع روائح واضحة، من شرارة اللافتة إلى غيمة الناعمة، ومن دفوة الدافئة إلى ظلّ الهادئ.',
-      en: 'Four clear signatures: bright Sharara, soft Ghayma, warm Dafwa, and quiet Zell.',
+      ar: 'ست روائح واضحة من نفس: شرارة، مدار، أثر، برق، ندى، وغيمة. كل واحدة لها مود، لون، وحضور.',
+      en: 'Six Nafas signatures: Sharara, Madar, Athar, Barq, Nada, and Ghayma. Each has its own mood, color, and presence.',
     },
   },
   viewer: {
@@ -44,7 +44,7 @@ export const appleHomeCopy = {
     title: { ar: 'خذ نظرة أقرب.', en: 'Look closer before you choose.' },
     scentControls: { ar: 'اختيار العطر', en: 'Choose a scent' },
     details: { ar: 'تفاصيل العطر', en: 'Scent details' },
-    cta: { ar: 'ابدأ بتستر', en: 'Start with a tester' },
+    cta: { ar: 'شاهد التفاصيل', en: 'View details' },
     visualDirection: { ar: 'الاتجاه البصري', en: 'Visual direction' },
   },
   chapters: {
@@ -52,51 +52,51 @@ export const appleHomeCopy = {
     title: { ar: 'رحلة الرشة.', en: 'The rhythm of a fragrance.' },
   },
   senses: {
-    kicker: { ar: 'وليمة للحواس', en: 'A feast for the senses' },
+    kicker: { ar: 'من الرشة للأثر', en: 'From spray to trail' },
     title: { ar: 'من الافتتاحية إلى الأثر.', en: 'From opening to trail.' },
   },
   flow: {
-    kicker: { ar: 'من التستر إلى الزجاجة', en: 'From tester to bottle' },
-    title: { ar: 'ابدأ بتستر، واختر بثقة.', en: 'Try first, then commit with confidence.' },
-    primaryCta: { ar: 'ابنِ مجموعة التستر', en: 'Build a tester set' },
-    whatsappCta: { ar: 'اطلب عبر واتساب', en: 'Order on WhatsApp' },
+    kicker: { ar: 'مجموعة التجربة', en: 'Discovery Set' },
+    title: { ar: 'ابدأ بتستر، واختر بدقة.', en: 'Try first, then choose with clarity.' },
+    primaryCta: { ar: 'اطلب مجموعة التجربة', en: 'Order Discovery Set' },
+    whatsappCta: { ar: 'اسألنا على واتساب', en: 'Ask on WhatsApp' },
     sizesCta: { ar: 'شاهد العطور', en: 'Compare scents' },
     primaryMessage: {
-      ar: 'أريد بناء مجموعة تستر من Nafas',
-      en: 'I want to build a Nafas tester set',
+      ar: 'أريد طلب مجموعة التجربة من نفس',
+      en: 'I want to order the Nafas Discovery Set',
     },
     orderMessage: {
-      ar: 'أريد الطلب عبر واتساب من Nafas',
-      en: 'I want to order Nafas through WhatsApp',
+      ar: 'أريد مساعدة في اختيار عطر من نفس',
+      en: 'I want help choosing a Nafas perfume',
     },
   },
   hero: {
-    kicker: { ar: 'دار نفَس', en: 'Maison Nafas' },
-    title: { ar: 'نفَس قريب منك.', en: 'Nafas, worn close.' },
+    kicker: { ar: 'دار نفس', en: 'Maison Nafas' },
+    title: { ar: 'كل نفس... بيحكي عنك', en: 'Every breath tells your story.' },
     lead: {
-      ar: 'أربع روائح محلية بهوية هادئة: شرارة، غيمة، دفوة، وظلّ. ابدأ بتستر صغير واختر الرائحة التي تشبه حضورك.',
-      en: 'Four local perfumes with a calm, premium identity. Begin with testers, then choose the bottle that fits your presence.',
+      ar: 'عطور مصممة بعناية، متعتقة، ومتوازنة. ابدأ بشرارة أو جرّب الست روائح في مجموعة التجربة.',
+      en: 'Carefully composed, matured, and balanced perfumes. Begin with Sharara or explore all six through the Discovery Set.',
     },
-    caption: { ar: 'ماء عطر نفَس', en: 'Nafas eau de parfum' },
+    caption: { ar: 'ماء عطر نفس', en: 'Nafas eau de parfum' },
   },
   together: {
-    kicker: { ar: 'أفضل معاً', en: 'Better together' },
-    title: { ar: 'اكتشاف هادئ، ثم زجاجتك.', en: 'Discover calmly, then choose the bottle.' },
+    kicker: { ar: 'جرّب قبل ما تختار', en: 'Try before choosing' },
+    title: { ar: 'مجموعة التجربة جزء من الرحلة.', en: 'Discovery is part of the ritual.' },
     body: {
-      ar: 'ابدأ بمجموعة تستر صغيرة، ارتدِ الرائحة في يومك، ثم اختر الزجاجة أو الهدية الأقرب لمودك.',
-      en: 'Start with a small tester set, wear each scent through your day, then choose the bottle or gift that feels right.',
+      ar: 'ست عينات صغيرة تساعدك تلبس كل عطر في يومك قبل اختيار الزجاجة الأقرب لحضورك.',
+      en: 'Six small samples let you wear every scent through your day before choosing the bottle that fits your presence.',
     },
-    cta: { ar: 'ابدأ بالمجموعة', en: 'Start the set' },
+    cta: { ar: 'اطلب مجموعة التجربة', en: 'Order Discovery Set' },
   },
   selector: {
-    kicker: { ar: 'اختيار موجه', en: 'Guided choice' },
+    kicker: { ar: 'اختيار العطر', en: 'Scent finder' },
     title: { ar: 'اختيار العطر أسهل.', en: 'Find your Nafas faster.' },
     body: {
-      ar: 'اختر المود الأقرب لك، أو ابدأ بمجموعة التستر إذا كنت ما زلت محتاراً.',
-      en: 'Pick the mood closest to you, or begin with testers if you want to explore first.',
+      ar: 'اختار المود الأقرب لك هنا، أو ادخل لاكتشاف عطرك بخطوات أهدأ وتوصية أوضح.',
+      en: 'Choose a mood here, or open the guided finder for a clearer recommendation.',
     },
     options: { ar: 'اختيار المود', en: 'Choose a mood' },
-    result: { ar: 'اقتراح نفَس', en: 'Nafas suggestion' },
+    result: { ar: 'اقتراح نفس', en: 'Nafas suggestion' },
   },
   trust: {
     kicker: { ar: 'ثقة بلا مبالغة', en: 'Trust, without exaggeration' },
@@ -104,7 +104,7 @@ export const appleHomeCopy = {
   },
   comparison: {
     kicker: { ar: 'ساعدني أختار', en: 'Help me choose' },
-    title: { ar: 'اختر نفَسك.', en: 'Choose your Nafas.' },
+    title: { ar: 'اختر نفسك.', en: 'Choose your Nafas.' },
     mood: { ar: 'المود', en: 'Mood' },
     bestFor: { ar: 'يناسب', en: 'Best for' },
     entry: { ar: 'نقطة البداية', en: 'Entry point' },
@@ -114,15 +114,15 @@ export const appleHomeCopy = {
   explore: {
     kicker: { ar: 'استمر في الرحلة', en: 'Keep exploring' },
     title: { ar: 'كمّل الرحلة.', en: 'Keep exploring Nafas.' },
-    whatsappMessage: { ar: 'أريد التواصل مع Nafas', en: 'I want to contact Nafas' },
+    whatsappMessage: { ar: 'أريد التواصل مع نفس', en: 'I want to contact Nafas' },
   },
   final: {
-    title: { ar: 'نفَس قريب منك.', en: 'Nafas, worn close.' },
+    title: { ar: 'نفس قريب منك.', en: 'Nafas, worn close.' },
     body: {
-      ar: 'ابدأ بتستر صغير، ودع الرائحة تختار سرعتها على جلدك.',
-      en: 'Start with a tester and let each perfume unfold at its own pace on your skin.',
+      ar: 'ابدأ بعطر واحد أو بمجموعة التجربة، ودع الرائحة تختار سرعتها على جلدك.',
+      en: 'Start with one bottle or the Discovery Set, and let each perfume unfold at its own pace.',
     },
-    cta: { ar: 'اطلب مجموعة التستر', en: 'Order the tester set' },
+    cta: { ar: 'اكتشف عطرك', en: 'Find your scent' },
   },
 } as const;
 
@@ -143,70 +143,86 @@ export const scentCopy: Record<ScentId, {
   sharara: {
     name: { ar: 'شرارة', en: 'Sharara' },
     line: { ar: 'أول رشة تلفت، وأثر يفضل.', en: 'A bright first spark with a darker trail.' },
-    mood: { ar: 'فريش / حار / مسكي', en: 'Fresh / Spicy / Musky' },
-    aura: { ar: 'أسود ونحاس دافئ', en: 'Black and copper amber' },
-    heroDescription: {
-      ar: 'شرارة معمولة للحضور السريع: بداية فريش، حرارة هادئة، ومسك يفضل قريباً من الجلد.',
-      en: 'Sharara is built for a confident entrance: fresh lift, quiet heat, and dark musk close to skin.',
-    },
-    bestFor: { ar: 'حضور واضح من أول لحظة.', en: 'A clear first impression.' },
-    notes: { ar: 'برغموت، فلفل وردي، زعفران، ومسك داكن.', en: 'Bergamot, pink pepper, saffron, dark musk.' },
-    bottle: { ar: 'أسود مطفي مع دفء نحاسي.', en: 'Matte black with a warm copper accent.' },
-    sizes: { ar: 'ابدأ بتستر، ثم اختر حجم السفر أو الزجاجة الكاملة.', en: 'Start with a tester, then move to travel or full bottle.' },
+    mood: { ar: 'فريش / حار / مسكي داكن', en: 'Fresh / Spicy / Dark musk' },
+    aura: { ar: 'أسود مطفي ونحاس دافئ', en: 'Matte black and copper' },
+    heroDescription: { ar: 'شرارة حضور سريع: بداية فريش، حرارة هادية، ومسك داكن قريب من الجلد.', en: 'Sharara opens fresh, warms quietly, and leaves a dark musky trail.' },
+    bestFor: { ar: 'حضور رجالي واضح من أول لحظة.', en: 'A clear masculine first impression.' },
+    notes: { ar: 'فريش، توابل هادئة، زعفران، ومسك داكن.', en: 'Fresh notes, quiet spice, saffron, dark musk.' },
+    bottle: { ar: 'أسود مطفي مع دفء نحاسي.', en: 'Matte black with a copper glow.' },
+    sizes: { ar: 'ابدأ بمجموعة التجربة، ثم اختار 30ml أو 50ml.', en: 'Start with the Discovery Set, then choose 30ml or 50ml.' },
     gift: { ar: 'اختيار قوي لشخص يحب الروائح اللافتة.', en: 'A strong gift for someone who likes noticeable scents.' },
-    usage: { ar: 'نهار جريء أو بداية مساء.', en: 'Bold daytime wear or the start of an evening.' },
-    entry: { ar: 'تستر أولاً، ثم زجاجة كاملة.', en: 'Tester first, then full bottle.' },
+    usage: { ar: 'نهار جريء أو بداية مساء.', en: 'Bold daytime wear or early evening.' },
+    entry: { ar: 'العطر البطل في الكولكشن.', en: 'The hero scent of the collection.' },
+  },
+  madar: {
+    name: { ar: 'مدار', en: 'Madar' },
+    line: { ar: 'فريش يدور معاك طول اليوم.', en: 'Fresh enough to move with your day.' },
+    mood: { ar: 'فريش / خشبي / رياضي', en: 'Fresh / Woody / Sporty' },
+    aura: { ar: 'أزرق داكن وفضي', en: 'Dark blue and silver' },
+    heroDescription: { ar: 'مدار فريش وخشبي، مناسب ليوم طويل وحركة كتير من غير ضوضاء.', en: 'Madar is clean, woody, and built for active everyday wear.' },
+    bestFor: { ar: 'روتين يومي فريش ورجالي.', en: 'Fresh masculine daily wear.' },
+    notes: { ar: 'حمضيات باردة، هواء نظيف، أخشاب خفيفة، ومسك.', en: 'Cool citrus, clean air, light woods, musk.' },
+    bottle: { ar: 'أزرق داكن مع لمسة فضية.', en: 'Dark blue with a silver accent.' },
+    sizes: { ar: 'زجاجة يومية أو تجربة ضمن الست روائح.', en: 'A daily bottle or part of the six-scent set.' },
+    gift: { ar: 'اختيار آمن لشخص يحب الفريش النضيف.', en: 'A safe pick for someone who likes clean freshness.' },
+    usage: { ar: 'صباح، شغل، مشاوير، وحر.', en: 'Morning, work, errands, warm days.' },
+    entry: { ar: 'ابدأ به لو بتحب الفريش.', en: 'Start here if you like fresh scents.' },
+  },
+  athar: {
+    name: { ar: 'أثر', en: 'Athar' },
+    line: { ar: 'يسبقك ويفضل بعدك.', en: 'Arrives before you and lingers after.' },
+    mood: { ar: 'داكن / فريش / خشبي', en: 'Dark / Fresh / Woody' },
+    aura: { ar: 'فحمي وذهبي', en: 'Charcoal and gold' },
+    heroDescription: { ar: 'أثر داكن وفريش في نفس الوقت، معمول لحضور قوي وهادئ.', en: 'Athar balances fresh darkness with a polished woody trail.' },
+    bestFor: { ar: 'مناسبات، مساء، وحضور واثق.', en: 'Occasions, evening, confident presence.' },
+    notes: { ar: 'افتتاحية فريش، خشب داكن، عنبر، ولمسة ذهبية.', en: 'Fresh opening, dark woods, amber, golden warmth.' },
+    bottle: { ar: 'فحمي مع تفاصيل ذهبية.', en: 'Charcoal with gold detailing.' },
+    sizes: { ar: 'لما تحتاج عطر له أثر واضح.', en: 'For moments that need a clear trail.' },
+    gift: { ar: 'هدية راقية لشخص يحب العمق.', en: 'A refined gift for someone who likes depth.' },
+    usage: { ar: 'مساء، مناسبات، وأيام تحتاج حضور.', en: 'Evening, occasions, presence-led days.' },
+    entry: { ar: 'اختيار المناسبات الهادية.', en: 'A quiet occasion scent.' },
+  },
+  barq: {
+    name: { ar: 'برق', en: 'Barq' },
+    line: { ar: 'قهوة باردة بطابع فريش حار.', en: 'Cool coffee with fresh spice.' },
+    mood: { ar: 'فريش / حار / قهوة', en: 'Fresh / Spicy / Coffee' },
+    aura: { ar: 'عنبر وأسود', en: 'Amber and black' },
+    heroDescription: { ar: 'برق يجمع لمعة الفريش مع دفء القهوة والتوابل، من غير ثقل زائد.', en: 'Barq gives fresh lift, coffee warmth, and restrained spice.' },
+    bestFor: { ar: 'مزاج مختلف وملفت.', en: 'A distinctive, memorable mood.' },
+    notes: { ar: 'قهوة باردة، توابل، عنبر، وفريش خفيف.', en: 'Cool coffee, spice, amber, light freshness.' },
+    bottle: { ar: 'عنبر وأسود بلمعة دافئة.', en: 'Amber and black with warmth.' },
+    sizes: { ar: 'اختيار مختلف بعد تجربة الكولكشن.', en: 'A distinctive choice after discovery.' },
+    gift: { ar: 'لمن يحب القهوة والدفء بشكل أنيق.', en: 'For someone who likes coffee warmth.' },
+    usage: { ar: 'بعد الظهر، مساء خفيف، وخروجات.', en: 'Afternoon, light evening, going out.' },
+    entry: { ar: 'لما تحب حاجة مختلفة.', en: 'For a more distinctive pick.' },
+  },
+  nada: {
+    name: { ar: 'ندى', en: 'Nada' },
+    line: { ar: 'فريش، نضيف، وأنثوي.', en: 'Fresh, clean, and feminine.' },
+    mood: { ar: 'فريش / فاكهي / نظيف', en: 'Fresh / Fruity / Clean' },
+    aura: { ar: 'أوف وايت وروز جولد', en: 'Off-white and rose gold' },
+    heroDescription: { ar: 'ندى إحساس فريش ونضيف، فاكهي خفيف وأنثوي من غير مبالغة.', en: 'Nada is clean, fresh, lightly fruity, and softly feminine.' },
+    bestFor: { ar: 'يوم نضيف وهادئ.', en: 'A calm, clean day.' },
+    notes: { ar: 'فاكهة خفيفة، حمضيات ناعمة، ورد أبيض، ومسك نظيف.', en: 'Light fruit, soft citrus, white florals, clean musk.' },
+    bottle: { ar: 'أوف وايت مع روز جولد.', en: 'Off-white with rose gold.' },
+    sizes: { ar: 'مناسب للاستخدام اليومي والهدايا.', en: 'Good for daily wear and gifting.' },
+    gift: { ar: 'اختيار أنثوي آمن وراقي.', en: 'A polished feminine gift.' },
+    usage: { ar: 'صباح، مكتب، ونهار.', en: 'Morning, office, daytime.' },
+    entry: { ar: 'فريش ناعم وواضح.', en: 'Soft, clear freshness.' },
   },
   ghayma: {
     name: { ar: 'غيمة', en: 'Ghayma' },
-    line: { ar: 'نعومة تتعلق في الذاكرة.', en: 'Softness that lingers in memory.' },
-    mood: { ar: 'ناعم / فاكهي / زهري / مسكي', en: 'Soft / Fruity / Floral / Musky' },
-    aura: { ar: 'أوف وايت وروز جولد', en: 'Off-white and rose gold' },
-    heroDescription: {
-      ar: 'غيمة ناعمة ومضيئة: فواكه خفيفة، ورد هادئ، ومسك نظيف يسيب ذكرى لطيفة.',
-      en: 'Ghayma is airy and luminous: soft fruit, quiet florals, and clean musk with a gentle memory.',
-    },
-    bestFor: { ar: 'هدية هادئة أو يوم ناعم.', en: 'A soft day or an easy gift.' },
-    notes: { ar: 'كمثرى، حمضيات ناعمة، زهور بيضاء، ومسك نظيف.', en: 'Pear, soft citrus, white florals, clean musk.' },
-    bottle: { ar: 'أوف وايت مع لمسة روز جولد.', en: 'Off-white with a rose-gold detail.' },
-    sizes: { ar: 'ابدأ بتستر ثم اختر الحجم المناسب.', en: 'Start with a tester, then choose your size.' },
-    gift: { ar: 'الأقرب للهدايا الهادئة والأنيقة.', en: 'The easiest pick for calm, elegant gifting.' },
-    usage: { ar: 'نهار، مكتب، ومساء خفيف.', en: 'Daytime, office, and lighter evenings.' },
-    entry: { ar: 'تستر ناعم قبل الزجاجة.', en: 'Soft tester before the bottle.' },
-  },
-  dafwa: {
-    name: { ar: 'دفوة', en: 'Dafwa' },
-    line: { ar: 'قهوة دافئة وحضور ما يتنسيش.', en: 'Coffee warmth with a memorable presence.' },
-    mood: { ar: 'دافئ / قهوة / حلو / شرقي', en: 'Warm / Coffee / Sweet / Oriental' },
-    aura: { ar: 'موكا وذهب هادئ', en: 'Mocha and quiet gold' },
-    heroDescription: {
-      ar: 'دفوة تميل لليل الهادئ: قهوة محمصة، حلاوة متزنة، ولمعة شرقية دافئة.',
-      en: 'Dafwa leans into quiet nights: roasted coffee, balanced sweetness, and warm amber glow.',
-    },
-    bestFor: { ar: 'مساء دافئ ولحظات قريبة.', en: 'Warm evenings and intimate moments.' },
-    notes: { ar: 'قهوة محمصة، كراميل داكن، فانيلا، وعنبر.', en: 'Roasted coffee, dark caramel, vanilla, amber.' },
-    bottle: { ar: 'موكا عميق مع تفاصيل ذهبية.', en: 'Deep mocha with gold detailing.' },
-    sizes: { ar: 'تستر وزجاجات للروتين اليومي أو الهدية.', en: 'Tester and bottle options for routine or gifting.' },
-    gift: { ar: 'لمن يحب الدفء والحلاوة المتزنة.', en: 'For someone who likes warmth with restraint.' },
-    usage: { ar: 'المساء، الشتاء، واللحظات القريبة.', en: 'Evening, winter, and close moments.' },
-    entry: { ar: 'تستر دافئ قبل القرار.', en: 'Warm tester before committing.' },
-  },
-  zell: {
-    name: { ar: 'ظلّ', en: 'Zell' },
-    line: { ar: 'هادئ، لكنه يسيب أثر.', en: 'Quiet, but it leaves a trace.' },
-    mood: { ar: 'خشبي / داكن / مسكي', en: 'Woody / Dark / Musky' },
-    aura: { ar: 'فحمي وفضي مضبوط', en: 'Charcoal and controlled silver' },
-    heroDescription: {
-      ar: 'ظلّ هادئ وواثق: خشب داكن، مسك عميق، وحضور بيبان من غير ضوضاء.',
-      en: 'Zell is calm and assured: dark woods, deep musk, and presence without noise.',
-    },
-    bestFor: { ar: 'عمق هادئ بدون ضوضاء.', en: 'Quiet depth without excess.' },
-    notes: { ar: 'بهار جاف، خشب كشميري، سوسن هادئ، ومسك.', en: 'Dry spice, cashmere wood, quiet iris, musk.' },
-    bottle: { ar: 'فحمي مع لمسة فضية مضبوطة.', en: 'Charcoal with a precise silver accent.' },
-    sizes: { ar: 'تستر أولاً ثم الحجم الذي يشبهك.', en: 'Tester first, then the size that suits you.' },
-    gift: { ar: 'اختيار راقٍ لمن يحب الغموض الهادئ.', en: 'A refined pick for someone who likes subtle mystery.' },
-    usage: { ar: 'مساء هادئ أو أناقة يومية.', en: 'Quiet evenings or polished daily wear.' },
-    entry: { ar: 'تستر قريب من الجلد.', en: 'Skin-close tester first.' },
+    line: { ar: 'نعومة بتتعرف من غير صوت.', en: 'Softness recognized without noise.' },
+    mood: { ar: 'فاكهي / مسكي / ناعم', en: 'Fruity / Musky / Soft' },
+    aura: { ar: 'بيج وذهب ناعم', en: 'Beige and soft gold' },
+    heroDescription: { ar: 'غيمة ناعمة ومضيئة: فواكه هادية، مسك نظيف، وحضور لطيف يفضل في الذاكرة.', en: 'Ghayma is soft, fruity, musky, and quietly memorable.' },
+    bestFor: { ar: 'هدية ناعمة أو يوم هادي.', en: 'A soft day or gentle gift.' },
+    notes: { ar: 'فاكهة ناعمة، زهور بيضاء، مسك، ولمسة ذهب هادية.', en: 'Soft fruit, white florals, musk, gentle gold warmth.' },
+    bottle: { ar: 'بيج ناعم مع ذهب لطيف.', en: 'Soft beige with gentle gold.' },
+    sizes: { ar: 'ابدأ بالتجربة ثم اختار الحجم المناسب.', en: 'Start with discovery, then choose your size.' },
+    gift: { ar: 'الأقرب للهدايا الهادئة والأنيقة.', en: 'An easy calm gift.' },
+    usage: { ar: 'نهار، مساء خفيف، ومناسبات هادئة.', en: 'Daytime, light evening, calm occasions.' },
+    entry: { ar: 'اختيار ناعم ومريح.', en: 'A soft, easy pick.' },
   },
 };
 
@@ -215,97 +231,43 @@ export const highlightCopy: Record<Highlight['id'], {
   eyebrow: Localized;
   title: Localized;
 }> = {
-  sharara: {
-    eyebrow: { ar: 'توابل فريش', en: 'Fresh spice' },
-    title: scentCopy.sharara.name,
-    copy: { ar: 'رشة أولى واضحة، دفء نحاسي، وأثر مسكي داكن.', en: 'A clear opening, copper warmth, and a darker musky finish.' },
-  },
-  ghayma: {
-    eyebrow: { ar: 'ذكرى ناعمة', en: 'Soft memory' },
-    title: scentCopy.ghayma.name,
-    copy: { ar: 'نعومة فاكهية وزهور بيضاء، خفيفة لكنها لا تمر مرور الكرام.', en: 'Soft fruit and white florals that feel light but remembered.' },
-  },
-  dafwa: {
-    eyebrow: { ar: 'دفء القهوة', en: 'Coffee warmth' },
-    title: scentCopy.dafwa.name,
-    copy: { ar: 'قهوة، حلاوة، وعنبر دافئ لمساء له إيقاع أبطأ.', en: 'Coffee, amber, and balanced sweetness for a slower evening.' },
-  },
-  zell: {
-    eyebrow: { ar: 'عمق هادئ', en: 'Quiet depth' },
-    title: scentCopy.zell.name,
-    copy: { ar: 'خشب داكن ومسك قريب. هادئ، مركز، وواثق.', en: 'Dark woods and close musk: quiet, focused, assured.' },
-  },
-  discovery: {
-    eyebrow: { ar: 'جرّب أولاً', en: 'Try first' },
-    title: { ar: 'مجموعة التستر', en: 'Discovery Mini' },
-    copy: { ar: 'جرّب الأربع حالات المزاجية قبل اختيار زجاجتك.', en: 'Try the four moods before choosing your bottle.' },
-  },
-  gift: {
-    eyebrow: { ar: 'جاهزة للإهداء', en: 'Ready to give' },
-    title: { ar: 'هدية نفَس', en: 'Gift Set' },
-    copy: { ar: 'تقديم هادئ وراقٍ لرائحة تشبه صاحبها.', en: 'A calm, polished gift for a scent that feels personal.' },
-  },
-  quality: {
-    eyebrow: { ar: 'مراجعة الدفعات', en: 'Batch checked' },
-    title: { ar: 'طقس الجودة', en: 'Quality Ritual' },
-    copy: { ar: 'مراجعة للصفاء، الرش، والتقديم قبل وصول التجربة لك.', en: 'Clarity, spray feel, and presentation are checked before delivery.' },
-  },
+  sharara: { eyebrow: { ar: 'توابل فريش', en: 'Fresh spice' }, title: scentCopy.sharara.name, copy: { ar: 'أول رشة تلفت، وأثر مسكي داكن يفضل.', en: 'A bright first spray with a darker musky trail.' } },
+  madar: { eyebrow: { ar: 'حركة نضيفة', en: 'Clean motion' }, title: scentCopy.madar.name, copy: { ar: 'فريش خشبي رياضي يدور معاك طول اليوم.', en: 'Fresh, woody, and made to move through the day.' } },
+  athar: { eyebrow: { ar: 'أثر عميق', en: 'Deep trail' }, title: scentCopy.athar.name, copy: { ar: 'داكن وفريش وخشبي، يسبقك ويفضل بعدك.', en: 'Dark, fresh, and woody with a clear trail.' } },
+  barq: { eyebrow: { ar: 'لمعة قهوة', en: 'Coffee spark' }, title: scentCopy.barq.name, copy: { ar: 'قهوة باردة بطابع فريش حار ولمعة دافئة.', en: 'Cool coffee with fresh spice and warm glow.' } },
+  nada: { eyebrow: { ar: 'نضافة فريش', en: 'Fresh clean' }, title: scentCopy.nada.name, copy: { ar: 'فريش، نضيف، وأنثوي بنعومة روز جولد.', en: 'Fresh, clean, and softly feminine.' } },
+  ghayma: { eyebrow: { ar: 'هدية ناعمة', en: 'Soft gift' }, title: scentCopy.ghayma.name, copy: { ar: 'نعومة بتتعرف من غير صوت، فاكهية ومسك نضيف.', en: 'Soft fruity musk, calm and memorable.' } },
+  discovery: { eyebrow: { ar: 'جرّب أولاً', en: 'Try first' }, title: { ar: 'مجموعة التجربة', en: 'Discovery Set' }, copy: { ar: 'جرّب الست روائح قبل اختيار الزجاجة.', en: 'Try all six scents before choosing a bottle.' } },
+  gift: { eyebrow: { ar: 'جاهزة للإهداء', en: 'Ready to give' }, title: { ar: 'هدايا نفس', en: 'Nafas gifts' }, copy: { ar: 'اختيارات هادئة للهدايا الرجالي والحريمي.', en: 'Calm gift edits for men and women.' } },
+  quality: { eyebrow: { ar: 'مراجعة الدفعات', en: 'Batch checked' }, title: { ar: 'طقس الجودة', en: 'Quality ritual' }, copy: { ar: 'تعتيق ومراجعة للصفاء والرش والتقديم.', en: 'Maturation and practical checks before delivery.' } },
 };
 
 export const chapterCopy: Record<string, { copy: Localized; title: Localized }> = {
-  opening: {
-    title: { ar: 'الافتتاحية', en: 'Opening' },
-    copy: { ar: 'أول لمعة من الرائحة تفتح المزاج وتحدد الاتجاه.', en: 'The first lift sets the tone and invites you closer.' },
-  },
-  heart: {
-    title: { ar: 'القلب', en: 'Heart' },
-    copy: { ar: 'بعد دقائق، الشخصية تظهر: فريش، ناعمة، دافئة، أو غامضة.', en: 'After a few minutes, the true personality settles in.' },
-  },
-  trail: {
-    title: { ar: 'الأثر', en: 'Trail' },
-    copy: { ar: 'الجزء الذي يبقى قريباً من الجلد ويعود في الذاكرة.', en: 'The part that stays close to skin and returns in memory.' },
-  },
+  opening: { title: { ar: 'الافتتاحية', en: 'Opening' }, copy: { ar: 'أول لمعة من الرائحة تفتح المزاج وتحدد الاتجاه.', en: 'The first lift sets the tone and invites you closer.' } },
+  heart: { title: { ar: 'القلب', en: 'Heart' }, copy: { ar: 'بعد دقائق، الشخصية تظهر: فريش، داكن، ناعم، أو دافئ.', en: 'After a few minutes, the true personality settles in.' } },
+  trail: { title: { ar: 'الأثر', en: 'Trail' }, copy: { ar: 'الجزء الذي يبقى قريباً من الجلد ويعود في الذاكرة.', en: 'The part that stays close to skin and returns in memory.' } },
 };
 
 export const sensoryCopy: Record<string, { copy: Localized; title: Localized }> = {
-  opening: {
-    title: { ar: 'الافتتاحية', en: 'Opening' },
-    copy: { ar: 'نفحة أولى تلمع وتدعو للاقتراب.', en: 'A first impression that glows and draws you in.' },
-  },
-  heart: {
-    title: { ar: 'القلب', en: 'Heart' },
-    copy: { ar: 'المود الحقيقي يستقر بهدوء على الجلد.', en: 'The main mood settles calmly on skin.' },
-  },
-  base: {
-    title: { ar: 'القاعدة', en: 'Base' },
-    copy: { ar: 'مسك، خشب، عنبر، ولمسة أخيرة تترك أثر.', en: 'Musk, woods, amber, and the final trail.' },
-  },
+  opening: { title: { ar: 'الافتتاحية', en: 'Opening' }, copy: { ar: 'نفحة أولى تلمع وتدعو للاقتراب.', en: 'A first impression that glows and draws you in.' } },
+  heart: { title: { ar: 'القلب', en: 'Heart' }, copy: { ar: 'المود الحقيقي يستقر بهدوء على الجلد.', en: 'The main mood settles calmly on skin.' } },
+  base: { title: { ar: 'القاعدة', en: 'Base' }, copy: { ar: 'مسك، خشب، عنبر، ولمسة أخيرة تترك أثر.', en: 'Musk, woods, amber, and the final trail.' } },
 };
 
 export const flowCopy: Record<string, { copy: Localized; title: Localized }> = {
-  tester: {
-    title: { ar: 'اطلب تستر', en: 'Order testers' },
-    copy: { ar: 'ابدأ بحجم صغير لكل مود.', en: 'Start small with each mood.' },
-  },
-  wear: {
-    title: { ar: 'جرّبه يوم كامل', en: 'Wear it for a day' },
-    copy: { ar: 'اترك الرائحة تظهر على جلدك.', en: 'Let the scent unfold on skin.' },
-  },
-  choose: {
-    title: { ar: 'اختر زجاجتك', en: 'Choose your bottle' },
-    copy: { ar: 'حدد الرائحة الأقرب لحضورك.', en: 'Pick the scent that fits your presence.' },
-  },
-  return: {
-    title: { ar: 'ارجع لنفس الرائحة', en: 'Come back anytime' },
-    copy: { ar: 'أعد الطلب عندما يستقر اختيارك.', en: 'Reorder once the choice feels settled.' },
-  },
+  tester: { title: { ar: 'اطلب مجموعة التجربة', en: 'Order Discovery Set' }, copy: { ar: 'ست عينات صغيرة من كل الكولكشن.', en: 'Six small samples from the full collection.' } },
+  wear: { title: { ar: 'جرّبه يوم كامل', en: 'Wear it for a day' }, copy: { ar: 'اترك الرائحة تظهر على جلدك في وقتها.', en: 'Let each scent unfold on skin.' } },
+  choose: { title: { ar: 'اختر زجاجتك', en: 'Choose your bottle' }, copy: { ar: 'حدد الرائحة الأقرب لحضورك.', en: 'Pick the scent that fits your presence.' } },
+  return: { title: { ar: 'ارجع لنفس الرائحة', en: 'Come back anytime' }, copy: { ar: 'أعد الطلب عندما يستقر اختيارك.', en: 'Reorder once the choice feels settled.' } },
 };
 
 export const selectorCopy: Record<ChoiceId, { label: Localized }> = {
-  sharara: { label: { ar: 'فريش ولافت', en: 'Fresh and bold' } },
-  ghayma: { label: { ar: 'ناعم وهادئ', en: 'Soft and calm' } },
-  dafwa: { label: { ar: 'دافئ وحلو', en: 'Warm and sweet' } },
-  zell: { label: { ar: 'غامض وخشبي', en: 'Shadowed woods' } },
+  sharara: { label: { ar: 'فريش حار', en: 'Fresh spice' } },
+  madar: { label: { ar: 'فريش يومي', en: 'Daily fresh' } },
+  athar: { label: { ar: 'غامق خشبي', en: 'Dark woods' } },
+  barq: { label: { ar: 'قهوة دافئة', en: 'Coffee warmth' } },
+  nada: { label: { ar: 'نظيف أنثوي', en: 'Clean feminine' } },
+  ghayma: { label: { ar: 'ناعم هدية', en: 'Soft gift' } },
   discovery: { label: { ar: 'لسه محتار', en: 'Still deciding' } },
 };
 
@@ -319,39 +281,16 @@ export const viewerTabCopy: Record<ViewerTab, Localized> = {
 };
 
 export const trustCopy: Record<string, { copy: Localized; title: Localized }> = {
-  'fixed-formulas': {
-    title: { ar: 'تركيبات ثابتة', en: 'Fixed formulas' },
-    copy: { ar: 'كل رائحة لها شخصية واضحة ومراجعة قبل اعتمادها.', en: 'Each scent keeps a clear personality before release.' },
-  },
-  'batch-checks': {
-    title: { ar: 'مراجعة الدفعات', en: 'Batch quality checks' },
-    copy: { ar: 'نفحص الصفاء، الرش، والتقديم بشكل عملي.', en: 'Clarity, spray feel, and presentation are checked practically.' },
-  },
-  'tester-first': {
-    title: { ar: 'تجربة التستر أولاً', en: 'Tester-first discovery' },
-    copy: { ar: 'جرّب قبل ما تختار الزجاجة الكاملة.', en: 'Try the perfume before choosing a full bottle.' },
-  },
-  support: {
-    title: { ar: 'دعم واتساب', en: 'WhatsApp support' },
-    copy: { ar: 'اسألنا عن المود، الحجم، أو الهدية المناسبة.', en: 'Ask about moods, sizes, and gifting choices.' },
-  },
+  'fixed-formulas': { title: { ar: 'تركيز واضح', en: 'Clear concentration' }, copy: { ar: 'نذكر 24% بشكل تجاري واضح، بدون كشف أي تفاصيل داخلية.', en: 'A clear public 24% concentration note without internal formula details.' } },
+  'batch-checks': { title: { ar: 'مراجعة الدفعات', en: 'Batch discipline' }, copy: { ar: 'تعتيق 21-30 يوم ومراجعة عملية للصفاء والرش والتقديم.', en: '21-30 day maturation with practical clarity, spray, and finish checks.' } },
+  'tester-first': { title: { ar: 'التجربة أولاً', en: 'Discovery first' }, copy: { ar: 'مجموعة التجربة تساعدك تختار بهدوء قبل الزجاجة.', en: 'The Discovery Set helps you choose calmly before a full bottle.' } },
+  support: { title: { ar: 'دعم واتساب', en: 'WhatsApp support' }, copy: { ar: 'اسألنا عن المود، الحجم، أو الهدية المناسبة بدون ضغط.', en: 'Ask about mood, size, or gifting without pressure.' } },
 };
 
 export const exploreCopy: Record<string, { copy: Localized; title: Localized }> = {
-  shop: {
-    title: { ar: 'المتجر', en: 'Shop' },
-    copy: { ar: 'تسوق المجموعة الأساسية.', en: 'Browse the main collection.' },
-  },
-  faq: {
-    title: { ar: 'الأسئلة', en: 'FAQ' },
-    copy: { ar: 'إجابات سريعة قبل الاختيار.', en: 'Quick answers before choosing.' },
-  },
-  about: {
-    title: { ar: 'عن نفَس', en: 'About Nafas' },
-    copy: { ar: 'القصة والفلسفة خلف الدار.', en: 'The story and thinking behind the house.' },
-  },
-  whatsapp: {
-    title: { ar: 'واتساب', en: 'WhatsApp' },
-    copy: { ar: 'اسألنا أو اطلب مباشرة.', en: 'Ask us or order directly.' },
-  },
+  shop: { title: { ar: 'المتجر', en: 'Shop' }, copy: { ar: 'تسوق الكولكشن الأساسي.', en: 'Browse the main collection.' } },
+  discovery: { title: { ar: 'مجموعة التجربة', en: 'Discovery Set' }, copy: { ar: 'جرّب الست روائح قبل الزجاجة.', en: 'Try all six before the bottle.' } },
+  gifts: { title: { ar: 'الهدايا', en: 'Gift Boxes' }, copy: { ar: 'اختيارات رجالي وحريمي بهدوء.', en: 'Men and women gift edits.' } },
+  finder: { title: { ar: 'اكتشف عطرك', en: 'Scent Finder' }, copy: { ar: 'اختبار سريع يرشح لك عطر مناسب.', en: 'A quick guided recommendation.' } },
+  whatsapp: { title: { ar: 'واتساب', en: 'WhatsApp' }, copy: { ar: 'اسألنا أو اطلب مباشرة.', en: 'Ask us or order directly.' } },
 };

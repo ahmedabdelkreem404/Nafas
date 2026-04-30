@@ -3262,3 +3262,95 @@
   }
 }
 
+.apple-nafas-page .anh-highlight-card--gold {
+  background: linear-gradient(135deg, #201d18, #d6b86a);
+}
+
+.apple-nafas-page .anh-highlight-card--gold .anh-highlight-card__copy,
+.apple-nafas-page .anh-highlight-card--gold .anh-highlight-card__copy span,
+.apple-nafas-page .anh-highlight-card--gold .anh-highlight-card__copy p {
+  color: #fff8ea;
+}
+
+.apple-nafas-page .anh-selector__actions {
+  justify-content: flex-start;
+  margin-block-start: 1rem;
+}
+
+@media (max-width: 767px) {
+  .apple-nafas-page {
+    overflow-x: clip;
+  }
+
+  .apple-nafas-page .anh-container {
+    inline-size: min(100%, calc(100vw - 1rem));
+    padding-inline: clamp(0.5rem, 2.6vw, 1rem);
+  }
+
+  .apple-nafas-page .anh-section-head h2,
+  .apple-nafas-page .anh-love h2,
+  .apple-nafas-page .anh-viewer-panel h3,
+  .apple-nafas-page .anh-together h2,
+  .apple-nafas-page .anh-selector h2,
+  .apple-nafas-page .anh-compare h2,
+  .apple-nafas-page .anh-explore h2,
+  .apple-nafas-page .anh-final h2 {
+    max-inline-size: 13ch;
+    font-size: clamp(2.15rem, 11vw, 3.4rem);
+    letter-spacing: 0;
+    line-height: 1.05;
+  }
+
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.45rem, 2.4vw, 0.8rem);
+  }
+
+  .apple-nafas-page .anh-compare-card {
+    min-inline-size: 0;
+    border-radius: clamp(1rem, 4vw, 1.35rem);
+    padding: clamp(0.65rem, 2.5vw, 0.95rem);
+  }
+
+  .apple-nafas-page .anh-compare-card__visual {
+    block-size: clamp(7.8rem, 38vw, 11rem);
+  }
+
+  .apple-nafas-page .anh-compare-card__visual .anh-bottle-visual {
+    inline-size: min(30vw, 7.6rem);
+  }
+
+  .apple-nafas-page .anh-compare-card h3 {
+    font-size: clamp(1.05rem, 5vw, 1.45rem);
+  }
+
+  .apple-nafas-page .anh-compare-card p,
+  .apple-nafas-page .anh-compare-card dd {
+    font-size: clamp(0.72rem, 3vw, 0.84rem);
+    line-height: 1.45;
+  }
+
+  .apple-nafas-page .anh-compare-card dl {
+    gap: 0.45rem;
+  }
+
+  .apple-nafas-page .anh-compare-card .anh-button {
+    inline-size: 100%;
+    min-block-size: 42px;
+    padding-inline: 0.55rem;
+    font-size: clamp(0.72rem, 3vw, 0.82rem);
+  }
+
+  .apple-nafas-page .anh-explore__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.5rem, 2.4vw, 0.85rem);
+  }
+}
+
+@media (max-width: 340px) {
+  .apple-nafas-page .anh-compare__grid,
+  .apple-nafas-page .anh-explore__grid {
+    grid-template-columns: 1fr;
+  }
+}
+

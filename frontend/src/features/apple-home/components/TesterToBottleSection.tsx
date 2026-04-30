@@ -44,7 +44,7 @@ export default function TesterToBottleSection({ steps }: TesterToBottleSectionPr
             })}
           </div>
           <div className="anh-flow__actions">
-            <a className="anh-button anh-button--primary" href={buildWhatsappUrl(text(copy.primaryMessage, locale))} target="_blank" rel="noreferrer">{text(copy.primaryCta, locale)}</a>
+            <a className="anh-button anh-button--primary" href="/discovery-set">{text(copy.primaryCta, locale)}</a>
             <a className="anh-button anh-button--secondary" href={buildWhatsappUrl(text(copy.orderMessage, locale))} target="_blank" rel="noreferrer">{text(copy.whatsappCta, locale)}</a>
             <a className="anh-button anh-button--secondary" href="#choose">{text(copy.sizesCta, locale)}</a>
           </div>

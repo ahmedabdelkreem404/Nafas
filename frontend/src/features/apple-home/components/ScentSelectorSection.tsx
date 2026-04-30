@@ -1,4 +1,5 @@
 import { useLocale } from '../../../context/LocaleContext';
+import { Link } from 'react-router-dom';
 import { SECTION_LABELS } from '../constants';
 import { appleHomeCopy, selectorCopy, text } from '../data/appleHomeCopy';
 import { useScentChoice } from '../hooks/useScentChoice';
@@ -39,6 +40,14 @@ export default function ScentSelectorSection({ options, scents }: ScentSelectorS
           <p className="anh-selector__result" aria-live="polite">
             {text(copy.result, locale)}: <strong>{choice.recommendation}</strong>
           </p>
+          <div className="anh-actions anh-selector__actions">
+            <Link className="anh-button anh-button--primary" to="/scent-finder">
+              {locale === 'ar' ? 'اكتشف عطرك' : 'Open Scent Finder'}
+            </Link>
+            <Link className="anh-button anh-button--secondary" to="/discovery-set">
+              {locale === 'ar' ? 'مجموعة التجربة' : 'Discovery Set'}
+            </Link>
+          </div>
         </div>
       </div>
     </section>
