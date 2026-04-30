@@ -23,7 +23,7 @@ class ReadinessAuditTest extends TestCase
 {
     use RefreshDatabase;
 
-    private array $coreSlugs = ['sharara', 'ghayma', 'dafwa', 'zell'];
+    private array $coreSlugs = ['sharara', 'madar', 'athar', 'barq', 'nada', 'ghayma'];
 
     protected function setUp(): void
     {
@@ -90,6 +90,12 @@ class ReadinessAuditTest extends TestCase
                 "Expected active sellable variant for {$slug}"
             );
         }
+
+        $this->assertCount(6, $response->json('data'));
+        $response->assertJsonMissing(['slug' => 'dafwa']);
+        $response->assertJsonMissing(['slug' => 'zell']);
+        $this->assertDatabaseHas('products', ['slug' => 'dafwa', 'status' => 'hidden']);
+        $this->assertDatabaseHas('products', ['slug' => 'zell', 'status' => 'hidden']);
     }
 
     public function test_public_product_show_works_for_all_core_scents(): void
@@ -164,7 +170,7 @@ class ReadinessAuditTest extends TestCase
         $variant = $this->activeVariant('ghayma');
         $variant->forceFill(['stock_quantity' => 1])->save();
 
-        $inactiveVariant = $this->activeVariant('zell');
+        $inactiveVariant = $this->activeVariant('madar');
         $inactiveVariant->forceFill(['is_active' => false])->save();
 
         $this->postJson('/api/cart/validate', [
@@ -183,7 +189,7 @@ class ReadinessAuditTest extends TestCase
 
     public function test_checkout_creates_order_items_and_cash_on_delivery_payment(): void
     {
-        $variant = $this->activeVariant('dafwa');
+        $variant = $this->activeVariant('madar');
 
         $response = $this->postJson('/api/checkout', $this->checkoutPayload($variant, 2));
 
@@ -211,7 +217,7 @@ class ReadinessAuditTest extends TestCase
 
     public function test_checkout_rejects_insufficient_stock_and_invalid_coupon(): void
     {
-        $variant = $this->activeVariant('zell');
+        $variant = $this->activeVariant('barq');
         $variant->forceFill(['stock_quantity' => 0])->save();
 
         $this->postJson('/api/checkout', $this->checkoutPayload($variant))
@@ -601,7 +607,7 @@ class ReadinessAuditTest extends TestCase
 
     public function test_checkout_rejects_expired_coupon(): void
     {
-        $variant = $this->activeVariant('dafwa');
+        $variant = $this->activeVariant('nada');
 
         Coupon::create([
             'code' => 'EXPIRED10',
