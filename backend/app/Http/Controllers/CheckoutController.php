@@ -28,14 +28,17 @@ class CheckoutController extends Controller
             'city' => 'required|string',
             'governorate' => 'required|string',
             'delivery_notes' => 'nullable|string',
-            'payment_method' => 'required|string|in:cash_on_delivery,online_card,bank_transfer',
+            'payment_method' => 'required|string|in:cash_on_delivery,online_card,bank_transfer,vodafone_cash,instapay',
+            'payment_reference' => 'nullable|string|max:255',
             'coupon_code' => 'nullable|string',
             'items' => 'required|array|min:1',
             'items.*.variant_id' => 'required|exists:product_variants,id',
             'items.*.quantity' => 'required|integer|min:1',
         ]);
 
-        if ($validated['payment_method'] !== 'cash_on_delivery' && !config('services.paymob.integration_id')) {
+        $manualPaymentMethods = ['cash_on_delivery', 'vodafone_cash', 'instapay'];
+
+        if (!in_array($validated['payment_method'], $manualPaymentMethods, true) && !config('services.paymob.integration_id')) {
             return response()->json([
                 'error' => 'Online payment is temporarily unavailable. Please choose cash on delivery.',
             ], 422);
@@ -141,11 +144,22 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            $provider = $validated['payment_method'] === 'cash_on_delivery'
-                ? new CashOnDeliveryProvider()
-                : new PaymobProvider();
-
-            $paymentPayload = $provider->createPayment($order);
+            if ($validated['payment_method'] === 'cash_on_delivery') {
+                $paymentPayload = (new CashOnDeliveryProvider())->createPayment($order);
+            } elseif (in_array($validated['payment_method'], ['vodafone_cash', 'instapay'], true)) {
+                $paymentPayload = [
+                    'provider' => $validated['payment_method'],
+                    'status' => 'pending_review',
+                    'reference' => $validated['payment_reference'] ?? null,
+                    'payload' => [
+                        'instruction' => $validated['payment_method'] === 'vodafone_cash'
+                            ? 'Manual Vodafone Cash transfer, pending admin review'
+                            : 'Manual Instapay transfer, pending admin review',
+                    ],
+                ];
+            } else {
+                $paymentPayload = (new PaymobProvider())->createPayment($order);
+            }
 
             Payment::create([
                 'order_id' => $order->id,

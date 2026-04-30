@@ -14,12 +14,15 @@ import AccountOrders from './pages/AccountOrders';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import ContentPage from './pages/ContentPage';
+import DiscoverySet from './pages/DiscoverySet';
 import Favorites from './pages/Favorites';
+import GiftBoxes from './pages/GiftBoxes';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import OrderConfirmation from './pages/OrderConfirmation';
 import ProductDetail from './pages/ProductDetail';
 import Register from './pages/Register';
+import ScentFinder from './pages/ScentFinder';
 import Shop from './pages/Shop';
 import AdminAnalytics from './pages/admin/AdminAnalytics';
 import AdminBatches from './pages/admin/AdminBatches';
@@ -75,6 +78,9 @@ export default function App() {
               <Route path="/" element={<PublicLayout />}>
                 <Route index element={<Home />} />
                 <Route path="shop" element={<Shop />} />
+                <Route path="scent-finder" element={<ScentFinder />} />
+                <Route path="discovery-set" element={<DiscoverySet />} />
+                <Route path="gift-boxes" element={<GiftBoxes />} />
                 <Route path="products/:slug" element={<ProductDetail />} />
                 <Route path="favorites" element={<Favorites />} />
                 <Route path="cart" element={<Cart />} />

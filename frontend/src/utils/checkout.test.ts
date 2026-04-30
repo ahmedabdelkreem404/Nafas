@@ -12,4 +12,14 @@ describe('buildCheckoutPayload', () => {
       items: [{ variant_id: 7, quantity: 2 }],
     });
   });
+
+  it('maps visible payment labels to backend payment methods', () => {
+    expect(buildCheckoutPayload({ payment_method: 'cod' }, [])).toMatchObject({
+      payment_method: 'cash_on_delivery',
+    });
+    expect(buildCheckoutPayload({ payment_method: 'vodafone_cash', payment_reference: 'VF-1' }, [])).toMatchObject({
+      payment_method: 'vodafone_cash',
+      payment_reference: 'VF-1',
+    });
+  });
 });

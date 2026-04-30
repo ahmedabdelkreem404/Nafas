@@ -33,9 +33,12 @@ export type CatalogEntry = {
 };
 
 export const launchSlugs = ['sharara', 'madar', 'athar', 'barq', 'nada', 'ghayma'] as const;
+export const commercialSlugs = ['discovery-set'] as const;
 export type LaunchSlug = (typeof launchSlugs)[number];
+export type CommercialSlug = (typeof commercialSlugs)[number];
+export type CatalogSlug = LaunchSlug | CommercialSlug;
 
-export const perfumeCatalog: Record<LaunchSlug, CatalogEntry> = {
+export const perfumeCatalog: Record<CatalogSlug, CatalogEntry> = {
   sharara: {
     accent: 'gold',
     categoryAr: 'رجالي يومي فريش',
@@ -216,15 +219,46 @@ export const perfumeCatalog: Record<LaunchSlug, CatalogEntry> = {
     tagsAr: ['الكل', 'حريمي', 'هدايا', 'فاكهي', 'مسكي', 'تستر'],
     tagsEn: ['All', 'Women', 'Gifts', 'Fruity', 'Musky', 'Tester'],
   },
+  'discovery-set': {
+    accent: 'gold',
+    categoryAr: 'عينات وتجربة',
+    categoryEn: 'Samples and discovery',
+    code: 'NFS-DS-001',
+    genderAr: 'للجميع',
+    genderEn: 'Unisex',
+    localMedia: [`${STOCK_ROOT}/hero-perfume-fabric.webp`, `${PRODUCT_ROOT}/sharara-visual.webp`, `${PRODUCT_ROOT}/nada-visual.webp`],
+    longevityAr: 'تختلف حسب كل عطر',
+    longevityEn: 'Varies by scent',
+    moodAr: 'مجموعة التجربة، عينات، اختيار آمن',
+    moodEn: 'Discovery set, samples, safe choice',
+    nameAr: 'مجموعة التجربة',
+    nameEn: 'Discovery Set',
+    notesAr: ['شرارة', 'مدار', 'أثر', 'برق', 'ندى', 'غيمة'],
+    notesEn: ['Sharara', 'Madar', 'Athar', 'Barq', 'Nada', 'Ghayma'],
+    personalityAr: 'ست عينات صغيرة من كولكشن نفس لتجربة الستايل الأقرب لك قبل اختيار الزجاجة.',
+    personalityEn: 'Six small samples from the Nafas collection before choosing your bottle.',
+    projectionAr: 'حسب العطر المختار',
+    projectionEn: 'Depends on the scent',
+    seasonAr: 'كل المواسم',
+    seasonEn: 'All seasons',
+    slug: 'discovery-set',
+    storyAr: 'مجموعة التجربة طريق هادي لاكتشاف نفس: جرّب الست روائح في يومك، ثم ارجع للزجاجة التي تشبه حضورك.',
+    storyEn: 'The Discovery Set is a calmer way to meet Nafas: try all six scents, then return to the bottle that fits you.',
+    strengthAr: 'اختيار آمن قبل الزجاجة',
+    strengthEn: 'A safer first choice',
+    tagsAr: ['الكل', 'عينات', 'هدايا', 'يومي', 'فريش', 'غامق', 'تجربة'],
+    tagsEn: ['All', 'Samples', 'Gifts', 'Daily', 'Fresh', 'Dark', 'Discovery'],
+  },
 };
 
-const aliases: Record<string, LaunchSlug> = {
+const aliases: Record<string, CatalogSlug> = {
   'nfs-001': 'sharara',
   'nfs-002': 'madar',
   'nfs-003': 'athar',
   'nfs-004': 'barq',
   'nfs-005': 'nada',
   'nfs-006': 'ghayma',
+  'nfs-ds-001': 'discovery-set',
 };
 
 function normalizeKey(value?: string) {
@@ -247,7 +281,7 @@ export function getCatalogKey(productOrSlug?: any) {
 }
 
 export function getCatalogEntry(productOrSlug?: any) {
-  return perfumeCatalog[getCatalogKey(productOrSlug) as LaunchSlug];
+    return perfumeCatalog[getCatalogKey(productOrSlug) as CatalogSlug];
 }
 
 function normalizeVariant(variant: any, index: number) {

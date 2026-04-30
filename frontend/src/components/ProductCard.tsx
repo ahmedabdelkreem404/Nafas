@@ -17,6 +17,7 @@ export default function ProductCard({ product, crowned = false }: { product: Pro
   const metrics = getProductMetrics(product);
   const variant = useMemo(() => getPrimaryVariant(product), [product]);
   const outOfStock = !variant?.in_stock;
+  const tags = locale === 'ar' ? product.tags_ar || [] : product.tags_en || [];
 
   const handleAdd = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -58,6 +59,9 @@ export default function ProductCard({ product, crowned = false }: { product: Pro
       <div className="product-card__body ncard__body">
         <h3 className="ncard__name">{locale === 'ar' ? product.name_ar || product.name_en : product.name_en || product.name_ar}</h3>
         <p className="ncard__desc">{locale === 'ar' ? product.personality_ar : product.personality_en}</p>
+        <div className="mood-chip-row">
+          {tags.slice(1, 4).map((tag) => <span key={tag}>{tag}</span>)}
+        </div>
         <div className="product-card__foot ncard__footer">
           <strong>{variant ? formatCurrency(variant.retail_price, locale) : '—'}</strong>
           <button type="button" className={`product-card__add ${added ? 'is-added' : ''}`} onClick={handleAdd} disabled={outOfStock}>

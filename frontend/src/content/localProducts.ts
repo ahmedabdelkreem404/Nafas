@@ -1,5 +1,5 @@
 import type { Product, Variant } from '../types/store';
-import { enrichProduct, launchSlugs, perfumeCatalog, type LaunchSlug } from './perfumeCatalog';
+import { enrichProduct, launchSlugs, perfumeCatalog, type CatalogSlug, type LaunchSlug } from './perfumeCatalog';
 
 const variants: Record<LaunchSlug, Variant[]> = {
   sharara: [
@@ -30,7 +30,11 @@ const variants: Record<LaunchSlug, Variant[]> = {
   ],
 };
 
-function buildLocalProduct(slug: LaunchSlug, index: number): Product {
+const discoveryVariants: Variant[] = [
+  { id: 900701, in_stock: true, label: '6 x 3ml Samples', retail_price: 149, size_ml: 18, type: 'tester' },
+];
+
+function buildLocalProduct(slug: CatalogSlug, index: number): Product {
   const entry = perfumeCatalog[slug];
   return enrichProduct({
     id: 9000 + index + 1,
@@ -49,12 +53,13 @@ function buildLocalProduct(slug: LaunchSlug, index: number): Product {
     review_count: 8,
     reviews_count: 8,
     media: [],
-    variants: variants[slug],
+    variants: slug === 'discovery-set' ? discoveryVariants : variants[slug as LaunchSlug],
   }) as Product;
 }
 
 export const localCoreProducts: Product[] = launchSlugs.map(buildLocalProduct);
+export const localDiscoveryProduct: Product = buildLocalProduct('discovery-set', 6);
 
 export function getLocalCoreProduct(slug: string): Product | null {
-  return localCoreProducts.find((product) => product.slug === slug) || null;
+  return localCoreProducts.find((product) => product.slug === slug) || (slug === 'discovery-set' ? localDiscoveryProduct : null);
 }

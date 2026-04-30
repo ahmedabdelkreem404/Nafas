@@ -132,6 +132,7 @@ export const CartProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
     const response = await publicApi.addCartItem({ quantity, variant_id: variant.id });
     setNormalizedItems(response.data);
     setError('');
+    setIsOpen(true);
     return { product, quantity, variant };
   }, [setNormalizedItems]);
 

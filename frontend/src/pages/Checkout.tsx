@@ -29,6 +29,7 @@ export default function Checkout() {
     address: '',
     delivery_notes: '',
     payment_method: 'cod',
+    payment_reference: '',
   });
 
   const validateField = (name: string, value: string) => {
@@ -64,6 +65,20 @@ export default function Checkout() {
     form.city.trim() &&
     form.address.trim(),
   );
+  const paymentInstructions: Record<string, { ar: string; en: string }> = {
+    cod: {
+      ar: 'ادفع نقدًا عند الاستلام بعد مراجعة الطلب.',
+      en: 'Pay cash on delivery after the order is reviewed.',
+    },
+    vodafone_cash: {
+      ar: 'حوّل على رقم فودافون كاش الخاص بنفس، ثم اكتب رقم العملية لو التحويل تم بالفعل. سيراجعه فريق التشغيل قبل التجهيز.',
+      en: 'Transfer to the Nafas Vodafone Cash number, then enter the transaction reference if already paid.',
+    },
+    instapay: {
+      ar: 'حوّل عبر Instapay لحساب نفس، ثم اكتب المرجع أو اسم الحساب المحوّل منه لو متاح. الطلب يظل قيد المراجعة حتى التأكيد.',
+      en: 'Transfer through Instapay to Nafas, then enter the reference or sending account name if available.',
+    },
+  };
 
   if (!items.length) {
     return <div className="n-container n-section"><div className="empty-panel">{locale === 'ar' ? 'أضف منتجًا واحدًا على الأقل قبل إتمام الطلب.' : 'Add at least one item before checking out.'}</div></div>;
@@ -196,7 +211,33 @@ export default function Checkout() {
 
           <section className="form-card">
             <h2>{locale === 'ar' ? 'طريقة الدفع' : 'Payment method'}</h2>
-            <label className="radio-card"><input type="radio" checked readOnly /><span>{locale === 'ar' ? 'الدفع عند الاستلام (COD)' : 'Cash on delivery (COD)'}</span></label>
+            {[
+              { value: 'cod', label: locale === 'ar' ? 'الدفع عند الاستلام' : 'Cash on delivery' },
+              { value: 'vodafone_cash', label: locale === 'ar' ? 'فودافون كاش' : 'Vodafone Cash' },
+              { value: 'instapay', label: locale === 'ar' ? 'إنستاباي' : 'Instapay' },
+            ].map((method) => (
+              <label key={method.value} className="radio-card">
+                <input
+                  type="radio"
+                  name="payment_method"
+                  checked={form.payment_method === method.value}
+                  onChange={() => setForm({ ...form, payment_method: method.value })}
+                />
+                <span>{method.label}</span>
+              </label>
+            ))}
+            <div className="manual-payment-note">{paymentInstructions[form.payment_method]?.[locale]}</div>
+            {form.payment_method !== 'cod' ? (
+              <label>
+                <span>{locale === 'ar' ? 'رقم العملية أو المرجع (اختياري)' : 'Transaction/reference (optional)'}</span>
+                <input
+                  type="text"
+                  value={form.payment_reference}
+                  onChange={(event) => setForm({ ...form, payment_reference: event.target.value })}
+                  placeholder={locale === 'ar' ? 'مثال: VF-12345' : 'Example: VF-12345'}
+                />
+              </label>
+            ) : null}
           </section>
         </div>
 

@@ -1,0 +1,301 @@
+.scent-aura {
+  --aura: var(--nf-gold);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-inline-size: 0;
+  overflow: hidden;
+  border-radius: var(--nf-radius-lg);
+  background:
+    radial-gradient(circle at 50% 72%, color-mix(in srgb, var(--aura), transparent 58%), transparent 36%),
+    linear-gradient(145deg, rgba(255,248,238,0.06), rgba(21,16,13,0.04));
+}
+
+.scent-aura[data-accent='copper'] { --aura: #b86d3b; }
+.scent-aura[data-accent='amber'] { --aura: #c9974c; }
+.scent-aura[data-accent='rose'] { --aura: #c99788; }
+.scent-aura[data-accent='gold'] { --aura: #c9a15a; }
+
+.scent-aura__mist,
+.scent-aura__light {
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.scent-aura__mist {
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--aura), white 35%), transparent 62%);
+  filter: blur(28px);
+  opacity: 0.32;
+  animation: scentMist 8s ease-in-out infinite alternate;
+}
+
+.scent-aura__light {
+  inset-inline: 18%;
+  inset-block-end: 4%;
+  block-size: 20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--aura), white 12%), transparent 72%);
+  filter: blur(18px);
+  opacity: 0.48;
+}
+
+.sensory-metric,
+.scent-story-block,
+.discovery-set-cta,
+.trust-batch-block,
+.perfume-mood-card {
+  border: 1px solid var(--nf-line);
+  background: linear-gradient(180deg, rgba(255,248,238,0.82), rgba(239,227,210,0.56));
+  box-shadow: var(--nf-shadow-sm);
+}
+
+.sensory-metric {
+  display: grid;
+  gap: 0.3rem;
+  padding: 1rem;
+  border-radius: var(--nf-radius-md);
+}
+
+.sensory-metric span {
+  color: var(--nf-muted);
+  font-size: var(--nf-step-xs);
+}
+
+.sensory-metric strong {
+  color: var(--nf-ink);
+  font-size: var(--nf-step-lg);
+}
+
+.scent-story-block {
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border-radius: var(--nf-radius-lg);
+}
+
+.scent-story-block h2,
+.discovery-set-cta h2,
+.product-world-hero h1,
+.product-world-hero h2 {
+  margin: 0;
+  color: var(--nf-ink);
+  font-family: var(--nf-font-display);
+}
+
+.product-world-hero h2,
+.product-world-hero__title {
+  font-size: clamp(2.1rem, 4vw, 4.2rem);
+  line-height: 1.02;
+}
+
+.product-world-hero__title {
+  color: var(--nf-ink);
+  font-family: var(--nf-font-display);
+  font-weight: 700;
+}
+
+.perfume-mood-card {
+  display: grid;
+  overflow: hidden;
+  border-radius: var(--nf-radius-lg);
+  text-decoration: none;
+}
+
+.perfume-mood-card__media {
+  aspect-ratio: 4 / 3;
+  background: var(--nf-oud);
+}
+
+.perfume-mood-card__media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.perfume-mood-card__body {
+  display: grid;
+  gap: 0.65rem;
+  padding: 1.1rem;
+}
+
+.perfume-mood-card__body h3 {
+  margin: 0;
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+}
+
+.perfume-mood-card__body p {
+  color: var(--nf-muted);
+}
+
+.mood-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.mood-chip-row span {
+  border: 1px solid var(--nf-line);
+  border-radius: var(--nf-radius-pill);
+  padding: 0.25rem 0.65rem;
+  color: var(--nf-muted);
+  font-size: var(--nf-step-xs);
+}
+
+.perfume-mood-card__foot,
+.discovery-set-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.perfume-mood-card__foot span {
+  color: var(--nf-brown);
+  font-weight: 800;
+}
+
+.product-world-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(1.4rem, 4vw, 3rem);
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: var(--nf-radius-xl);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(201,161,90,0.2), transparent 28rem),
+    linear-gradient(135deg, rgba(255,248,238,0.92), rgba(239,227,210,0.62));
+}
+
+.product-world-hero__visual {
+  min-block-size: clamp(19rem, 40vw, 34rem);
+}
+
+.product-world-hero__visual img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.product-world-hero__copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.discovery-set-cta {
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border-radius: var(--nf-radius-lg);
+}
+
+.trust-batch-block {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  padding: 0.8rem;
+  border-radius: var(--nf-radius-lg);
+}
+
+.scent-finder-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+}
+
+.scent-quiz-panel,
+.scent-result-panel {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--nf-line);
+  border-radius: var(--nf-radius-lg);
+  background: rgba(255,248,238,0.72);
+}
+
+.scent-quiz-question {
+  display: grid;
+  gap: 0.7rem;
+  padding-block: 0.45rem;
+}
+
+.scent-result-actions,
+.hero-actions,
+.gift-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.discovery-scent-grid,
+.gift-grid,
+.sensory-home-commercial {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.sensory-home-commercial {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-block: clamp(1.5rem, 4vw, 3rem);
+}
+
+.discovery-scent {
+  display: grid;
+  gap: 0.5rem;
+  min-block-size: 8rem;
+  padding: 1rem;
+  border: 1px solid var(--nf-line);
+  border-radius: var(--nf-radius-md);
+  background: linear-gradient(145deg, rgba(255,248,238,0.86), rgba(239,227,210,0.54));
+}
+
+.discovery-scent strong {
+  font-family: var(--nf-font-display);
+  font-size: var(--nf-step-xl);
+}
+
+.discovery-scent span {
+  color: var(--nf-muted);
+}
+
+.manual-payment-note {
+  border: 1px solid var(--nf-line);
+  border-radius: var(--nf-radius-md);
+  padding: 0.9rem 1rem;
+  color: var(--nf-muted);
+  background: rgba(255,248,238,0.64);
+}
+
+@keyframes scentMist {
+  from { transform: translate3d(-2%, 1%, 0) scale(0.98); }
+  to { transform: translate3d(2%, -1%, 0) scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scent-aura__mist {
+    animation: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .product-world-hero,
+  .discovery-set-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .discovery-set-cta {
+    display: grid;
+  }
+
+  .trust-batch-block {
+    grid-template-columns: 1fr;
+  }
+
+  .scent-finder-grid,
+  .discovery-scent-grid,
+  .gift-grid,
+  .sensory-home-commercial {
+    grid-template-columns: 1fr;
+  }
+}

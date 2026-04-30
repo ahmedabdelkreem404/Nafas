@@ -91,11 +91,17 @@ class ReadinessAuditTest extends TestCase
             );
         }
 
-        $this->assertCount(6, $response->json('data'));
+        $this->assertCount(7, $response->json('data'));
+        $response->assertJsonFragment(['slug' => 'discovery-set']);
+        $this->assertCount(6, Product::query()
+            ->whereIn('slug', $this->coreSlugs)
+            ->where('status', 'active')
+            ->get());
         $response->assertJsonMissing(['slug' => 'dafwa']);
         $response->assertJsonMissing(['slug' => 'zell']);
         $this->assertDatabaseHas('products', ['slug' => 'dafwa', 'status' => 'hidden']);
         $this->assertDatabaseHas('products', ['slug' => 'zell', 'status' => 'hidden']);
+        $this->assertDatabaseHas('product_variants', ['sku' => 'NFS-DS-001', 'retail_price' => 149]);
     }
 
     public function test_public_product_show_works_for_all_core_scents(): void
@@ -213,6 +219,28 @@ class ReadinessAuditTest extends TestCase
             'order_id' => $orderId,
             'provider' => 'cash_on_delivery',
         ]);
+    }
+
+    public function test_checkout_accepts_manual_wallet_payments_for_admin_review(): void
+    {
+        $variant = $this->activeVariant('sharara');
+
+        foreach (['vodafone_cash', 'instapay'] as $method) {
+            $response = $this->postJson('/api/checkout', $this->checkoutPayload($variant, 1, [
+                'payment_method' => $method,
+                'payment_reference' => strtoupper($method) . '-REF-123',
+            ]));
+
+            $response->assertCreated()
+                ->assertJsonPath('order.payment.provider', $method)
+                ->assertJsonPath('order.payment.status', 'pending_review');
+
+            $this->assertDatabaseHas('payments', [
+                'provider' => $method,
+                'reference' => strtoupper($method) . '-REF-123',
+                'status' => 'pending_review',
+            ]);
+        }
     }
 
     public function test_checkout_rejects_insufficient_stock_and_invalid_coupon(): void

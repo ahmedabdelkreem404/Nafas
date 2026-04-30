@@ -16,14 +16,17 @@ const AdminLogin: React.FC = () => {
     setError('');
     setLoading(true);
     try {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
       const res = await authApi.login({ email, password });
-      if (res.data.user.role === 'customer') {
+      const adminRoles = ['admin', 'super_admin', 'content_manager', 'inventory_manager', 'order_manager'];
+      if (!adminRoles.includes(String(res.data.user.role || ''))) {
         setError('هذه الصفحة مخصصة لفريق التشغيل فقط.');
         return;
       }
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
-      navigate('/admin/dashboard');
+      navigate('/admin/dashboard', { replace: true });
     } catch (err: any) {
       setError(err.message || 'تعذّر تسجيل الدخول');
     } finally {

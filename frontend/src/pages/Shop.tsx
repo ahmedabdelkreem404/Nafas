@@ -9,7 +9,7 @@ import { useLocale } from '../context/LocaleContext';
 import { useEngagement } from '../hooks/useEngagement';
 import type { Product } from '../types/store';
 
-const filterKeys = ['all', 'men', 'women', 'fresh', 'musky', 'coffee', 'woody', 'testers', 'gifts'] as const;
+const filterKeys = ['all', 'men', 'women', 'daily', 'occasion', 'fresh', 'dark', 'coffee', 'gifts', 'samples'] as const;
 const sortKeys = ['favorite', 'rating', 'views', 'newest', 'price-asc', 'price-desc'] as const;
 
 export default function Shop() {
@@ -60,8 +60,19 @@ export default function Shop() {
     [...products]
       .filter((product) => {
         const searchable = buildSearchableText(product);
-        const normalizedFilter = filter === 'testers' ? 'tester' : filter;
-        return (!debouncedQuery || searchable.includes(debouncedQuery)) && (filter === 'all' || searchable.includes(normalizedFilter.toLowerCase()));
+        const filterAliases: Record<string, string[]> = {
+          coffee: ['coffee', 'قهوة'],
+          daily: ['daily', 'يومي'],
+          dark: ['dark', 'غامق'],
+          fresh: ['fresh', 'فريش'],
+          gifts: ['gift', 'gifts', 'هدية', 'هدايا'],
+          men: ['men', 'رجالي'],
+          occasion: ['occasion', 'evening', 'مناسبة', 'مناسبات', 'مساء'],
+          samples: ['sample', 'samples', 'tester', 'testers', 'عينات', 'تستر', 'تجربة'],
+          women: ['women', 'حريمي', 'نسائي'],
+        };
+        const aliases = filterAliases[filter] || [filter];
+        return (!debouncedQuery || searchable.includes(debouncedQuery)) && (filter === 'all' || aliases.some((alias) => searchable.includes(alias.toLowerCase())));
       })
       .sort((left, right) => {
         const leftMetrics = getProductMetrics(left);
@@ -91,6 +102,10 @@ export default function Shop() {
   const chipLabel = (key: string) => {
     const map: Record<string, { ar: string; en: string }> = {
       all: { ar: 'الكل', en: 'All' },
+      daily: { ar: 'يومي', en: 'Daily' },
+      dark: { ar: 'غامق', en: 'Dark' },
+      occasion: { ar: 'مناسبات', en: 'Occasions' },
+      samples: { ar: 'عينات', en: 'Samples' },
       men: { ar: 'رجالي', en: 'Men' },
       women: { ar: 'نسائي', en: 'Women' },
       fresh: { ar: 'فريش', en: 'Fresh' },

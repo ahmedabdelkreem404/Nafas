@@ -23,6 +23,25 @@ const navItems = {
   ],
 } as const;
 
+const sensoryNavItems = {
+  ar: [
+    { to: '/', label: 'الرئيسية' },
+    { to: '/shop', label: 'الكولكشن' },
+    { to: '/scent-finder', label: 'اكتشف عطرك' },
+    { to: '/discovery-set', label: 'مجموعة التجربة' },
+    { to: '/gift-boxes', label: 'الهدايا' },
+  ],
+  en: [
+    { to: '/', label: 'Home' },
+    { to: '/shop', label: 'Collection' },
+    { to: '/scent-finder', label: 'Scent Finder' },
+    { to: '/discovery-set', label: 'Discovery Set' },
+    { to: '/gift-boxes', label: 'Gifts' },
+  ],
+} as const;
+
+void navItems;
+
 const drawerCopy = {
   ar: {
     account: 'الحساب',
@@ -69,7 +88,7 @@ export default function Navbar() {
   const signedIn = isAuthenticated() && Boolean(user);
   const firstName = getUserFirstName(locale);
   const initials = user?.name?.trim()?.charAt(0)?.toUpperCase() || 'N';
-  const links = navItems[locale];
+  const links = sensoryNavItems[locale];
   const copy = drawerCopy[locale];
 
   useEffect(() => {

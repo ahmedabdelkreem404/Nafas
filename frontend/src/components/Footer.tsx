@@ -70,6 +70,9 @@ export default function Footer() {
         <nav aria-label={copy.shop}>
           <h3>{copy.shop}</h3>
           <Link to="/shop">{copy.sections.shop}</Link>
+          <Link to="/scent-finder">{locale === 'ar' ? 'اكتشف عطرك' : 'Scent Finder'}</Link>
+          <Link to="/discovery-set">{locale === 'ar' ? 'مجموعة التجربة' : 'Discovery Set'}</Link>
+          <Link to="/gift-boxes">{locale === 'ar' ? 'الهدايا' : 'Gift Boxes'}</Link>
           <Link to="/favorites">{copy.sections.favorites}</Link>
           <Link to="/quality">{copy.sections.quality}</Link>
         </nav>

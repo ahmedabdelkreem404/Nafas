@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard';
 import ProductGallery from '../components/ProductGallery';
 import ProductReviews from '../components/ProductReviews';
 import Reveal from '../components/Reveal';
+import { DiscoverySetCTA, ProductWorldHero, SensoryMetric, TrustBatchBlock } from '../components/sensory/SensoryPrimitives';
 import { useLocale } from '../context/LocaleContext';
 import { useCart } from '../hooks/useCart';
 import { useEngagement } from '../hooks/useEngagement';
@@ -194,6 +195,20 @@ export default function ProductDetail() {
 
   return (
     <div className="page-product editorial-product" data-accent={product.accent || 'gold'}>
+      <div className="n-container product-world-wrap">
+        <ProductWorldHero locale={locale} product={product}>
+          <small>{locale === 'ar' ? 'غرفة العطر' : 'Scent room'}</small>
+          <div className="product-world-hero__title">{locale === 'ar' ? product.name_ar : product.name_en}</div>
+          <p>{locale === 'ar' ? product.personality_ar : product.personality_en}</p>
+          <div className="trust-batch-block trust-batch-block--compact">
+            <SensoryMetric label={locale === 'ar' ? 'الإحساس العام' : 'Overall feel'} value={locale === 'ar' ? product.mood_ar || product.personality_ar : product.mood_en || product.personality_en} />
+            <SensoryMetric label={locale === 'ar' ? 'الوقت المناسب' : 'Best time'} value={locale === 'ar' ? product.season_ar || 'حسب مودك' : product.season_en || 'By mood'} tone="copper" />
+            <SensoryMetric label={locale === 'ar' ? 'الفوحان' : 'Projection'} value={locale === 'ar' ? product.projection_label_ar || product.projection_label || 'متوازن' : product.projection_label_en || product.projection_label || 'Balanced'} tone="dark" />
+          </div>
+          <Link to="/discovery-set" className="inline-link">{locale === 'ar' ? 'مش متأكد؟ جرّب الكولكشن الأول.' : 'Not sure? Try the collection first.'}</Link>
+        </ProductWorldHero>
+      </div>
+
       <div className="n-container product-detail product-detail--top">
         <div className="product-detail__media">
           <ProductGallery product={product} />
@@ -362,6 +377,11 @@ export default function ProductDetail() {
             </div>
           </Reveal>
         </div>
+      </div>
+
+      <div className="n-container n-section">
+        <DiscoverySetCTA locale={locale} />
+        <TrustBatchBlock locale={locale} />
       </div>
 
       {!allOutOfStock ? (
