@@ -380,3 +380,489 @@
     overflow: visible;
   }
 }
+
+/* Apple/Inolty screenshot fidelity: keep the original cinematic home language
+   after later design-system imports. */
+.apple-nafas-page .anh-landing-hero--carousel {
+  position: relative !important;
+  display: block !important;
+  inline-size: 100% !important;
+  max-inline-size: none !important;
+  min-block-size: clamp(24rem, 42vw, 42rem) !important;
+  margin-inline: 0 !important;
+  padding: 0 !important;
+  overflow: clip !important;
+  isolation: isolate !important;
+  direction: rtl !important;
+  color: #fff8ee !important;
+  background: var(--anh-charcoal) !important;
+}
+
+.apple-nafas-page > .anh-landing-hero--carousel[data-section] {
+  inline-size: 100% !important;
+  min-block-size: clamp(24rem, 42vw, 42rem) !important;
+  padding: 0 !important;
+  padding-block: 0 !important;
+  padding-inline: 0 !important;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__media,
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__frame {
+  position: absolute !important;
+  inset: 0 !important;
+  order: initial !important;
+  min-block-size: 100% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__media {
+  z-index: 0;
+  display: block !important;
+  overflow: clip !important;
+  background:
+    radial-gradient(ellipse at 50% 42%, color-mix(in srgb, var(--scene-mist), transparent 22%), transparent 22rem),
+    linear-gradient(135deg, var(--scene-bg-start), color-mix(in srgb, var(--scene-bg-start), #fff8ee 32%) 42%, var(--scene-bg-end)) !important;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background:
+    linear-gradient(180deg, rgba(21, 16, 13, 0.06), rgba(21, 16, 13, 0.24) 74%, rgba(21, 16, 13, 0.42)),
+    linear-gradient(90deg, rgba(21, 16, 13, 0.5), transparent 33% 66%, rgba(21, 16, 13, 0.38)) !important;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__fabric {
+  position: absolute !important;
+  z-index: 1;
+  display: block !important;
+  inset-block: -12% !important;
+  inline-size: min(34rem, 35vw) !important;
+  opacity: 0.92;
+  filter: saturate(1.02) contrast(1.04);
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__fabric--left {
+  inset-inline-start: -6rem !important;
+  background:
+    linear-gradient(110deg, rgba(255,255,255,0.06), transparent 32%),
+    radial-gradient(ellipse at 70% 45%, color-mix(in srgb, var(--scene-depth-left), white 8%), var(--scene-depth-left) 64%, transparent 66%) !important;
+  clip-path: polygon(0 0, 88% 0, 68% 27%, 92% 56%, 58% 100%, 0 100%) !important;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__fabric--right {
+  inset-inline-end: -5rem !important;
+  background:
+    linear-gradient(250deg, rgba(255,255,255,0.1), transparent 30%),
+    radial-gradient(ellipse at 36% 48%, color-mix(in srgb, var(--scene-depth-right), white 13%), var(--scene-depth-right) 62%, transparent 65%) !important;
+  clip-path: polygon(26% 0, 100% 0, 100% 100%, 18% 100%, 42% 62%, 16% 33%, 48% 0) !important;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__frame {
+  z-index: 2;
+  display: grid !important;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 50% 43%, rgba(255, 248, 238, 0.86), transparent 22rem),
+    radial-gradient(ellipse at 50% 70%, color-mix(in srgb, var(--scene-mist), transparent 32%), transparent 17rem),
+    linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.18) 48%, rgba(255,255,255,0.03)) !important;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__light {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: 18%;
+  inset-inline: 24%;
+  block-size: 36%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255,248,238,0.74), transparent 72%);
+  filter: blur(1.35rem);
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__shelf {
+  position: absolute;
+  z-index: 2;
+  inset-block-end: 25%;
+  left: 50%;
+  inline-size: min(43rem, 55vw);
+  block-size: clamp(3rem, 7vw, 6.8rem);
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 26%, rgba(255,255,255,0.38), transparent 48%),
+    linear-gradient(180deg, color-mix(in srgb, var(--scene-surface), white 34%), color-mix(in srgb, var(--scene-surface), #221712 30%));
+  box-shadow:
+    0 1.4rem 4rem rgba(25, 18, 14, 0.28),
+    inset 0 0.6rem 1.2rem rgba(255,255,255,0.24),
+    inset 0 -1.4rem 2rem rgba(0,0,0,0.12);
+  transform: translateX(-50%) perspective(42rem) rotateX(64deg);
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__bottle.anh-bottle-visual {
+  position: relative !important;
+  z-index: 3;
+  inline-size: clamp(9rem, 17vw, 16.5rem) !important;
+  margin: 0 !important;
+  transform: translateY(-2%) !important;
+  filter: drop-shadow(0 2.1rem 2rem rgba(21, 16, 13, 0.34));
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__content {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 5;
+  display: grid !important;
+  grid-template-columns: minmax(10rem, 0.34fr) minmax(12rem, 0.32fr) minmax(10rem, 0.34fr) !important;
+  align-items: center !important;
+  min-block-size: 100% !important;
+  inline-size: min(100%, var(--anh-max)) !important;
+  margin-inline: auto !important;
+  padding: clamp(1.2rem, 4vw, 4rem) clamp(1rem, 5vw, 5rem) clamp(4.4rem, 8vw, 6rem) !important;
+  direction: ltr !important;
+  pointer-events: none;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__copy {
+  grid-column: 1;
+  justify-self: start;
+  align-self: center;
+  max-inline-size: min(26rem, 34vw) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  direction: rtl !important;
+  text-align: right !important;
+  color: #fff8ee !important;
+  pointer-events: auto;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__copy h2 {
+  margin: 0;
+  color: #fff8ee;
+  font-family: var(--nf-font-display, "Aptos", "Segoe UI", serif);
+  font-size: clamp(1.45rem, 2.6vw, 3rem);
+  line-height: 1.18;
+  letter-spacing: 0;
+  text-shadow: 0 1.1rem 2.8rem rgba(0,0,0,0.32);
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-kicker,
+.apple-nafas-page .anh-landing-hero--carousel p,
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__lead {
+  color: rgba(255, 248, 238, 0.78) !important;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__lead {
+  max-inline-size: 32rem;
+  font-size: clamp(0.86rem, 1.05vw, 1rem) !important;
+  line-height: 1.9;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-actions {
+  display: flex !important;
+  grid-template-columns: none !important;
+  justify-content: flex-start !important;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-button {
+  inline-size: auto !important;
+  min-inline-size: 7.4rem;
+  min-block-size: 2.7rem;
+  padding-inline: 1rem;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-button--secondary {
+  border-color: rgba(255, 248, 238, 0.34) !important;
+  background: rgba(255, 248, 238, 0.12) !important;
+  color: #fff8ee !important;
+  backdrop-filter: blur(1rem) !important;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__caption {
+  grid-column: 3;
+  justify-self: end;
+  align-self: center;
+  display: grid !important;
+  inline-size: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  direction: rtl !important;
+  text-align: right !important;
+  color: rgba(255, 248, 238, 0.8) !important;
+  background: transparent !important;
+  pointer-events: none;
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__caption h1 {
+  max-inline-size: 7ch;
+  margin: 0;
+  color: #fff8ee !important;
+  font-family: var(--nf-font-display, "Aptos", "Segoe UI", serif);
+  font-size: clamp(3.5rem, 7.2vw, 6rem) !important;
+  line-height: 0.96;
+  letter-spacing: 0;
+  text-shadow: 0 1.4rem 3.5rem rgba(0,0,0,0.36);
+}
+
+.apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__caption strong {
+  color: rgba(255, 248, 238, 0.88);
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  font-weight: 800;
+}
+
+.apple-nafas-page .anh-hero-arrow {
+  position: absolute;
+  z-index: 6;
+  inset-block-start: 50%;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 248, 238, 0.2);
+  border-radius: 50%;
+  background: rgba(21, 16, 13, 0.18);
+  color: #fff8ee;
+  backdrop-filter: blur(1rem);
+  transform: translateY(-50%);
+}
+
+.apple-nafas-page .anh-hero-arrow--prev {
+  inset-inline-start: clamp(0.6rem, 2vw, 1.5rem);
+}
+
+.apple-nafas-page .anh-hero-arrow--next {
+  inset-inline-end: clamp(0.6rem, 2vw, 1.5rem);
+}
+
+.apple-nafas-page .anh-hero-dock {
+  position: absolute;
+  z-index: 6;
+  inset-block-end: clamp(1rem, 2.8vw, 1.7rem);
+  left: 50%;
+  right: auto;
+  inline-size: auto !important;
+  transform: translateX(-50%);
+}
+
+.apple-nafas-page .anh-together--dark-discovery {
+  min-block-size: clamp(26rem, 54vw, 44rem);
+  display: grid;
+  align-items: center;
+  color: #fff8ee;
+  background:
+    radial-gradient(circle at 20% 22%, rgba(184, 109, 59, 0.3), transparent 22rem),
+    radial-gradient(circle at 72% 46%, rgba(231, 201, 133, 0.2), transparent 20rem),
+    linear-gradient(120deg, #15100d, #2b1a13 64%, #4b2a1d);
+}
+
+.apple-nafas-page .anh-together--dark-discovery .anh-together__grid {
+  grid-template-columns: minmax(0, 0.56fr) minmax(16rem, 0.44fr);
+  gap: clamp(1.4rem, 5vw, 5rem);
+}
+
+.apple-nafas-page .anh-together--dark-discovery .anh-kicker,
+.apple-nafas-page .anh-together--dark-discovery p {
+  color: rgba(255, 248, 238, 0.72);
+}
+
+.apple-nafas-page .anh-together--dark-discovery h2 {
+  color: #fff8ee;
+  max-inline-size: 9ch;
+  text-shadow: 0 1.2rem 3rem rgba(0,0,0,0.36);
+}
+
+.apple-nafas-page .anh-together--dark-discovery .anh-together__visual {
+  min-block-size: clamp(15rem, 31vw, 27rem);
+  border: 1px solid rgba(255, 248, 238, 0.16);
+  border-radius: clamp(1.6rem, 4vw, 4rem);
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(255,248,238,0.62), transparent 18rem),
+    linear-gradient(135deg, rgba(255,248,238,0.2), rgba(31,20,15,0.54));
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.08),
+    0 1.8rem 5rem rgba(0,0,0,0.25);
+}
+
+.apple-nafas-page .anh-together--dark-discovery .anh-together__visual::after {
+  content: "";
+  position: absolute;
+  inset-inline: 16%;
+  inset-block-end: 12%;
+  block-size: 18%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(231, 201, 133, 0.34), transparent 68%);
+  filter: blur(0.45rem);
+}
+
+.apple-nafas-page .anh-together--dark-discovery .anh-together__visual img {
+  opacity: 0.46;
+  mix-blend-mode: screen;
+}
+
+.apple-nafas-page .anh-together--dark-discovery .anh-together__visual .anh-bottle-visual {
+  z-index: 2;
+  inline-size: min(30%, 12rem);
+}
+
+@media (max-width: 900px) {
+  .apple-nafas-page .anh-landing-hero--carousel {
+    min-block-size: clamp(23rem, 72vw, 34rem) !important;
+  }
+
+  .apple-nafas-page > .anh-landing-hero--carousel[data-section] {
+    min-block-size: clamp(23rem, 72vw, 34rem) !important;
+    padding: 0 !important;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__content {
+    grid-template-columns: 1fr !important;
+    padding: clamp(0.9rem, 4vw, 1.4rem) clamp(0.8rem, 4vw, 1.4rem) clamp(4.5rem, 12vw, 5.5rem) !important;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__copy {
+    position: absolute !important;
+    left: clamp(0.85rem, 4vw, 1.35rem);
+    right: auto;
+    inset-inline-start: auto;
+    inset-block-end: clamp(4.15rem, 13vw, 5rem);
+    max-inline-size: min(8.8rem, 36vw) !important;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__copy h2 {
+    font-size: clamp(0.88rem, 4.1vw, 1.25rem);
+    line-height: 1.25;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__lead {
+    display: none;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-actions {
+    display: grid !important;
+    gap: 0.38rem;
+    justify-content: stretch !important;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-button {
+    min-inline-size: 0;
+    inline-size: 100% !important;
+    min-block-size: 2.25rem;
+    padding-inline: 0.5rem;
+    font-size: 0.68rem;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__caption {
+    position: absolute !important;
+    right: clamp(0.85rem, 4vw, 1.35rem);
+    left: auto;
+    inset-inline-end: auto;
+    inset-block-start: clamp(2.2rem, 10vw, 3.2rem);
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__caption h1 {
+    font-size: clamp(2.8rem, 15vw, 4.5rem) !important;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__bottle.anh-bottle-visual {
+    inline-size: clamp(7.4rem, 29vw, 11rem) !important;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__shelf {
+    inline-size: min(21rem, 62vw);
+    inset-block-end: 28%;
+  }
+
+  .apple-nafas-page .anh-hero-arrow {
+    display: none;
+  }
+
+  .apple-nafas-page .anh-together--dark-discovery .anh-together__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 341px) and (max-width: 767px) {
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: clamp(0.55rem, 2.4vw, 0.8rem) !important;
+    direction: rtl !important;
+    overflow: visible !important;
+  }
+
+  .apple-nafas-page .anh-compare__grid > .anh-compare-card {
+    inline-size: 100% !important;
+    min-inline-size: 0 !important;
+    max-inline-size: 100% !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    justify-items: stretch !important;
+    padding: clamp(0.55rem, 2.2vw, 0.8rem) !important;
+    border-radius: clamp(1rem, 5vw, 1.4rem) !important;
+    overflow: hidden;
+  }
+
+  .apple-nafas-page .anh-compare-card > * {
+    min-inline-size: 0 !important;
+    max-inline-size: 100% !important;
+  }
+
+  .apple-nafas-page .anh-compare-card__visual {
+    block-size: clamp(7rem, 36vw, 10rem) !important;
+    border-radius: clamp(0.85rem, 4vw, 1.2rem) !important;
+  }
+
+  .apple-nafas-page .anh-compare-card__visual .anh-bottle-visual {
+    inline-size: min(58%, 6rem) !important;
+  }
+
+  .apple-nafas-page .anh-compare-card h3 {
+    font-size: clamp(1.15rem, 5vw, 1.65rem) !important;
+    line-height: 1.05;
+  }
+
+  .apple-nafas-page .anh-compare-card p,
+  .apple-nafas-page .anh-compare-card dd {
+    font-size: clamp(0.72rem, 3.2vw, 0.86rem) !important;
+    line-height: 1.45;
+  }
+
+  .apple-nafas-page .anh-compare-card dl {
+    gap: 0.45rem !important;
+  }
+
+  .apple-nafas-page .anh-compare-card .anh-button {
+    inline-size: 100% !important;
+    min-inline-size: 0 !important;
+    max-inline-size: 100% !important;
+    min-block-size: 2.5rem;
+    padding-inline: 0.6rem;
+    font-size: 0.78rem;
+    justify-self: stretch !important;
+  }
+}
+
+@media (max-width: 340px) {
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    align-items: stretch;
+  }
+
+  .apple-nafas-page .anh-compare-card {
+    min-inline-size: 0;
+  }
+}
+
+@media (min-width: 1180px) {
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+}

@@ -13,7 +13,7 @@ export default function BetterTogetherSection({ featuredScent }: BetterTogetherS
   const copy = appleHomeCopy.together;
 
   return (
-    <section className="anh-section anh-together" data-section={SECTION_LABELS.together} aria-labelledby="together-title">
+    <section className="anh-section anh-together anh-together--dark-discovery" data-section={SECTION_LABELS.together} aria-labelledby="together-title">
       <div className="anh-container anh-together__grid">
         <div>
           <p className="anh-kicker">{text(copy.kicker, locale)}</p>
