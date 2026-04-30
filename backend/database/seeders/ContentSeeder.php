@@ -25,7 +25,7 @@ class ContentSeeder extends Seeder
             ['slug' => 'privacy-policy', 'title' => 'Privacy Policy', 'content' => 'نستخدم بيانات الطلب للتأكيد والتوصيل والدعم فقط.', 'is_active' => true],
             ['slug' => 'return-policy', 'title' => 'Return Policy', 'content' => 'يمكن مراجعة الطلب قبل التجهيز النهائي حسب حالة الطلب. سياسة الاستبدال النهائية تحتاج اعتمادا تشغيليا وقانونيا.', 'is_active' => true],
             ['slug' => 'terms', 'title' => 'Terms and Product Warnings', 'content' => 'للاستخدام الخارجي فقط. يحفظ بعيدا عن الأطفال والحرارة واللهب. ينصح باختبار رقعة للبشرة الحساسة. لا نستخدم ادعاءات مبالغ فيها مثل 48 ساعة أو 100% آمن.', 'is_active' => true],
-            ['slug' => 'about', 'title' => 'About Nafas', 'content' => 'نفس معناها أثر وروح وحضور. براند من Inolty لعطور محلية عالية الجودة، ليست نسخا ولا بدائل. كل عطر له اسم وقصة وباتش وتعتيق وفحص.', 'is_active' => true],
+            ['slug' => 'about', 'title' => 'About Nafas', 'content' => 'نفس معناها أثر وروح وحضور. براند من Inolty لعطور محلية عالية الجودة، كل عطر فيه له اسم وقصة وباتش وتعتيق وفحص.', 'is_active' => true],
             ['slug' => 'quality', 'title' => 'Quality', 'content' => 'بخاخات نفس بتركيز 24% زيت و76% كحول. التعتيق 21-30 يوم حسب الرائحة. كل دفعة لها سجل باتش وفحص وضوح ورشاش. لا يتم كشف نسب التركيبات أو الحسابات الداخلية علنا.', 'is_active' => true],
         ] as $page) {
             Page::updateOrCreate(['slug' => $page['slug']], $page);

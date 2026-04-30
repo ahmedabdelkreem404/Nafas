@@ -84,7 +84,7 @@ export default function ScentFinder() {
           <small>{locale === 'ar' ? 'ترشيح نفس' : 'Nafas recommendation'}</small>
           {primary ? <PerfumeMoodCard locale={locale} product={primary} /> : null}
           {complete ? (
-            <p>{locale === 'ar' ? 'الاختيار ده الأقرب لإجاباتك، ومعاه بديل لو عايز تمشي في مود قريب.' : 'This is closest to your answers, with one nearby alternative.'}</p>
+            <p>{locale === 'ar' ? 'الاختيار ده الأقرب لإجاباتك، ومعاه اختيار تاني لو عايز تمشي في مود قريب.' : 'This is closest to your answers, with a second nearby pick.'}</p>
           ) : (
             <p>{locale === 'ar' ? 'جاوب على الأسئلة كلها عشان النتيجة تبقى أدق.' : 'Answer all questions for a sharper result.'}</p>
           )}
@@ -92,7 +92,7 @@ export default function ScentFinder() {
             <button type="button" className="n-btn n-btn--primary" onClick={addPrimary}>{locale === 'ar' ? 'أضف الترشيح للسلة' : 'Add recommendation'}</button>
             <Link to="/discovery-set" className="n-btn n-btn--ghost">{locale === 'ar' ? 'جرّب الكولكشن الأول' : 'Try Discovery Set'}</Link>
           </div>
-          {secondary ? <Link to={`/products/${secondary.slug}`} className="inline-link">{locale === 'ar' ? `بديل قريب: ${secondary.name_ar}` : `Alternative: ${secondary.name_en}`}</Link> : null}
+          {secondary ? <Link to={`/products/${secondary.slug}`} className="inline-link">{locale === 'ar' ? `اختيار قريب: ${secondary.name_ar}` : `Nearby pick: ${secondary.name_en}`}</Link> : null}
         </aside>
       </div>
     </div>
