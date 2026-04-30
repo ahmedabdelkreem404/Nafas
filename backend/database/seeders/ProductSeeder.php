@@ -48,7 +48,7 @@ class ProductSeeder extends Seeder
             [
                 'name_ar' => 'أثر', 'name_en' => 'Athar', 'code' => 'NFS-003', 'gender' => 'Men',
                 'story' => 'خشبية داكنة قوية بانطباع رجولي واضح ولمسة تدوم في الذاكرة.',
-                'personality' => 'dark masculine strong and long lasting', 'marketing_line_ar' => 'يسبقك ويفضل بعدك.',
+                'personality' => 'dark masculine polished trail', 'marketing_line_ar' => 'يسبقك ويفضل بعدك.',
                 'scent_notes' => 'incense, leather, patchouli, musk', 'season' => 'winter', 'time_of_day' => 'evening',
                 'projection_label' => 'strong', 'longevity_label' => 'long-lasting', 'strength_label' => 'eau de parfum', 'status' => 'active',
                 'variants' => [

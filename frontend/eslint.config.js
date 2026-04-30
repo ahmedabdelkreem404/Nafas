@@ -7,11 +7,14 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
   globalIgnores([
-    'dist',
-    'test-results',
-    'playwright-report',
-    'responsive-proof-v3',
-    'responsive-proof-v4',
+    'node_modules/**',
+    'dist/**',
+    'artifacts/**',
+    'test-results/**',
+    'playwright-report/**',
+    'responsive-proof-v3/**',
+    'responsive-proof-v4/**',
+    '*.log',
     'src/components/BottleAssemblyScroll.tsx',
     'src/components/Hero3DScene.tsx',
     'src/components/PerfumeBottle3D.tsx',

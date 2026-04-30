@@ -179,11 +179,11 @@ const ProductDetailEnhanced: React.FC<ProductDetailEnhancedProps> = ({
           <div className="product-features">
             <div className="feature-item">
               <Package size={18} />
-              <span>{locale === 'ar' ? 'شحن مجاني للطلبات فوق 500 جنيه' : 'Free shipping over 500 EGP'}</span>
+              <span>{locale === 'ar' ? 'خيارات التوصيل تظهر بوضوح عند إتمام الطلب' : 'Delivery options are shown clearly at checkout'}</span>
             </div>
             <div className="feature-item">
               <Sparkles size={18} />
-              <span>{locale === 'ar' ? 'عطور أصلية 100%' : '100% Authentic Perfumes'}</span>
+              <span>{locale === 'ar' ? 'اختيار عطري هادئ ومراجعة واضحة قبل الشراء' : 'A calm scent choice with clear review before purchase'}</span>
             </div>
           </div>
         </div>

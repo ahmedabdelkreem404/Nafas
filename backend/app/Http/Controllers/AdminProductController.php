@@ -9,7 +9,7 @@ class AdminProductController extends Controller
 {
     public function index()
     {
-        return response()->json(Product::with('variants', 'formula.items', 'media', 'tags')->get());
+        return response()->json(Product::with('variants', 'formula.items', 'media')->get());
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class AdminProductController extends Controller
 
     public function show($id)
     {
-        return response()->json(Product::with('variants', 'formula.items', 'media', 'tags')->findOrFail($id));
+        return response()->json(Product::with('variants', 'formula.items', 'media')->findOrFail($id));
     }
 
     public function update(Request $request, $id)
