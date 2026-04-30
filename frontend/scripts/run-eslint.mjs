@@ -6,12 +6,7 @@ const root = process.cwd();
 const eslintBin = join(root, 'node_modules', 'eslint', 'bin', 'eslint.js');
 const includeRoots = ['src', 'tests'];
 const rootFiles = ['playwright.config.ts', 'vite.config.ts', 'vitest.config.ts'];
-const ignored = new Set([
-  'src/components/BottleAssemblyScroll.tsx',
-  'src/components/Hero3DScene.tsx',
-  'src/components/PerfumeBottle3D.tsx',
-  'src/components/Product3DViewer.tsx',
-]);
+const ignored = new Set();
 const chunkSize = 12;
 
 function normalize(path) {

@@ -35,6 +35,12 @@ class CheckoutController extends Controller
             'items.*.quantity' => 'required|integer|min:1',
         ]);
 
+        if ($validated['payment_method'] !== 'cash_on_delivery' && !config('services.paymob.integration_id')) {
+            return response()->json([
+                'error' => 'Online payment is temporarily unavailable. Please choose cash on delivery.',
+            ], 422);
+        }
+
         return DB::transaction(function () use ($validated, $request, $notificationService) {
             $subtotalAmount = 0;
             $discountAmount = 0;
@@ -102,7 +108,7 @@ class CheckoutController extends Controller
             }
 
             $order = Order::create([
-                'order_number' => 'ORD-' . strtoupper(Str::random(8)),
+                'order_number' => $this->generateUniqueOrderNumber(),
                 'customer_id' => $customer?->id,
                 'customer_name' => $validated['customer_name'],
                 'customer_phone' => $validated['phone'],
@@ -171,5 +177,14 @@ class CheckoutController extends Controller
                 'order' => $order->load('items.variant.product', 'history', 'payment'),
             ], 201);
         });
+    }
+
+    private function generateUniqueOrderNumber(): string
+    {
+        do {
+            $orderNumber = 'ORD-' . strtoupper(Str::random(8));
+        } while (Order::where('order_number', $orderNumber)->exists());
+
+        return $orderNumber;
     }
 }

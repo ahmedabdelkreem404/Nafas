@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'paymob' => [
+        'base_url' => env('PAYMOB_BASE_URL'),
+        'integration_id' => env('PAYMOB_INTEGRATION_ID'),
+        'api_key' => env('PAYMOB_API_KEY'),
+        'iframe_id' => env('PAYMOB_IFRAME_ID'),
+    ],
+
 ];

@@ -15,10 +15,6 @@ export default defineConfig([
     'responsive-proof-v3/**',
     'responsive-proof-v4/**',
     '*.log',
-    'src/components/BottleAssemblyScroll.tsx',
-    'src/components/Hero3DScene.tsx',
-    'src/components/PerfumeBottle3D.tsx',
-    'src/components/Product3DViewer.tsx',
   ]),
   {
     files: ['**/*.{ts,tsx}'],

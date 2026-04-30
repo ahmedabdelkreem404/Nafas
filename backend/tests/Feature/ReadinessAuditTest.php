@@ -3,12 +3,19 @@
 namespace Tests\Feature;
 
 use App\Models\Coupon;
+use App\Models\Formula;
+use App\Models\FormulaItem;
+use App\Models\Ingredient;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductVariant;
+use App\Models\ProductionBatch;
+use App\Models\QualityCheck;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class ReadinessAuditTest extends TestCase
@@ -367,6 +374,216 @@ class ReadinessAuditTest extends TestCase
             $this->withHeader('Authorization', 'Bearer ' . $token)
                 ->getJson($route)
                 ->assertOk();
+        }
+    }
+
+    public function test_admin_product_update_disable_and_delete_flow(): void
+    {
+        $token = $this->adminToken();
+
+        $productId = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->postJson('/api/admin/products', [
+                'code' => 'READY-CRUD-001',
+                'slug' => 'ready-crud-scent',
+                'name_ar' => 'جاهزية',
+                'name_en' => 'Readiness Scent',
+                'gender' => 'Unisex',
+                'status' => 'active',
+            ])
+            ->assertCreated()
+            ->json('id');
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->patchJson("/api/admin/products/{$productId}", [
+                'name_en' => 'Readiness Scent Updated',
+                'marketing_line_ar' => 'اختبار آمن للوحة التحكم',
+            ])
+            ->assertOk()
+            ->assertJsonPath('name_en', 'Readiness Scent Updated');
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->patchJson("/api/admin/products/{$productId}", ['status' => 'hidden'])
+            ->assertOk()
+            ->assertJsonPath('status', 'hidden');
+
+        $this->getJson('/api/products/ready-crud-scent')->assertNotFound();
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->deleteJson("/api/admin/products/{$productId}")
+            ->assertOk();
+
+        $this->assertDatabaseMissing('products', ['id' => $productId]);
+    }
+
+    public function test_admin_coupon_create_and_update_flow(): void
+    {
+        $token = $this->adminToken();
+
+        $couponId = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->postJson('/api/admin/coupons', [
+                'code' => 'READY15',
+                'discount_type' => 'percentage',
+                'discount_value' => 15,
+                'min_cart_total' => 500,
+                'usage_limit' => 20,
+                'is_active' => true,
+            ])
+            ->assertCreated()
+            ->assertJsonPath('code', 'READY15')
+            ->json('id');
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->patchJson("/api/admin/coupons/{$couponId}", [
+                'discount_value' => 10,
+                'is_active' => false,
+            ])
+            ->assertOk()
+            ->assertJsonPath('discount_value', 10)
+            ->assertJsonPath('is_active', false);
+    }
+
+    public function test_admin_formula_batch_and_quality_write_flows(): void
+    {
+        $token = $this->adminToken();
+        $product = Product::where('slug', 'sharara')->firstOrFail();
+        $variant = $this->activeVariant('sharara');
+        $variant->forceFill(['stock_quantity' => 12])->save();
+
+        $formulaId = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->postJson('/api/admin/formulas', [
+                'product_id' => $product->id,
+                'oil_percentage' => 24,
+                'alcohol_percentage' => 76,
+                'ifra_status' => 'documented',
+                'sds_status' => 'documented',
+                'internal_notes' => 'Readiness test formula',
+            ])
+            ->assertCreated()
+            ->assertJsonPath('product_id', $product->id)
+            ->json('id');
+
+        $ingredientId = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->postJson('/api/admin/ingredients', [
+                'name' => 'Readiness Amber',
+                'unit' => 'gram',
+                'supplier_name' => 'Nafas QA',
+                'is_active' => true,
+            ])
+            ->assertCreated()
+            ->json('id');
+
+        $formulaItemId = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->postJson("/api/admin/formulas/{$formulaId}/items", [
+                'ingredient_id' => $ingredientId,
+                'ingredient_name' => 'Readiness Amber',
+                'quantity_ml' => 2.5,
+                'quantity_grams' => 2.1,
+                'cost_per_gram' => 3.25,
+                'percentage' => 4.5,
+            ])
+            ->assertCreated()
+            ->json('id');
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->patchJson("/api/admin/items/{$formulaItemId}", [
+                'percentage' => 5.0,
+                'internal_notes' => 'Adjusted during readiness audit',
+            ])
+            ->assertOk()
+            ->assertJsonPath('percentage', 5);
+
+        $batchId = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->postJson('/api/admin/batches', [
+                'product_id' => $product->id,
+                'product_variant_id' => $variant->id,
+                'quantity_produced' => 7,
+                'mix_date' => now()->toDateString(),
+                'notes' => 'Readiness batch',
+            ])
+            ->assertCreated()
+            ->assertJsonPath('qc_status', 'drafted')
+            ->json('id');
+
+        $qualityId = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->postJson('/api/admin/quality-checks', [
+                'production_batch_id' => $batchId,
+                'clarity_test' => 'pass',
+                'sprayer_test' => 'pass',
+                'leak_test' => 'pass',
+                'scent_test' => 'pass',
+                'approval_status' => 'pending',
+            ])
+            ->assertCreated()
+            ->assertJsonPath('approval_status', 'pending')
+            ->json('id');
+
+        $this->assertSame('qc_pending', ProductionBatch::findOrFail($batchId)->qc_status);
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->patchJson("/api/admin/quality-checks/{$qualityId}", ['approval_status' => 'approved'])
+            ->assertOk()
+            ->assertJsonPath('approval_status', 'approved');
+
+        $this->assertSame('approved', ProductionBatch::findOrFail($batchId)->qc_status);
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->patchJson("/api/admin/batches/{$batchId}", [
+                'qc_status' => 'approved',
+                'notes' => 'Approved by readiness audit',
+            ])
+            ->assertOk();
+
+        $variant->refresh();
+        $this->assertSame(19, $variant->stock_quantity);
+        $this->assertDatabaseHas((new Formula())->getTable(), ['id' => $formulaId]);
+        $this->assertDatabaseHas((new Ingredient())->getTable(), ['id' => $ingredientId]);
+        $this->assertDatabaseHas((new FormulaItem())->getTable(), ['id' => $formulaItemId]);
+        $this->assertDatabaseHas((new QualityCheck())->getTable(), ['id' => $qualityId]);
+    }
+
+    public function test_online_payment_is_safely_disabled_without_provider_configuration(): void
+    {
+        Config::set('services.paymob.integration_id', null);
+        $variant = $this->activeVariant('sharara');
+        $orderCount = Order::count();
+
+        $this->postJson('/api/checkout', $this->checkoutPayload($variant, 1, [
+            'payment_method' => 'online_card',
+        ]))
+            ->assertStatus(422)
+            ->assertJsonPath('error', 'Online payment is temporarily unavailable. Please choose cash on delivery.');
+
+        $this->assertSame($orderCount, Order::count());
+    }
+
+    public function test_checkout_retries_order_number_generation_until_unique(): void
+    {
+        $variant = $this->activeVariant('dafwa');
+
+        Order::create([
+            'order_number' => 'ORD-DUPLICAT',
+            'customer_name' => 'Existing Customer',
+            'customer_phone' => '01000000000',
+            'address' => 'Existing address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'subtotal_amount' => 100,
+            'discount_amount' => 0,
+            'shipping_amount' => 0,
+            'total_amount' => 100,
+            'status' => 'pending',
+            'payment_method' => 'cash_on_delivery',
+            'stock_deducted' => false,
+        ]);
+
+        Str::createRandomStringsUsingSequence(['DUPLICAT', 'UNIQUE01']);
+
+        try {
+            $this->postJson('/api/checkout', $this->checkoutPayload($variant))
+                ->assertCreated()
+                ->assertJsonPath('order.order_number', 'ORD-UNIQUE01');
+        } finally {
+            Str::createRandomStringsNormally();
         }
     }
 

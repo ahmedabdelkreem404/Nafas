@@ -31,9 +31,14 @@ class AdminFormulaItemController extends Controller
         return response()->json($formula->items()->create($validated), 201);
     }
 
-    public function update(Request $request, FormulaItem $formulaItem)
+    public function show(FormulaItem $item)
     {
-        $formulaItem->update($request->validate([
+        return response()->json($item->load('ingredient'));
+    }
+
+    public function update(Request $request, FormulaItem $item)
+    {
+        $item->update($request->validate([
             'ingredient_id' => ['nullable', 'exists:ingredients,id'],
             'ingredient_name' => ['sometimes', 'string'],
             'quantity_ml' => ['nullable', 'numeric'],
@@ -46,12 +51,12 @@ class AdminFormulaItemController extends Controller
             'sds_status' => ['nullable', 'string'],
         ]));
 
-        return response()->json($formulaItem->load('ingredient'));
+        return response()->json($item->load('ingredient'));
     }
 
-    public function destroy(FormulaItem $formulaItem)
+    public function destroy(FormulaItem $item)
     {
-        $formulaItem->delete();
+        $item->delete();
         return response()->json(['message' => 'Formula item deleted']);
     }
 }
