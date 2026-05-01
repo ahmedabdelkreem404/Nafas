@@ -310,6 +310,7 @@
   padding: 0.62rem 1rem;
   background: rgba(251, 242, 228, 0.94);
   border-block-end: 1px solid rgba(70, 45, 31, 0.1);
+  border-radius: 0 0 var(--anh-radius) var(--anh-radius);
   text-align: center;
   font-size: 0.92rem;
 }
@@ -961,6 +962,8 @@
 .apple-nafas-page .anh-why,
 .apple-nafas-page .anh-final {
   background: var(--anh-surface);
+  border-radius: var(--anh-radius);
+  overflow: hidden;
 }
 
 .apple-nafas-page .anh-viewer,
@@ -968,6 +971,8 @@
 .apple-nafas-page .anh-selector,
 .apple-nafas-page .anh-compare {
   background: var(--anh-panel);
+  border-radius: var(--anh-radius);
+  overflow: hidden;
 }
 
 .apple-nafas-page .anh-love,
@@ -975,6 +980,8 @@
 .apple-nafas-page .anh-together,
 .apple-nafas-page .anh-explore {
   background: var(--anh-cream);
+  border-radius: var(--anh-radius);
+  overflow: hidden;
 }
 
 .apple-nafas-page .anh-highlight-shell {
