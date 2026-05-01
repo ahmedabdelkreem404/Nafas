@@ -28,7 +28,9 @@ export default function Checkout() {
     city: '',
     address: '',
     delivery_notes: '',
-    payment_method: 'cod',
+    payment_method: 'cash_on_delivery',
+    payment_reference: '',
+    payment_payer_phone: '',
   });
 
   const validateField = (name: string, value: string) => {
@@ -45,6 +47,10 @@ export default function Checkout() {
         return value.trim() ? '' : (locale === 'ar' ? 'يرجى اختيار المحافظة' : 'Please choose a governorate.');
       case 'email':
         return !value.trim() || /\S+@\S+\.\S+/.test(value) ? '' : (locale === 'ar' ? 'البريد الإلكتروني غير صحيح' : 'Invalid email address.');
+      case 'payment_reference':
+        return form.payment_method === 'cash_on_delivery' || value.trim().length >= 3 ? '' : (locale === 'ar' ? 'اكتب رقم العملية أو المرجع بعد التحويل' : 'Enter the transfer reference after paying.');
+      case 'payment_payer_phone':
+        return !value.trim() || PHONE_REGEX.test(value.trim()) ? '' : (locale === 'ar' ? 'رقم الهاتف غير صحيح، مثال: 01012345678' : 'Invalid phone number. Example: 01012345678');
       default:
         return '';
     }
@@ -84,6 +90,8 @@ export default function Checkout() {
           governorate: validateField('governorate', form.governorate),
           city: validateField('city', form.city),
           address: validateField('address', form.address),
+          payment_reference: validateField('payment_reference', form.payment_reference),
+          payment_payer_phone: validateField('payment_payer_phone', form.payment_payer_phone),
         };
         setErrors(nextErrors);
         setTouched({
@@ -93,6 +101,8 @@ export default function Checkout() {
           governorate: true,
           city: true,
           address: true,
+          payment_reference: true,
+          payment_payer_phone: true,
         });
         if (Object.values(nextErrors).some(Boolean)) {
           return;
@@ -196,7 +206,83 @@ export default function Checkout() {
 
           <section className="form-card">
             <h2>{locale === 'ar' ? 'طريقة الدفع' : 'Payment method'}</h2>
-            <label className="radio-card"><input type="radio" checked readOnly /><span>{locale === 'ar' ? 'الدفع عند الاستلام (COD)' : 'Cash on delivery (COD)'}</span></label>
+            {[
+              {
+                key: 'cash_on_delivery',
+                title: locale === 'ar' ? 'الدفع عند الاستلام' : 'Cash on delivery',
+                body: locale === 'ar' ? 'ادفع نقدًا عند وصول الطلب.' : 'Pay in cash when your order arrives.',
+              },
+              {
+                key: 'vodafone_cash',
+                title: locale === 'ar' ? 'فودافون كاش' : 'Vodafone Cash',
+                body: locale === 'ar' ? 'حوّل المبلغ، ثم اكتب رقم العملية أو المرجع ليتم مراجعته يدويًا.' : 'Transfer the amount, then enter the transaction reference for manual review.',
+              },
+              {
+                key: 'instapay',
+                title: locale === 'ar' ? 'إنستاباي' : 'Instapay',
+                body: locale === 'ar' ? 'حوّل المبلغ عبر إنستاباي، ثم اكتب رقم العملية أو المرجع ليتم مراجعته يدويًا.' : 'Pay through Instapay, then enter the transaction reference for manual review.',
+              },
+            ].map((method) => (
+              <label key={method.key} className="radio-card">
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value={method.key}
+                  checked={form.payment_method === method.key}
+                  onChange={(event) => setForm({ ...form, payment_method: event.target.value })}
+                />
+                <span>
+                  <strong>{method.title}</strong>
+                  <small>{method.body}</small>
+                </span>
+              </label>
+            ))}
+            {form.payment_method !== 'cash_on_delivery' ? (
+              <div className="form-grid" style={{ marginTop: '1rem' }}>
+                <label className={errors.payment_reference && touched.payment_reference ? 'has-error' : ''}>
+                  <span>{locale === 'ar' ? 'رقم العملية / المرجع' : 'Transaction reference'}</span>
+                  <input
+                    type="text"
+                    value={form.payment_reference}
+                    onBlur={(event) => {
+                      setTouched((current) => ({ ...current, payment_reference: true }));
+                      validateAndStore('payment_reference', event.target.value);
+                    }}
+                    onChange={(event) => {
+                      setForm({ ...form, payment_reference: event.target.value });
+                      if (touched.payment_reference) {
+                        validateAndStore('payment_reference', event.target.value);
+                      }
+                    }}
+                    required
+                  />
+                  {errors.payment_reference && touched.payment_reference ? <small className="field-error">{errors.payment_reference}</small> : null}
+                </label>
+                <label className={errors.payment_payer_phone && touched.payment_payer_phone ? 'has-error' : ''}>
+                  <span>{locale === 'ar' ? 'هاتف المحوّل (اختياري)' : 'Payer phone (optional)'}</span>
+                  <input
+                    type="text"
+                    value={form.payment_payer_phone}
+                    onBlur={(event) => {
+                      setTouched((current) => ({ ...current, payment_payer_phone: true }));
+                      validateAndStore('payment_payer_phone', event.target.value);
+                    }}
+                    onChange={(event) => {
+                      setForm({ ...form, payment_payer_phone: event.target.value });
+                      if (touched.payment_payer_phone) {
+                        validateAndStore('payment_payer_phone', event.target.value);
+                      }
+                    }}
+                  />
+                  {errors.payment_payer_phone && touched.payment_payer_phone ? <small className="field-error">{errors.payment_payer_phone}</small> : null}
+                </label>
+                <small className="field-hint is-wide">
+                  {locale === 'ar'
+                    ? 'رفع صورة إثبات الدفع غير مفعل في هذه المرحلة. سيُراجع الفريق رقم العملية يدويًا.'
+                    : 'Proof image upload is not enabled in this phase. The team will review the transaction reference manually.'}
+                </small>
+              </div>
+            ) : null}
           </section>
         </div>
 

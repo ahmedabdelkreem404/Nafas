@@ -87,6 +87,6 @@ describe('ProductDetail', () => {
 
     await waitFor(() => expect(screen.getByText('Sharara')).toBeInTheDocument());
     expect(screen.queryByText('Unable to load this fragrance.')).not.toBeInTheDocument();
-    expect(screen.getByText('25ml Retail')).toBeInTheDocument();
+    expect(screen.getByText('30ml Retail')).toBeInTheDocument();
   });
 });

@@ -22,6 +22,7 @@ export const adminApi = {
     get: (id: number | string) => client.get(`/admin/orders/${id}`),
     update: (id: number | string, data: unknown) => client.patch(`/admin/orders/${id}`, data),
     updateStatus: (id: number | string, status: string, notes?: string) => client.patch(`/admin/orders/${id}/status`, { status, notes }),
+    reviewPayment: (id: number | string, data: unknown) => client.patch(`/admin/orders/${id}/payment-review`, data),
   },
   formulas: {
     list: () => client.get('/admin/formulas'),
