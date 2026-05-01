@@ -2,7 +2,6 @@ import ComparisonSection from './components/ComparisonSection';
 import BetterTogetherSection from './components/BetterTogetherSection';
 import EmotionalMomentSection from './components/EmotionalMomentSection';
 import FinalCtaSection from './components/FinalCtaSection';
-import HeroSection from './components/HeroSection';
 import HighlightsSection from './components/HighlightsSection';
 import HomeRibbon from './components/HomeRibbon';
 import KeepExploringSection from './components/KeepExploringSection';
@@ -35,7 +34,6 @@ export default function AppleNafasHome() {
       <StoryChaptersSection chapters={storyChapters} />
       <SensesSection layers={sensoryLayers} />
       <TesterToBottleSection steps={testerFlowSteps} />
-      <HeroSection scents={scents} />
       <BetterTogetherSection featuredScent={scents[0]} />
       <ScentSelectorSection options={selectorOptions} scents={scents} />
       <TrustSection cards={trustCards} />

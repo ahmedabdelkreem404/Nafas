@@ -3560,22 +3560,10 @@ p { margin: 0; color: var(--nts); }
     linear-gradient(180deg, rgba(42,31,33,0.92), rgba(14,11,12,0.96));
 }
 
-.nlp-viewer--dafwa .nlp-viewer__stage {
-  background:
-    radial-gradient(circle at 50% 74%, rgba(214,168,92,0.18), transparent 34%),
-    linear-gradient(180deg, rgba(35,20,14,0.96), rgba(14,11,10,0.98));
-}
 
-.nlp-viewer--zell .nlp-viewer__stage {
-  background:
-    radial-gradient(circle at 50% 74%, rgba(192,192,192,0.15), transparent 34%),
-    linear-gradient(180deg, rgba(18,18,18,0.96), rgba(10,10,11,0.98));
-}
 
 .nlp-collection-card--sharara { box-shadow: 0 20px 44px rgba(200,124,58,0.08); }
 .nlp-collection-card--ghayma { box-shadow: 0 20px 44px rgba(183,110,121,0.08); }
-.nlp-collection-card--dafwa { box-shadow: 0 20px 44px rgba(214,168,92,0.08); }
-.nlp-collection-card--zell { box-shadow: 0 20px 44px rgba(192,192,192,0.06); }
 
 .nlp a:focus-visible,
 .nlp button:focus-visible {
@@ -4643,25 +4631,7 @@ p { margin: 0; color: var(--nts); }
 .page-home.nlp .nlp-highlight-card--ghayma .nlp-highlight-card__glow--two { background: rgba(255, 255, 255, 0.16); }
 .page-home.nlp .nlp-highlight-card--ghayma .nlp-highlight-card__visual { object-position: center 56%; }
 
-.page-home.nlp .nlp-highlight-card--dafwa {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(170,117,72,0.18), transparent 32%),
-    linear-gradient(180deg, #17110f 0%, #2a1d17 54%, #0f0c0a 100%);
-}
 
-.page-home.nlp .nlp-highlight-card--dafwa .nlp-highlight-card__glow--one { background: rgba(182, 131, 84, 0.26); }
-.page-home.nlp .nlp-highlight-card--dafwa .nlp-highlight-card__glow--two { background: rgba(244, 210, 165, 0.22); }
-.page-home.nlp .nlp-highlight-card--dafwa .nlp-highlight-card__visual { object-position: center 58%; }
-
-.page-home.nlp .nlp-highlight-card--zell {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(132,144,154,0.14), transparent 32%),
-    linear-gradient(180deg, #111317 0%, #1f252b 54%, #0d1014 100%);
-}
-
-.page-home.nlp .nlp-highlight-card--zell .nlp-highlight-card__glow--one { background: rgba(128, 132, 138, 0.22); }
-.page-home.nlp .nlp-highlight-card--zell .nlp-highlight-card__glow--two { background: rgba(240, 240, 240, 0.12); }
-.page-home.nlp .nlp-highlight-card--zell .nlp-highlight-card__visual { object-position: center 48%; }
 
 .page-home.nlp .nlp-highlight-card--discovery,
 .page-home.nlp .nlp-highlight-card--gift-set,

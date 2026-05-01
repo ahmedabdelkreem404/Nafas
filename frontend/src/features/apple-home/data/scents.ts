@@ -9,7 +9,7 @@ export const scents: Scent[] = [
     mood: 'Fresh / Spicy / Dark Musk',
     accent: '#b86d3b',
     aura: 'matte black + copper',
-    heroDescription: 'شرارة معمولة للحضور السريع: فريش حار، ظل مسكي داكن، ولمعة نحاس هادية.',
+    heroDescription: 'شرارة معمولة للحضور السريع: فريش حار، أثر مسكي داكن، ولمعة نحاس هادية.',
     scene: { bgStart: '#f5e7d5', bgEnd: '#1c1512', depthLeft: '#171313', depthRight: '#4b2a1d', mist: '#ffd6a0', surface: '#b77945', flash: '#d18a4d' },
     bestFor: 'حضور رجالي واضح من أول لحظة.',
     notes: 'فريش، توابل هادئة، زعفران، ومسك داكن.',

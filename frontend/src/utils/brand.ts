@@ -34,12 +34,10 @@ export const WHATSAPP_SUPPORT_URL = 'https://wa.me/201000000000';
 const productVisuals: Record<string, string> = {
   athar: `${PRODUCT_ROOT}/athar-visual.webp`,
   barq: SHOP_PERFUME_BLACK,
-  dafwa: `${PRODUCT_ROOT}/dafwa-visual.webp`,
   ghayma: `${PRODUCT_ROOT}/ghayma-visual.webp`,
   madar: `${PRODUCT_ROOT}/madar-visual.webp`,
   nada: `${PRODUCT_ROOT}/nada-visual.webp`,
   sharara: `${PRODUCT_ROOT}/sharara-visual.webp`,
-  zell: `${PRODUCT_ROOT}/zell-visual.webp`,
 };
 
 const aliases: Record<string, keyof typeof productVisuals> = {
@@ -49,11 +47,8 @@ const aliases: Record<string, keyof typeof productVisuals> = {
   'nfs-004': 'barq',
   'nfs-005': 'nada',
   'nfs-006': 'ghayma',
-  'nfs-dfw-03': 'dafwa',
   'nfs-ghm-02': 'ghayma',
   'nfs-shr-01': 'sharara',
-  'nfs-zll-04': 'zell',
-  zall: 'zell',
 };
 
 function slugify(value?: string) {
@@ -86,12 +81,10 @@ export function getProductStockMediaSet(product?: any) {
   const library: Record<string, string[]> = {
     athar: [PRODUCT_PERFUME_CLOSEUP, HERO_STOCK_DARK, HERO_STOCK_FABRIC],
     barq: [SHOP_PERFUME_BLACK, HERO_STOCK_DARK, PRODUCT_PERFUME_CLOSEUP],
-    dafwa: [HERO_STOCK_FABRIC, PRODUCT_PERFUME_CLOSEUP, FRAGRANCE_SPRAY_MOMENT],
     ghayma: [SHOP_PERFUME_LUXURY, HERO_STOCK_FABRIC, PRODUCT_PERFUME_CLOSEUP],
     madar: [HERO_STOCK_DARK, SHOP_PERFUME_BLACK, PRODUCT_PERFUME_CLOSEUP],
     nada: [SHOP_PERFUME_LUXURY, HERO_STOCK_FABRIC, PRODUCT_PERFUME_CLOSEUP],
     sharara: [SHOP_PERFUME_BLACK, PRODUCT_PERFUME_CLOSEUP, HERO_STOCK_DARK],
-    zell: [HERO_STOCK_DARK, SHOP_PERFUME_BLACK, PRODUCT_PERFUME_CLOSEUP],
   };
 
   return library[key] || [PRODUCT_PERFUME_CLOSEUP, HERO_STOCK_DARK];

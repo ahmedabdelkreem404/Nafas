@@ -265,8 +265,7 @@
   box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.44), inset 0 -48px 80px rgba(0,0,0,0.14);
 }
 
-.apple-nafas-page .anh-bottle-visual--sharara .anh-bottle-visual__body,
-.apple-nafas-page .anh-bottle-visual--zell .anh-bottle-visual__body {
+.apple-nafas-page .anh-bottle-visual--sharara .anh-bottle-visual__body {
   background:
     linear-gradient(110deg, rgba(255,255,255,0.22), transparent 25% 68%, rgba(255,255,255,0.14)),
     linear-gradient(180deg, color-mix(in srgb, var(--accent), #121212 62%), #151515);
@@ -303,8 +302,7 @@
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.72);
 }
 
-.apple-nafas-page .anh-bottle-visual--sharara .anh-bottle-visual__label,
-.apple-nafas-page .anh-bottle-visual--zell .anh-bottle-visual__label {
+.apple-nafas-page .anh-bottle-visual--sharara .anh-bottle-visual__label {
   background: rgba(12,12,14,0.86);
   color: #f5eee3;
 }
@@ -3663,14 +3661,7 @@
   }
 }
 
-@media (max-width: 340px) {
-  .apple-nafas-page .anh-compare__grid,
-  .apple-nafas-page .anh-explore__grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 341px) and (max-width: 767px) {
+@media (max-width: 767px) {
   .apple-nafas-page .anh-compare__grid {
     inline-size: 100%;
     max-inline-size: 100%;

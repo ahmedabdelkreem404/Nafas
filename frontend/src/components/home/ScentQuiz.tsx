@@ -56,8 +56,8 @@ export default function ScentQuiz() {
       return {
         title: locale === 'ar' ? 'ابدأ بـ Discovery Mini' : 'Start with Discovery Mini',
         body: locale === 'ar'
-          ? 'لسه محتار؟ جرّب الأربع روائح أولًا، وبعدها ارجع للزجاجة اللي ارتحت لها أكثر.'
-          : 'Still undecided? Start with the four moods first, then return for the bottle that feels right.',
+          ? 'لسه محتار؟ جرّب الست روائح أولًا، وبعدها ارجع للزجاجة اللي ارتحت لها أكثر.'
+          : 'Still undecided? Start with the six moods first, then return for the bottle that feels right.',
       };
     }
 

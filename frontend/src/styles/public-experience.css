@@ -2436,15 +2436,7 @@ body[data-locale='en'] .cart-drawer__panel {
   filter: brightness(1.05) contrast(1.01);
 }
 
-.home-signature-card--dafwa .home-signature-card__image {
-  object-position: center 24%;
-  filter: brightness(1.1) contrast(1.03);
-}
 
-.home-signature-card--zell .home-signature-card__image {
-  object-position: center 36%;
-  filter: brightness(1.08) contrast(1.03) saturate(0.92);
-}
 
 .home-signature-card__body {
   position: relative;
