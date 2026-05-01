@@ -26,16 +26,7 @@ export default function HighlightsSection({ highlights, scents }: HighlightsSect
           <h2 id="highlights-title">{text(copy.title, locale)}</h2>
         </div>
 
-        <div
-          className="anh-highlight-shell"
-          tabIndex={0}
-          role="region"
-          aria-roledescription="carousel"
-          aria-label={text(copy.carousel, locale)}
-          onKeyDown={carousel.handleKeyDown}
-          onTouchStart={carousel.handleTouchStart}
-          onTouchEnd={carousel.handleTouchEnd}
-        >
+        <div className="anh-highlight-shell" tabIndex={0} role="region" aria-roledescription="carousel" aria-label={text(copy.controls, locale)}>
           <div className="anh-highlight-track" style={{ '--active-index': carousel.activeIndex } as CSSProperties}>
             {highlights.map((item, index) => {
               const scent = findScent(item.id);
@@ -46,18 +37,20 @@ export default function HighlightsSection({ highlights, scents }: HighlightsSect
                   key={item.id}
                   className={`anh-highlight-card anh-highlight-card--${item.tone} ${index === carousel.activeIndex ? 'is-active' : ''}`}
                   aria-hidden={index !== carousel.activeIndex}
-                  data-active={index === carousel.activeIndex ? 'true' : 'false'}
+                  data-active={index === carousel.activeIndex}
                 >
                   <div className="anh-highlight-card__copy">
                     <span>{text(itemCopy.eyebrow, locale)}</span>
                     <h3>{text(itemCopy.title, locale)}</h3>
                     <p>{text(itemCopy.copy, locale)}</p>
                   </div>
-                  {scent ? (
-                    <BottleVisual scent={scent} className="anh-highlight-bottle" />
-                  ) : (
-                    <img src={item.image} alt="" loading="lazy" decoding="async" />
-                  )}
+                  <div className="anh-highlight-card__visual">
+                    {scent ? (
+                      <BottleVisual scent={scent} className="anh-highlight-bottle" />
+                    ) : (
+                      <img src={item.image} alt="" loading="lazy" decoding="async" />
+                    )}
+                  </div>
                 </article>
               );
             })}

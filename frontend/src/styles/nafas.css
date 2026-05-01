@@ -69,35 +69,108 @@ p { margin: 0; color: var(--nts); }
 .brand-loader__image { inset: 0; inline-size: 100%; block-size: 100%; object-fit: contain; transform: translate3d(0, 0, 0); animation: loaderFloat 2.6s ease-in-out infinite; transition: transform 180ms ease; }
 .brand-loader__shimmer { inset-block: 7%; inset-inline-start: -32%; inline-size: 34%; block-size: 86%; background: linear-gradient(180deg, transparent, rgba(255,248,224,0.14), rgba(255,232,180,0.6), rgba(255,248,224,0.14), transparent); transform: skewX(-18deg); filter: blur(8px); mix-blend-mode: screen; animation: loaderSweep 2.1s ease .45s forwards; transition: transform 180ms ease, opacity 180ms ease; }
 
-.site-nav-wrap { position: fixed; inset-block-start: .7rem; inset-inline: 0; z-index: 40; }
-.site-nav { width: min(1480px, calc(100vw - 1.5rem)); min-height: var(--navh); margin-inline: auto; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1rem; padding-inline: 1rem; border-radius: var(--rp); background: rgba(6,5,8,0.76); backdrop-filter: blur(22px); border: 1px solid rgba(255,255,255,0.09); box-shadow: var(--nshs); direction: ltr; }
-.site-nav__brand, .site-nav__actions, .site-nav__links { display: flex; align-items: center; gap: .85rem; min-inline-size: 0; flex-wrap: nowrap; }
-.site-nav__brand { grid-area: brand; min-inline-size: 0; max-inline-size: 100%; }
-.site-nav__links { grid-area: links; min-inline-size: 0; justify-content: center; justify-self: center; }
-.site-nav__actions { grid-area: actions; min-inline-size: 0; justify-content: flex-end; }
-.site-nav--ar { grid-template-areas: 'actions links brand'; }
-.site-nav--en { grid-template-areas: 'brand links actions'; }
-.site-nav--ar .site-nav__brand { justify-self: end; flex-direction: row-reverse; }
-.site-nav--ar .site-nav__brand-copy { text-align: end; }
-.site-nav--ar .site-nav__links { direction: rtl; }
-.site-nav--ar .site-nav__actions { justify-self: start; justify-content: flex-start; }
-.site-nav--en .site-nav__brand { justify-self: start; flex-direction: row; }
-.site-nav--en .site-nav__brand-copy { text-align: start; }
-.site-nav--en .site-nav__links { direction: ltr; }
-.site-nav--en .site-nav__actions { justify-self: end; justify-content: flex-end; }
+.site-nav-wrap { 
+  position: fixed; 
+  inset-block-start: 1.25rem; 
+  inset-inline: 0; 
+  z-index: 50; 
+  pointer-events: none;
+}
+
+.site-nav { 
+  width: min(1120px, calc(100vw - 2.5rem)); 
+  min-height: 64px; 
+  margin-inline: auto; 
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  gap: 2rem; 
+  padding-inline: 2.2rem; 
+  border-radius: 999px; 
+  background: rgba(28, 26, 25, 0.88); 
+  backdrop-filter: blur(28px); 
+  border: 1px solid rgba(255, 255, 255, 0.12); 
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35); 
+  pointer-events: auto;
+  direction: ltr; 
+}
+
+.site-nav__brand { 
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.site-nav__links { 
+  display: flex; 
+  gap: 1.8rem; 
+  margin: 0 auto;
+}
+
+.site-nav__actions { 
+  display: flex; 
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.site-nav--ar { flex-direction: row-reverse; }
+.site-nav--ar .site-nav__links { flex-direction: row-reverse; }
+.site-nav--ar .site-nav__brand { flex-direction: row-reverse; }
+.site-nav--ar .site-nav__actions { flex-direction: row-reverse; }
+
 .site-nav__brand-icon { display: grid; place-items: center; inline-size: 2.6rem; block-size: 2.6rem; border-radius: 50%; border: 1px solid var(--nbg); color: var(--ngh); background: linear-gradient(180deg, rgba(228,192,112,0.16), rgba(228,192,112,0.04)); }
 .site-nav__brand-icon-image { inline-size: 1.35rem; block-size: 1.35rem; object-fit: contain; }
 .site-nav__brand-copy { display: grid; gap: .1rem; line-height: 1.1; min-inline-size: 0; }
 .site-nav__brand-logo { block-size: 1.7rem; inline-size: auto; object-fit: contain; }
 .site-nav__brand-copy small { color: var(--ntm); }
-.site-nav__link { color: var(--nts); transition: color .25s ease; white-space: nowrap; font-size: .96rem; line-height: 1; padding-block: .35rem; }
-.site-nav__link.is-active, .site-nav__link:hover { color: var(--nt); }
-.site-nav__links { display: none; gap: 1rem; padding-inline: .75rem; overflow: hidden; }
-.site-icon, .lang-toggle, .site-icon--menu, .qty-pill button, .product-card__fav, .product-gallery__thumb, .chip, .variant-pill, .text-button, .favorite-inline, .review-actions button, .star-picker button { min-inline-size: 44px; min-block-size: 44px; border: 1px solid var(--nbr); background: rgba(255,255,255,0.02); border-radius: var(--rp); display: inline-flex; align-items: center; justify-content: center; gap: .35rem; }
-.site-badge { padding: .15rem .5rem; border-radius: var(--rp); background: linear-gradient(135deg, var(--ngh), var(--ng)); color: var(--nb); font-size: .72rem; }
-.site-icon.is-bumping, .product-card__fav.is-active { animation: badgePulse .6s ease; }
-.lang-toggle { padding-inline: .35rem; }
-.lang-toggle span { opacity: .5; }
+.site-nav__link { 
+  color: rgba(255, 255, 255, 0.7); 
+  transition: all 0.3s ease; 
+  white-space: nowrap; 
+  font-size: 0.92rem; 
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.site-nav__link.is-active, .site-nav__link:hover { 
+  color: #fff; 
+  transform: translateY(-1px);
+}
+
+.site-icon, .lang-toggle { 
+  min-inline-size: 42px; 
+  min-block-size: 42px; 
+  border: 1px solid rgba(255, 255, 255, 0.14); 
+  background: rgba(255, 255, 255, 0.08); 
+  border-radius: 50%; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 0.4rem; 
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.site-icon:hover, .lang-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.lang-toggle { 
+  border-radius: 999px;
+  padding-inline: 1rem;
+  width: auto;
+}
+
+.lang-toggle span { 
+  opacity: 0.6; 
+  font-size: 0.85rem; 
+  font-weight: 700; 
+  line-height: 1;
+}
+
 .lang-toggle .is-active { opacity: 1; color: var(--ngh); }
 .mobile-panel-backdrop, .drawer-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.56); opacity: 0; visibility: hidden; transition: .3s ease; z-index: 42; }
 .mobile-panel-backdrop.is-open, .drawer-backdrop.is-open { opacity: 1; visibility: visible; }

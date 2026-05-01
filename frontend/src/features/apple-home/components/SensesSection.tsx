@@ -20,12 +20,13 @@ export default function SensesSection({ layers }: SensesSectionProps) {
             <span className="anh-senses__mist anh-senses__mist--one" />
             <span className="anh-senses__mist anh-senses__mist--two" />
           </div>
+          
           <div className="anh-senses__copy">
             <p className="anh-kicker">{text(copy.kicker, locale)}</p>
             <h2 id="senses-title">{text(copy.title, locale)}</h2>
+            
             {layers.map((layer) => {
               const layerCopy = sensoryCopy[layer.id];
-
               return (
                 <article key={layer.id}>
                   <strong>{text(layerCopy.title, locale)}</strong>
