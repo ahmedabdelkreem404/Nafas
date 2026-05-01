@@ -4,6 +4,14 @@ import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Badge, Button, Card, ErrorState, LoadingState, Textarea } from '../../components/ui';
 import { formatCurrency, formatStatus } from '../../utils/format';
 
+const paymentLabel = (method?: string) => ({
+  cash_on_delivery: 'دفع عند الاستلام',
+  vodafone_cash: 'Vodafone Cash',
+  instapay: 'Instapay',
+  online_card: 'بطاقة أونلاين',
+  bank_transfer: 'تحويل بنكي',
+}[method || ''] || method || 'غير محدد');
+
 const AdminOrderDetail: React.FC = () => {
   const { id = '' } = useParams();
   const [order, setOrder] = useState<any>(null);
@@ -40,6 +48,9 @@ const AdminOrderDetail: React.FC = () => {
         </Card>
         <Card tone="strong" className="stack">
           <div className="data-card__row"><span className="data-card__label">الإجمالي</span><strong>{formatCurrency(order.total_amount)}</strong></div>
+          <div className="data-card__row"><span className="data-card__label">طريقة الدفع</span><strong>{paymentLabel(order.payment_method)}</strong></div>
+          <div className="data-card__row"><span className="data-card__label">مرجع الدفع</span><span>{order.payment?.reference || 'لا يوجد'}</span></div>
+          <div className="data-card__row"><span className="data-card__label">حالة الدفع</span><Badge tone={order.payment?.status === 'paid' ? 'success' : 'gold'}>{order.payment?.status || 'pending'}</Badge></div>
           <div className="data-card__row"><span className="data-card__label">الهاتف</span><span>{order.customer_phone}</span></div>
           <div className="data-card__row"><span className="data-card__label">العنوان</span><span>{order.address}</span></div>
           <div className="stack">

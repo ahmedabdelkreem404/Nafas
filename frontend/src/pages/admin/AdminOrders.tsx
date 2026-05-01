@@ -5,6 +5,13 @@ import { AdminPageShell, Badge, Button, Card, DataTable, EmptyState, ErrorState,
 import { formatCurrency, formatStatus } from '../../utils/format';
 
 const statusTone = (status: string) => status === 'delivered' ? 'success' : ['cancelled', 'refunded'].includes(status) ? 'danger' : 'gold';
+const paymentLabel = (method?: string) => ({
+  cash_on_delivery: 'دفع عند الاستلام',
+  vodafone_cash: 'Vodafone Cash',
+  instapay: 'Instapay',
+  online_card: 'بطاقة أونلاين',
+  bank_transfer: 'تحويل بنكي',
+}[method || ''] || method || 'غير محدد');
 
 const AdminOrders: React.FC = () => {
   const [orders, setOrders] = useState<any[]>([]);
@@ -38,6 +45,7 @@ const AdminOrders: React.FC = () => {
     { key: 'number', header: 'الطلب', cell: (order: any) => <div className="stack" style={{ gap: '0.2rem' }}><strong>{order.order_number}</strong><span className="copy-muted">{new Date(order.created_at).toLocaleDateString('ar-EG')}</span></div> },
     { key: 'customer', header: 'العميل', cell: (order: any) => order.customer_name || order.customer_email || 'Guest' },
     { key: 'total', header: 'الإجمالي', cell: (order: any) => formatCurrency(order.total_amount) },
+    { key: 'payment', header: 'الدفع', cell: (order: any) => <div className="stack" style={{ gap: '0.2rem' }}><strong>{paymentLabel(order.payment_method)}</strong>{order.payment?.reference ? <span className="copy-muted">{order.payment.reference}</span> : null}</div> },
     { key: 'status', header: 'الحالة', cell: (order: any) => <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}><Badge tone={statusTone(order.status) as any}>{formatStatus(order.status)}</Badge><Select value={order.status} onChange={(event) => updateStatus(order.id, event.target.value)} style={{ minWidth: 150 }}><option value="pending">pending</option><option value="confirmed">confirmed</option><option value="preparing">preparing</option><option value="shipped">shipped</option><option value="delivered">delivered</option><option value="cancelled">cancelled</option><option value="refunded">refunded</option></Select></div> },
     { key: 'actions', header: 'إجراءات', cell: (order: any) => <Link to={`/admin/orders/${order.id}`}><Button size="sm" variant="secondary">التفاصيل</Button></Link> },
   ], [updateStatus]);

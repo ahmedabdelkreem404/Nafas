@@ -73,7 +73,7 @@ class AdminOrderController extends Controller
 
     public function index()
     {
-        return response()->json(Order::with('items.variant.product', 'history')->latest()->get());
+        return response()->json(Order::with('items.variant.product', 'history', 'payment')->latest()->get());
     }
 
     public function store(Request $request)
@@ -83,7 +83,7 @@ class AdminOrderController extends Controller
 
     public function show(Order $order)
     {
-        return response()->json($order->load('items.variant.product', 'history'));
+        return response()->json($order->load('items.variant.product', 'history', 'payment'));
     }
 
     public function update(Request $request, Order $order)
@@ -94,7 +94,7 @@ class AdminOrderController extends Controller
 
         $order->update($validated);
 
-        return response()->json($order->fresh('items.variant.product', 'history'));
+        return response()->json($order->fresh('items.variant.product', 'history', 'payment'));
     }
 
     public function destroy(Order $order)
