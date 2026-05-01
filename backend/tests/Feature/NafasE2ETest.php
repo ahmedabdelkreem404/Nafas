@@ -352,7 +352,8 @@ class NafasE2ETest extends TestCase
             'payment_method' => 'cash_on_delivery',
         ])->assertCreated()
             ->assertJsonPath('order.payment.status', 'pending')
-            ->assertJsonPath('order.payment.method', 'cash_on_delivery');
+            ->assertJsonPath('order.payment.method', 'cash_on_delivery')
+            ->assertJsonPath('order.payment.review_status', null);
 
         $this->postJson('/api/checkout', $basePayload + [
             'payment_method' => 'vodafone_cash',
@@ -370,6 +371,14 @@ class NafasE2ETest extends TestCase
             ->assertJsonPath('order.payment.status', 'pending_review')
             ->assertJsonPath('order.payment.method', 'instapay')
             ->assertJsonPath('order.payment.review_status', 'pending');
+
+        $this->postJson('/api/checkout', $basePayload + [
+            'payment_method' => 'vodafone_cash',
+        ])->assertUnprocessable();
+
+        $this->postJson('/api/checkout', $basePayload + [
+            'payment_method' => 'instapay',
+        ])->assertUnprocessable();
 
         $this->postJson('/api/checkout', $basePayload + [
             'payment_method' => 'online_card',

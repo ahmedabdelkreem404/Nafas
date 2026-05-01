@@ -17,6 +17,20 @@ export default function OrderConfirmation() {
   const [error, setError] = useState('');
   const firstName = getUserFirstName(locale);
   const signedIn = isAuthenticated();
+  const payment = order?.payment || null;
+  const paymentMethod = payment?.method || payment?.provider || '';
+  const isManualPayment = ['vodafone_cash', 'instapay'].includes(paymentMethod);
+  const paymentMethodLabel: Record<string, { ar: string; en: string }> = {
+    cash_on_delivery: { ar: 'الدفع عند الاستلام', en: 'Cash on delivery' },
+    vodafone_cash: { ar: 'فودافون كاش', en: 'Vodafone Cash' },
+    instapay: { ar: 'إنستاباي', en: 'Instapay' },
+  };
+  const paymentStatusLabel: Record<string, { ar: string; en: string }> = {
+    pending: { ar: 'قيد التأكيد', en: 'Pending' },
+    pending_review: { ar: 'تحت مراجعة الدفع', en: 'Payment under review' },
+    approved: { ar: 'تم اعتماد الدفع', en: 'Payment approved' },
+    rejected: { ar: 'تم رفض الدفع', en: 'Payment rejected' },
+  };
 
   useEffect(() => {
     const cached = sessionStorage.getItem(`order_${orderNumber}`);
@@ -58,10 +72,32 @@ export default function OrderConfirmation() {
             <span>{locale === 'ar' ? 'الإجمالي' : 'Total'}</span>
             <strong>{formatCurrency(order.total || 0, locale)}</strong>
           </div>
+          {payment ? (
+            <div className="confirmation-card__payment">
+              <div className="price-line">
+                <span>{locale === 'ar' ? 'طريقة الدفع' : 'Payment method'}</span>
+                <strong>{paymentMethodLabel[paymentMethod]?.[locale] || paymentMethod}</strong>
+              </div>
+              {payment.reference ? (
+                <div className="price-line">
+                  <span>{locale === 'ar' ? 'رقم العملية' : 'Reference'}</span>
+                  <strong>{payment.reference}</strong>
+                </div>
+              ) : null}
+              <div className="price-line">
+                <span>{locale === 'ar' ? 'حالة الدفع' : 'Payment status'}</span>
+                <strong>{paymentStatusLabel[payment.status || '']?.[locale] || payment.status}</strong>
+              </div>
+            </div>
+          ) : null}
           <p>
-            {locale === 'ar'
-              ? 'سيتم التواصل معك لتأكيد التوصيل خلال وقت قصير.'
-              : 'You will be contacted shortly to confirm delivery details.'}
+            {isManualPayment
+              ? (locale === 'ar'
+                ? 'تم استلام طلبك، وسيتم مراجعة التحويل يدويًا ثم تأكيد الطلب.'
+                : 'Your order has been received. The transfer will be reviewed manually, then the order will be confirmed.')
+              : (locale === 'ar'
+                ? 'تم استلام طلبك، وسيتم التواصل معك لتأكيد التوصيل والدفع عند الاستلام.'
+                : 'Your order has been received. We will contact you shortly to confirm delivery and cash on delivery.')}
           </p>
           <Link to="/shop" className="n-btn n-btn--primary">
             {locale === 'ar' ? 'متابعة التسوق' : 'Continue shopping'}
