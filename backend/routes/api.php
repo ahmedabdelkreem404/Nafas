@@ -9,6 +9,10 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AuthController;
+use Illuminate\Routing\Middleware\ThrottleRequests;
+
+$publicWritesThrottle = ThrottleRequests::class.':public-writes';
+$publicLookupsThrottle = ThrottleRequests::class.':public-lookups';
 
 // Auth Routes
 Route::post('/auth/register', [AuthController::class, 'register']);
@@ -18,7 +22,7 @@ Route::post('/auth/logout', [AuthController::class, 'logout'])->middleware('auth
 Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
 Route::get('/me/orders', [AuthController::class, 'myOrders'])->middleware('auth:sanctum');
 Route::get('/me/orders/{id}', [AuthController::class, 'myOrder'])->middleware('auth:sanctum');
-Route::get('/orders/confirmation/{orderNumber}', [AuthController::class, 'orderByNumber'])->middleware('optional.auth');
+Route::get('/orders/confirmation/{orderNumber}', [AuthController::class, 'orderByNumber'])->middleware(['optional.auth', $publicLookupsThrottle]);
 
 // Public Product/Content Routes
 Route::get('/products', [ProductController::class, 'index']);
@@ -26,23 +30,23 @@ Route::get('/products/{slug}', [ProductController::class, 'show']);
 Route::get('/categories', [ProductController::class, 'categories']);
 Route::get('/home', [ProductController::class, 'homeContent']);
 Route::get('/pages/{slug}', [PageController::class, 'show']);
-Route::post('/cart/validate', [ProductController::class, 'validateCart']);
-Route::post('/checkout', [CheckoutController::class, 'store'])->middleware('optional.auth');
-Route::post('/contact', [ProductController::class, 'contact']);
-Route::post('/wholesale-inquiry', [ProductController::class, 'wholesale']);
+Route::post('/cart/validate', [ProductController::class, 'validateCart'])->middleware($publicWritesThrottle);
+Route::post('/checkout', [CheckoutController::class, 'store'])->middleware(['optional.auth', $publicWritesThrottle]);
+Route::post('/contact', [ProductController::class, 'contact'])->middleware($publicWritesThrottle);
+Route::post('/wholesale-inquiry', [ProductController::class, 'wholesale'])->middleware($publicWritesThrottle);
 
 Route::get('/cart', [CartController::class, 'show'])->middleware('optional.auth');
-Route::post('/cart/items', [CartController::class, 'add'])->middleware('optional.auth');
-Route::patch('/cart/items/{cartItem}', [CartController::class, 'update'])->middleware('optional.auth');
-Route::delete('/cart/items/{cartItem}', [CartController::class, 'destroy'])->middleware('optional.auth');
-Route::delete('/cart/clear', [CartController::class, 'clear'])->middleware('optional.auth');
+Route::post('/cart/items', [CartController::class, 'add'])->middleware(['optional.auth', $publicWritesThrottle]);
+Route::patch('/cart/items/{cartItem}', [CartController::class, 'update'])->middleware(['optional.auth', $publicWritesThrottle]);
+Route::delete('/cart/items/{cartItem}', [CartController::class, 'destroy'])->middleware(['optional.auth', $publicWritesThrottle]);
+Route::delete('/cart/clear', [CartController::class, 'clear'])->middleware(['optional.auth', $publicWritesThrottle]);
 Route::post('/cart/merge', [CartController::class, 'merge'])->middleware('auth:sanctum');
 
 Route::get('/products/{slug}/reviews', [ProductController::class, 'reviews']);
-Route::post('/products/{slug}/reviews', [ProductController::class, 'storeReview'])->middleware('optional.auth');
+Route::post('/products/{slug}/reviews', [ProductController::class, 'storeReview'])->middleware(['optional.auth', $publicWritesThrottle]);
 Route::get('/reviews/{review}/replies', [ProductController::class, 'reviewReplies']);
-Route::post('/reviews/{review}/replies', [ProductController::class, 'storeReviewReply'])->middleware('optional.auth');
-Route::post('/reviews/{review}/vote', [ProductController::class, 'voteReview']);
+Route::post('/reviews/{review}/replies', [ProductController::class, 'storeReviewReply'])->middleware(['optional.auth', $publicWritesThrottle]);
+Route::post('/reviews/{review}/vote', [ProductController::class, 'voteReview'])->middleware($publicWritesThrottle);
 
 // Admin Protected Routes
 Route::middleware(['auth:sanctum', 'role'])->prefix('admin')->group(function () {

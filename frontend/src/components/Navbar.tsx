@@ -5,7 +5,7 @@ import { useLocale } from '../context/LocaleContext';
 import { useCart } from '../hooks/useCart';
 import { useEngagement } from '../hooks/useEngagement';
 import { getStoredUser, getUserFirstName, isAuthenticated } from '../utils/auth';
-import { BRAND_ICON, BRAND_LOGO, WHATSAPP_SUPPORT_URL } from '../utils/brand';
+import { BRAND_ICON, BRAND_LOGO, HAS_WHATSAPP_SUPPORT, WHATSAPP_SUPPORT_URL } from '../utils/brand';
 import { formatNumber } from '../utils/format';
 
 const navItems = {
@@ -281,10 +281,12 @@ export default function Navbar() {
             <Link to="/account" className="mobile-panel__link" onClick={() => setOpen(false)}>
               {signedIn && firstName ? `${copy.welcome} ${firstName}` : copy.account}
             </Link>
-            <a href={WHATSAPP_SUPPORT_URL} className="mobile-panel__link mobile-panel__link--gold" target="_blank" rel="noreferrer">
-              <MessageCircle size={18} aria-hidden="true" />
-              {copy.contact}
-            </a>
+            {HAS_WHATSAPP_SUPPORT ? (
+              <a href={WHATSAPP_SUPPORT_URL} className="mobile-panel__link mobile-panel__link--gold" target="_blank" rel="noreferrer">
+                <MessageCircle size={18} aria-hidden="true" />
+                {copy.contact}
+              </a>
+            ) : null}
             <button type="button" className="mobile-panel__link mobile-panel__button" onClick={toggleLocale}>
               {copy.language}
             </button>

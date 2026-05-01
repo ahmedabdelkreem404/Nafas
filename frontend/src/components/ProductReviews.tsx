@@ -6,6 +6,53 @@ import type { ProductReview, ProductReviewReply, ReviewVoteType } from '../types
 import { formatNumber, formatRelativeTime } from '../utils/format';
 import { extractResponseData } from '../utils/products';
 
+const reviewCopy = {
+  ar: {
+    author: 'اسمك',
+    chooseRating: 'اختر عدد النجوم أولا',
+    customerReviews: 'آراء العملاء',
+    dislike: 'عدم إعجاب',
+    emptyBody: 'كن أول من يشارك انطباعه عن هذه الرائحة ويساعد غيره على الاختيار.',
+    emptyTitle: 'لا توجد تقييمات بعد',
+    like: 'إعجاب',
+    loadError: 'تعذر تحميل التقييمات.',
+    moderationReply: 'تم إرسال الرد للمراجعة قبل النشر.',
+    moderationReview: 'تم إرسال تقييمك للمراجعة قبل النشر.',
+    noReviews: 'تقييم',
+    postReply: 'نشر الرد',
+    publishReview: 'إرسال التقييم',
+    reply: 'رد',
+    replyError: 'تعذر إرسال الرد.',
+    replyPlaceholder: 'اكتب ردك',
+    retry: 'إعادة المحاولة',
+    reviewError: 'تعذر إرسال التقييم.',
+    reviewPlaceholder: 'شارك انطباعك عن الرائحة والثبات والحضور',
+    writeReview: 'اكتب تقييما',
+  },
+  en: {
+    author: 'Your name',
+    chooseRating: 'Choose a star rating first',
+    customerReviews: 'Customer reviews',
+    dislike: 'Dislike',
+    emptyBody: 'Be the first to share your impression and help others choose.',
+    emptyTitle: 'No reviews yet',
+    like: 'Like',
+    loadError: 'Unable to load reviews.',
+    moderationReply: 'Your reply was sent for review before publishing.',
+    moderationReview: 'Your review was sent for review before publishing.',
+    noReviews: 'reviews',
+    postReply: 'Post reply',
+    publishReview: 'Submit review',
+    reply: 'Reply',
+    replyError: 'Unable to submit the reply.',
+    replyPlaceholder: 'Write your reply',
+    retry: 'Retry',
+    reviewError: 'Unable to submit the review.',
+    reviewPlaceholder: 'Share your impression of the scent, longevity, and projection',
+    writeReview: 'Write a review',
+  },
+} as const;
+
 function getInitials(name?: string) {
   return String(name || 'Nafas Guest')
     .trim()
@@ -58,14 +105,6 @@ function normalizeReview(payload: any): ProductReview {
   };
 }
 
-function createTempId(prefix: string) {
-  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
-    return `${prefix}-${crypto.randomUUID()}`;
-  }
-
-  return `${prefix}-${Math.round(Math.random() * 1_000_000)}`;
-}
-
 function extractList<T>(payload: unknown): T[] {
   const nested = extractResponseData<T[]>(payload);
   if (nested) {
@@ -103,6 +142,7 @@ function ReviewReplyNode({
   onVote: (reviewId: number | string, vote: 'like' | 'dislike', currentVote: ReviewVoteType) => Promise<void>;
   reply: ProductReviewReply;
 }) {
+  const copy = reviewCopy[locale];
   const [replying, setReplying] = useState(false);
   const [author, setAuthor] = useState('');
   const [text, setText] = useState('');
@@ -124,7 +164,7 @@ function ReviewReplyNode({
             <ThumbsDown size={14} /> {formatNumber(reply.dislikes, locale)}
           </button>
           <button type="button" onClick={() => setReplying((current) => !current)}>
-            <MessageSquare size={14} /> {locale === 'ar' ? 'رد' : 'Reply'}
+            <MessageSquare size={14} /> {copy.reply}
           </button>
         </div>
         {replying ? (
@@ -138,9 +178,9 @@ function ReviewReplyNode({
               setReplying(false);
             }}
           >
-            <input value={author} onChange={(event) => setAuthor(event.target.value)} placeholder={locale === 'ar' ? 'الاسم' : 'Name'} required />
-            <textarea value={text} onChange={(event) => setText(event.target.value)} rows={3} placeholder={locale === 'ar' ? 'اكتب ردك' : 'Write your reply'} required />
-            <button type="submit" className="n-btn n-btn--ghost">{locale === 'ar' ? 'نشر الرد' : 'Post reply'}</button>
+            <input value={author} onChange={(event) => setAuthor(event.target.value)} placeholder={copy.author} required />
+            <textarea value={text} onChange={(event) => setText(event.target.value)} rows={3} placeholder={copy.replyPlaceholder} required />
+            <button type="submit" className="n-btn n-btn--ghost">{copy.postReply}</button>
           </form>
         ) : null}
       </div>
@@ -150,9 +190,11 @@ function ReviewReplyNode({
 
 export default function ProductReviews({ productSlug }: { productSlug: string }) {
   const { locale } = useLocale();
+  const copy = reviewCopy[locale];
   const [reviews, setReviews] = useState<ProductReview[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
   const [open, setOpen] = useState(false);
   const [author, setAuthor] = useState('');
   const [rating, setRating] = useState(0);
@@ -184,11 +226,11 @@ export default function ProductReviews({ productSlug }: { productSlug: string })
 
       setReviews(reviewsWithReplies);
     } catch (err: any) {
-      setError(err.message || (locale === 'ar' ? 'تعذّر تحميل التقييمات.' : 'Unable to load reviews.'));
+      setError(err.message || copy.loadError);
     } finally {
       setLoading(false);
     }
-  }, [loadReplies, locale, productSlug]);
+  }, [copy.loadError, loadReplies, productSlug]);
 
   useEffect(() => {
     loadReviews();
@@ -271,95 +313,39 @@ export default function ProductReviews({ productSlug }: { productSlug: string })
       return;
     }
 
-    const optimistic: ProductReview = {
-      authorAvatar: getInitials(author || 'Nafas Guest'),
-      authorName: author.trim() || 'Nafas Guest',
-      body: text.trim(),
-      created_at: new Date().toISOString(),
-      dislikes: 0,
-      id: createTempId('temp-review'),
-      likes: 0,
-      rating,
-      replies: [],
-      reply_count: 0,
-      userVote: null,
-    };
-
-    const previous = reviews;
-    setReviews((current) => [optimistic, ...current]);
-    setAuthor('');
-    setText('');
-    setRating(0);
-    setOpen(false);
     setError('');
+    setNotice('');
 
     try {
-      const response = await publicApi.createProductReview(productSlug, {
-        author_name: optimistic.authorName,
-        body: optimistic.body,
-        rating: optimistic.rating,
+      await publicApi.createProductReview(productSlug, {
+        author_name: author.trim() || 'Nafas Guest',
+        body: text.trim(),
+        rating,
       });
 
-      const created = normalizeReview(extractResponseData<any>(response.data) || response.data.data || response.data);
-      setReviews((current) => current.map((review) => String(review.id) === String(optimistic.id) ? created : review));
+      setAuthor('');
+      setText('');
+      setRating(0);
+      setOpen(false);
+      setNotice(copy.moderationReview);
     } catch (err: any) {
-      setReviews(previous);
-      setError(err.message || (locale === 'ar' ? 'تعذّر نشر التقييم.' : 'Unable to publish the review.'));
+      setError(err.message || copy.reviewError);
     }
   };
 
   const handleReplySubmit = async (reviewId: number | string, authorName: string, body: string) => {
-    const optimistic = normalizeReply({
-      author_name: authorName.trim() || 'Nafas Guest',
-      body,
-      created_at: new Date().toISOString(),
-      dislikes: 0,
-      id: createTempId('temp-reply'),
-      likes: 0,
-      parent_id: reviewId,
-    });
-
-    const previous = reviews;
-    setReviews((current) => current.map((review) => {
-      if (String(review.id) === String(reviewId)) {
-        return { ...review, replies: [...review.replies, optimistic], reply_count: (review.reply_count || 0) + 1 };
-      }
-
-      return {
-        ...review,
-        replies: updateNestedReply(review.replies, reviewId, (reply) => ({
-          ...reply,
-          replies: [...(reply.replies || []), optimistic],
-        })),
-      };
-    }));
+    setError('');
+    setNotice('');
 
     try {
-      const response = await publicApi.createReviewReply(reviewId, {
+      await publicApi.createReviewReply(reviewId, {
         author_name: authorName.trim() || 'Nafas Guest',
         body: body.trim(),
       });
 
-      const created = normalizeReply(extractResponseData<any>(response.data) || response.data.data || response.data);
-      setReviews((current) => current.map((review) => {
-        if (String(review.id) === String(reviewId)) {
-          return {
-            ...review,
-            replies: review.replies.map((reply) => String(reply.id) === String(optimistic.id) ? created : reply),
-          };
-        }
-
-        return {
-          ...review,
-          replies: updateNestedReply(review.replies, reviewId, (reply) => ({
-            ...reply,
-            replies: (reply.replies || []).map((child) => String(child.id) === String(optimistic.id) ? created : child),
-          })),
-        };
-      }));
+      setNotice(copy.moderationReply);
     } catch (err: any) {
-      setReviews(previous);
-      setError(err.message || (locale === 'ar' ? 'تعذّر نشر الرد.' : 'Unable to publish the reply.'));
+      setError(err.message || copy.replyError);
     }
   };
 
@@ -367,10 +353,10 @@ export default function ProductReviews({ productSlug }: { productSlug: string })
     <section className="reviews">
       <div className="reviews__summary">
         <div className="reviews__score">
-          <small>{locale === 'ar' ? 'آراء العملاء' : 'Customer reviews'}</small>
+          <small>{copy.customerReviews}</small>
           <strong>{summary.avg.toFixed(1)}</strong>
           <Stars value={summary.avg} />
-          <span>{locale === 'ar' ? `${formatNumber(summary.count, locale)} تقييم` : `${formatNumber(summary.count, locale)} reviews`}</span>
+          <span>{`${formatNumber(summary.count, locale)} ${copy.noReviews}`}</span>
         </div>
 
         <div className="reviews__bars">
@@ -387,12 +373,12 @@ export default function ProductReviews({ productSlug }: { productSlug: string })
       </div>
 
       <button type="button" className="n-btn n-btn--ghost reviews__toggle" onClick={() => setOpen((current) => !current)}>
-        {locale === 'ar' ? 'اكتب تقييمًا' : 'Write a review'}
+        {copy.writeReview}
       </button>
 
       <div className={`review-form-panel ${open ? 'is-open' : ''}`}>
         <form className="review-form" onSubmit={handleSubmitReview}>
-          <input value={author} onChange={(event) => setAuthor(event.target.value)} placeholder={locale === 'ar' ? 'اسمك' : 'Your name'} required />
+          <input value={author} onChange={(event) => setAuthor(event.target.value)} placeholder={copy.author} required />
           <div className="star-picker">
             {Array.from({ length: 5 }).map((_, index) => (
               <button key={index} type="button" className={index < rating ? 'is-on' : ''} onClick={() => setRating(index + 1)} aria-label={`${index + 1} stars`}>
@@ -400,17 +386,19 @@ export default function ProductReviews({ productSlug }: { productSlug: string })
               </button>
             ))}
           </div>
-          <textarea value={text} onChange={(event) => setText(event.target.value)} rows={4} placeholder={locale === 'ar' ? 'شارك انطباعك عن الرائحة والثبات والحضور' : 'Share your impression of the scent, longevity, and projection'} required />
-          {!rating ? <p className="review-form__hint">{locale === 'ar' ? 'اختر عدد النجوم أولًا' : 'Choose a star rating first'}</p> : null}
-          <button type="submit" className="n-btn n-btn--primary">{locale === 'ar' ? 'نشر التقييم' : 'Publish review'}</button>
+          <textarea value={text} onChange={(event) => setText(event.target.value)} rows={4} placeholder={copy.reviewPlaceholder} required />
+          {!rating ? <p className="review-form__hint">{copy.chooseRating}</p> : null}
+          <button type="submit" className="n-btn n-btn--primary">{copy.publishReview}</button>
         </form>
       </div>
+
+      {notice ? <div className="success-banner reviews__notice">{notice}</div> : null}
 
       {error ? (
         <div className="error-banner reviews__error">
           <span>{error}</span>
           <button type="button" className="text-button" onClick={() => void loadReviews()}>
-            {locale === 'ar' ? 'إعادة المحاولة' : 'Retry'}
+            {copy.retry}
           </button>
         </div>
       ) : null}
@@ -431,8 +419,8 @@ export default function ProductReviews({ productSlug }: { productSlug: string })
 
         {!loading && !reviews.length ? (
           <div className="reviews__empty">
-            <strong>{locale === 'ar' ? 'لا توجد تقييمات بعد' : 'No reviews yet'}</strong>
-            <p>{locale === 'ar' ? 'ابدأ أول انطباع عن هذه الرائحة وساعد غيرك على الاختيار.' : 'Be the first to share your impression and help others choose.'}</p>
+            <strong>{copy.emptyTitle}</strong>
+            <p>{copy.emptyBody}</p>
           </div>
         ) : null}
 
@@ -448,13 +436,13 @@ export default function ProductReviews({ productSlug }: { productSlug: string })
               <p>{review.body}</p>
               <div className="review-actions">
                 <button type="button" className={review.userVote === 'like' ? 'is-active' : ''} onClick={() => void handleVote(review.id, 'like', review.userVote || null)}>
-                  <ThumbsUp size={14} /> {locale === 'ar' ? `إعجاب ${formatNumber(review.likes, locale)}` : `Like ${formatNumber(review.likes, locale)}`}
+                  <ThumbsUp size={14} /> {copy.like} {formatNumber(review.likes, locale)}
                 </button>
                 <button type="button" className={review.userVote === 'dislike' ? 'is-active' : ''} onClick={() => void handleVote(review.id, 'dislike', review.userVote || null)}>
-                  <ThumbsDown size={14} /> {locale === 'ar' ? `عدم إعجاب ${formatNumber(review.dislikes, locale)}` : `Dislike ${formatNumber(review.dislikes, locale)}`}
+                  <ThumbsDown size={14} /> {copy.dislike} {formatNumber(review.dislikes, locale)}
                 </button>
                 <button type="button" onClick={() => setReplying((current) => current === review.id ? null : review.id)}>
-                  <MessageSquare size={14} /> {locale === 'ar' ? 'رد' : 'Reply'}
+                  <MessageSquare size={14} /> {copy.reply}
                 </button>
               </div>
 
@@ -469,9 +457,9 @@ export default function ProductReviews({ productSlug }: { productSlug: string })
                     setReplying(null);
                   }}
                 >
-                  <input value={replyAuthor} onChange={(event) => setReplyAuthor(event.target.value)} placeholder={locale === 'ar' ? 'الاسم' : 'Name'} required />
-                  <textarea value={replyText} onChange={(event) => setReplyText(event.target.value)} rows={3} placeholder={locale === 'ar' ? 'اكتب ردك' : 'Write your reply'} required />
-                  <button type="submit" className="n-btn n-btn--ghost">{locale === 'ar' ? 'نشر الرد' : 'Post reply'}</button>
+                  <input value={replyAuthor} onChange={(event) => setReplyAuthor(event.target.value)} placeholder={copy.author} required />
+                  <textarea value={replyText} onChange={(event) => setReplyText(event.target.value)} rows={3} placeholder={copy.replyPlaceholder} required />
+                  <button type="submit" className="n-btn n-btn--ghost">{copy.postReply}</button>
                 </form>
               ) : null}
 

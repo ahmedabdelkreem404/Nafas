@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'whatsapp' => [
+        'url' => env('WHATSAPP_URL'),
+    ],
+
 ];

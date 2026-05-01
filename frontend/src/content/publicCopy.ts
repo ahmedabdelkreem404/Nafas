@@ -420,7 +420,7 @@ export const publicCopy = {
         woody: 'خشبي',
       },
       searchPlaceholder: 'ابحث بالاسم أو المود أو الحجم',
-      subtitle: '????? ???? ?????? ?? ?????? ????',
+      subtitle: 'اختَر عطرك من مجموعة نفَس',
       title: 'اكتشف العطور',
     },
   },
