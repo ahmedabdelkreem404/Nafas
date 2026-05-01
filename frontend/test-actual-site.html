@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nafas Actual Site Test - 4 Perfumes</title>
+  <link rel="stylesheet" href="/src/styles/nafas-design-system.css">
+  <link rel="stylesheet" href="/src/styles/nafas-actual-site-fix.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem 0;
+      background: #f4eadb;
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+    }
+    .test-info {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 1.5rem 2rem;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .test-info h1 {
+      margin: 0 0 1rem;
+      color: #211713;
+      font-size: 2rem;
+    }
+    .test-info .perfumes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .perfume-card {
+      padding: 1rem;
+      background: #f4eadb;
+      border-radius: 0.5rem;
+      border: 2px solid #c9a15a;
+    }
+    .perfume-card h3 {
+      margin: 0 0 0.5rem;
+      color: #211713;
+    }
+    .perfume-card p {
+      margin: 0.25rem 0;
+      font-size: 0.875rem;
+      color: #666;
+    }
+    .breakpoint-indicator {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-info">
+    <h1>🧪 Nafas Actual Site Test</h1>
+    <p><strong>المصدر:</strong> <a href="https://nafas.inolty.com/" target="_blank">nafas.inolty.com</a></p>
+    <p><strong>عدد العطور:</strong> 4 فقط (شرارة، غيمة، دفوة، ظلّ)</p>
+    
+    <div class="perfumes">
+      <div class="perfume-card">
+        <h3>شرارة (Sharara)</h3>
+        <p>فريش / حار / مسكي</p>
+        <p>أول رشة تلفت، وأثر يفضل.</p>
+      </div>
+      <div class="perfume-card">
+        <h3>غيمة (Ghayma)</h3>
+        <p>ناعم / فاكهي / زهري / مسكي</p>
+        <p>نعومة تتعلق في الذاكرة.</p>
+      </div>
+      <div class="perfume-card">
+        <h3>دفوة (Dafwa)</h3>
+        <p>دافئ / قهوة / حلو / شرقي</p>
+        <p>قهوة دافئة وحضور ما يتنسيش.</p>
+      </div>
+      <div class="perfume-card">
+        <h3>ظلّ (Zell)</h3>
+        <p>خشبي / داكن / مسكي</p>
+        <p>هادئ، لكنه يسيب أثر.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="site-nav-wrap">
+    <nav class="site-nav">
+      <a href="/" class="site-nav__brand">
+        <span class="site-nav__brand-icon">
+          <img src="https://via.placeholder.com/40/c9a15a/ffffff?text=N" alt="Nafas" class="site-nav__brand-icon-image">
+        </span>
+        <div class="site-nav__brand-copy">
+          <img src="https://via.placeholder.com/100x30/c9a15a/ffffff?text=Nafas" alt="Nafas" class="site-nav__brand-logo">
+          <small>دار عطرية</small>
+        </div>
+      </a>
+
+      <div class="site-nav__links">
+        <a href="/shop" class="site-nav__link">المتجر</a>
+        <a href="/about" class="site-nav__link">قصتنا</a>
+        <a href="/faq" class="site-nav__link">الأسئلة</a>
+      </div>
+
+      <div class="site-nav__actions">
+        <button class="lang-toggle" aria-label="تغيير اللغة">
+          <span>EN</span>
+        </button>
+        <button class="site-icon" aria-label="المفضلة">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </button>
+        <button class="site-icon" aria-label="الحساب">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+        <button class="site-icon" aria-label="السلة">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="site-badge">2</span>
+        </button>
+        <button class="site-icon site-icon--menu" aria-label="القائمة">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Highlights Section - 4 Perfumes -->
+  <section class="anh-section anh-highlights" style="margin-top: 100px;">
+    <div class="anh-container">
+      <div class="anh-section-head">
+        <p class="anh-kicker">لمحات المجموعة</p>
+        <h2>اكتشف نفَسك من أول رشة.</h2>
+      </div>
+
+      <div class="anh-highlight-shell">
+        <div class="anh-highlight-track" style="--active-index: 0;">
+          
+          <!-- Card 1: شرارة -->
+          <article class="anh-highlight-card anh-highlight-card--copper is-active">
+            <div class="anh-highlight-card__copy">
+              <span>توابل فريش</span>
+              <h3>شرارة</h3>
+              <p>أول رشة تلفت، وأثر مسكي داكن يفضل.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <div class="anh-bottle-visual anh-highlight-bottle" style="--accent: #b86d3b;">
+                <span class="anh-bottle-visual__cap"></span>
+                <span class="anh-bottle-visual__neck"></span>
+                <span class="anh-bottle-visual__body">
+                  <span class="anh-bottle-visual__shine"></span>
+                  <span class="anh-bottle-visual__label">
+                    <small>Nafas</small>
+                    <strong>Sharara</strong>
+                  </span>
+                </span>
+                <span class="anh-bottle-visual__shadow"></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: غيمة -->
+          <article class="anh-highlight-card anh-highlight-card--cream">
+            <div class="anh-highlight-card__copy">
+              <span>هدية ناعمة</span>
+              <h3>غيمة</h3>
+              <p>نعومة بتتعرف من غير صوت، فاكهية ومسك نضيف.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <div class="anh-bottle-visual anh-highlight-bottle" style="--accent: #d3b66f;">
+                <span class="anh-bottle-visual__cap"></span>
+                <span class="anh-bottle-visual__neck"></span>
+                <span class="anh-bottle-visual__body">
+                  <span class="anh-bottle-visual__shine"></span>
+                  <span class="anh-bottle-visual__label">
+                    <small>Nafas</small>
+                    <strong>Ghayma</strong>
+                  </span>
+                </span>
+                <span class="anh-bottle-visual__shadow"></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: دفوة -->
+          <article class="anh-highlight-card anh-highlight-card--mocha">
+            <div class="anh-highlight-card__copy">
+              <span>لمعة قهوة</span>
+              <h3>دفوة</h3>
+              <p>قهوة باردة بطابع فريش حار ولمعة دافئة.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <div class="anh-bottle-visual anh-highlight-bottle" style="--accent: #c38342;">
+                <span class="anh-bottle-visual__cap"></span>
+                <span class="anh-bottle-visual__neck"></span>
+                <span class="anh-bottle-visual__body">
+                  <span class="anh-bottle-visual__shine"></span>
+                  <span class="anh-bottle-visual__label">
+                    <small>Nafas</small>
+                    <strong>Dafwa</strong>
+                  </span>
+                </span>
+                <span class="anh-bottle-visual__shadow"></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: ظلّ -->
+          <article class="anh-highlight-card anh-highlight-card--silver">
+            <div class="anh-highlight-card__copy">
+              <span>أثر عميق</span>
+              <h3>ظلّ</h3>
+              <p>هادئ، لكنه يسيب أثر خشبي داكن.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <div class="anh-bottle-visual anh-highlight-bottle" style="--accent: #7f96b8;">
+                <span class="anh-bottle-visual__cap"></span>
+                <span class="anh-bottle-visual__neck"></span>
+                <span class="anh-bottle-visual__body">
+                  <span class="anh-bottle-visual__shine"></span>
+                  <span class="anh-bottle-visual__label">
+                    <small>Nafas</small>
+                    <strong>Zell</strong>
+                  </span>
+                </span>
+                <span class="anh-bottle-visual__shadow"></span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="anh-carousel-dock">
+        <button type="button" class="anh-dock-button" aria-label="إيقاف العرض التلقائي">
+          <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18">
+            <circle cx="12" cy="12" r="8"></circle>
+            <path d="M8 12h8"></path>
+            <path d="M12 8v8"></path>
+          </svg>
+        </button>
+        <div class="anh-dots" role="tablist">
+          <button type="button" class="is-active" aria-label="شرارة" role="tab"></button>
+          <button type="button" aria-label="غيمة" role="tab"></button>
+          <button type="button" aria-label="دفوة" role="tab"></button>
+          <button type="button" aria-label="ظلّ" role="tab"></button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Compare Section - 4 Perfumes -->
+  <section class="anh-section anh-compare" style="padding: 4rem 0; background: #efe3d2;">
+    <div class="anh-container">
+      <div class="anh-section-head">
+        <p class="anh-kicker">ساعدني أختار</p>
+        <h2>اختر نفَسك.</h2>
+      </div>
+
+      <div class="anh-compare__grid">
+        <div class="anh-compare-card">
+          <div class="anh-compare-card__visual">
+            <div class="anh-bottle-visual" style="--accent: #b86d3b;">
+              <span class="anh-bottle-visual__cap"></span>
+              <span class="anh-bottle-visual__neck"></span>
+              <span class="anh-bottle-visual__body">
+                <span class="anh-bottle-visual__shine"></span>
+                <span class="anh-bottle-visual__label">
+                  <small>Nafas</small>
+                  <strong>Sharara</strong>
+                </span>
+              </span>
+              <span class="anh-bottle-visual__shadow"></span>
+            </div>
+          </div>
+          <h3>شرارة</h3>
+          <p>أول رشة تلفت، وأثر يفضل.</p>
+        </div>
+
+        <div class="anh-compare-card">
+          <div class="anh-compare-card__visual">
+            <div class="anh-bottle-visual" style="--accent: #d3b66f;">
+              <span class="anh-bottle-visual__cap"></span>
+              <span class="anh-bottle-visual__neck"></span>
+              <span class="anh-bottle-visual__body">
+                <span class="anh-bottle-visual__shine"></span>
+                <span class="anh-bottle-visual__label">
+                  <small>Nafas</small>
+                  <strong>Ghayma</strong>
+                </span>
+              </span>
+              <span class="anh-bottle-visual__shadow"></span>
+            </div>
+          </div>
+          <h3>غيمة</h3>
+          <p>نعومة تتعلق في الذاكرة.</p>
+        </div>
+
+        <div class="anh-compare-card">
+          <div class="anh-compare-card__visual">
+            <div class="anh-bottle-visual" style="--accent: #c38342;">
+              <span class="anh-bottle-visual__cap"></span>
+              <span class="anh-bottle-visual__neck"></span>
+              <span class="anh-bottle-visual__body">
+                <span class="anh-bottle-visual__shine"></span>
+                <span class="anh-bottle-visual__label">
+                  <small>Nafas</small>
+                  <strong>Dafwa</strong>
+                </span>
+              </span>
+              <span class="anh-bottle-visual__shadow"></span>
+            </div>
+          </div>
+          <h3>دفوة</h3>
+          <p>قهوة دافئة وحضور ما يتنسيش.</p>
+        </div>
+
+        <div class="anh-compare-card">
+          <div class="anh-compare-card__visual">
+            <div class="anh-bottle-visual" style="--accent: #7f96b8;">
+              <span class="anh-bottle-visual__cap"></span>
+              <span class="anh-bottle-visual__neck"></span>
+              <span class="anh-bottle-visual__body">
+                <span class="anh-bottle-visual__shine"></span>
+                <span class="anh-bottle-visual__label">
+                  <small>Nafas</small>
+                  <strong>Zell</strong>
+                </span>
+              </span>
+              <span class="anh-bottle-visual__shadow"></span>
+            </div>
+          </div>
+          <h3>ظلّ</h3>
+          <p>هادئ، لكنه يسيب أثر.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="breakpoint-indicator">
+    <span id="breakpoint-text">Loading...</span>
+  </div>
+
+  <script>
+    // Breakpoint indicator
+    function updateBreakpoint() {
+      const width = window.innerWidth;
+      const indicator = document.getElementById('breakpoint-text');
+      let text = '';
+      
+      if (width < 375) {
+        text = `📱 Extra Small: ${width}px`;
+      } else if (width < 768) {
+        text = `📱 Mobile: ${width}px`;
+      } else if (width < 1024) {
+        text = `📱 Tablet: ${width}px`;
+      } else if (width < 1440) {
+        text = `💻 Desktop: ${width}px`;
+      } else {
+        text = `🖥️ Large: ${width}px`;
+      }
+      
+      indicator.textContent = text;
+    }
+
+    updateBreakpoint();
+    window.addEventListener('resize', updateBreakpoint);
+
+    // Simple carousel
+    const track = document.querySelector('.anh-highlight-track');
+    const dots = document.querySelectorAll('.anh-dots button');
+    const cards = document.querySelectorAll('.anh-highlight-card');
+    let currentIndex = 0;
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+      });
+    });
+
+    function updateCarousel() {
+      dots.forEach((dot, i) => {
+        if (i === currentIndex) {
+          dot.classList.add('is-active');
+        } else {
+          dot.classList.remove('is-active');
+        }
+      });
+
+      cards.forEach((card, i) => {
+        if (i === currentIndex) {
+          card.classList.add('is-active');
+        } else {
+          card.classList.remove('is-active');
+        }
+      });
+
+      const cardWidth = cards[0].offsetWidth;
+      const gap = 12;
+      const offset = currentIndex * (cardWidth + gap);
+      
+      track.style.transform = `translateX(-${offset}px)`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Highlights Section Test - Nafas</title>
+  <link rel="stylesheet" href="/src/styles/nafas-design-system.css">
+  <link rel="stylesheet" href="/src/styles/universal-responsive-fix.css">
+  <link rel="stylesheet" href="/src/styles/highlights-carousel-fix.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem 0;
+      background: #f4eadb;
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+    }
+    .test-info {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 1rem 2rem;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .test-info h1 {
+      margin: 0 0 0.5rem;
+      color: #211713;
+    }
+    .test-info p {
+      margin: 0.25rem 0;
+      color: #666;
+    }
+    .breakpoint-indicator {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-info">
+    <h1>🧪 Highlights Section Test</h1>
+    <p><strong>الغرض:</strong> اختبار responsive design للـ carousel على جميع الشاشات</p>
+    <p><strong>عدد الكروت:</strong> 9 (6 عطور + 3 أقسام إضافية)</p>
+    <p><strong>الأحجام المطلوبة:</strong></p>
+    <ul>
+      <li>Mobile (< 768px): 260px - 340px per card</li>
+      <li>Tablet (768px - 1023px): 360px - 480px per card</li>
+      <li>Desktop (1024px+): 400px - 520px per card</li>
+    </ul>
+  </div>
+
+  <section class="anh-section anh-highlights" data-section="highlights" aria-labelledby="highlights-title" data-proof="highlights">
+    <div class="anh-container">
+      <div class="anh-section-head">
+        <p class="anh-kicker">لمحات المجموعة</p>
+        <h2 id="highlights-title">اكتشف نفسك من أول رشة.</h2>
+      </div>
+
+      <div class="anh-highlight-shell" tabindex="0" role="region" aria-roledescription="carousel" aria-label="أدوات عرض اللمحات">
+        <div class="anh-highlight-track" style="--active-index: 0;">
+          
+          <!-- Card 1: شرارة -->
+          <article class="anh-highlight-card anh-highlight-card--copper is-active" aria-hidden="false" data-active="true">
+            <div class="anh-highlight-card__copy">
+              <span>توابل فريش</span>
+              <h3>شرارة</h3>
+              <p>أول رشة تلفت، وأثر مسكي داكن يفضل.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <div class="anh-bottle-visual anh-bottle-visual--sharara anh-highlight-bottle" aria-hidden="true" style="--accent: #b86d3b;">
+                <span class="anh-bottle-visual__cap"></span>
+                <span class="anh-bottle-visual__neck"></span>
+                <span class="anh-bottle-visual__body">
+                  <span class="anh-bottle-visual__shine"></span>
+                  <span class="anh-bottle-visual__label">
+                    <small>Nafas</small>
+                    <strong>Sharara</strong>
+                  </span>
+                </span>
+                <span class="anh-bottle-visual__shadow"></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: مدار -->
+          <article class="anh-highlight-card anh-highlight-card--silver" aria-hidden="true" data-active="false">
+            <div class="anh-highlight-card__copy">
+              <span>حركة نضيفة</span>
+              <h3>مدار</h3>
+              <p>فريش خشبي رياضي يدور معاك طول اليوم.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <div class="anh-bottle-visual anh-bottle-visual--madar anh-highlight-bottle" aria-hidden="true" style="--accent: #7f96b8;">
+                <span class="anh-bottle-visual__cap"></span>
+                <span class="anh-bottle-visual__neck"></span>
+                <span class="anh-bottle-visual__body">
+                  <span class="anh-bottle-visual__shine"></span>
+                  <span class="anh-bottle-visual__label">
+                    <small>Nafas</small>
+                    <strong>Madar</strong>
+                  </span>
+                </span>
+                <span class="anh-bottle-visual__shadow"></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: أثر -->
+          <article class="anh-highlight-card anh-highlight-card--gold" aria-hidden="true" data-active="false">
+            <div class="anh-highlight-card__copy">
+              <span>أثر عميق</span>
+              <h3>أثر</h3>
+              <p>داكن وفريش وخشبي، يسبقك ويفضل بعدك.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <div class="anh-bottle-visual anh-bottle-visual--athar anh-highlight-bottle" aria-hidden="true" style="--accent: #c4a05e;">
+                <span class="anh-bottle-visual__cap"></span>
+                <span class="anh-bottle-visual__neck"></span>
+                <span class="anh-bottle-visual__body">
+                  <span class="anh-bottle-visual__shine"></span>
+                  <span class="anh-bottle-visual__label">
+                    <small>Nafas</small>
+                    <strong>Athar</strong>
+                  </span>
+                </span>
+                <span class="anh-bottle-visual__shadow"></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: برق -->
+          <article class="anh-highlight-card anh-highlight-card--mocha" aria-hidden="true" data-active="false">
+            <div class="anh-highlight-card__copy">
+              <span>لمعة قهوة</span>
+              <h3>برق</h3>
+              <p>قهوة باردة بطابع فريش حار ولمعة دافئة.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <div class="anh-bottle-visual anh-bottle-visual--barq anh-highlight-bottle" aria-hidden="true" style="--accent: #c38342;">
+                <span class="anh-bottle-visual__cap"></span>
+                <span class="anh-bottle-visual__neck"></span>
+                <span class="anh-bottle-visual__body">
+                  <span class="anh-bottle-visual__shine"></span>
+                  <span class="anh-bottle-visual__label">
+                    <small>Nafas</small>
+                    <strong>Barq</strong>
+                  </span>
+                </span>
+                <span class="anh-bottle-visual__shadow"></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: ندى -->
+          <article class="anh-highlight-card anh-highlight-card--rose" aria-hidden="true" data-active="false">
+            <div class="anh-highlight-card__copy">
+              <span>نضافة فريش</span>
+              <h3>ندى</h3>
+              <p>فريش، نضيف، وأنثوي بنعومة روز جولد.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <div class="anh-bottle-visual anh-bottle-visual--nada anh-highlight-bottle" aria-hidden="true" style="--accent: #c99788;">
+                <span class="anh-bottle-visual__cap"></span>
+                <span class="anh-bottle-visual__neck"></span>
+                <span class="anh-bottle-visual__body">
+                  <span class="anh-bottle-visual__shine"></span>
+                  <span class="anh-bottle-visual__label">
+                    <small>Nafas</small>
+                    <strong>Nada</strong>
+                  </span>
+                </span>
+                <span class="anh-bottle-visual__shadow"></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6: غيمة -->
+          <article class="anh-highlight-card anh-highlight-card--cream" aria-hidden="true" data-active="false">
+            <div class="anh-highlight-card__copy">
+              <span>هدية ناعمة</span>
+              <h3>غيمة</h3>
+              <p>نعومة بتتعرف من غير صوت، فاكهية ومسك نضيف.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <div class="anh-bottle-visual anh-bottle-visual--ghayma anh-highlight-bottle" aria-hidden="true" style="--accent: #d3b66f;">
+                <span class="anh-bottle-visual__cap"></span>
+                <span class="anh-bottle-visual__neck"></span>
+                <span class="anh-bottle-visual__body">
+                  <span class="anh-bottle-visual__shine"></span>
+                  <span class="anh-bottle-visual__label">
+                    <small>Nafas</small>
+                    <strong>Ghayma</strong>
+                  </span>
+                </span>
+                <span class="anh-bottle-visual__shadow"></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 7: مجموعة التجربة -->
+          <article class="anh-highlight-card anh-highlight-card--cream" aria-hidden="true" data-active="false">
+            <div class="anh-highlight-card__copy">
+              <span>جرّب أولاً</span>
+              <h3>مجموعة التجربة</h3>
+              <p>جرّب الست روائح قبل اختيار الزجاجة.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <img alt="مجموعة التجربة" loading="lazy" decoding="async" src="https://via.placeholder.com/300x400/d3b66f/ffffff?text=Tester+Set">
+            </div>
+          </article>
+
+          <!-- Card 8: هدايا نفس -->
+          <article class="anh-highlight-card anh-highlight-card--gift" aria-hidden="true" data-active="false">
+            <div class="anh-highlight-card__copy">
+              <span>جاهزة للإهداء</span>
+              <h3>هدايا نفس</h3>
+              <p>اختيارات هادئة للهدايا الرجالي والحريمي.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <img alt="هدايا نفس" loading="lazy" decoding="async" src="https://via.placeholder.com/300x400/c9a15a/ffffff?text=Gift+Sets">
+            </div>
+          </article>
+
+          <!-- Card 9: طقس الجودة -->
+          <article class="anh-highlight-card anh-highlight-card--quality" aria-hidden="true" data-active="false">
+            <div class="anh-highlight-card__copy">
+              <span>مراجعة الدفعات</span>
+              <h3>طقس الجودة</h3>
+              <p>تعتيق ومراجعة للصفاء والرش والتقديم.</p>
+            </div>
+            <div class="anh-highlight-card__visual">
+              <img alt="طقس الجودة" loading="lazy" decoding="async" src="https://via.placeholder.com/300x400/7b4a2a/ffffff?text=Quality">
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="anh-carousel-dock" aria-label="أدوات عرض اللمحات">
+        <button type="button" class="anh-dock-button" aria-label="إيقاف العرض التلقائي">
+          <svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18">
+            <circle cx="12" cy="12" r="8"></circle>
+            <path d="M8 12h8"></path>
+            <path d="M12 8v8"></path>
+          </svg>
+        </button>
+        <div class="anh-dots" role="tablist" aria-label="شرائح اللمحات">
+          <button type="button" class="is-active" aria-label="اعرض شرارة" aria-selected="true" role="tab"></button>
+          <button type="button" aria-label="اعرض مدار" aria-selected="false" role="tab"></button>
+          <button type="button" aria-label="اعرض أثر" aria-selected="false" role="tab"></button>
+          <button type="button" aria-label="اعرض برق" aria-selected="false" role="tab"></button>
+          <button type="button" aria-label="اعرض ندى" aria-selected="false" role="tab"></button>
+          <button type="button" aria-label="اعرض غيمة" aria-selected="false" role="tab"></button>
+          <button type="button" aria-label="اعرض مجموعة التجربة" aria-selected="false" role="tab"></button>
+          <button type="button" aria-label="اعرض هدايا نفس" aria-selected="false" role="tab"></button>
+          <button type="button" aria-label="اعرض طقس الجودة" aria-selected="false" role="tab"></button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="breakpoint-indicator">
+    <span id="breakpoint-text">Loading...</span>
+  </div>
+
+  <script>
+    // Breakpoint indicator
+    function updateBreakpoint() {
+      const width = window.innerWidth;
+      const indicator = document.getElementById('breakpoint-text');
+      let text = '';
+      
+      if (width < 375) {
+        text = `📱 Extra Small: ${width}px`;
+      } else if (width < 768) {
+        text = `📱 Mobile: ${width}px`;
+      } else if (width < 1024) {
+        text = `📱 Tablet: ${width}px`;
+      } else if (width < 1440) {
+        text = `💻 Desktop: ${width}px`;
+      } else {
+        text = `🖥️ Large: ${width}px`;
+      }
+      
+      indicator.textContent = text;
+    }
+
+    updateBreakpoint();
+    window.addEventListener('resize', updateBreakpoint);
+
+    // Simple carousel functionality
+    const track = document.querySelector('.anh-highlight-track');
+    const dots = document.querySelectorAll('.anh-dots button');
+    const cards = document.querySelectorAll('.anh-highlight-card');
+    let currentIndex = 0;
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+      });
+    });
+
+    function updateCarousel() {
+      // Update dots
+      dots.forEach((dot, i) => {
+        if (i === currentIndex) {
+          dot.classList.add('is-active');
+          dot.setAttribute('aria-selected', 'true');
+        } else {
+          dot.classList.remove('is-active');
+          dot.setAttribute('aria-selected', 'false');
+        }
+      });
+
+      // Update cards
+      cards.forEach((card, i) => {
+        if (i === currentIndex) {
+          card.classList.add('is-active');
+          card.setAttribute('aria-hidden', 'false');
+          card.setAttribute('data-active', 'true');
+        } else {
+          card.classList.remove('is-active');
+          card.setAttribute('aria-hidden', 'true');
+          card.setAttribute('data-active', 'false');
+        }
+      });
+
+      // Calculate card width + gap
+      const cardWidth = cards[0].offsetWidth;
+      const gap = 12; // 0.75rem = 12px
+      const offset = currentIndex * (cardWidth + gap);
+      
+      track.style.transform = `translateX(-${offset}px)`;
+    }
+  </script>
+</body>
+</html>

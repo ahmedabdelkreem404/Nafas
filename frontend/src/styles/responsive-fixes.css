@@ -1,0 +1,1000 @@
+/* ============================================
+   NAFAS RESPONSIVE FIXES - جميع الشاشات
+   من 320px إلى 2560px+
+   ============================================ */
+
+/* ============================================
+   1. BASE & GLOBAL FIXES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+  min-width: 320px;
+  max-width: 100vw;
+}
+
+#root {
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* منع النصوص من الخروج */
+h1, h2, h3, h4, h5, h6, p, span, div {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* ============================================
+   2. EXTRA SMALL SCREENS (320px - 374px)
+   ============================================ */
+
+@media (max-width: 374px) {
+  /* Navigation */
+  .site-nav__inner {
+    padding: 0.45rem 0.6rem;
+    min-height: 52px;
+    gap: 0.35rem;
+  }
+
+  .site-nav__brand-mark {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+
+  .site-nav__brand-logo {
+    width: min(100%, 4.8rem);
+  }
+
+  .site-nav__icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .site-nav__cart-count {
+    min-width: 16px;
+    height: 16px;
+    font-size: 0.65rem;
+    padding: 0 3px;
+  }
+
+  /* Hero Section */
+  .nafas-hero__copy h1,
+  .hero__copy h1,
+  .anh-landing-hero h1 {
+    font-size: clamp(2rem, 10vw, 2.6rem) !important;
+    line-height: 1.1;
+  }
+
+  .nafas-hero__copy p,
+  .hero__copy p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  /* Buttons */
+  .ui-button,
+  .n-btn,
+  .anh-button {
+    min-height: 42px;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  /* Product Grid */
+  .product-grid,
+  .product-grid--shop,
+  .atelier-grid,
+  .atelier-grid--shop {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem;
+  }
+
+  .product-card,
+  .atelier-card {
+    min-width: 0;
+  }
+
+  .product-card__body,
+  .atelier-card__body {
+    padding: 0.75rem;
+  }
+
+  .product-card h3,
+  .atelier-card h3 {
+    font-size: 1.1rem;
+    line-height: 1.15;
+  }
+
+  /* Forms */
+  .ui-control,
+  input,
+  textarea,
+  select {
+    min-height: 44px;
+    padding: 0.75rem 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  /* Cards */
+  .ui-card--padded,
+  .data-card,
+  .form-card,
+  .summary-card {
+    padding: 0.85rem;
+  }
+
+  /* Footer */
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Container */
+  .container,
+  .n-container,
+  .anh-container {
+    padding-inline: 0.75rem;
+  }
+}
+
+/* ============================================
+   3. SMALL SCREENS (375px - 479px)
+   ============================================ */
+
+@media (min-width: 375px) and (max-width: 479px) {
+  /* Navigation */
+  .site-nav__inner {
+    padding: 0.5rem 0.7rem;
+    min-height: 56px;
+  }
+
+  .site-nav__brand-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .site-nav__brand-logo {
+    width: min(100%, 5.5rem);
+  }
+
+  .site-nav__icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* Product Grid - 2 columns */
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem;
+  }
+
+  .product-card__body,
+  .atelier-card__body {
+    padding: 0.8rem;
+  }
+
+  .product-card h3,
+  .atelier-card h3 {
+    font-size: clamp(1.05rem, 4vw, 1.25rem);
+  }
+
+  /* Hero */
+  .nafas-hero__copy h1,
+  .hero__copy h1 {
+    font-size: clamp(2.2rem, 9vw, 3rem) !important;
+  }
+
+  /* Container */
+  .container,
+  .n-container,
+  .anh-container {
+    padding-inline: 0.85rem;
+  }
+}
+
+/* ============================================
+   4. MEDIUM SMALL SCREENS (480px - 639px)
+   ============================================ */
+
+@media (min-width: 480px) and (max-width: 639px) {
+  /* Navigation */
+  .site-nav__inner {
+    padding: 0.55rem 0.85rem;
+    min-height: 60px;
+  }
+
+  .site-nav__brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .site-nav__brand-logo {
+    width: min(100%, 6rem);
+  }
+
+  /* Product Grid - 2 columns */
+  .product-grid,
+  .product-grid--shop,
+  .atelier-grid,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.85rem;
+  }
+
+  /* Hero */
+  .nafas-hero__content,
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .nafas-hero__visual,
+  .hero__visual {
+    order: -1;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
+  /* Container */
+  .container,
+  .n-container,
+  .anh-container {
+    padding-inline: 1rem;
+  }
+}
+
+/* ============================================
+   5. TABLET PORTRAIT (640px - 767px)
+   ============================================ */
+
+@media (min-width: 640px) and (max-width: 767px) {
+  /* Navigation */
+  .site-nav__inner {
+    padding: 0.6rem 1rem;
+    min-height: 64px;
+  }
+
+  .site-nav__brand-mark {
+    width: 36px;
+    height: 36px;
+  }
+
+  .site-nav__brand-logo {
+    width: min(100%, 6.5rem);
+  }
+
+  .site-nav__icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Product Grid - 2 columns */
+  .product-grid,
+  .product-grid--shop,
+  .atelier-grid,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem;
+  }
+
+  /* Hero */
+  .nafas-hero__content,
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  /* Forms */
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Container */
+  .container,
+  .n-container,
+  .anh-container {
+    padding-inline: 1.25rem;
+  }
+}
+
+/* ============================================
+   6. TABLET LANDSCAPE (768px - 1023px)
+   ============================================ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Navigation */
+  .site-nav__inner {
+    padding: 0.6rem 1.1rem;
+    min-height: 66px;
+  }
+
+  .site-nav__links {
+    gap: 0.5rem;
+  }
+
+  .site-nav__link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.88rem;
+  }
+
+  /* Product Grid - 3 columns */
+  .product-grid,
+  .product-grid--shop,
+  .atelier-grid,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1rem;
+  }
+
+  /* Hero */
+  .nafas-hero__content,
+  .hero__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  /* Product Detail */
+  .editorial-product__layout,
+  .product-detail {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .editorial-product__media-column {
+    position: static;
+  }
+
+  /* Cart & Checkout */
+  .cart-layout,
+  .checkout-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Container */
+  .container,
+  .n-container,
+  .anh-container {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* ============================================
+   7. SMALL DESKTOP (1024px - 1279px)
+   ============================================ */
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  /* Navigation */
+  .site-nav__inner {
+    padding: 0.6rem 1.2rem;
+    min-height: 68px;
+  }
+
+  .site-nav__links {
+    gap: 0.6rem;
+  }
+
+  .site-nav__link {
+    padding: 0.55rem 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  /* Product Grid - 3 columns */
+  .product-grid,
+  .product-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Product Grid Shop - 4 columns */
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1.1rem;
+  }
+
+  /* Hero */
+  .nafas-hero__content,
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    gap: 2.5rem;
+  }
+
+  /* Product Detail */
+  .editorial-product__layout,
+  .product-detail {
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.85fr);
+    gap: 1.75rem;
+  }
+
+  /* Container */
+  .container,
+  .n-container,
+  .anh-container {
+    padding-inline: 2rem;
+  }
+}
+
+/* ============================================
+   8. MEDIUM DESKTOP (1280px - 1439px)
+   ============================================ */
+
+@media (min-width: 1280px) and (max-width: 1439px) {
+  /* Product Grid - 4 columns */
+  .product-grid,
+  .product-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1.2rem;
+  }
+
+  /* Hero */
+  .nafas-hero__content,
+  .hero__grid {
+    grid-template-columns: minmax(420px, 1fr) minmax(360px, 0.95fr);
+    gap: 3rem;
+  }
+
+  /* Product Detail */
+  .editorial-product__layout,
+  .product-detail {
+    grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+    gap: 2rem;
+  }
+}
+
+/* ============================================
+   9. LARGE DESKTOP (1440px - 1919px)
+   ============================================ */
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+  /* Product Grid - 4 columns */
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1.35rem;
+  }
+
+  /* Hero */
+  .nafas-hero__content,
+  .hero__grid {
+    grid-template-columns: minmax(420px, 520px) minmax(360px, 470px);
+    gap: 3.5rem;
+  }
+
+  /* Product Detail */
+  .editorial-product__layout,
+  .product-detail {
+    grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+    gap: 2.25rem;
+  }
+}
+
+/* ============================================
+   10. EXTRA LARGE DESKTOP (1920px+)
+   ============================================ */
+
+@media (min-width: 1920px) {
+  /* Product Grid - 5 columns for very large screens */
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 1.5rem;
+  }
+
+  /* Hero */
+  .nafas-hero__content,
+  .hero__grid {
+    grid-template-columns: minmax(480px, 580px) minmax(400px, 520px);
+    gap: 4rem;
+  }
+
+  /* Container - max width for very large screens */
+  .container,
+  .n-container,
+  .anh-container {
+    max-width: 1680px;
+  }
+
+  .container-wide,
+  .anh-container-wide {
+    max-width: 1920px;
+  }
+}
+
+/* ============================================
+   11. MOBILE SPECIFIC FIXES
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* Hide desktop elements */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  /* Navigation Mobile */
+  .site-nav__links {
+    display: none;
+  }
+
+  .site-nav__brand-copy small {
+    display: none;
+  }
+
+  /* Mobile Menu */
+  .site-mobile__panel {
+    max-width: min(90vw, 340px);
+  }
+
+  /* Hero Mobile */
+  .nafas-hero,
+  .hero {
+    min-height: auto;
+    padding-block: clamp(2rem, 8vw, 4rem);
+  }
+
+  .nafas-hero__content,
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .nafas-hero__visual,
+  .hero__visual {
+    order: -1;
+    max-width: 100%;
+  }
+
+  .nafas-hero__bottle,
+  .hero__image {
+    max-width: min(100%, 320px);
+    margin-inline: auto;
+  }
+
+  /* Sections */
+  .n-section,
+  .nafas-section {
+    padding-block: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  /* Journey & Promise */
+  .journey-rooms,
+  .promise-strip {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  /* Product Detail Mobile */
+  .editorial-product__layout,
+  .product-detail,
+  .product-detail--top {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .editorial-product__media-column,
+  .product-detail__media {
+    position: static;
+  }
+
+  /* Mobile Buy Bar */
+  .editorial-product__mobile-bar,
+  .mobile-buybar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 0.85rem 1rem;
+    background: rgba(7, 6, 10, 0.96);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Cart & Checkout Mobile */
+  .cart-layout,
+  .checkout-layout {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .cart-summary,
+  .summary-card {
+    position: static;
+  }
+
+  /* Forms Mobile */
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  /* Tables Mobile */
+  .data-table {
+    overflow-x: auto;
+  }
+
+  .data-table__head,
+  .data-table__row {
+    min-width: 600px;
+  }
+
+  /* Footer Mobile */
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .site-footer__legal {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* Admin Mobile */
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    display: none;
+  }
+
+  .admin-topbar {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* Gallery Mobile */
+  .editorial-gallery__thumbs,
+  .product-gallery__thumbs {
+    gap: 0.5rem;
+  }
+
+  .editorial-gallery__thumb,
+  .product-gallery__thumb {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Reviews Mobile */
+  .reviews__summary {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Notes Profile Mobile */
+  .notes-profile {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  /* Account Mobile */
+  .account-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .account-stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  /* Padding adjustments */
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .page-shell {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* ============================================
+   12. APPLE NAFAS HOME RESPONSIVE
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* Landing Hero Carousel */
+  .apple-nafas-page .anh-landing-hero--carousel {
+    min-block-size: clamp(20rem, 65vw, 32rem) !important;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__content {
+    grid-template-columns: 1fr !important;
+    padding: 1rem 1rem 4rem !important;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__copy {
+    max-inline-size: min(10rem, 42vw) !important;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__copy h2 {
+    font-size: clamp(0.85rem, 4vw, 1.15rem) !important;
+  }
+
+  .apple-nafas-page .anh-landing-hero--carousel .anh-landing-hero__bottle.anh-bottle-visual {
+    inline-size: clamp(6.5rem, 26vw, 10rem) !important;
+  }
+
+  /* Compare Grid */
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Highlights */
+  .apple-nafas-page .anh-highlight-track {
+    min-block-size: clamp(18rem, 32vw, 24rem);
+  }
+
+  .apple-nafas-page .anh-highlight-card {
+    min-block-size: clamp(16rem, 30vw, 22rem);
+  }
+
+  /* Sections */
+  .apple-nafas-page .anh-section {
+    padding-block: clamp(2rem, 7vw, 3.5rem) !important;
+  }
+
+  /* Chapter Grid */
+  .apple-nafas-page .anh-chapter-grid,
+  .apple-nafas-page .anh-flow__steps,
+  .apple-nafas-page .anh-why__grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+}
+
+@media (min-width: 341px) and (max-width: 767px) {
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+}
+
+/* ============================================
+   13. LANDSCAPE ORIENTATION FIXES
+   ============================================ */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .nafas-hero,
+  .hero {
+    min-height: auto;
+    padding-block: 2rem;
+  }
+
+  .nafas-hero__content,
+  .hero__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .nafas-hero__visual,
+  .hero__visual {
+    order: 2;
+  }
+
+  .brand-loader {
+    padding: 1rem;
+  }
+}
+
+/* ============================================
+   14. TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .product-card:hover,
+  .atelier-card:hover,
+  .ui-button:hover,
+  .n-btn:hover {
+    transform: none;
+  }
+
+  /* Improve scrolling */
+  .shop-chips,
+  .shop-sort,
+  .editorial-gallery__thumbs,
+  .product-gallery__thumbs {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+/* ============================================
+   15. HIGH DPI SCREENS
+   ============================================ */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Sharper borders */
+  .site-nav__inner,
+  .ui-card,
+  .product-card,
+  .atelier-card {
+    border-width: 0.5px;
+  }
+}
+
+/* ============================================
+   16. PRINT STYLES
+   ============================================ */
+
+@media print {
+  .site-nav,
+  .site-footer,
+  .whatsapp-float,
+  .mobile-buybar,
+  .editorial-product__mobile-bar,
+  .cart-drawer,
+  .site-mobile__panel {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .page-shell {
+    padding-top: 0;
+  }
+}
+
+/* ============================================
+   17. ACCESSIBILITY IMPROVEMENTS
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .site-nav__inner,
+  .ui-card,
+  .product-card,
+  .atelier-card {
+    border-width: 2px;
+  }
+
+  button,
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* ============================================
+   18. SAFE AREA INSETS (iPhone X+)
+   ============================================ */
+
+@supports (padding: env(safe-area-inset-bottom)) {
+  .site-nav {
+    padding-top: max(0.7rem, env(safe-area-inset-top));
+  }
+
+  .mobile-buybar,
+  .editorial-product__mobile-bar {
+    padding-bottom: calc(0.85rem + env(safe-area-inset-bottom));
+  }
+
+  .site-footer {
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* ============================================
+   19. FINAL OVERRIDES & CRITICAL FIXES
+   ============================================ */
+
+/* Prevent horizontal scroll */
+body,
+html,
+#root,
+.app-shell,
+.page-shell {
+  max-width: 100vw;
+  overflow-x: clip !important;
+}
+
+/* Fix container overflow */
+.container,
+.n-container,
+.anh-container,
+.container-wide {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Fix grid overflow */
+.product-grid,
+.atelier-grid,
+.journey-rooms,
+.promise-strip,
+.kpi-grid {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Fix image overflow */
+img,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix text overflow */
+.product-card h3,
+.atelier-card h3,
+.product-card p,
+.atelier-card p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Fix button overflow */
+.ui-button,
+.n-btn,
+.anh-button {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Fix form overflow */
+input,
+textarea,
+select {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* ============================================
+   END OF RESPONSIVE FIXES
+   ============================================ */

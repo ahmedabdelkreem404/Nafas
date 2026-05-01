@@ -1,4 +1,14 @@
 @import './styles/nafas.css';
-@import './styles/apple-nafas-home.css';
 @import './styles/nafas-design-system.css';
+@import './styles/apple-nafas-home.css';
 @import './styles/sensory-commerce.css';
+@import './styles/nafas-actual-site-fix.css';
+@import './styles/universal-responsive-fix.css';
+@import './styles/complete-site-fix.css';
+@import './styles/admin-dashboard.css';
+@import './styles/mobile-navigation-fix.css';
+@import './styles/product-shop-fixes.css';
+@import './styles/highlights-carousel-fix.css';
+@import './styles/landing-hero-fix.css';
+@import './styles/responsive-fixes.css';
+@import './styles/responsive-enhancements.css';

@@ -1,0 +1,563 @@
+/* ============================================
+   PRODUCT & SHOP PAGE FIXES
+   إصلاحات شاملة لصفحات المنتجات والمتجر
+   ============================================ */
+
+/* ============================================
+   1. PRODUCT GRID RESPONSIVE
+   ============================================ */
+
+.product-grid,
+.atelier-grid,
+.product-grid--shop,
+.atelier-grid--shop {
+  display: grid;
+  gap: clamp(0.75rem, 2vw, 1.35rem);
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Extra Small: 1 column */
+@media (max-width: 374px) {
+  .product-grid,
+  .atelier-grid,
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem;
+  }
+}
+
+/* Small: 2 columns */
+@media (min-width: 375px) and (max-width: 639px) {
+  .product-grid,
+  .atelier-grid,
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem;
+  }
+}
+
+/* Medium: 2 columns */
+@media (min-width: 640px) and (max-width: 767px) {
+  .product-grid,
+  .atelier-grid,
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.85rem;
+  }
+}
+
+/* Tablet: 3 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .product-grid,
+  .atelier-grid,
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1rem;
+  }
+}
+
+/* Small Desktop: 3-4 columns */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .product-grid,
+  .product-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1.1rem;
+  }
+
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1.1rem;
+  }
+}
+
+/* Medium Desktop: 4 columns */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .product-grid,
+  .product-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1.2rem;
+  }
+
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1.2rem;
+  }
+}
+
+/* Large Desktop: 4 columns */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .product-grid,
+  .product-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1.35rem;
+  }
+
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1.35rem;
+  }
+}
+
+/* Extra Large: 5 columns */
+@media (min-width: 1920px) {
+  .product-grid,
+  .product-grid--three {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1.5rem;
+  }
+
+  .product-grid--shop,
+  .atelier-grid--shop {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 1.5rem;
+  }
+}
+
+/* ============================================
+   2. PRODUCT CARD IMPROVEMENTS
+   ============================================ */
+
+.product-card,
+.atelier-card,
+.product-card-lux {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: auto;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  border-radius: clamp(1rem, 2.5vw, 1.5rem);
+  border: 1px solid var(--nf-line, rgba(70, 45, 31, 0.14));
+  background: rgba(255, 248, 238, 0.84);
+  box-shadow: 0 0.45rem 1.5rem rgba(58, 36, 25, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.product-card:hover,
+.atelier-card:hover,
+.product-card-lux:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.75rem 2rem rgba(58, 36, 25, 0.14);
+  border-color: rgba(201, 161, 90, 0.3);
+}
+
+/* ============================================
+   3. PRODUCT CARD MEDIA
+   ============================================ */
+
+.product-card__media,
+.atelier-card__media,
+.ncard__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 4.4;
+  min-height: 0;
+  border-radius: clamp(0.85rem, 2vw, 1.2rem);
+  background: linear-gradient(145deg, rgba(239, 227, 210, 0.72), rgba(255, 248, 238, 0.9));
+  overflow: hidden;
+}
+
+.product-card__media img,
+.atelier-card__media img,
+.ncard__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card__media img,
+.atelier-card:hover .atelier-card__media img {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   4. PRODUCT CARD BODY
+   ============================================ */
+
+.product-card__body,
+.atelier-card__body,
+.ncard__body {
+  display: grid;
+  gap: clamp(0.4rem, 1vw, 0.6rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(0.35rem, 1vw, 0.5rem) clamp(0.35rem, 1vw, 0.5rem);
+  flex: 1;
+}
+
+.product-card h3,
+.atelier-card h3,
+.ncard__name {
+  margin: 0;
+  color: var(--nf-ink, #211713);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.product-card__body p,
+.atelier-card__body p,
+.ncard__desc,
+.product-card-lux__personality {
+  margin: 0;
+  color: var(--nf-muted, rgba(33, 23, 19, 0.66)) !important;
+  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  opacity: 1 !important;
+}
+
+/* ============================================
+   5. PRODUCT CARD FOOTER
+   ============================================ */
+
+.product-card__foot,
+.atelier-card__foot,
+.ncard__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: clamp(0.5rem, 1vw, 0.75rem);
+  margin-top: auto;
+}
+
+.product-card__foot strong,
+.product-card-lux__price strong {
+  color: var(--nf-brown, #3a2419) !important;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  direction: ltr;
+}
+
+.product-card__foot small,
+.product-card-lux__price small {
+  color: var(--nf-muted, rgba(33, 23, 19, 0.66)) !important;
+  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+}
+
+/* ============================================
+   6. PRODUCT CARD BADGES
+   ============================================ */
+
+.product-card__views,
+.product-card__crown,
+.product-card__out,
+.product-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--nf-radius-pill, 999px);
+  color: var(--nf-surface, #fff8ee) !important;
+  background: rgba(33, 23, 19, 0.74) !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+[dir='rtl'] .product-card__views,
+[dir='rtl'] .product-card__crown,
+[dir='rtl'] .product-card__out,
+[dir='rtl'] .product-badge {
+  right: auto;
+  left: 0.75rem;
+}
+
+.product-card__crown {
+  background: linear-gradient(135deg, var(--nf-gold-soft, #e7c985), var(--nf-gold, #c9a15a)) !important;
+  color: var(--nf-oud, #15100d) !important;
+}
+
+.product-card__out {
+  background: rgba(184, 109, 59, 0.9) !important;
+}
+
+/* ============================================
+   7. PRODUCT CARD ACTIONS
+   ============================================ */
+
+.product-card__add,
+.product-card__fav {
+  min-height: clamp(2.25rem, 5vw, 2.55rem);
+  min-width: clamp(2.25rem, 5vw, 2.55rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0 clamp(0.75rem, 1.5vw, 1rem);
+  border-radius: var(--nf-radius-pill, 999px);
+  border: 1px solid var(--nf-line, rgba(70, 45, 31, 0.14));
+  background: rgba(255, 248, 238, 0.9);
+  color: var(--nf-ink, #211713);
+  font-size: clamp(0.8rem, 1.3vw, 0.9rem);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.product-card__add:hover {
+  background: linear-gradient(135deg, var(--nf-gold-soft, #e7c985), var(--nf-gold, #c9a15a));
+  border-color: transparent;
+  color: var(--nf-oud, #15100d);
+  transform: scale(1.05);
+}
+
+.product-card__fav:hover,
+.product-card__fav.is-active {
+  background: rgba(184, 109, 59, 0.15);
+  border-color: rgba(184, 109, 59, 0.3);
+  color: var(--nf-copper, #b86d3b);
+}
+
+.product-card__add svg,
+.product-card__fav svg {
+  width: clamp(16px, 3.5vw, 18px);
+  height: clamp(16px, 3.5vw, 18px);
+}
+
+/* ============================================
+   8. SHOP TOOLBAR
+   ============================================ */
+
+.toolbar,
+.shop-toolbar {
+  position: static;
+  z-index: auto;
+  margin-block: calc(var(--nf-space-4, 1.25rem) * -1) var(--nf-space-6, 3rem);
+  padding-block: 0;
+  background: transparent;
+}
+
+.toolbar__inner,
+.shop-toolbar__inner {
+  display: grid;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  padding: clamp(0.85rem, 2vw, 1.25rem);
+  border: 1px solid var(--nf-line, rgba(70, 45, 31, 0.14));
+  border-radius: clamp(1rem, 2.5vw, 1.5rem);
+  background: rgba(255, 248, 238, 0.76);
+  box-shadow: 0 0.45rem 1.5rem rgba(58, 36, 25, 0.08);
+}
+
+/* ============================================
+   9. SEARCH & FILTERS
+   ============================================ */
+
+.search-pill,
+.shop-search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: clamp(2.75rem, 6vw, 3.1rem);
+  padding: 0 clamp(0.85rem, 2vw, 1.1rem);
+  border: 1px solid var(--nf-line, rgba(70, 45, 31, 0.14));
+  border-radius: var(--nf-radius-pill, 999px);
+  background: rgba(255, 255, 255, 0.48);
+  overflow: hidden;
+}
+
+.search-pill input,
+.shop-search input {
+  flex: 1;
+  min-width: 0;
+  min-height: clamp(2.25rem, 5vw, 2.5rem);
+  border: 0;
+  background: transparent;
+  color: var(--nf-ink, #211713);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+.search-pill input::placeholder,
+.shop-search input::placeholder {
+  color: rgba(33, 23, 19, 0.48);
+}
+
+/* ============================================
+   10. CHIPS & FILTERS
+   ============================================ */
+
+.chip-row,
+.shop-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.45rem, 1.5vw, 0.65rem);
+  overflow: visible;
+}
+
+.chip,
+.shop-chip {
+  flex: 0 1 auto;
+  min-height: clamp(2.25rem, 5vw, 2.5rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 clamp(0.85rem, 2vw, 1.1rem);
+  border-radius: var(--nf-radius-pill, 999px);
+  border: 1px solid var(--nf-line, rgba(70, 45, 31, 0.14));
+  color: var(--nf-muted, rgba(33, 23, 19, 0.66));
+  background: rgba(255, 248, 238, 0.7);
+  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.chip:hover,
+.shop-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(70, 45, 31, 0.24);
+  background: rgba(239, 227, 210, 0.9);
+}
+
+.chip.is-active,
+.chip[aria-pressed='true'],
+.shop-chip.is-active {
+  color: var(--nf-cream, #fbf2e4);
+  background: var(--nf-brown, #3a2419);
+  border-color: var(--nf-brown, #3a2419);
+}
+
+/* ============================================
+   11. MOBILE SPECIFIC
+   ============================================ */
+
+@media (max-width: 767px) {
+  .product-card,
+  .atelier-card {
+    padding: 0.75rem;
+  }
+
+  .product-card__media,
+  .atelier-card__media {
+    aspect-ratio: 4 / 4.2;
+  }
+
+  .product-card__body,
+  .atelier-card__body {
+    padding: 0.75rem 0.35rem 0.35rem;
+  }
+
+  .product-card h3,
+  .atelier-card h3 {
+    font-size: 1.1rem;
+    -webkit-line-clamp: 1;
+  }
+
+  .product-card__body p,
+  .atelier-card__body p {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 1;
+  }
+
+  .product-card__foot {
+    flex-wrap: wrap;
+  }
+
+  .product-card__add {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .toolbar__inner,
+  .shop-toolbar__inner {
+    gap: 0.75rem;
+    padding: 0.85rem;
+  }
+
+  .chip-row,
+  .shop-chips {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    padding-bottom: 0.5rem;
+  }
+
+  .chip,
+  .shop-chip {
+    scroll-snap-align: start;
+  }
+}
+
+/* ============================================
+   12. EXTRA SMALL MOBILE
+   ============================================ */
+
+@media (max-width: 374px) {
+  .product-card,
+  .atelier-card {
+    padding: 0.65rem;
+  }
+
+  .product-card h3,
+  .atelier-card h3 {
+    font-size: 1rem;
+  }
+
+  .product-card__body p,
+  .atelier-card__body p {
+    font-size: 0.8rem;
+  }
+
+  .product-card__foot strong {
+    font-size: 1rem;
+  }
+
+  .product-card__add,
+  .product-card__fav {
+    min-height: 2rem;
+    min-width: 2rem;
+    padding: 0 0.65rem;
+    font-size: 0.75rem;
+  }
+
+  .product-card__add svg,
+  .product-card__fav svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* ============================================
+   13. ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .atelier-card,
+  .chip,
+  .product-card__add,
+  .product-card__fav {
+    transition-duration: 0.01ms !important;
+  }
+
+  .product-card:hover .product-card__media img,
+  .atelier-card:hover .atelier-card__media img {
+    transform: none;
+  }
+}
+
+/* ============================================
+   END OF PRODUCT & SHOP FIXES
+   ============================================ */

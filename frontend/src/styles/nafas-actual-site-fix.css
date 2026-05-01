@@ -1,0 +1,647 @@
+/* ============================================
+   NAFAS ACTUAL SITE FIX
+   إصلاح بناءً على الموقع الفعلي nafas.inolty.com
+   ============================================ */
+
+/* ============================================
+   CRITICAL: 4 PERFUMES ONLY
+   شرارة، غيمة، دفوة، ظلّ
+   ============================================ */
+
+/* ============================================
+   1. GLOBAL RESETS - CRITICAL
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: clip !important;
+  max-width: 100vw !important;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip !important;
+  max-width: 100vw !important;
+  min-width: 320px;
+  margin: 0;
+  padding: 0;
+}
+
+#root,
+.app-root,
+.page-shell,
+.apple-nafas-page {
+  overflow-x: clip !important;
+  max-width: 100vw !important;
+  width: 100%;
+}
+
+img,
+video,
+canvas,
+svg,
+picture {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   2. NAVIGATION - EXACT MATCH
+   ============================================ */
+
+.site-nav-wrap {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 100 !important;
+  padding: clamp(0.45rem, 1.2vw, 0.85rem) !important;
+  pointer-events: none !important;
+}
+
+.site-nav {
+  pointer-events: auto !important;
+  width: 100% !important;
+  max-width: min(1480px, calc(100vw - clamp(0.9rem, 2.4vw, 1.7rem))) !important;
+  margin: 0 auto !important;
+  padding: clamp(0.5rem, 1.2vw, 0.7rem) clamp(0.7rem, 1.5vw, 1rem) !important;
+  border: 1px solid rgba(231, 201, 133, 0.16) !important;
+  border-radius: 999px !important;
+  background: linear-gradient(180deg, rgba(48, 38, 33, 0.92), rgba(28, 21, 17, 0.94)) !important;
+  backdrop-filter: blur(20px) saturate(120%) !important;
+  box-shadow: 0 1rem 2.8rem rgba(21, 16, 13, 0.22) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: clamp(0.5rem, 1.5vw, 1rem) !important;
+  min-height: clamp(52px, 12vw, 68px) !important;
+}
+
+/* Navigation Brand */
+.site-nav__brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: clamp(0.4rem, 1vw, 0.7rem) !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+
+.site-nav__brand-icon {
+  width: clamp(32px, 7vw, 40px) !important;
+  height: clamp(32px, 7vw, 40px) !important;
+  min-width: clamp(32px, 7vw, 40px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  background: rgba(255, 248, 238, 0.1) !important;
+  border: 1px solid rgba(231, 201, 133, 0.2) !important;
+}
+
+.site-nav__brand-icon-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.site-nav__brand-logo {
+  width: auto !important;
+  max-width: clamp(4.5rem, 12vw, 6.5rem) !important;
+  height: auto !important;
+  max-height: clamp(1.5rem, 4vw, 1.8rem) !important;
+  object-fit: contain !important;
+}
+
+/* Navigation Links - Desktop Only */
+.site-nav__links {
+  display: none !important;
+  align-items: center !important;
+  gap: clamp(0.4rem, 1vw, 0.6rem) !important;
+  flex: 1 !important;
+  justify-content: center !important;
+}
+
+@media (min-width: 1024px) {
+  .site-nav__links {
+    display: flex !important;
+  }
+}
+
+.site-nav__link {
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: clamp(0.5rem, 1vw, 0.65rem) clamp(0.75rem, 1.5vw, 1rem) !important;
+  border-radius: 999px !important;
+  color: rgba(251, 242, 228, 0.72) !important;
+  text-decoration: none !important;
+  font-size: clamp(0.88rem, 1.3vw, 0.95rem) !important;
+  font-weight: 700 !important;
+  transition: all 0.2s ease !important;
+}
+
+.site-nav__link:hover,
+.site-nav__link.is-active {
+  color: #fbf2e4 !important;
+  background: rgba(255, 248, 238, 0.07) !important;
+}
+
+/* Navigation Actions */
+.site-nav__actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: clamp(0.35rem, 1vw, 0.6rem) !important;
+  flex-shrink: 0 !important;
+}
+
+.lang-toggle,
+.site-icon {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  width: clamp(36px, 8vw, 44px) !important;
+  height: clamp(36px, 8vw, 44px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(231, 201, 133, 0.2) !important;
+  background: rgba(255, 248, 238, 0.055) !important;
+  color: #fbf2e4 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
+}
+
+.site-badge {
+  position: absolute !important;
+  top: -4px !important;
+  right: -4px !important;
+  min-width: clamp(16px, 4vw, 20px) !important;
+  height: clamp(16px, 4vw, 20px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 clamp(3px, 1vw, 5px) !important;
+  border-radius: 999px !important;
+  background: #c9a15a !important;
+  color: #15100d !important;
+  font-size: clamp(0.65rem, 1.5vw, 0.75rem) !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+
+.site-icon--menu {
+  display: flex !important;
+}
+
+@media (min-width: 1024px) {
+  .site-icon--menu {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   3. RITUAL SECTION - FIRST SECTION (4 PERFUMES)
+   ============================================ */
+
+.anh-ritual--cinematic {
+  position: relative !important;
+  min-height: clamp(500px, 85vh, 920px) !important;
+  display: grid !important;
+  align-items: center !important;
+  overflow: clip !important;
+  padding-block: clamp(3rem, 6vw, 5rem) !important;
+  isolation: isolate !important;
+}
+
+.anh-ritual-cinematic__inner {
+  position: relative !important;
+  z-index: 4 !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: clamp(1.5rem, 3vw, 2.5rem) !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+@media (min-width: 1024px) {
+  .anh-ritual-cinematic__inner {
+    grid-template-columns: minmax(13rem, 0.74fr) minmax(20rem, 0.9fr) minmax(15rem, 0.74fr) !important;
+    text-align: start !important;
+  }
+}
+
+.anh-ritual-cinematic__stage {
+  position: relative !important;
+  min-height: clamp(20rem, 45vw, 34rem) !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.anh-ritual-cinematic__bottle.anh-bottle-visual {
+  position: absolute !important;
+  z-index: 2 !important;
+  width: clamp(12rem, 28vw, 20rem) !important;
+  max-width: 90% !important;
+}
+
+.anh-ritual--cinematic h2 {
+  font-size: clamp(3rem, 8vw, 7.4rem) !important;
+  line-height: 1.08 !important;
+}
+
+/* Ritual Controls - 4 dots only */
+.anh-ritual-dots {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  min-height: 3.15rem !important;
+  padding-inline: 0.5rem !important;
+}
+
+.anh-ritual-dots button {
+  position: relative !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  width: 2rem !important;
+  height: 2.75rem !important;
+  flex: 0 0 2rem !important;
+  border-radius: 999px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: #fffaf2 !important;
+  cursor: pointer !important;
+}
+
+.anh-ritual-dots button::before {
+  content: "" !important;
+  width: 0.46rem !important;
+  height: 0.46rem !important;
+  border-radius: 999px !important;
+  background: rgba(255, 250, 242, 0.54) !important;
+  transition: width 260ms cubic-bezier(0.22, 1, 0.36, 1), height 260ms cubic-bezier(0.22, 1, 0.36, 1), background 260ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.anh-ritual-dots button.is-active::before {
+  width: 1.85rem !important;
+  height: 0.46rem !important;
+  background: #fffaf2 !important;
+}
+
+/* ============================================
+   4. HIGHLIGHTS SECTION - 4 PERFUMES ONLY
+   ============================================ */
+
+.anh-highlights,
+.anh-section.anh-highlights {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow: hidden !important;
+  padding-block: clamp(3rem, 8vw, 6rem) !important;
+}
+
+.anh-highlights .anh-container {
+  width: 100% !important;
+  max-width: min(1520px, calc(100vw - clamp(1.5rem, 5vw, 5rem))) !important;
+  margin: 0 auto !important;
+  padding-inline: clamp(0.75rem, 3vw, 2rem) !important;
+}
+
+.anh-highlight-shell {
+  position: relative !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  min-height: clamp(18rem, 35vw, 29rem) !important;
+  border-radius: clamp(1rem, 2.5vw, 1.5rem) !important;
+  margin-block-end: clamp(1.5rem, 3vw, 2rem) !important;
+}
+
+.anh-highlight-track {
+  display: flex !important;
+  gap: clamp(0.75rem, 2vw, 1.25rem) !important;
+  width: 100% !important;
+  min-height: clamp(18rem, 35vw, 29rem) !important;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: transform;
+}
+
+.anh-highlight-card {
+  position: relative !important;
+  flex: 0 0 auto !important;
+  width: clamp(280px, 85vw, 520px) !important;
+  min-height: clamp(18rem, 35vw, 28rem) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  padding: clamp(1.5rem, 4vw, 2.5rem) !important;
+  border-radius: clamp(1rem, 2.5vw, 1.5rem) !important;
+  border: 1px solid rgba(70, 45, 31, 0.14) !important;
+  background: linear-gradient(145deg, rgba(239, 227, 210, 0.72), rgba(255, 248, 238, 0.9)) !important;
+  box-shadow: 0 0.45rem 1.5rem rgba(58, 36, 25, 0.08) !important;
+  overflow: hidden !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.anh-highlight-card__copy h3 {
+  margin: 0 !important;
+  font-size: clamp(1.8rem, 4.5vw, 4rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.anh-highlight-bottle,
+.anh-highlight-card__visual .anh-bottle-visual {
+  width: clamp(7rem, 18vw, 13rem) !important;
+  height: auto !important;
+}
+
+/* Carousel Dock - 4 dots only */
+.anh-carousel-dock {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(0.6rem, 1.5vw, 0.85rem) !important;
+  direction: ltr !important;
+  padding-block-start: clamp(1rem, 2vw, 1.5rem) !important;
+}
+
+.anh-dots {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.1rem !important;
+  min-height: 44px !important;
+  padding: 0.35rem clamp(0.6rem, 1.5vw, 0.8rem) !important;
+  border-radius: 999px !important;
+  border: 0 !important;
+  background: rgba(229, 226, 231, 0.82) !important;
+}
+
+.anh-dots button {
+  position: relative !important;
+  width: clamp(1.75rem, 4.5vw, 2rem) !important;
+  height: clamp(1.75rem, 4.5vw, 2rem) !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  cursor: pointer !important;
+}
+
+.anh-dots button::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: clamp(0.35rem, 1vw, 0.44rem) !important;
+  height: clamp(0.35rem, 1vw, 0.44rem) !important;
+  border-radius: 999px !important;
+  background: rgba(33, 23, 19, 0.62) !important;
+  transform: translate(-50%, -50%) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.anh-dots button.is-active::before {
+  width: clamp(1.5rem, 4vw, 1.85rem) !important;
+  height: clamp(0.32rem, 0.8vw, 0.4rem) !important;
+  background: rgba(33, 23, 19, 0.72) !important;
+}
+
+/* ============================================
+   5. COMPARE SECTION - 4 PERFUMES EXACTLY
+   ============================================ */
+
+.anh-compare__grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: clamp(0.85rem, 2vw, 1.35rem) !important;
+}
+
+@media (min-width: 640px) {
+  .anh-compare__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .anh-compare__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+.anh-compare-card {
+  padding: clamp(1rem, 2.5vw, 1.5rem) !important;
+  border-radius: clamp(1rem, 2.5vw, 1.5rem) !important;
+}
+
+.anh-compare-card__visual .anh-bottle-visual {
+  width: clamp(7rem, 20vw, 12rem) !important;
+}
+
+/* ============================================
+   6. LANDING HERO - LAST SECTION
+   ============================================ */
+
+.anh-landing-hero {
+  position: relative !important;
+  min-height: clamp(500px, 85vh, 920px) !important;
+  display: grid !important;
+  align-items: center !important;
+  overflow: clip !important;
+  padding: 0 !important;
+}
+
+.anh-landing-hero__frame {
+  position: absolute !important;
+  z-index: 2 !important;
+  top: clamp(3%, 5vw, 5%) !important;
+  bottom: clamp(3%, 5vw, 5%) !important;
+  left: clamp(5%, 8vw, 10%) !important;
+  right: clamp(5%, 8vw, 10%) !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: clamp(2rem, 8vw, 10rem) !important;
+}
+
+.anh-landing-hero__bottle.anh-bottle-visual {
+  position: relative !important;
+  z-index: 2 !important;
+  width: clamp(12rem, 28vw, 22rem) !important;
+  max-width: 90% !important;
+}
+
+.anh-landing-hero h1 {
+  font-size: clamp(2.8rem, 8vw, 7rem) !important;
+  line-height: 1 !important;
+}
+
+/* Landing Hero Mini Row - 4 bottles */
+.anh-landing-hero__mini-row {
+  position: absolute !important;
+  z-index: 3 !important;
+  bottom: clamp(2rem, 5vw, 4.5rem) !important;
+  left: 50% !important;
+  display: flex !important;
+  align-items: end !important;
+  justify-content: center !important;
+  gap: clamp(0.35rem, 1vw, 0.8rem) !important;
+  padding: 0.5rem 0.7rem !important;
+  border-radius: 999px !important;
+  background: rgba(21, 16, 13, 0.2) !important;
+  backdrop-filter: blur(18px) !important;
+  transform: translateX(-50%) !important;
+}
+
+.anh-landing-hero__mini-bottle.anh-bottle-visual {
+  width: clamp(2.5rem, 4vw, 4.3rem) !important;
+  filter: drop-shadow(0 14px 16px rgba(21, 16, 13, 0.25)) !important;
+}
+
+/* ============================================
+   7. FOOTER
+   ============================================ */
+
+.site-footer {
+  margin-block-start: 0 !important;
+  padding-block: clamp(3rem, 6vw, 5rem) !important;
+}
+
+.site-footer__grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: clamp(1.5rem, 3vw, 2.5rem) !important;
+}
+
+@media (min-width: 768px) {
+  .site-footer__grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-footer__grid {
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 0.75fr)) !important;
+  }
+}
+
+/* ============================================
+   8. MOBILE OPTIMIZATIONS (< 768px)
+   ============================================ */
+
+@media (max-width: 767px) {
+  .site-nav {
+    padding: 0.5rem 0.65rem !important;
+  }
+
+  .site-nav__brand-icon {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+  }
+
+  .anh-ritual--cinematic {
+    min-height: clamp(450px, 75vh, 650px) !important;
+  }
+
+  .anh-ritual-cinematic__bottle.anh-bottle-visual {
+    width: clamp(10rem, 35vw, 16rem) !important;
+  }
+
+  .anh-ritual--cinematic h2 {
+    font-size: clamp(2.5rem, 10vw, 4rem) !important;
+  }
+
+  .anh-highlights {
+    padding-block: clamp(2.5rem, 7vw, 4rem) !important;
+  }
+
+  .anh-highlight-card {
+    width: clamp(260px, 82vw, 340px) !important;
+    min-height: clamp(16rem, 45vw, 21rem) !important;
+  }
+
+  .anh-highlight-card__copy h3 {
+    font-size: clamp(1.6rem, 6vw, 2.4rem) !important;
+  }
+
+  .anh-highlight-bottle {
+    width: clamp(6rem, 20vw, 9rem) !important;
+  }
+
+  .anh-landing-hero {
+    min-height: clamp(450px, 75vh, 650px) !important;
+  }
+
+  .anh-landing-hero__bottle.anh-bottle-visual {
+    width: clamp(10rem, 35vw, 16rem) !important;
+  }
+
+  .anh-landing-hero h1 {
+    font-size: clamp(2.2rem, 10vw, 4rem) !important;
+  }
+
+  .anh-compare__grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .anh-compare__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ============================================
+   9. ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .site-nav,
+  .anh-highlight-card,
+  .anh-compare-card {
+    border-width: 2px !important;
+  }
+}
+
+/* ============================================
+   10. SAFE AREA INSETS
+   ============================================ */
+
+@supports (padding: env(safe-area-inset-bottom)) {
+  .site-nav-wrap {
+    padding-top: max(clamp(0.45rem, 1.2vw, 0.85rem), env(safe-area-inset-top)) !important;
+  }
+
+  body {
+    padding-bottom: env(safe-area-inset-bottom) !important;
+  }
+}
+
+/* ============================================
+   END OF NAFAS ACTUAL SITE FIX
+   ============================================ */
