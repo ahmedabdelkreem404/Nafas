@@ -26,19 +26,17 @@ const navItems = {
 const sensoryNavItems = {
   ar: [
     { to: '/', label: 'الرئيسية' },
-    { to: '/shop', label: 'الكولكشن / المتجر' },
+    { to: '/shop', label: 'الكولكشن' },
     { to: '/scent-finder', label: 'اكتشف عطرك' },
     { to: '/discovery-set', label: 'مجموعة التجربة' },
-    { to: '/gift-boxes', label: 'الهدايا' },
-    { to: '/about', label: 'عن نفس' },
+    { to: '/quality', label: 'الجودة' },
   ],
   en: [
     { to: '/', label: 'Home' },
-    { to: '/shop', label: 'Shop Collection' },
+    { to: '/shop', label: 'Collection' },
     { to: '/scent-finder', label: 'Scent Finder' },
     { to: '/discovery-set', label: 'Discovery Set' },
-    { to: '/gift-boxes', label: 'Gifts' },
-    { to: '/about', label: 'About Nafas' },
+    { to: '/quality', label: 'Quality' },
   ],
 } as const;
 

@@ -123,6 +123,8 @@ export default function ProductDetail() {
   const [notifyEmail, setNotifyEmail] = useState('');
   const [notifySaved, setNotifySaved] = useState(false);
 
+  const [isAdding, setIsAdding] = useState(false);
+
   useEffect(() => {
     Promise.all([getCachedProduct(slug), getCachedProducts()])
       .then(([nextProduct, nextProducts]) => {
@@ -191,6 +193,17 @@ export default function ProductDetail() {
     localStorage.setItem(key, JSON.stringify(next));
     setNotifySaved(true);
     setNotifyEmail('');
+  };
+
+  const handleAddToCart = async () => {
+    if (isAdding) return;
+    setIsAdding(true);
+    try {
+      await addToCart(product, selectedVariant, quantity);
+      openCart();
+    } finally {
+      setIsAdding(false);
+    }
   };
 
   return (
@@ -319,12 +332,10 @@ export default function ProductDetail() {
                 <button
                   type="button"
                   className="n-btn n-btn--primary n-btn--full"
-                  onClick={async () => {
-                    await addToCart(product, selectedVariant, quantity);
-                    openCart();
-                  }}
+                  disabled={isAdding}
+                  onClick={handleAddToCart}
                 >
-                  {locale === 'ar' ? 'أضف إلى السلة' : 'Add to cart'}
+                  {isAdding ? (locale === 'ar' ? 'جاري الإضافة...' : 'Adding...') : (locale === 'ar' ? 'أضف إلى السلة' : 'Add to cart')}
                 </button>
 
                 <a href={WHATSAPP_SUPPORT_URL} target="_blank" rel="noreferrer" className="n-btn n-btn--ghost n-btn--full">
@@ -390,12 +401,10 @@ export default function ProductDetail() {
           <button
             type="button"
             className="n-btn n-btn--primary"
-            onClick={async () => {
-              await addToCart(product, selectedVariant, quantity);
-              openCart();
-            }}
+            disabled={isAdding}
+            onClick={handleAddToCart}
           >
-            {locale === 'ar' ? 'أضف للسلة' : 'Add to cart'}
+            {isAdding ? (locale === 'ar' ? 'جاري الإضافة...' : 'Adding...') : (locale === 'ar' ? 'أضف للسلة' : 'Add to cart')}
           </button>
         </div>
       ) : null}

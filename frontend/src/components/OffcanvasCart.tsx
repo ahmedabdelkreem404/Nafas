@@ -1,4 +1,4 @@
-import { X } from 'lucide-react';
+import { X, Loader } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLocale } from '../context/LocaleContext';
@@ -15,6 +15,7 @@ const cartCopy = {
     confirmYes: 'نعم',
     empty: 'السلة فارغة الآن.',
     heading: 'سلة نفَس',
+    loading: 'جاري التحميل...',
     remove: 'إزالة',
     subtotal: 'المجموع',
     title: 'سلة سريعة',
@@ -28,6 +29,7 @@ const cartCopy = {
     confirmYes: 'Yes',
     empty: 'Your cart is empty.',
     heading: 'Nafas cart',
+    loading: 'Loading...',
     remove: 'Remove',
     subtotal: 'Subtotal',
     title: 'Quick cart',
@@ -38,7 +40,7 @@ const cartCopy = {
 export default function OffcanvasCart() {
   const { pathname } = useLocation();
   const { locale } = useLocale();
-  const { closeCart, isOpen, items, removeFromCart, total } = useCart();
+  const { closeCart, isOpen, items, loading, removeFromCart, total } = useCart();
   const previousPathname = useRef(pathname);
   const [confirmingId, setConfirmingId] = useState<number | null>(null);
   const copy = cartCopy[locale];
@@ -53,8 +55,11 @@ export default function OffcanvasCart() {
 
   useEffect(() => {
     if (!isOpen) {
+      document.body.style.overflow = '';
       return undefined;
     }
+
+    document.body.style.overflow = 'hidden';
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -63,7 +68,10 @@ export default function OffcanvasCart() {
     };
 
     window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKeyDown);
+    };
   }, [closeCart, isOpen]);
 
   useEffect(() => {
@@ -89,7 +97,9 @@ export default function OffcanvasCart() {
           </button>
         </header>
         <div className="cart-drawer__items">
-          {items.length ? items.map((item) => (
+          {loading ? (
+            <div className="empty-panel"><Loader className="spinner" size={24} /> <span>{copy.loading}</span></div>
+          ) : items.length ? items.map((item) => (
             <article className="drawer-item" key={item.id}>
               <div className="drawer-item__thumb">
                 <ProductMedia product={item.product} alt={item.product?.name_ar || item.product?.name_en || 'Product'} />

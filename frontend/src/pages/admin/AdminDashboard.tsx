@@ -100,9 +100,11 @@ const AdminDashboard: React.FC = () => {
       </div>
 
       <div className="grid-auto">
-        <Link to="/admin/orders" className="ui-button ui-button--secondary ui-button--md">طلب جديد</Link>
+        <Link to="/admin/orders" className="ui-button ui-button--secondary ui-button--md">الطلبات</Link>
         <Link to="/admin/products/create" className="ui-button ui-button--secondary ui-button--md">إضافة منتج</Link>
-        <Link to="/admin/inventory" className="ui-button ui-button--secondary ui-button--md">تعديل المخزون</Link>
+        <Link to="/admin/inventory" className="ui-button ui-button--secondary ui-button--md">المخزون</Link>
+        <Link to="/admin/coupons" className="ui-button ui-button--secondary ui-button--md">الكوبونات</Link>
+        <Link to="/admin/quality" className="ui-button ui-button--secondary ui-button--md">الجودة</Link>
       </div>
     </AdminPageShell>
   );

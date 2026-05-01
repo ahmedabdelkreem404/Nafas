@@ -262,13 +262,13 @@ export const flowCopy: Record<string, { copy: Localized; title: Localized }> = {
 };
 
 export const selectorCopy: Record<ChoiceId, { label: Localized }> = {
-  sharara: { label: { ar: 'فريش حار', en: 'Fresh spice' } },
+  sharara: { label: { ar: 'حضور لافت', en: 'Striking presence' } },
   madar: { label: { ar: 'فريش يومي', en: 'Daily fresh' } },
-  athar: { label: { ar: 'غامق خشبي', en: 'Dark woods' } },
-  barq: { label: { ar: 'قهوة دافئة', en: 'Coffee warmth' } },
-  nada: { label: { ar: 'نظيف أنثوي', en: 'Clean feminine' } },
-  ghayma: { label: { ar: 'ناعم هدية', en: 'Soft gift' } },
-  discovery: { label: { ar: 'لسه محتار', en: 'Still deciding' } },
+  athar: { label: { ar: 'حضور غامق', en: 'Dark presence' } },
+  barq: { label: { ar: 'قهوة مميزة', en: 'Unique coffee' } },
+  nada: { label: { ar: 'أنوثة ناعمة', en: 'Soft femininity' } },
+  ghayma: { label: { ar: 'هدية', en: 'Gift' } },
+  discovery: { label: { ar: 'محتار؟ خلينا نساعدك', en: 'Still deciding? Let us help' } },
 };
 
 export const viewerTabCopy: Record<ViewerTab, Localized> = {

@@ -9,7 +9,7 @@ import { useLocale } from '../context/LocaleContext';
 import { useEngagement } from '../hooks/useEngagement';
 import type { Product } from '../types/store';
 
-const filterKeys = ['all', 'men', 'women', 'daily', 'occasion', 'fresh', 'dark', 'coffee', 'gifts', 'samples'] as const;
+const filterKeys = ['all', 'men', 'women', 'fresh', 'dark', 'coffee', 'gifts', 'testers'] as const;
 const sortKeys = ['favorite', 'rating', 'views', 'newest', 'price-asc', 'price-desc'] as const;
 
 export default function Shop() {
@@ -59,17 +59,18 @@ export default function Shop() {
   const filteredProducts = useMemo(() => (
     [...products]
       .filter((product) => {
+        // Exclude Dafwa and Zell implicitly if they were passed (they shouldn't be via getCachedProducts for public, but just in case)
+        if (product.slug === 'dafwa' || product.slug === 'zell') return false;
+
         const searchable = buildSearchableText(product);
         const filterAliases: Record<string, string[]> = {
           coffee: ['coffee', 'قهوة'],
-          daily: ['daily', 'يومي'],
           dark: ['dark', 'غامق'],
           fresh: ['fresh', 'فريش'],
           gifts: ['gift', 'gifts', 'هدية', 'هدايا'],
           men: ['men', 'رجالي'],
-          occasion: ['occasion', 'evening', 'مناسبة', 'مناسبات', 'مساء'],
-          samples: ['sample', 'samples', 'tester', 'testers', 'عينات', 'تستر', 'تجربة'],
           women: ['women', 'حريمي', 'نسائي'],
+          testers: ['tester', 'testers', 'sample', 'samples', 'تستر', 'عينات', 'تجربة'],
         };
         const aliases = filterAliases[filter] || [filter];
         return (!debouncedQuery || searchable.includes(debouncedQuery)) && (filter === 'all' || aliases.some((alias) => searchable.includes(alias.toLowerCase())));
@@ -102,18 +103,13 @@ export default function Shop() {
   const chipLabel = (key: string) => {
     const map: Record<string, { ar: string; en: string }> = {
       all: { ar: 'الكل', en: 'All' },
-      daily: { ar: 'يومي', en: 'Daily' },
-      dark: { ar: 'غامق', en: 'Dark' },
-      occasion: { ar: 'مناسبات', en: 'Occasions' },
-      samples: { ar: 'عينات', en: 'Samples' },
       men: { ar: 'رجالي', en: 'Men' },
-      women: { ar: 'نسائي', en: 'Women' },
+      women: { ar: 'حريمي', en: 'Women' },
       fresh: { ar: 'فريش', en: 'Fresh' },
-      musky: { ar: 'مسكي', en: 'Musky' },
+      dark: { ar: 'غامق', en: 'Dark' },
       coffee: { ar: 'قهوة', en: 'Coffee' },
-      woody: { ar: 'خشبي', en: 'Woody' },
-      testers: { ar: 'تسترات', en: 'Testers' },
       gifts: { ar: 'هدايا', en: 'Gifts' },
+      testers: { ar: 'تستر', en: 'Testers' },
       favorite: { ar: 'الأكثر إعجابًا', en: 'Most loved' },
       rating: { ar: 'الأعلى تقييمًا', en: 'Top rated' },
       views: { ar: 'الأكثر مشاهدة', en: 'Most viewed' },
@@ -121,7 +117,7 @@ export default function Shop() {
       'price-asc': { ar: 'السعر ↑', en: 'Price ↑' },
       'price-desc': { ar: 'السعر ↓', en: 'Price ↓' },
     };
-    return map[key][locale];
+    return map[key] ? map[key][locale] : key;
   };
 
   return (

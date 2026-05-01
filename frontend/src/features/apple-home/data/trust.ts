@@ -1,7 +1,6 @@
 import type { SelectorOption, TrustCard } from '../types';
 
 export const selectorOptions: SelectorOption[] = [
-  { id: 'sharara', label: 'sharara' },
   { id: 'madar', label: 'madar' },
   { id: 'athar', label: 'athar' },
   { id: 'barq', label: 'barq' },
