@@ -866,3 +866,90 @@
     grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
   }
 }
+
+@media (max-width: 767px) {
+  .apple-nafas-page.anh-commerce-page .anh-section {
+    min-block-size: auto !important;
+    padding-block: clamp(2.4rem, 9vw, 4rem) !important;
+  }
+
+  .apple-nafas-page.anh-commerce-page .anh-commerce-hero,
+  .apple-nafas-page.anh-commerce-page .anh-discovery-hero,
+  .apple-nafas-page.anh-commerce-page .anh-together {
+    min-block-size: auto !important;
+  }
+
+  .apple-nafas-page.anh-commerce-page .anh-selector__panel,
+  .apple-nafas-page.anh-commerce-page .anh-together__grid {
+    gap: clamp(1rem, 5vw, 1.4rem);
+  }
+
+  .apple-nafas-page.anh-commerce-page .anh-together__visual,
+  .apple-nafas-page.anh-commerce-page .anh-finder-visual {
+    min-block-size: clamp(13rem, 58vw, 18rem) !important;
+  }
+
+  .apple-nafas-page.anh-commerce-page .anh-finder-grid {
+    gap: clamp(1rem, 5vw, 1.5rem);
+  }
+
+  .apple-nafas-page.anh-commerce-page .anh-finder-question {
+    padding: clamp(0.75rem, 3vw, 1rem);
+  }
+
+  .page-product {
+    padding-block-end: 5.8rem;
+  }
+
+  .page-product .product-world-wrap,
+  .page-product .product-detail,
+  .page-product .n-section {
+    padding-block: clamp(1rem, 5vw, 1.6rem) !important;
+  }
+
+  .page-product .product-world-hero {
+    grid-template-columns: 1fr;
+    gap: clamp(0.85rem, 4vw, 1.2rem);
+    padding: clamp(0.75rem, 3.5vw, 1rem);
+  }
+
+  .page-product .product-world-hero__visual {
+    min-block-size: clamp(15rem, 70vw, 20rem);
+  }
+
+  .page-product .product-world-hero__copy {
+    gap: 0.7rem;
+  }
+
+  .page-product .trust-batch-block--compact {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .page-product .sensory-metric {
+    padding: 0.75rem;
+  }
+
+  .page-product .product-detail--top,
+  .page-product .product-sensory {
+    gap: clamp(1rem, 4vw, 1.4rem);
+  }
+
+  .page-product .product-detail__story {
+    gap: 0.8rem;
+  }
+
+  .page-product .notes-profile,
+  .page-product .product-sensory__aside {
+    gap: 0.8rem;
+  }
+
+  .page-product .mobile-buybar {
+    z-index: 60;
+    inline-size: min(calc(100% - 1rem), 42rem);
+  }
+
+  .whatsapp-float {
+    display: none !important;
+  }
+}

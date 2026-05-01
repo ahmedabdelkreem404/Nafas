@@ -1,0 +1,386 @@
+[
+  {
+    "name": "home-390.png",
+    "routePath": "/",
+    "width": 390,
+    "metrics": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "clipped": [
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 51,
+          "cw": 36
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasMadar",
+          "sw": 44,
+          "cw": 36
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 56,
+          "cw": 36
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 54,
+          "cw": 46
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 58,
+          "cw": 46
+        }
+      ]
+    }
+  },
+  {
+    "name": "home-1440.png",
+    "routePath": "/",
+    "width": 1440,
+    "metrics": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "clipped": [
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 78,
+          "cw": 65
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 85,
+          "cw": 65
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 78,
+          "cw": 74
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 88,
+          "cw": 83
+        }
+      ]
+    }
+  },
+  {
+    "name": "shop-390.png",
+    "routePath": "/shop",
+    "width": 390,
+    "metrics": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "clipped": []
+    }
+  },
+  {
+    "name": "product-sharara-390.png",
+    "routePath": "/products/sharara",
+    "width": 390,
+    "metrics": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "clipped": []
+    }
+  },
+  {
+    "name": "discovery-set-390.png",
+    "routePath": "/discovery-set",
+    "width": 390,
+    "metrics": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "clipped": [
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 51,
+          "cw": 24
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasMadar",
+          "sw": 44,
+          "cw": 24
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasAthar",
+          "sw": 37,
+          "cw": 24
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasBarq",
+          "sw": 32,
+          "cw": 24
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasNada",
+          "sw": 36,
+          "cw": 24
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 56,
+          "cw": 24
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 54,
+          "cw": 46
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 58,
+          "cw": 46
+        }
+      ]
+    }
+  },
+  {
+    "name": "scent-finder-390.png",
+    "routePath": "/scent-finder",
+    "width": 390,
+    "metrics": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "clipped": [
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 54,
+          "cw": 50
+        }
+      ]
+    }
+  },
+  {
+    "name": "gift-boxes-390.png",
+    "routePath": "/gift-boxes",
+    "width": 390,
+    "metrics": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "clipped": [
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 54,
+          "cw": 46
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 58,
+          "cw": 46
+        }
+      ]
+    }
+  },
+  {
+    "name": "checkout-390.png",
+    "routePath": "/checkout",
+    "width": 390,
+    "metrics": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "clipped": []
+    }
+  },
+  {
+    "name": "home-overflow-320.png",
+    "routePath": "/",
+    "width": 320,
+    "metrics": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "clipped": [
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 51,
+          "cw": 30
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasMadar",
+          "sw": 44,
+          "cw": 30
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasAthar",
+          "sw": 37,
+          "cw": 30
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasNada",
+          "sw": 36,
+          "cw": 30
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 56,
+          "cw": 30
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 51,
+          "cw": 44
+        }
+      ]
+    }
+  },
+  {
+    "name": "home-overflow-360.png",
+    "routePath": "/",
+    "width": 360,
+    "metrics": {
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "clipped": [
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 51,
+          "cw": 34
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasMadar",
+          "sw": 44,
+          "cw": 34
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasAthar",
+          "sw": 37,
+          "cw": 34
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 56,
+          "cw": 34
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 54,
+          "cw": 42
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasMadar",
+          "sw": 46,
+          "cw": 42
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 58,
+          "cw": 42
+        }
+      ]
+    }
+  },
+  {
+    "name": "home-overflow-390.png",
+    "routePath": "/",
+    "width": 390,
+    "metrics": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "clipped": [
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 51,
+          "cw": 36
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasMadar",
+          "sw": 44,
+          "cw": 36
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 56,
+          "cw": 36
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasSharara",
+          "sw": 54,
+          "cw": 46
+        },
+        {
+          "tag": "SPAN",
+          "cls": "anh-bottle-visual__label",
+          "text": "NafasGhayma",
+          "sw": 58,
+          "cw": 46
+        }
+      ]
+    }
+  }
+]
