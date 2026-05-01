@@ -1018,7 +1018,7 @@
 .apple-nafas-page .anh-highlight-track {
   display: flex;
   gap: clamp(1rem, 2vw, 1.5rem);
-  direction: ltr;
+  direction: rtl;
   transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
@@ -1032,8 +1032,10 @@
 
 .apple-nafas-page .anh-highlight-card {
   position: relative;
-  min-block-size: 500px;
+  flex: 0 0 min(82vw, 1120px) !important;
+  min-block-size: clamp(520px, 60vh, 780px);
   display: flex;
+  align-items: stretch;
   overflow: hidden;
   border-radius: var(--anh-radius);
   background: var(--anh-panel);
@@ -1067,11 +1069,22 @@
   pointer-events: none;
 }
 
-.apple-nafas-page .anh-highlight-card--copper { background: linear-gradient(135deg, #f7f4ef, #ead9c4); }
-.apple-nafas-page .anh-highlight-card--silver { background: linear-gradient(135deg, #1c1a19, #2d2a29); }
+.apple-nafas-page .anh-highlight-card--copper { background: linear-gradient(135deg, #2a1d18, #f2d4b8); }
+.apple-nafas-page .anh-highlight-card--copper .anh-highlight-card__copy { color: #fff; }
+.apple-nafas-page .anh-highlight-card--silver { background: linear-gradient(135deg, #181615, #2d2a29); }
 .apple-nafas-page .anh-highlight-card--silver .anh-highlight-card__copy { color: #fff; }
 .apple-nafas-page .anh-highlight-card--silver .anh-highlight-card__copy p { color: rgba(255,255,255,0.7); }
 .apple-nafas-page .anh-highlight-card--silver .anh-highlight-card__copy span { color: rgba(255,255,255,0.5); }
+.apple-nafas-page .anh-highlight-card--gold { background: linear-gradient(135deg, #2a241e, #d8c9a5); }
+.apple-nafas-page .anh-highlight-card--gold .anh-highlight-card__copy { color: #fff; }
+.apple-nafas-page .anh-highlight-card--mocha { background: linear-gradient(135deg, #211916, #3d2c1e); }
+.apple-nafas-page .anh-highlight-card--mocha .anh-highlight-card__copy { color: #fff; }
+.apple-nafas-page .anh-highlight-card--mocha .anh-highlight-card__copy p { color: rgba(255,255,255,0.7); }
+.apple-nafas-page .anh-highlight-card--mocha .anh-highlight-card__copy span { color: rgba(255,255,255,0.5); }
+.apple-nafas-page .anh-highlight-card--rose { background: linear-gradient(135deg, #fff8ee, #e4c4ba); }
+.apple-nafas-page .anh-highlight-card--cream { background: linear-gradient(135deg, #fdf8ef, #f0e6d3); }
+.apple-nafas-page .anh-highlight-card--gift { background: linear-gradient(135deg, #f8f2e8, #e5d5c0); }
+.apple-nafas-page .anh-highlight-card--quality { background: linear-gradient(135deg, #f5f0ea, #dfd4c6); }
 
 .apple-nafas-page .anh-highlight-card__visual {
   flex: 1;
@@ -2874,7 +2887,7 @@
 }
 
 .apple-nafas-page .anh-highlight-track {
-  transform: translateX(calc(var(--active-index, 0) * -84%));
+  transform: translateX(calc(var(--active-index, 0) * 84%));
 }
 
 .apple-nafas-page .anh-dock-button,
@@ -3076,12 +3089,12 @@
 
   .apple-nafas-page .anh-highlight-track {
     gap: 0;
-    transform: translateX(calc(var(--active-index, 0) * -100%));
+    transform: translateX(calc(var(--active-index, 0) * 100%));
   }
 
   .apple-nafas-page .anh-highlight-card {
-    flex-basis: 100%;
-    min-block-size: auto;
+    flex: 0 0 calc(100vw - 1.4rem) !important;
+    min-block-size: 560px;
     display: grid;
     gap: 0.8rem;
     padding: 1rem;
@@ -3722,7 +3735,7 @@
   min-block-size: 0 !important;
   align-items: flex-start !important;
   gap: 0 !important;
-  transform: translateX(calc(var(--active-index, 0) * -100%)) !important;
+  transform: translateX(calc(var(--active-index, 0) * 100%)) !important;
 }
 
 .apple-nafas-page .anh-highlight-card {
