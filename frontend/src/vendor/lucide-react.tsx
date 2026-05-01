@@ -63,6 +63,7 @@ export const Image = makeIcon('image');
 export const ImageIcon = makeIcon('image');
 export const Languages = makeIcon('languages');
 export const LayoutDashboard = makeIcon('dashboard');
+export const Loader = makeIcon('loader');
 export const Lock = makeIcon('lock');
 export const LogOut = makeIcon('log out');
 export const Menu = makeIcon('menu');
