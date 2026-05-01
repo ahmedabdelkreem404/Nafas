@@ -1,386 +1,469 @@
-[
-  {
-    "name": "home-390.png",
-    "routePath": "/",
-    "width": 390,
-    "metrics": {
-      "scrollWidth": 390,
-      "clientWidth": 390,
-      "clipped": [
+{
+  "generatedAt": "2026-05-01T11:13:15.429Z",
+  "metrics": [
+    {
+      "route": "/",
+      "width": 320,
+      "overflowX": 0,
+      "clippedText": [
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 51,
-          "cw": 36
+          "text": "شرارة",
+          "selector": "h1",
+          "width": 98,
+          "height": 46,
+          "scrollWidth": 98,
+          "scrollHeight": 50
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasMadar",
-          "sw": 44,
-          "cw": 36
+          "text": "أول رشة تلفت، وأثر مسكي داكن يفضل.",
+          "selector": "p",
+          "width": 83,
+          "height": 33,
+          "scrollWidth": 83,
+          "scrollHeight": 49
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 56,
-          "cw": 36
+          "text": "فريش خشبي رياضي يدور معاك طول اليوم.",
+          "selector": "p",
+          "width": 83,
+          "height": 33,
+          "scrollWidth": 83,
+          "scrollHeight": 49
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 54,
-          "cw": 46
+          "text": "داكن وفريش وخشبي، يسبقك ويفضل بعدك.",
+          "selector": "p",
+          "width": 83,
+          "height": 33,
+          "scrollWidth": 83,
+          "scrollHeight": 49
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 58,
-          "cw": 46
+          "text": "قهوة باردة بطابع فريش حار ولمعة دافئة.",
+          "selector": "p",
+          "width": 83,
+          "height": 33,
+          "scrollWidth": 83,
+          "scrollHeight": 49
+        },
+        {
+          "text": "فريش، نضيف، وأنثوي بنعومة روز جولد.",
+          "selector": "p",
+          "width": 83,
+          "height": 33,
+          "scrollWidth": 83,
+          "scrollHeight": 49
+        },
+        {
+          "text": "نعومة بتتعرف من غير صوت، فاكهية ومسك نضيف.",
+          "selector": "p",
+          "width": 83,
+          "height": 33,
+          "scrollWidth": 83,
+          "scrollHeight": 49
+        },
+        {
+          "text": "اختيارات هادئة للهدايا الرجالي والحريمي.",
+          "selector": "p",
+          "width": 83,
+          "height": 33,
+          "scrollWidth": 83,
+          "scrollHeight": 49
+        },
+        {
+          "text": "تعتيق ومراجعة للصفاء والرش والتقديم.",
+          "selector": "p",
+          "width": 83,
+          "height": 33,
+          "scrollWidth": 83,
+          "scrollHeight": 49
+        },
+        {
+          "text": "من الافتتاحية إلى الأثر.",
+          "selector": "h2",
+          "width": 251,
+          "height": 104,
+          "scrollWidth": 251,
+          "scrollHeight": 109
         }
-      ]
-    }
-  },
-  {
-    "name": "home-1440.png",
-    "routePath": "/",
-    "width": 1440,
-    "metrics": {
-      "scrollWidth": 1440,
-      "clientWidth": 1440,
-      "clipped": [
+      ],
+      "choose": {
+        "columns": "283.375px",
+        "firstRowCount": 1,
+        "cardCount": 6,
+        "gridWidth": 283,
+        "cardWidth": 283
+      },
+      "highlights": {
+        "shellWidth": 147,
+        "shellHeight": 182,
+        "cardHeight": 173,
+        "sectionHeight": 526
+      }
+    },
+    {
+      "route": "/",
+      "width": 360,
+      "overflowX": 0,
+      "clippedText": [
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 78,
-          "cw": 65
+          "text": "شرارة",
+          "selector": "h1",
+          "width": 110,
+          "height": 52,
+          "scrollWidth": 110,
+          "scrollHeight": 56
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 85,
-          "cw": 65
+          "text": "نعومة بتتعرف من غير صوت، فاكهية ومسك نضيف.",
+          "selector": "p",
+          "width": 102,
+          "height": 33,
+          "scrollWidth": 102,
+          "scrollHeight": 50
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 78,
-          "cw": 74
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 88,
-          "cw": 83
+          "text": "من الافتتاحية إلى الأثر.",
+          "selector": "h2",
+          "width": 289,
+          "height": 104,
+          "scrollWidth": 289,
+          "scrollHeight": 109
         }
-      ]
-    }
-  },
-  {
-    "name": "shop-390.png",
-    "routePath": "/shop",
-    "width": 390,
-    "metrics": {
-      "scrollWidth": 390,
-      "clientWidth": 390,
-      "clipped": []
-    }
-  },
-  {
-    "name": "product-sharara-390.png",
-    "routePath": "/products/sharara",
-    "width": 390,
-    "metrics": {
-      "scrollWidth": 390,
-      "clientWidth": 390,
-      "clipped": []
-    }
-  },
-  {
-    "name": "discovery-set-390.png",
-    "routePath": "/discovery-set",
-    "width": 390,
-    "metrics": {
-      "scrollWidth": 390,
-      "clientWidth": 390,
-      "clipped": [
+      ],
+      "choose": {
+        "columns": "156.234px 156.25px",
+        "firstRowCount": 2,
+        "cardCount": 6,
+        "gridWidth": 321,
+        "cardWidth": 156
+      },
+      "highlights": {
+        "shellWidth": 166,
+        "shellHeight": 189,
+        "cardHeight": 180,
+        "sectionHeight": 544
+      }
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "overflowX": 0,
+      "clippedText": [
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 51,
-          "cw": 24
+          "text": "شرارة",
+          "selector": "h1",
+          "width": 119,
+          "height": 56,
+          "scrollWidth": 119,
+          "scrollHeight": 61
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasMadar",
-          "sw": 44,
-          "cw": 24
+          "text": "نعومة بتتعرف من غير صوت، فاكهية ومسك نضيف.",
+          "selector": "p",
+          "width": 114,
+          "height": 36,
+          "scrollWidth": 114,
+          "scrollHeight": 54
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasAthar",
-          "sw": 37,
-          "cw": 24
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasBarq",
-          "sw": 32,
-          "cw": 24
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasNada",
-          "sw": 36,
-          "cw": 24
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 56,
-          "cw": 24
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 54,
-          "cw": 46
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 58,
-          "cw": 46
+          "text": "من الافتتاحية إلى الأثر.",
+          "selector": "h2",
+          "width": 318,
+          "height": 104,
+          "scrollWidth": 318,
+          "scrollHeight": 109
         }
-      ]
-    }
-  },
-  {
-    "name": "scent-finder-390.png",
-    "routePath": "/scent-finder",
-    "width": 390,
-    "metrics": {
-      "scrollWidth": 390,
-      "clientWidth": 390,
-      "clipped": [
+      ],
+      "choose": {
+        "columns": "170.188px 170.203px",
+        "firstRowCount": 2,
+        "cardCount": 6,
+        "gridWidth": 350,
+        "cardWidth": 170
+      },
+      "highlights": {
+        "shellWidth": 179,
+        "shellHeight": 204,
+        "cardHeight": 195,
+        "sectionHeight": 568
+      }
+    },
+    {
+      "route": "/",
+      "width": 430,
+      "overflowX": 0,
+      "clippedText": [
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 54,
-          "cw": 50
+          "text": "شرارة",
+          "selector": "h1",
+          "width": 131,
+          "height": 62,
+          "scrollWidth": 131,
+          "scrollHeight": 67
+        },
+        {
+          "text": "نعومة بتتعرف من غير صوت، فاكهية ومسك نضيف.",
+          "selector": "p",
+          "width": 128,
+          "height": 39,
+          "scrollWidth": 128,
+          "scrollHeight": 58
+        },
+        {
+          "text": "من الافتتاحية إلى الأثر.",
+          "selector": "h2",
+          "width": 356,
+          "height": 104,
+          "scrollWidth": 356,
+          "scrollHeight": 109
         }
-      ]
-    }
-  },
-  {
-    "name": "gift-boxes-390.png",
-    "routePath": "/gift-boxes",
-    "width": 390,
-    "metrics": {
-      "scrollWidth": 390,
-      "clientWidth": 390,
-      "clipped": [
+      ],
+      "choose": {
+        "columns": "188.672px 188.672px",
+        "firstRowCount": 2,
+        "cardCount": 6,
+        "gridWidth": 388,
+        "cardWidth": 189
+      },
+      "highlights": {
+        "shellWidth": 196,
+        "shellHeight": 224,
+        "cardHeight": 215,
+        "sectionHeight": 600
+      }
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "overflowX": 0,
+      "clippedText": [
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 54,
-          "cw": 46
+          "text": "شرارة",
+          "selector": "h1",
+          "width": 146,
+          "height": 69,
+          "scrollWidth": 146,
+          "scrollHeight": 75
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 58,
-          "cw": 46
+          "text": "اكتشف نفسك من أول رشة.",
+          "selector": "h2",
+          "width": 310,
+          "height": 107,
+          "scrollWidth": 310,
+          "scrollHeight": 110
+        },
+        {
+          "text": "رائحة تشبه حضورك.",
+          "selector": "h2",
+          "width": 666,
+          "height": 81,
+          "scrollWidth": 666,
+          "scrollHeight": 88
+        },
+        {
+          "text": "شرارة",
+          "selector": "h3",
+          "width": 675,
+          "height": 52,
+          "scrollWidth": 675,
+          "scrollHeight": 56
+        },
+        {
+          "text": "من الافتتاحية إلى الأثر.",
+          "selector": "h2",
+          "width": 675,
+          "height": 52,
+          "scrollWidth": 675,
+          "scrollHeight": 57
+        },
+        {
+          "text": "مجموعة التجربة جزء من الرحلة.",
+          "selector": "h2",
+          "width": 343,
+          "height": 104,
+          "scrollWidth": 343,
+          "scrollHeight": 109
         }
-      ]
-    }
-  },
-  {
-    "name": "checkout-390.png",
-    "routePath": "/checkout",
-    "width": 390,
-    "metrics": {
-      "scrollWidth": 390,
-      "clientWidth": 390,
-      "clipped": []
-    }
-  },
-  {
-    "name": "home-overflow-320.png",
-    "routePath": "/",
-    "width": 320,
-    "metrics": {
-      "scrollWidth": 320,
-      "clientWidth": 320,
-      "clipped": [
+      ],
+      "choose": {
+        "columns": "234.656px 234.672px 234.672px",
+        "firstRowCount": 3,
+        "cardCount": 6,
+        "gridWidth": 736,
+        "cardWidth": 235
+      },
+      "highlights": {
+        "shellWidth": 168,
+        "shellHeight": 213,
+        "cardHeight": 204,
+        "sectionHeight": 633
+      }
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "overflowX": 0,
+      "clippedText": [
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 51,
-          "cw": 30
+          "text": "شرارة",
+          "selector": "h1",
+          "width": 195,
+          "height": 92,
+          "scrollWidth": 195,
+          "scrollHeight": 100
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasMadar",
-          "sw": 44,
-          "cw": 30
+          "text": "اكتشف نفسك من أول رشة.",
+          "selector": "h2",
+          "width": 485,
+          "height": 198,
+          "scrollWidth": 485,
+          "scrollHeight": 205
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasAthar",
-          "sw": 37,
-          "cw": 30
+          "text": "شرارة",
+          "selector": "h3",
+          "width": 143,
+          "height": 59,
+          "scrollWidth": 143,
+          "scrollHeight": 62
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasNada",
-          "sw": 36,
-          "cw": 30
+          "text": "مدار",
+          "selector": "h3",
+          "width": 143,
+          "height": 59,
+          "scrollWidth": 143,
+          "scrollHeight": 62
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 56,
-          "cw": 30
+          "text": "أثر",
+          "selector": "h3",
+          "width": 143,
+          "height": 59,
+          "scrollWidth": 143,
+          "scrollHeight": 62
         },
         {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 51,
-          "cw": 44
+          "text": "برق",
+          "selector": "h3",
+          "width": 143,
+          "height": 59,
+          "scrollWidth": 143,
+          "scrollHeight": 62
+        },
+        {
+          "text": "ندى",
+          "selector": "h3",
+          "width": 143,
+          "height": 59,
+          "scrollWidth": 143,
+          "scrollHeight": 62
+        },
+        {
+          "text": "غيمة",
+          "selector": "h3",
+          "width": 143,
+          "height": 59,
+          "scrollWidth": 143,
+          "scrollHeight": 62
+        },
+        {
+          "text": "مجموعة التجربة",
+          "selector": "h3",
+          "width": 143,
+          "height": 176,
+          "scrollWidth": 143,
+          "scrollHeight": 179
+        },
+        {
+          "text": "هدايا نفس",
+          "selector": "h3",
+          "width": 143,
+          "height": 117,
+          "scrollWidth": 143,
+          "scrollHeight": 121
+        },
+        {
+          "text": "طقس الجودة",
+          "selector": "h3",
+          "width": 143,
+          "height": 117,
+          "scrollWidth": 143,
+          "scrollHeight": 121
+        },
+        {
+          "text": "رائحة تشبه حضورك.",
+          "selector": "h2",
+          "width": 1106,
+          "height": 152,
+          "scrollWidth": 1106,
+          "scrollHeight": 166
+        },
+        {
+          "text": "شرارة",
+          "selector": "h3",
+          "width": 326,
+          "height": 97,
+          "scrollWidth": 326,
+          "scrollHeight": 105
+        },
+        {
+          "text": "من الافتتاحية إلى الأثر.",
+          "selector": "h2",
+          "width": 362,
+          "height": 290,
+          "scrollWidth": 362,
+          "scrollHeight": 299
+        },
+        {
+          "text": "مجموعة التجربة جزء من الرحلة.",
+          "selector": "h2",
+          "width": 609,
+          "height": 194,
+          "scrollWidth": 609,
+          "scrollHeight": 202
+        },
+        {
+          "text": "اختيار العطر أسهل.",
+          "selector": "h2",
+          "width": 500,
+          "height": 55,
+          "scrollWidth": 500,
+          "scrollHeight": 60
+        },
+        {
+          "text": "وضوح في التجربة والجودة.",
+          "selector": "h2",
+          "width": 820,
+          "height": 55,
+          "scrollWidth": 820,
+          "scrollHeight": 60
+        },
+        {
+          "text": "نفس قريب منك.",
+          "selector": "h2",
+          "width": 301,
+          "height": 55,
+          "scrollWidth": 301,
+          "scrollHeight": 60
         }
-      ]
+      ],
+      "choose": {
+        "columns": "180px 180px 180px 180px 180px 180px",
+        "firstRowCount": 6,
+        "cardCount": 6,
+        "gridWidth": 1160,
+        "cardWidth": 180
+      },
+      "highlights": {
+        "shellWidth": 272,
+        "shellHeight": 297,
+        "cardHeight": 288,
+        "sectionHeight": 935
+      }
     }
-  },
-  {
-    "name": "home-overflow-360.png",
-    "routePath": "/",
-    "width": 360,
-    "metrics": {
-      "scrollWidth": 360,
-      "clientWidth": 360,
-      "clipped": [
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 51,
-          "cw": 34
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasMadar",
-          "sw": 44,
-          "cw": 34
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasAthar",
-          "sw": 37,
-          "cw": 34
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 56,
-          "cw": 34
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 54,
-          "cw": 42
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasMadar",
-          "sw": 46,
-          "cw": 42
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 58,
-          "cw": 42
-        }
-      ]
-    }
-  },
-  {
-    "name": "home-overflow-390.png",
-    "routePath": "/",
-    "width": 390,
-    "metrics": {
-      "scrollWidth": 390,
-      "clientWidth": 390,
-      "clipped": [
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 51,
-          "cw": 36
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasMadar",
-          "sw": 44,
-          "cw": 36
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 56,
-          "cw": 36
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasSharara",
-          "sw": 54,
-          "cw": 46
-        },
-        {
-          "tag": "SPAN",
-          "cls": "anh-bottle-visual__label",
-          "text": "NafasGhayma",
-          "sw": 58,
-          "cw": 46
-        }
-      ]
-    }
-  }
-]
+  ]
+}

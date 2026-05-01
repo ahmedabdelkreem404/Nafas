@@ -3557,3 +3557,215 @@
   }
 }
 
+/* Final visual QA: keep the original Nafas/Inolty rhythm for the first story moment. */
+.apple-nafas-page .anh-highlights {
+  min-block-size: auto !important;
+  padding-block: clamp(3.75rem, 7vw, 7rem) clamp(3.25rem, 6vw, 6rem);
+  background:
+    radial-gradient(circle at 12% 55%, rgba(201, 161, 90, 0.12), transparent 16rem),
+    var(--anh-surface);
+}
+
+.apple-nafas-page .anh-highlights .anh-container {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.56fr) minmax(15rem, 0.44fr);
+  align-items: start;
+  gap: clamp(1rem, 4vw, 4rem);
+}
+
+.apple-nafas-page .anh-highlights .anh-section-head {
+  grid-column: 2;
+  justify-self: end;
+  max-inline-size: min(100%, 35rem);
+  margin-block: 0 clamp(1.25rem, 4vw, 3rem);
+  text-align: start;
+}
+
+.apple-nafas-page .anh-highlights .anh-section-head h2 {
+  max-inline-size: 9.5ch;
+  font-size: clamp(3.4rem, 7vw, 6.9rem);
+  line-height: 0.98;
+}
+
+.apple-nafas-page .anh-highlight-shell {
+  grid-column: 1;
+  inline-size: clamp(10.5rem, 21vw, 17rem);
+  max-inline-size: 100%;
+  margin-inline-start: auto;
+  margin-inline-end: 0;
+  align-self: center;
+  overflow: hidden;
+  padding: 0.28rem;
+}
+
+.apple-nafas-page .anh-highlight-track {
+  block-size: clamp(12.75rem, 23vw, 18rem) !important;
+  min-block-size: 0 !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+  transform: translateX(calc(var(--active-index, 0) * -100%)) !important;
+}
+
+.apple-nafas-page .anh-highlight-card {
+  flex: 0 0 100% !important;
+  block-size: clamp(12.75rem, 23vw, 18rem) !important;
+  min-block-size: clamp(12.75rem, 23vw, 18rem) !important;
+  align-items: end;
+  border-radius: clamp(1rem, 2.4vw, 1.6rem);
+  box-shadow: 0 18px 48px rgba(70, 45, 31, 0.12);
+}
+
+.apple-nafas-page .anh-highlight-card img,
+.apple-nafas-page .anh-highlight-bottle {
+  position: absolute !important;
+  inset-block-end: clamp(1.1rem, 2.5vw, 2rem);
+  left: 50%;
+  inline-size: min(46%, 6.4rem) !important;
+  max-block-size: 52% !important;
+  transform: translateX(-50%) !important;
+}
+
+.apple-nafas-page .anh-highlight-card__copy {
+  max-inline-size: 100%;
+  padding: clamp(0.95rem, 2vw, 1.45rem);
+}
+
+.apple-nafas-page .anh-highlight-card__copy span {
+  margin-block-end: 0.32rem;
+  font-size: clamp(0.62rem, 1.2vw, 0.76rem);
+}
+
+.apple-nafas-page .anh-highlight-card__copy h3 {
+  font-size: clamp(1.35rem, 2.7vw, 2.15rem);
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.apple-nafas-page .anh-highlight-card__copy p {
+  display: -webkit-box;
+  margin-block-start: 0.45rem;
+  overflow: hidden;
+  color: rgba(33, 23, 19, 0.64);
+  font-size: clamp(0.72rem, 1.25vw, 0.9rem);
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.apple-nafas-page .anh-highlights .anh-carousel-dock {
+  grid-column: 1;
+  inline-size: min(100%, 16rem);
+  margin-block-start: 0.9rem;
+  margin-inline-start: auto;
+  margin-inline-end: 0;
+}
+
+/* Final visual QA: mobile product cards must stay readable, never a squeezed one-row strip. */
+@media (min-width: 341px) and (max-width: 767px) {
+  .apple-nafas-page .anh-compare__grid {
+    display: grid !important;
+    inline-size: 100% !important;
+    max-inline-size: 100% !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    gap: clamp(0.65rem, 2.8vw, 0.95rem) !important;
+    direction: rtl !important;
+    overflow: visible !important;
+  }
+
+  .apple-nafas-page .anh-compare__grid > .anh-compare-card {
+    inline-size: 100% !important;
+    min-inline-size: 0 !important;
+    max-inline-size: 100% !important;
+    padding: clamp(0.68rem, 2.6vw, 0.9rem) !important;
+    border-radius: clamp(1rem, 4.4vw, 1.35rem) !important;
+  }
+
+  .apple-nafas-page .anh-compare-card__visual {
+    block-size: clamp(7.4rem, 35vw, 9.6rem) !important;
+  }
+
+  .apple-nafas-page .anh-compare-card__visual .anh-bottle-visual {
+    inline-size: min(58%, 6.2rem) !important;
+  }
+
+  .apple-nafas-page .anh-compare-card h3 {
+    font-size: clamp(1.12rem, 4.9vw, 1.48rem) !important;
+    line-height: 1.08;
+  }
+
+  .apple-nafas-page .anh-compare-card p,
+  .apple-nafas-page .anh-compare-card dd {
+    font-size: clamp(0.72rem, 3.05vw, 0.84rem) !important;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 767px) {
+  .apple-nafas-page .anh-highlights {
+    min-block-size: clamp(27rem, 90vw, 35rem);
+    padding-block: clamp(3.1rem, 11vw, 4.8rem);
+  }
+
+  .apple-nafas-page .anh-highlights .anh-container {
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 5vw, 1.8rem);
+  }
+
+  .apple-nafas-page .anh-highlights .anh-section-head {
+    grid-column: 1;
+    justify-self: end;
+    margin-block-end: clamp(0.4rem, 2vw, 0.8rem);
+  }
+
+  .apple-nafas-page .anh-highlights .anh-section-head h2 {
+    max-inline-size: 8.8ch;
+    font-size: clamp(2.55rem, 12vw, 3.65rem);
+    line-height: 1.02;
+  }
+
+  .apple-nafas-page .anh-highlight-shell {
+    grid-column: 1;
+    inline-size: clamp(9.2rem, 46vw, 12.25rem);
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+  }
+
+  .apple-nafas-page .anh-highlight-card {
+    block-size: clamp(10.8rem, 50vw, 14rem) !important;
+    min-block-size: clamp(10.8rem, 50vw, 14rem) !important;
+  }
+
+  .apple-nafas-page .anh-highlight-track {
+    block-size: clamp(10.8rem, 50vw, 14rem) !important;
+    min-block-size: 0 !important;
+  }
+
+  .apple-nafas-page .anh-highlight-card__copy {
+    padding: clamp(0.72rem, 3.1vw, 0.95rem);
+  }
+
+  .apple-nafas-page .anh-highlight-card__copy h3 {
+    font-size: clamp(1.05rem, 5vw, 1.45rem);
+  }
+
+  .apple-nafas-page .anh-highlight-card__copy p {
+    font-size: clamp(0.66rem, 3vw, 0.78rem);
+    -webkit-line-clamp: 2;
+  }
+
+  .apple-nafas-page .anh-highlights .anh-carousel-dock {
+    grid-column: 1;
+    inline-size: max-content;
+    max-inline-size: 100%;
+    justify-self: center;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 340px) {
+  .apple-nafas-page .anh-compare__grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
