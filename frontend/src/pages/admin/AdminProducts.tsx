@@ -14,7 +14,7 @@ const AdminProducts: React.FC = () => {
     setError('');
     adminApi.products.list()
       .then((res) => setProducts(res.data || []))
-      .catch((err) => setError(err.message || '????? ????? ????????'))
+      .catch((err) => setError(err.message || 'تعذر تحميل المنتجات'))
       .finally(() => setLoading(false));
   }, []);
 
@@ -32,13 +32,13 @@ const AdminProducts: React.FC = () => {
   const removeProduct = useCallback((productId: number | string) => {
     adminApi.products.delete(productId)
       .then(load)
-      .catch((err) => setError(err.message || '????? ??? ??????'));
+      .catch((err) => setError(err.message || 'تعذر حذف المنتج'));
   }, [load]);
 
   const columns = useMemo(() => [
     {
       key: 'name',
-      header: '??????',
+      header: 'المنتج',
       cell: (product: any) => (
         <div className="stack" style={{ gap: '0.2rem' }}>
           <strong>{product.name_ar}</strong>
@@ -46,18 +46,18 @@ const AdminProducts: React.FC = () => {
         </div>
       ),
     },
-    { key: 'code', header: '?????', cell: (product: any) => product.code },
-    { key: 'status', header: '??????', cell: (product: any) => <Badge tone={product.status === 'active' ? 'success' : 'muted'}>{product.status}</Badge> },
-    { key: 'gender', header: '?????', cell: (product: any) => product.gender },
+    { key: 'code', header: 'الكود', cell: (product: any) => product.code },
+    { key: 'status', header: 'الحالة', cell: (product: any) => <Badge tone={product.status === 'active' ? 'success' : 'muted'}>{product.status}</Badge> },
+    { key: 'gender', header: 'الفئة', cell: (product: any) => product.gender },
     {
       key: 'actions',
-      header: '???????',
+      header: 'الإجراءات',
       cell: (product: any) => (
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-          <Link to={`/admin/products/${product.id}/edit`}><Button size="sm" variant="secondary">?????</Button></Link>
-          <Link to={`/admin/products/${product.id}/variants`}><Button size="sm" variant="ghost">???????</Button></Link>
-          <Link to={`/admin/products/${product.id}/media`}><Button size="sm" variant="ghost">???????</Button></Link>
-          <Button size="sm" variant="danger" onClick={() => removeProduct(product.id)}>???</Button>
+        <div className="admin-row-actions">
+          <Link to={`/admin/products/${product.id}/edit`}><Button size="sm" variant="secondary">تعديل</Button></Link>
+          <Link to={`/admin/products/${product.id}/variants`}><Button size="sm" variant="ghost">المقاسات</Button></Link>
+          <Link to={`/admin/products/${product.id}/media`}><Button size="sm" variant="ghost">الصور</Button></Link>
+          <Button size="sm" variant="danger" onClick={() => removeProduct(product.id)}>حذف</Button>
         </div>
       ),
     },
@@ -66,23 +66,23 @@ const AdminProducts: React.FC = () => {
   return (
     <AdminPageShell
       eyebrow="Catalog"
-      title="????? ????????"
-      description="????? ????? ????? ????? ??? ???????? ???? ??????? ?? ?????? ????? ??? ??????? ???????? ????????."
-      actions={<Link to="/admin/products/create"><Button>????? ????</Button></Link>}
+      title="إدارة المنتجات"
+      description="عرض وتعديل عطور نفس، حالتها، المقاسات، والصور المرتبطة بها بدون كشف أي بيانات داخلية حساسة."
+      actions={<Link to="/admin/products/create"><Button>إضافة منتج</Button></Link>}
     >
       {loading ? (
-        <LoadingState label="???? ????? ????????..." />
+        <LoadingState label="جاري تحميل المنتجات..." />
       ) : error ? (
         <ErrorState
-          title="????? ????? ????????"
+          title="تعذر تحميل المنتجات"
           message={error}
-          action={<Button variant="secondary" onClick={retry}>????? ????????</Button>}
+          action={<Button variant="secondary" onClick={retry}>إعادة المحاولة</Button>}
         />
       ) : !products.length ? (
         <EmptyState
-          title="?? ???? ??????"
-          description="???? ?????? ??? ???? ?? ????????."
-          action={<Link to="/admin/products/create"><Button>????? ????</Button></Link>}
+          title="لا توجد منتجات"
+          description="ابدأ بإضافة أول عطر في الكتالوج."
+          action={<Link to="/admin/products/create"><Button>إضافة منتج</Button></Link>}
         />
       ) : (
         <Card tone="strong">
