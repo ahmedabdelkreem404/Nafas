@@ -53,6 +53,13 @@ class NafasE2ETest extends TestCase
         );
     }
 
+    private function activePublicVariant(): ProductVariant
+    {
+        return ProductVariant::where('is_active', true)
+            ->whereHas('product', fn ($query) => $query->where('status', 'active'))
+            ->firstOrFail();
+    }
+
     public function test_public_product_detail_does_not_expose_formulas_or_cost_prices(): void
     {
         $product = \App\Models\Product::first();
@@ -180,7 +187,7 @@ class NafasE2ETest extends TestCase
 
     public function test_server_side_cart_support_works(): void
     {
-        $variant = ProductVariant::first();
+        $variant = $this->activePublicVariant();
 
         $add = $this->postJson('/api/cart/items', ['variant_id' => $variant->id, 'quantity' => 2], ['X-Session-Key' => 'session-1']);
         $add->assertCreated();
@@ -195,7 +202,7 @@ class NafasE2ETest extends TestCase
 
     public function test_guest_session_cannot_update_or_delete_another_session_cart_item(): void
     {
-        $variant = ProductVariant::first();
+        $variant = $this->activePublicVariant();
 
         $this->postJson('/api/cart/items', ['variant_id' => $variant->id, 'quantity' => 2], ['X-Session-Key' => 'session-b'])
             ->assertCreated();
@@ -216,7 +223,7 @@ class NafasE2ETest extends TestCase
 
     public function test_logged_in_user_cannot_update_or_delete_another_users_cart_item(): void
     {
-        $variant = ProductVariant::first();
+        $variant = $this->activePublicVariant();
         $userA = User::factory()->create(['role' => 'customer', 'password' => bcrypt('password123')]);
         $userB = User::factory()->create(['role' => 'customer', 'password' => bcrypt('password123')]);
         $tokenA = $this->postJson('/api/auth/login', ['email' => $userA->email, 'password' => 'password123'])->json('token');
@@ -245,7 +252,7 @@ class NafasE2ETest extends TestCase
 
     public function test_logged_in_owner_can_update_and_delete_own_cart_item(): void
     {
-        $variant = ProductVariant::first();
+        $variant = $this->activePublicVariant();
         $user = User::factory()->create(['role' => 'customer', 'password' => bcrypt('password123')]);
         $token = $this->postJson('/api/auth/login', ['email' => $user->email, 'password' => 'password123'])->json('token');
 
@@ -268,7 +275,7 @@ class NafasE2ETest extends TestCase
 
     public function test_inventory_deduction_and_restoration_lifecycle(): void
     {
-        $variant = ProductVariant::first();
+        $variant = $this->activePublicVariant();
         $initialStock = $variant->stock_quantity;
         $token = $this->loginAsRole('super_admin');
 
@@ -278,7 +285,7 @@ class NafasE2ETest extends TestCase
             'address' => 'Test Addr',
             'city' => 'Cairo',
             'governorate' => 'Cairo',
-            'payment_method' => 'online_card',
+            'payment_method' => 'cash_on_delivery',
             'items' => [['variant_id' => $variant->id, 'quantity' => 5]],
         ]);
 
@@ -303,7 +310,7 @@ class NafasE2ETest extends TestCase
 
     public function test_duplicate_status_update_does_not_double_mutate_inventory(): void
     {
-        $variant = ProductVariant::first();
+        $variant = $this->activePublicVariant();
         $initialStock = $variant->stock_quantity;
         $token = $this->loginAsRole('super_admin');
 
@@ -313,7 +320,7 @@ class NafasE2ETest extends TestCase
             'address' => 'Test Addr',
             'city' => 'Cairo',
             'governorate' => 'Cairo',
-            'payment_method' => 'online_card',
+            'payment_method' => 'cash_on_delivery',
             'items' => [['variant_id' => $variant->id, 'quantity' => 2]],
         ])->json('order.id');
 
@@ -329,9 +336,112 @@ class NafasE2ETest extends TestCase
         $this->assertEquals($initialStock - 2, $variant->stock_quantity);
     }
 
+    public function test_checkout_accepts_launch_payment_methods_and_rejects_removed_methods(): void
+    {
+        $variant = $this->activePublicVariant();
+        $basePayload = [
+            'customer_name' => 'Launch Customer',
+            'phone' => '0123456789',
+            'address' => 'Detailed launch address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ];
+
+        $this->postJson('/api/checkout', $basePayload + [
+            'payment_method' => 'cash_on_delivery',
+        ])->assertCreated()
+            ->assertJsonPath('order.payment.status', 'pending')
+            ->assertJsonPath('order.payment.method', 'cash_on_delivery');
+
+        $this->postJson('/api/checkout', $basePayload + [
+            'payment_method' => 'vodafone_cash',
+            'payment_reference' => 'VC-123456',
+            'payment_payer_phone' => '01012345678',
+        ])->assertCreated()
+            ->assertJsonPath('order.payment.status', 'pending_review')
+            ->assertJsonPath('order.payment.method', 'vodafone_cash')
+            ->assertJsonPath('order.payment.reference', 'VC-123456');
+
+        $this->postJson('/api/checkout', $basePayload + [
+            'payment_method' => 'instapay',
+            'payment_reference' => 'IPN-7890',
+        ])->assertCreated()
+            ->assertJsonPath('order.payment.status', 'pending_review')
+            ->assertJsonPath('order.payment.method', 'instapay')
+            ->assertJsonPath('order.payment.review_status', 'pending');
+
+        $this->postJson('/api/checkout', $basePayload + [
+            'payment_method' => 'online_card',
+        ])->assertUnprocessable();
+
+        $this->postJson('/api/checkout', $basePayload + [
+            'payment_method' => 'bank_transfer',
+        ])->assertUnprocessable();
+    }
+
+    public function test_manual_payment_review_can_be_approved_by_order_admin(): void
+    {
+        $variant = $this->activePublicVariant();
+        $token = $this->loginAsRole('order_manager');
+
+        $orderId = $this->postJson('/api/checkout', [
+            'customer_name' => 'Manual Pay',
+            'phone' => '0123456789',
+            'address' => 'Detailed manual payment address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'vodafone_cash',
+            'payment_reference' => 'VC-REVIEW-1',
+            'payment_payer_phone' => '01012345678',
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ])->assertCreated()->json('order.id');
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->patchJson("/api/admin/orders/{$orderId}/payment-review", [
+                'review_status' => 'approved',
+                'admin_note' => 'Matched manual transfer.',
+            ])
+            ->assertOk()
+            ->assertJsonPath('order.payment.status', 'approved')
+            ->assertJsonPath('order.payment.review_status', 'approved')
+            ->assertJsonPath('order.payment.admin_note', 'Matched manual transfer.');
+    }
+
+    public function test_launch_catalog_contains_six_public_perfumes_and_discovery_set_only(): void
+    {
+        $publicProducts = Product::where('status', 'active')->pluck('slug')->all();
+
+        $this->assertEqualsCanonicalizing([
+            'sharara',
+            'madar',
+            'athar',
+            'barq',
+            'nada',
+            'ghayma',
+            'discovery-set',
+        ], $publicProducts);
+
+        $this->assertDatabaseHas('products', ['slug' => 'dafwa', 'status' => 'hidden']);
+        $this->assertDatabaseHas('products', ['slug' => 'zell', 'status' => 'hidden']);
+
+        foreach (['sharara', 'madar', 'athar', 'barq'] as $slug) {
+            $product = Product::where('slug', $slug)->firstOrFail();
+            $this->assertEquals([199.0, 319.0, 529.0], $product->variants()->where('is_active', true)->orderBy('size_ml')->pluck('retail_price')->map(fn ($price) => (float) $price)->all());
+        }
+
+        foreach (['nada', 'ghayma'] as $slug) {
+            $product = Product::where('slug', $slug)->firstOrFail();
+            $this->assertEquals([199.0, 299.0, 499.0], $product->variants()->where('is_active', true)->orderBy('size_ml')->pluck('retail_price')->map(fn ($price) => (float) $price)->all());
+        }
+
+        $discoverySet = Product::where('slug', 'discovery-set')->firstOrFail();
+        $this->assertEquals(149.0, (float) $discoverySet->variants()->where('is_active', true)->firstOrFail()->retail_price);
+    }
+
     public function test_cart_validation_blocks_out_of_stock_and_stale_price(): void
     {
-        $variant = ProductVariant::first();
+        $variant = $this->activePublicVariant();
         $variant->stock_quantity = 2;
         $variant->save();
 
