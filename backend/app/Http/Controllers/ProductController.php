@@ -26,12 +26,12 @@ class ProductController extends Controller
             ->withCount(['reviews as reviews_count' => fn ($builder) => $builder
                 ->whereNull('parent_id')
                 ->where(function ($query) {
-                    $query->where('status', 'approved')->orWhere('is_approved', true);
+                    $query->where('status', 'approved')->where('is_approved', true);
                 })])
             ->withAvg(['reviews as rating_average' => fn ($builder) => $builder
                 ->whereNull('parent_id')
                 ->where(function ($query) {
-                    $query->where('status', 'approved')->orWhere('is_approved', true);
+                    $query->where('status', 'approved')->where('is_approved', true);
                 })], 'rating')
             ->where('status', 'active');
 
@@ -61,12 +61,12 @@ class ProductController extends Controller
             ->withCount(['reviews as reviews_count' => fn ($builder) => $builder
                 ->whereNull('parent_id')
                 ->where(function ($query) {
-                    $query->where('status', 'approved')->orWhere('is_approved', true);
+                    $query->where('status', 'approved')->where('is_approved', true);
                 })])
             ->withAvg(['reviews as rating_average' => fn ($builder) => $builder
                 ->whereNull('parent_id')
                 ->where(function ($query) {
-                    $query->where('status', 'approved')->orWhere('is_approved', true);
+                    $query->where('status', 'approved')->where('is_approved', true);
                 })], 'rating')
             ->where('status', 'active')
             ->where('slug', $slug)
@@ -189,7 +189,7 @@ class ProductController extends Controller
             ->where('product_id', $product->id)
             ->whereNull('parent_id')
             ->where(function ($query) {
-                $query->where('status', 'approved')->orWhere('is_approved', true);
+                $query->where('status', 'approved')->where('is_approved', true);
             })
             ->withCount('replies')
             ->latest()
@@ -215,14 +215,15 @@ class ProductController extends Controller
             'rating' => $validated['rating'],
             'body' => $validated['body'],
             'comment' => $validated['body'],
-            'status' => 'approved',
+            'status' => 'pending',
             'session_key' => $request->header('X-Session-Key'),
-            'is_approved' => true,
+            'is_approved' => false,
             'likes' => 0,
             'dislikes' => 0,
         ]);
 
         return response()->json([
+            'message' => 'Review submitted for moderation',
             'data' => $this->transformReview($review->fresh()),
         ], 201);
     }
@@ -231,7 +232,7 @@ class ProductController extends Controller
     {
         $replies = $review->replies()
             ->where(function ($query) {
-                $query->where('status', 'approved')->orWhere('is_approved', true);
+                $query->where('status', 'approved')->where('is_approved', true);
             })
             ->paginate(20);
 
@@ -254,20 +255,25 @@ class ProductController extends Controller
             'rating' => 0,
             'body' => $validated['body'],
             'comment' => $validated['body'],
-            'status' => 'approved',
+            'status' => 'pending',
             'session_key' => $request->header('X-Session-Key'),
-            'is_approved' => true,
+            'is_approved' => false,
             'likes' => 0,
             'dislikes' => 0,
         ]);
 
         return response()->json([
+            'message' => 'Reply submitted for moderation',
             'data' => $this->transformReview($reply->fresh()),
         ], 201);
     }
 
     public function voteReview(Request $request, Review $review)
     {
+        if ($review->status !== 'approved' || !$review->is_approved) {
+            abort(404);
+        }
+
         $validated = $request->validate([
             'type' => ['required', 'in:like,dislike'],
         ]);

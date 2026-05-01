@@ -6,10 +6,13 @@ use App\Models\ContactInquiry;
 use App\Models\Customer;
 use App\Models\Formula;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\ProductVariant;
+use App\Models\Review;
 use App\Models\User;
 use App\Models\WholesaleInquiry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class NafasE2ETest extends TestCase
@@ -24,16 +27,9 @@ class NafasE2ETest extends TestCase
 
     private function loginAsRole(string $role): string
     {
-        if ($role === 'super_admin') {
-            return $this->postJson('/api/auth/login', [
-                'email' => 'admin@nafas.com',
-                'password' => 'password123',
-            ])->json('token');
-        }
-
         $user = User::factory()->create([
             'name' => ucfirst($role),
-            'email' => "{$role}@nafas.com",
+            'email' => "{$role}-test@example.test",
             'password' => bcrypt('password123'),
             'role' => $role,
         ]);
@@ -42,6 +38,19 @@ class NafasE2ETest extends TestCase
             'email' => $user->email,
             'password' => 'password123',
         ])->json('token');
+    }
+
+    private function assertApiRouteUsesMiddleware(string $method, string $uri, string $middleware): void
+    {
+        $route = collect(Route::getRoutes())->first(
+            fn ($route) => in_array(strtoupper($method), $route->methods(), true) && $route->uri() === ltrim($uri, '/')
+        );
+
+        $this->assertNotNull($route, "Route {$method} {$uri} was not registered.");
+        $this->assertTrue(
+            collect($route->gatherMiddleware())->contains(fn ($registered) => str_contains($registered, $middleware) || str_contains($registered, str_replace('throttle:', '', $middleware))),
+            "Route {$method} {$uri} is missing {$middleware}."
+        );
     }
 
     public function test_public_product_detail_does_not_expose_formulas_or_cost_prices(): void
@@ -70,8 +79,15 @@ class NafasE2ETest extends TestCase
 
     public function test_admin_login_works_and_returns_token(): void
     {
+        $admin = User::factory()->create([
+            'name' => 'Test Admin',
+            'email' => 'super-admin-login@example.test',
+            'password' => bcrypt('password123'),
+            'role' => 'super_admin',
+        ]);
+
         $response = $this->postJson('/api/auth/login', [
-            'email' => 'admin@nafas.com',
+            'email' => $admin->email,
             'password' => 'password123',
         ]);
 
@@ -175,6 +191,79 @@ class NafasE2ETest extends TestCase
         $cartItemId = $cart->json('items.0.id');
         $this->patchJson("/api/cart/items/{$cartItemId}", ['quantity' => 3], ['X-Session-Key' => 'session-1'])->assertOk();
         $this->deleteJson("/api/cart/items/{$cartItemId}", [], ['X-Session-Key' => 'session-1'])->assertOk();
+    }
+
+    public function test_guest_session_cannot_update_or_delete_another_session_cart_item(): void
+    {
+        $variant = ProductVariant::first();
+
+        $this->postJson('/api/cart/items', ['variant_id' => $variant->id, 'quantity' => 2], ['X-Session-Key' => 'session-b'])
+            ->assertCreated();
+
+        $cart = $this->getJson('/api/cart', ['X-Session-Key' => 'session-b']);
+        $cartItemId = $cart->json('items.0.id');
+
+        $this->patchJson("/api/cart/items/{$cartItemId}", ['quantity' => 3], ['X-Session-Key' => 'session-a'])
+            ->assertNotFound();
+
+        $this->deleteJson("/api/cart/items/{$cartItemId}", [], ['X-Session-Key' => 'session-a'])
+            ->assertNotFound();
+
+        $this->getJson('/api/cart', ['X-Session-Key' => 'session-b'])
+            ->assertOk()
+            ->assertJsonPath('items.0.quantity', 2);
+    }
+
+    public function test_logged_in_user_cannot_update_or_delete_another_users_cart_item(): void
+    {
+        $variant = ProductVariant::first();
+        $userA = User::factory()->create(['role' => 'customer', 'password' => bcrypt('password123')]);
+        $userB = User::factory()->create(['role' => 'customer', 'password' => bcrypt('password123')]);
+        $tokenA = $this->postJson('/api/auth/login', ['email' => $userA->email, 'password' => 'password123'])->json('token');
+        $tokenB = $this->postJson('/api/auth/login', ['email' => $userB->email, 'password' => 'password123'])->json('token');
+
+        $this->withHeader('Authorization', 'Bearer ' . $tokenB)
+            ->postJson('/api/cart/items', ['variant_id' => $variant->id, 'quantity' => 2])
+            ->assertCreated();
+
+        $cart = $this->withHeader('Authorization', 'Bearer ' . $tokenB)->getJson('/api/cart');
+        $cartItemId = $cart->json('items.0.id');
+
+        $this->withHeader('Authorization', 'Bearer ' . $tokenA)
+            ->patchJson("/api/cart/items/{$cartItemId}", ['quantity' => 3])
+            ->assertNotFound();
+
+        $this->withHeader('Authorization', 'Bearer ' . $tokenA)
+            ->deleteJson("/api/cart/items/{$cartItemId}")
+            ->assertNotFound();
+
+        $this->withHeader('Authorization', 'Bearer ' . $tokenB)
+            ->getJson('/api/cart')
+            ->assertOk()
+            ->assertJsonPath('items.0.quantity', 2);
+    }
+
+    public function test_logged_in_owner_can_update_and_delete_own_cart_item(): void
+    {
+        $variant = ProductVariant::first();
+        $user = User::factory()->create(['role' => 'customer', 'password' => bcrypt('password123')]);
+        $token = $this->postJson('/api/auth/login', ['email' => $user->email, 'password' => 'password123'])->json('token');
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->postJson('/api/cart/items', ['variant_id' => $variant->id, 'quantity' => 1])
+            ->assertCreated();
+
+        $cart = $this->withHeader('Authorization', 'Bearer ' . $token)->getJson('/api/cart');
+        $cartItemId = $cart->json('items.0.id');
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->patchJson("/api/cart/items/{$cartItemId}", ['quantity' => 2])
+            ->assertOk()
+            ->assertJsonPath('quantity', 2);
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->deleteJson("/api/cart/items/{$cartItemId}")
+            ->assertOk();
     }
 
     public function test_inventory_deduction_and_restoration_lifecycle(): void
@@ -330,5 +419,102 @@ class NafasE2ETest extends TestCase
         ])->assertCreated();
 
         $this->assertDatabaseCount((new WholesaleInquiry())->getTable(), 1);
+    }
+
+    public function test_new_review_is_pending_and_not_public_until_approved(): void
+    {
+        $product = Product::where('status', 'active')->first();
+
+        $this->postJson("/api/products/{$product->slug}/reviews", [
+            'author_name' => 'Ahmed',
+            'rating' => 5,
+            'body' => 'Balanced and elegant.',
+        ])->assertCreated()
+            ->assertJsonPath('message', 'Review submitted for moderation');
+
+        $this->assertDatabaseHas('reviews', [
+            'product_id' => $product->id,
+            'author_name' => 'Ahmed',
+            'status' => 'pending',
+            'is_approved' => false,
+        ]);
+
+        $this->getJson("/api/products/{$product->slug}/reviews")
+            ->assertOk()
+            ->assertJsonPath('data', []);
+    }
+
+    public function test_approved_review_is_public(): void
+    {
+        $product = Product::where('status', 'active')->first();
+
+        Review::create([
+            'product_id' => $product->id,
+            'author_name' => 'Approved Customer',
+            'rating' => 5,
+            'body' => 'Soft trail.',
+            'comment' => 'Soft trail.',
+            'status' => 'approved',
+            'is_approved' => true,
+            'likes' => 0,
+            'dislikes' => 0,
+        ]);
+
+        $this->getJson("/api/products/{$product->slug}/reviews")
+            ->assertOk()
+            ->assertJsonPath('data.0.author_name', 'Approved Customer');
+    }
+
+    public function test_review_replies_follow_moderation_rules(): void
+    {
+        $product = Product::where('status', 'active')->first();
+        $review = Review::create([
+            'product_id' => $product->id,
+            'author_name' => 'Parent Review',
+            'rating' => 5,
+            'body' => 'Parent body.',
+            'comment' => 'Parent body.',
+            'status' => 'approved',
+            'is_approved' => true,
+            'likes' => 0,
+            'dislikes' => 0,
+        ]);
+
+        $this->postJson("/api/reviews/{$review->id}/replies", [
+            'author_name' => 'Reply Customer',
+            'body' => 'I agree.',
+        ])->assertCreated();
+
+        $this->assertDatabaseHas('reviews', [
+            'parent_id' => $review->id,
+            'author_name' => 'Reply Customer',
+            'status' => 'pending',
+            'is_approved' => false,
+        ]);
+
+        $this->getJson("/api/reviews/{$review->id}/replies")
+            ->assertOk()
+            ->assertJsonPath('data', []);
+
+        $reply = Review::where('parent_id', $review->id)->firstOrFail();
+        $reply->update(['status' => 'approved', 'is_approved' => true]);
+
+        $this->getJson("/api/reviews/{$review->id}/replies")
+            ->assertOk()
+            ->assertJsonPath('data.0.author_name', 'Reply Customer');
+    }
+
+    public function test_public_write_and_lookup_routes_are_rate_limited(): void
+    {
+        foreach ([
+            ['POST', 'api/contact', 'throttle:public-writes'],
+            ['POST', 'api/wholesale-inquiry', 'throttle:public-writes'],
+            ['POST', 'api/products/{slug}/reviews', 'throttle:public-writes'],
+            ['POST', 'api/reviews/{review}/replies', 'throttle:public-writes'],
+            ['POST', 'api/reviews/{review}/vote', 'throttle:public-writes'],
+            ['GET', 'api/orders/confirmation/{orderNumber}', 'throttle:public-lookups'],
+        ] as [$method, $uri, $middleware]) {
+            $this->assertApiRouteUsesMiddleware($method, $uri, $middleware);
+        }
     }
 }

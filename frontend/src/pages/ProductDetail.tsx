@@ -10,7 +10,7 @@ import { useLocale } from '../context/LocaleContext';
 import { useCart } from '../hooks/useCart';
 import { useEngagement } from '../hooks/useEngagement';
 import type { Product } from '../types/store';
-import { WHATSAPP_SUPPORT_URL } from '../utils/brand';
+import { HAS_WHATSAPP_SUPPORT, WHATSAPP_SUPPORT_URL } from '../utils/brand';
 import { formatCurrency, formatNumber } from '../utils/format';
 import { getPrimaryVariant } from '../utils/products';
 
@@ -312,9 +312,11 @@ export default function ProductDetail() {
                   {locale === 'ar' ? 'أضف إلى السلة' : 'Add to cart'}
                 </button>
 
-                <a href={WHATSAPP_SUPPORT_URL} target="_blank" rel="noreferrer" className="n-btn n-btn--ghost n-btn--full">
-                  {locale === 'ar' ? 'استفسر عبر واتساب' : 'Ask on WhatsApp'}
-                </a>
+                {HAS_WHATSAPP_SUPPORT ? (
+                  <a href={WHATSAPP_SUPPORT_URL} target="_blank" rel="noreferrer" className="n-btn n-btn--ghost n-btn--full">
+                    {locale === 'ar' ? 'استفسر عبر واتساب' : 'Ask on WhatsApp'}
+                  </a>
+                ) : null}
               </>
             )}
 

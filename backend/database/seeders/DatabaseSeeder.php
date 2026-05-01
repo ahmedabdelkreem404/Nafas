@@ -15,14 +15,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::updateOrCreate(
-            ['email' => 'admin@nafas.com'],
-            [
-                'name' => 'Super Admin',
-                'password' => bcrypt('password123'),
-                'role' => 'super_admin',
-            ]
-        );
+        if (app()->environment(['local', 'testing']) && env('NAFAS_SEED_ADMIN_EMAIL') && env('NAFAS_SEED_ADMIN_PASSWORD')) {
+            User::updateOrCreate(
+                ['email' => env('NAFAS_SEED_ADMIN_EMAIL')],
+                [
+                    'name' => env('NAFAS_SEED_ADMIN_NAME', 'Local Nafas Admin'),
+                    'password' => bcrypt(env('NAFAS_SEED_ADMIN_PASSWORD')),
+                    'role' => 'super_admin',
+                ]
+            );
+        }
 
         $this->call([
             ProductSeeder::class,

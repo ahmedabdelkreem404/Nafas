@@ -3,7 +3,7 @@ import { useLocale } from '../../../context/LocaleContext';
 import { SECTION_LABELS } from '../constants';
 import { appleHomeCopy, exploreCopy, text } from '../data/appleHomeCopy';
 import type { ExploreCard } from '../types';
-import { buildWhatsappUrl } from '../utils/whatsapp';
+import { buildWhatsappUrl, HAS_WHATSAPP_URL } from '../utils/whatsapp';
 
 type KeepExploringSectionProps = {
   cards: ExploreCard[];
@@ -30,12 +30,16 @@ export default function KeepExploringSection({ cards }: KeepExploringSectionProp
               </>
             );
 
-            if (card.external) {
+            if (card.external && HAS_WHATSAPP_URL) {
               return (
                 <a key={card.id} className="anh-explore-card" href={buildWhatsappUrl(text(copy.whatsappMessage, locale))} target="_blank" rel="noreferrer">
                   {content}
                 </a>
               );
+            }
+
+            if (card.external) {
+              return null;
             }
 
             return (

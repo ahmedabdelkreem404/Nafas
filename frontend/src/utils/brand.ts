@@ -29,7 +29,8 @@ export const SHOP_PERFUME_BLACK = `${STOCK_ROOT}/shop-perfume-black.webp`;
 export const SHOP_PERFUME_LUXURY = `${STOCK_ROOT}/shop-perfume-luxury.webp`;
 export const PRODUCT_PERFUME_CLOSEUP = `${STOCK_ROOT}/product-perfume-closeup.webp`;
 export const FRAGRANCE_SPRAY_MOMENT = `${STOCK_ROOT}/fragrance-spray-moment.webp`;
-export const WHATSAPP_SUPPORT_URL = 'https://wa.me/201000000000';
+export const WHATSAPP_SUPPORT_URL = String(import.meta.env.VITE_WHATSAPP_URL || '').trim();
+export const HAS_WHATSAPP_SUPPORT = WHATSAPP_SUPPORT_URL.startsWith('https://wa.me/') || WHATSAPP_SUPPORT_URL.startsWith('https://api.whatsapp.com/');
 
 const productVisuals: Record<string, string> = {
   athar: `${PRODUCT_ROOT}/athar-visual.webp`,

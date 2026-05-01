@@ -42,4 +42,8 @@ return [
         'iframe_id' => env('PAYMOB_IFRAME_ID'),
     ],
 
+    'whatsapp' => [
+        'url' => env('WHATSAPP_URL'),
+    ],
+
 ];
