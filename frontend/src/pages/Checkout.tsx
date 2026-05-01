@@ -11,6 +11,8 @@ import { normalizeOrder } from '../utils/orders';
 const governorates = ['القاهرة', 'الجيزة', 'الإسكندرية', 'الدقهلية', 'الشرقية', 'المنوفية', 'الغربية', 'البحيرة', 'كفر الشيخ', 'الفيوم', 'بني سويف', 'المنيا', 'أسيوط', 'سوهاج', 'قنا', 'الأقصر', 'أسوان', 'دمياط', 'بورسعيد', 'الإسماعيلية', 'السويس', 'شمال سيناء', 'جنوب سيناء', 'الوادي الجديد', 'مطروح', 'البحر الأحمر'];
 
 const PHONE_REGEX = /^(010|011|012|015)\d{8}$/;
+const VODAFONE_CASH_NUMBER = import.meta.env.VITE_VODAFONE_CASH_NUMBER || '';
+const INSTAPAY_HANDLE = import.meta.env.VITE_INSTAPAY_HANDLE || '';
 
 export default function Checkout() {
   const { locale } = useLocale();
@@ -60,6 +62,23 @@ export default function Checkout() {
     const message = validateField(name, value);
     setErrors((current) => ({ ...current, [name]: message }));
     return message;
+  };
+
+  const setPaymentMethod = (paymentMethod: string) => {
+    setForm((current) => ({ ...current, payment_method: paymentMethod }));
+
+    if (paymentMethod === 'cash_on_delivery') {
+      setErrors((current) => ({
+        ...current,
+        payment_reference: '',
+        payment_payer_phone: '',
+      }));
+      setTouched((current) => ({
+        ...current,
+        payment_reference: false,
+        payment_payer_phone: false,
+      }));
+    }
   };
 
   const hasErrors = useMemo(() => Object.values(errors).some(Boolean), [errors]);
@@ -211,16 +230,19 @@ export default function Checkout() {
                 key: 'cash_on_delivery',
                 title: locale === 'ar' ? 'الدفع عند الاستلام' : 'Cash on delivery',
                 body: locale === 'ar' ? 'ادفع نقدًا عند وصول الطلب.' : 'Pay in cash when your order arrives.',
+                destination: '',
               },
               {
                 key: 'vodafone_cash',
                 title: locale === 'ar' ? 'فودافون كاش' : 'Vodafone Cash',
-                body: locale === 'ar' ? 'حوّل المبلغ، ثم اكتب رقم العملية أو المرجع ليتم مراجعته يدويًا.' : 'Transfer the amount, then enter the transaction reference for manual review.',
+                body: locale === 'ar' ? 'حوّل المبلغ على الرقم الموضح، ثم اكتب رقم العملية أو المرجع ليتم مراجعة الدفع يدويًا.' : 'Transfer to the configured number, then enter the transaction reference for manual review.',
+                destination: VODAFONE_CASH_NUMBER,
               },
               {
                 key: 'instapay',
                 title: locale === 'ar' ? 'إنستاباي' : 'Instapay',
-                body: locale === 'ar' ? 'حوّل المبلغ عبر إنستاباي، ثم اكتب رقم العملية أو المرجع ليتم مراجعته يدويًا.' : 'Pay through Instapay, then enter the transaction reference for manual review.',
+                body: locale === 'ar' ? 'حوّل المبلغ عبر حساب إنستاباي الموضح، ثم اكتب رقم العملية أو المرجع ليتم مراجعة الدفع يدويًا.' : 'Pay through the configured Instapay account, then enter the transaction reference for manual review.',
+                destination: INSTAPAY_HANDLE,
               },
             ].map((method) => (
               <label key={method.key} className="radio-card">
@@ -229,11 +251,23 @@ export default function Checkout() {
                   name="payment_method"
                   value={method.key}
                   checked={form.payment_method === method.key}
-                  onChange={(event) => setForm({ ...form, payment_method: event.target.value })}
+                  onChange={(event) => setPaymentMethod(event.target.value)}
                 />
                 <span>
                   <strong>{method.title}</strong>
                   <small>{method.body}</small>
+                  {method.key === 'vodafone_cash' ? (
+                    <small>
+                      {locale === 'ar' ? 'حوّل المبلغ على: ' : 'Transfer to: '}
+                      <b>{method.destination || (import.meta.env.DEV ? 'VITE_VODAFONE_CASH_NUMBER غير مضبوط' : '')}</b>
+                    </small>
+                  ) : null}
+                  {method.key === 'instapay' ? (
+                    <small>
+                      {locale === 'ar' ? 'أو عبر Instapay: ' : 'Instapay: '}
+                      <b>{method.destination || (import.meta.env.DEV ? 'VITE_INSTAPAY_HANDLE غير مضبوط' : '')}</b>
+                    </small>
+                  ) : null}
                 </span>
               </label>
             ))}

@@ -78,6 +78,7 @@ const AdminOrderDetail: React.FC = () => {
                     <Button onClick={() => reviewPayment('approved')}>اعتماد الدفع</Button>
                     <Button variant="ghost" onClick={() => reviewPayment('rejected')}>رفض الدفع</Button>
                   </div>
+                  <small className="copy-muted">بعد اعتماد الدفع، غيّر حالة الطلب إلى Confirmed لبدء التجهيز.</small>
                 </>
               ) : null}
             </div>
