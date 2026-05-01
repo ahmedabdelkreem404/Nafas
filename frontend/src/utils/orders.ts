@@ -38,6 +38,7 @@ export function normalizeOrder(order: any): Order {
     id: order?.id,
     items: Array.isArray(order?.items) ? order.items.map(normalizeOrderItem) : [],
     order_number: order?.order_number,
+    payment: order?.payment || null,
     phone: order?.phone || order?.customer_phone || '',
     status: order?.status || '',
     total: toNumber(order?.total ?? order?.total_amount ?? 0),

@@ -95,6 +95,17 @@ export type OrderItem = {
   total_price?: number;
 };
 
+export type Payment = {
+  id?: number | string;
+  method?: string;
+  provider?: string;
+  status?: string;
+  reference?: string | null;
+  payer_phone?: string | null;
+  proof_image_path?: string | null;
+  review_status?: string | null;
+};
+
 export type Order = {
   id?: number | string;
   order_number: string;
@@ -109,6 +120,7 @@ export type Order = {
   governorate?: string;
   city?: string;
   delivery_notes?: string;
+  payment?: Payment | null;
 };
 
 export type ReviewVoteType = 'like' | 'dislike' | null;

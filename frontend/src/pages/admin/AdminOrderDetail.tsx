@@ -8,17 +8,35 @@ const AdminOrderDetail: React.FC = () => {
   const { id = '' } = useParams();
   const [order, setOrder] = useState<any>(null);
   const [notes, setNotes] = useState('');
+  const [paymentNote, setPaymentNote] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
     adminApi.orders.get(id).then((res) => {
       setOrder(res.data);
       setNotes(res.data.admin_notes || '');
+      setPaymentNote(res.data.payment?.admin_note || '');
     }).catch((err) => setError(err.message || 'تعذّر تحميل تفاصيل الطلب'));
   }, [id]);
 
   if (error) return <AdminPageShell eyebrow="Orders" title="تفاصيل الطلب" description=""><ErrorState message={error} /></AdminPageShell>;
   if (!order) return <AdminPageShell eyebrow="Orders" title="تفاصيل الطلب" description=""><LoadingState label="جاري تحميل الطلب..." /></AdminPageShell>;
+
+  const payment = order.payment || null;
+  const paymentMethodLabel: Record<string, string> = {
+    cash_on_delivery: 'الدفع عند الاستلام',
+    vodafone_cash: 'فودافون كاش',
+    instapay: 'إنستاباي',
+  };
+  const canReviewPayment = ['vodafone_cash', 'instapay'].includes(payment?.method || payment?.provider);
+
+  const reviewPayment = async (reviewStatus: 'approved' | 'rejected') => {
+    const res = await adminApi.orders.reviewPayment(id, {
+      review_status: reviewStatus,
+      admin_note: paymentNote,
+    });
+    setOrder(res.data.order);
+  };
 
   return (
     <AdminPageShell eyebrow={order.order_number} title="تفاصيل الطلب" description="مراجعة العميل والعناصر والملاحظات الداخلية داخل بطاقة واحدة مرتبة.">
@@ -42,6 +60,29 @@ const AdminOrderDetail: React.FC = () => {
           <div className="data-card__row"><span className="data-card__label">الإجمالي</span><strong>{formatCurrency(order.total_amount)}</strong></div>
           <div className="data-card__row"><span className="data-card__label">الهاتف</span><span>{order.customer_phone}</span></div>
           <div className="data-card__row"><span className="data-card__label">العنوان</span><span>{order.address}</span></div>
+          {payment ? (
+            <div className="stack">
+              <strong>مراجعة الدفع</strong>
+              <div className="data-card__row">
+                <span className="data-card__label">الطريقة</span>
+                <span>{paymentMethodLabel[payment.method || payment.provider] || payment.method || payment.provider}</span>
+              </div>
+              <div className="data-card__row"><span className="data-card__label">الحالة</span><Badge tone={payment.status === 'approved' ? 'success' : payment.status === 'rejected' ? 'danger' : 'gold'}>{formatStatus(payment.status)}</Badge></div>
+              {payment.reference ? <div className="data-card__row"><span className="data-card__label">رقم العملية</span><span>{payment.reference}</span></div> : null}
+              {payment.payer_phone ? <div className="data-card__row"><span className="data-card__label">هاتف المحوّل</span><span>{payment.payer_phone}</span></div> : null}
+              {payment.proof_image_path ? <div className="data-card__row"><span className="data-card__label">إثبات الدفع</span><span>{payment.proof_image_path}</span></div> : null}
+              {canReviewPayment ? (
+                <>
+                  <Textarea value={paymentNote} onChange={(event) => setPaymentNote(event.target.value)} placeholder="ملاحظة مراجعة الدفع" />
+                  <div style={{ display: 'flex', gap: '0.7rem', flexWrap: 'wrap' }}>
+                    <Button onClick={() => reviewPayment('approved')}>اعتماد الدفع</Button>
+                    <Button variant="ghost" onClick={() => reviewPayment('rejected')}>رفض الدفع</Button>
+                  </div>
+                  <small className="copy-muted">بعد اعتماد الدفع، غيّر حالة الطلب إلى Confirmed لبدء التجهيز.</small>
+                </>
+              ) : null}
+            </div>
+          ) : null}
           <div className="stack">
             <strong>ملاحظات داخلية</strong>
             <Textarea value={notes} onChange={(event) => setNotes(event.target.value)} />

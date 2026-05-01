@@ -166,7 +166,7 @@ class AuthController extends Controller
             'email' => ['nullable', 'email'],
         ]);
 
-        $query = \App\Models\Order::with('items.variant.product', 'history')->where('order_number', $orderNumber);
+        $query = \App\Models\Order::with('items.variant.product', 'history', 'payment')->where('order_number', $orderNumber);
 
         if ($request->user()) {
             $customerId = $request->user()->customerProfile?->id;
