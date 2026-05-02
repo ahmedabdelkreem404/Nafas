@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CartItemResource;
+use App\Http\Resources\CartResource;
 use App\Models\CartItem;
 use App\Models\ProductVariant;
 use App\Services\CartService;
@@ -12,7 +14,7 @@ class CartController extends Controller
     public function show(Request $request, CartService $cartService)
     {
         $cart = $cartService->resolveCart($request->user(), $request->header('X-Session-Key'));
-        return response()->json($cart->load('items.variant.product'));
+        return response()->json(new CartResource($cart->load('items.variant.product')));
     }
 
     public function add(Request $request, CartService $cartService)
@@ -38,7 +40,7 @@ class CartController extends Controller
             ['quantity' => $validated['quantity'], 'snapshot_price' => $variant->retail_price]
         );
 
-        return response()->json($cart->fresh('items.variant.product'), 201);
+        return response()->json(new CartResource($cart->fresh('items.variant.product')), 201);
     }
 
     public function update(Request $request, CartService $cartService, CartItem $cartItem)
@@ -65,7 +67,7 @@ class CartController extends Controller
             'snapshot_price' => $variant->retail_price,
         ]);
 
-        return response()->json($cartItem->load('variant.product'));
+        return response()->json(new CartItemResource($cartItem->load('variant.product')));
     }
 
     public function destroy(Request $request, CartService $cartService, CartItem $cartItem)
@@ -94,6 +96,6 @@ class CartController extends Controller
             'items.*.quantity' => ['required', 'integer', 'min:1'],
         ]);
 
-        return response()->json($cartService->mergeGuestCart($request->user(), $validated['items']));
+        return response()->json(new CartResource($cartService->mergeGuestCart($request->user(), $validated['items'])));
     }
 }

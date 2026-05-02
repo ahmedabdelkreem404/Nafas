@@ -23,8 +23,8 @@ class CartService
         $cart = $this->resolveCart($user);
 
         foreach ($items as $item) {
-            $variant = ProductVariant::find($item['variant_id'] ?? null);
-            if (!$variant) {
+            $variant = ProductVariant::with('product')->find($item['variant_id'] ?? null);
+            if (!$variant || !$variant->is_active || !$variant->product || $variant->product->status !== 'active') {
                 continue;
             }
 
