@@ -229,19 +229,19 @@ export default function Checkout() {
               {
                 key: 'cash_on_delivery',
                 title: locale === 'ar' ? 'الدفع عند الاستلام' : 'Cash on delivery',
-                body: locale === 'ar' ? 'ادفع نقدًا عند وصول الطلب.' : 'Pay in cash when your order arrives.',
+                body: locale === 'ar' ? 'اختيار بسيط: ادفع نقدًا عند وصول الطلب، بدون رقم مرجع أو مراجعة تحويل.' : 'Simple option: pay in cash when your order arrives, with no transfer reference required.',
                 destination: '',
               },
               {
                 key: 'vodafone_cash',
                 title: locale === 'ar' ? 'فودافون كاش' : 'Vodafone Cash',
-                body: locale === 'ar' ? 'حوّل المبلغ على الرقم الموضح، ثم اكتب رقم العملية أو المرجع ليتم مراجعة الدفع يدويًا.' : 'Transfer to the configured number, then enter the transaction reference for manual review.',
+                body: locale === 'ar' ? 'حوّل المبلغ على الرقم الموضح، ثم اكتب رقم العملية أو المرجع ليتم مراجعة الدفع يدويًا قبل تأكيد التجهيز.' : 'Transfer to the configured number, then enter the transaction reference so the team can manually review payment before preparation.',
                 destination: VODAFONE_CASH_NUMBER,
               },
               {
                 key: 'instapay',
                 title: locale === 'ar' ? 'إنستاباي' : 'Instapay',
-                body: locale === 'ar' ? 'حوّل المبلغ عبر حساب إنستاباي الموضح، ثم اكتب رقم العملية أو المرجع ليتم مراجعة الدفع يدويًا.' : 'Pay through the configured Instapay account, then enter the transaction reference for manual review.',
+                body: locale === 'ar' ? 'حوّل المبلغ عبر حساب إنستاباي الموضح، ثم اكتب رقم العملية أو المرجع ليتم مراجعة الدفع يدويًا قبل تأكيد التجهيز.' : 'Pay through the configured Instapay account, then enter the transaction reference so the team can manually review payment before preparation.',
                 destination: INSTAPAY_HANDLE,
               },
             ].map((method) => (
@@ -312,8 +312,8 @@ export default function Checkout() {
                 </label>
                 <small className="field-hint is-wide">
                   {locale === 'ar'
-                    ? 'رفع صورة إثبات الدفع غير مفعل في هذه المرحلة. سيُراجع الفريق رقم العملية يدويًا.'
-                    : 'Proof image upload is not enabled in this phase. The team will review the transaction reference manually.'}
+                    ? 'بعد التحويل، اكتب رقم العملية أو المرجع فقط. رفع صورة إثبات الدفع غير مفعل في هذه المرحلة، وسيُراجع الفريق التحويل يدويًا.'
+                    : 'After transferring, enter the transaction reference only. Proof image upload is not enabled in this phase, and the team will review the transfer manually.'}
                 </small>
               </div>
             ) : null}
