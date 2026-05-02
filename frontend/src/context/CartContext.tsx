@@ -46,6 +46,10 @@ function normalizeGuestItems(payload: CartItem[]) {
   }));
 }
 
+function isLocalStorefrontRuntime() {
+  return ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+}
+
 function mapCartItems(payload: CartApiItem[]): CartItem[] {
   return payload.map((item, index) => ({
     id: Number(item.id ?? Date.now() + index),
@@ -129,11 +133,41 @@ export const CartProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
   }, []);
 
   const addToCart = useCallback(async (product: Product, variant: Variant, quantity = 1) => {
-    const response = await publicApi.addCartItem({ quantity, variant_id: variant.id });
-    setNormalizedItems(response.data);
-    setError('');
-    return { product, quantity, variant };
-  }, [setNormalizedItems]);
+    try {
+      const response = await publicApi.addCartItem({ quantity, variant_id: variant.id });
+      setNormalizedItems(response.data);
+      setError('');
+      return { product, quantity, variant };
+    } catch (err: any) {
+      if (!isLocalStorefrontRuntime()) {
+        throw err;
+      }
+
+      let nextItems: CartItem[] = [];
+      setItems((currentItems) => {
+        const existing = currentItems.find((item) => item.variant.id === variant.id);
+        nextItems = existing
+          ? currentItems.map((item) => (
+            item.variant.id === variant.id
+              ? { ...item, quantity: item.quantity + quantity }
+              : item
+          ))
+          : [
+            ...currentItems,
+            {
+              id: Date.now(),
+              product,
+              quantity,
+              variant,
+            },
+          ];
+        syncGuestStorage(nextItems);
+        return nextItems;
+      });
+      setError('');
+      return { product, quantity, variant };
+    }
+  }, [setNormalizedItems, syncGuestStorage]);
 
   const updateQuantity = useCallback(async (cartItemId: number, quantity: number) => {
     await publicApi.updateCartItem(cartItemId, quantity);

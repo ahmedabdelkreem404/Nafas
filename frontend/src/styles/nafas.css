@@ -6113,3 +6113,249 @@ a:has(> .ui-button) {
     display: inline-flex !important;
   }
 }
+
+/* Professional responsiveness hardening for storefront and admin. */
+html,
+body,
+#root {
+  max-inline-size: 100%;
+  overflow-x: clip;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-inline-size: 100%;
+}
+
+.n-container,
+.page-head,
+.product-detail,
+.checkout-layout,
+.cart-page,
+.admin-main,
+.admin-page-shell,
+.admin-layout {
+  min-inline-size: 0;
+}
+
+.product-grid,
+.grid-auto,
+.kpi-grid,
+.form-grid,
+.checkout-layout,
+.product-detail,
+.product-sensory,
+.admin-layout,
+.admin-topbar,
+.data-card__row,
+.summary-item,
+.drawer-item {
+  min-inline-size: 0;
+}
+
+.product-card,
+.summary-item,
+.drawer-item,
+.data-card__row,
+.card,
+.ui-card {
+  overflow-wrap: anywhere;
+}
+
+.cart-drawer {
+  max-inline-size: min(100vw, 28rem);
+}
+
+.cart-drawer__items,
+.admin-mobile-drawer__panel,
+.mobile-panel {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-buybar {
+  padding-block-end: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.whatsapp-float,
+.whatsapp-float-button,
+[class*='whatsapp'][class*='float'] {
+  inset-block-end: max(1rem, env(safe-area-inset-bottom));
+}
+
+.mobile-buybar ~ .whatsapp-float,
+.mobile-buybar ~ .whatsapp-float-button,
+.page-product [class*='whatsapp'][class*='float'] {
+  inset-block-end: max(5.6rem, calc(env(safe-area-inset-bottom) + 5.6rem));
+}
+
+.admin-layout {
+  min-block-size: 100svh;
+}
+
+.admin-main {
+  inline-size: 100%;
+  overflow-x: clip;
+}
+
+.admin-topbar {
+  z-index: 20;
+}
+
+.admin-sidebar__nav,
+.admin-mobile-drawer__panel {
+  overflow-y: auto;
+}
+
+.admin-nav-link,
+.admin-topbar__menu,
+.admin-sidebar__logout {
+  min-block-size: 44px;
+}
+
+.admin-page-shell,
+.admin-main > main,
+.admin-main > section {
+  inline-size: 100%;
+}
+
+.admin-main table,
+.data-table table {
+  inline-size: 100%;
+}
+
+.data-table,
+.table-wrap,
+.admin-table-wrap {
+  max-inline-size: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 1180px) {
+  .product-detail,
+  .product-sensory,
+  .checkout-layout,
+  .cart-page {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card,
+  .product-detail__story {
+    position: static;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .n-section {
+    padding-block: clamp(2.5rem, 9vw, 4rem);
+  }
+
+  .page-head h1,
+  .identity-card h1 {
+    font-size: clamp(2.35rem, 12vw, 4rem);
+    line-height: 1.08;
+  }
+
+  .page-head p,
+  .identity-card__tag,
+  .story-card__text,
+  .checkout-page p {
+    line-height: 1.75;
+  }
+
+  .product-detail {
+    gap: 1rem;
+  }
+
+  .product-detail__media,
+  .product-gallery,
+  .product-gallery__stage {
+    min-block-size: auto;
+  }
+
+  .variant-grid,
+  .form-grid,
+  .grid-auto,
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .variant-pill,
+  .radio-card,
+  .n-btn,
+  .ui-button,
+  button,
+  input,
+  select,
+  textarea {
+    min-block-size: 44px;
+  }
+
+  .purchase-card,
+  .form-card,
+  .summary-card,
+  .story-card,
+  .identity-card,
+  .card,
+  .ui-card {
+    border-radius: 20px;
+    padding: clamp(1rem, 4vw, 1.2rem);
+  }
+
+  .price-qty,
+  .cart-drawer__foot,
+  .admin-topbar,
+  .data-card__row {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .cart-drawer {
+    inline-size: min(100vw, 26rem);
+  }
+
+  .drawer-item,
+  .summary-item {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+  }
+
+  .admin-main {
+    padding: 0.65rem;
+  }
+
+  .admin-topbar {
+    border-radius: 18px;
+    align-items: stretch;
+  }
+
+  .admin-topbar__actions {
+    justify-content: space-between;
+  }
+
+  .admin-mobile-drawer__panel {
+    inline-size: min(94vw, 24rem);
+  }
+}
+
+@media (max-width: 390px) {
+  .n-container {
+    inline-size: min(100%, calc(100vw - 1rem));
+  }
+
+  .page-head h1,
+  .identity-card h1 {
+    font-size: clamp(2.1rem, 11vw, 3.15rem);
+  }
+
+  .n-btn,
+  .ui-button {
+    inline-size: 100%;
+  }
+}
