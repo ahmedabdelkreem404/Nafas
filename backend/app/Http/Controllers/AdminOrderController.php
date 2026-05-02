@@ -8,6 +8,7 @@ use App\Models\ProductVariant;
 use App\Services\OrderInventoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AdminOrderController extends Controller
 {
@@ -168,5 +169,16 @@ class AdminOrderController extends Controller
             'message' => "Payment {$validated['review_status']}",
             'order' => $order->fresh('items.variant.product', 'history', 'payment.reviewer'),
         ]);
+    }
+
+    public function downloadPaymentProof(Order $order)
+    {
+        $payment = $order->payment()->firstOrFail();
+
+        if (!$payment->proof_image_path || !Storage::disk('local')->exists($payment->proof_image_path)) {
+            abort(404, 'Payment proof not found');
+        }
+
+        return Storage::disk('local')->download($payment->proof_image_path);
     }
 }
