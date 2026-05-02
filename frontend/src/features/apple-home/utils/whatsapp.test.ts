@@ -10,8 +10,4 @@ describe('buildWhatsappUrl', () => {
   it('replaces an existing text parameter instead of duplicating it', () => {
     expect(buildWhatsappUrl('new text', 'https://wa.me/1?text=old')).toBe('https://wa.me/1?text=new%20text');
   });
-
-  it('returns an empty string when no WhatsApp URL is configured', () => {
-    expect(buildWhatsappUrl('hello', '')).toBe('');
-  });
 });

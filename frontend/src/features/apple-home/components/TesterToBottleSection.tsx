@@ -3,7 +3,7 @@ import { useLocale } from '../../../context/LocaleContext';
 import { SECTION_LABELS } from '../constants';
 import { appleHomeCopy, flowCopy, text } from '../data/appleHomeCopy';
 import type { FlowStep } from '../types';
-import { buildWhatsappUrl, HAS_WHATSAPP_URL } from '../utils/whatsapp';
+import { buildWhatsappUrl } from '../utils/whatsapp';
 
 type TesterToBottleSectionProps = {
   steps: FlowStep[];
@@ -44,12 +44,8 @@ export default function TesterToBottleSection({ steps }: TesterToBottleSectionPr
             })}
           </div>
           <div className="anh-flow__actions">
-            {HAS_WHATSAPP_URL ? (
-              <>
-                <a className="anh-button anh-button--primary" href={buildWhatsappUrl(text(copy.primaryMessage, locale))} target="_blank" rel="noreferrer">{text(copy.primaryCta, locale)}</a>
-                <a className="anh-button anh-button--secondary" href={buildWhatsappUrl(text(copy.orderMessage, locale))} target="_blank" rel="noreferrer">{text(copy.whatsappCta, locale)}</a>
-              </>
-            ) : null}
+            <a className="anh-button anh-button--primary" href={buildWhatsappUrl(text(copy.primaryMessage, locale))} target="_blank" rel="noreferrer">{text(copy.primaryCta, locale)}</a>
+            <a className="anh-button anh-button--secondary" href={buildWhatsappUrl(text(copy.orderMessage, locale))} target="_blank" rel="noreferrer">{text(copy.whatsappCta, locale)}</a>
             <a className="anh-button anh-button--secondary" href="#choose">{text(copy.sizesCta, locale)}</a>
           </div>
         </div>

@@ -1,11 +1,7 @@
-export const WHATSAPP_BASE_URL = String(import.meta.env.VITE_WHATSAPP_URL || '').trim();
-export const HAS_WHATSAPP_URL = WHATSAPP_BASE_URL.startsWith('https://wa.me/') || WHATSAPP_BASE_URL.startsWith('https://api.whatsapp.com/');
+// TODO: Replace with the final Nafas WhatsApp business number.
+export const WHATSAPP_BASE_URL = 'https://wa.me/21007489872';
 
 export function buildWhatsappUrl(message: string, baseUrl = WHATSAPP_BASE_URL) {
-  if (!baseUrl) {
-    return '';
-  }
-
   const encodedMessage = encodeURIComponent(message);
 
   if (/[?&]text=/.test(baseUrl)) {

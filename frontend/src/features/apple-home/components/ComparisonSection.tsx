@@ -13,7 +13,6 @@ type ComparisonSectionProps = {
 export default function ComparisonSection({ scents }: ComparisonSectionProps) {
   const { locale } = useLocale();
   const copy = appleHomeCopy.comparison;
-  const comparedScents = scents.slice(0, 2);
 
   return (
     <section className="anh-section anh-compare" id="choose" data-section={SECTION_LABELS.comparison} aria-labelledby="choose-title">
@@ -23,7 +22,7 @@ export default function ComparisonSection({ scents }: ComparisonSectionProps) {
           <h2 id="choose-title">{text(copy.title, locale)}</h2>
         </div>
         <div className="anh-compare__grid">
-          {comparedScents.map((scent) => {
+          {scents.map((scent) => {
             const localizedScent = scentCopy[scent.id];
 
             return (
