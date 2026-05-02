@@ -147,7 +147,7 @@ class ProductSeeder extends Seeder
                 ],
             ],
             [
-                'name_ar' => 'Gift Box رجالي',
+                'name_ar' => 'بوكس هدية رجالي',
                 'name_en' => 'Men Gift Box',
                 'code' => 'NFS-GB-MEN-01',
                 'gender' => 'Men',
@@ -166,7 +166,7 @@ class ProductSeeder extends Seeder
                 ],
             ],
             [
-                'name_ar' => 'Gift Box حريمي',
+                'name_ar' => 'بوكس هدية حريمي',
                 'name_en' => 'Women Gift Box',
                 'code' => 'NFS-GB-WOMEN-01',
                 'gender' => 'Women',
@@ -185,7 +185,7 @@ class ProductSeeder extends Seeder
                 ],
             ],
             [
-                'name_ar' => 'Gift Box تجربة',
+                'name_ar' => 'بوكس التجربة',
                 'name_en' => 'Discovery Gift Box',
                 'code' => 'NFS-GB-DISC-01',
                 'gender' => 'Unisex',
