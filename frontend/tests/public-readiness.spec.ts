@@ -81,6 +81,14 @@ async function mockGuestCartApi(page: Page) {
 }
 
 async function mockAdminDashboardApi(page: Page) {
+  await page.route('**/api/me', async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ id: 1, name: 'Admin', role: 'super_admin' }),
+    });
+  });
+
   await page.route('**/api/admin/dashboard', async (route) => {
     await route.fulfill({
       status: 200,

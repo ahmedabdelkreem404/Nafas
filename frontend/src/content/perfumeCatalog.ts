@@ -5,7 +5,7 @@ export type CatalogEntry = {
   accent: 'amber' | 'copper' | 'gold' | 'rose';
   categoryAr: string;
   categoryEn: string;
-  code: string;
+  code?: string;
   genderAr: string;
   genderEn: string;
   localMedia: string[];

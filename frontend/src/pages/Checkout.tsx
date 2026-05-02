@@ -15,7 +15,7 @@ const VODAFONE_CASH_NUMBER = import.meta.env.VITE_VODAFONE_CASH_NUMBER || '';
 const INSTAPAY_HANDLE = import.meta.env.VITE_INSTAPAY_HANDLE || '';
 
 function canUseLocalCheckoutFallback() {
-  return ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+  return import.meta.env.DEV && ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
 }
 
 function createLocalOrder(form: Record<string, string>, items: ReturnType<typeof useCart>['items'], total: number) {

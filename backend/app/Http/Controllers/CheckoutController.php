@@ -26,7 +26,7 @@ class CheckoutController extends Controller
             'city' => 'required|string',
             'governorate' => 'required|string',
             'delivery_notes' => 'nullable|string',
-            'payment_method' => 'required|string|in:cash_on_delivery,vodafone_cash,instapay',
+            'payment_method' => 'required|string|in:cash_on_delivery,vodafone_cash,instapay,online_card',
             'payment_reference' => 'nullable|required_if:payment_method,vodafone_cash,instapay|string|max:255',
             'payment_payer_phone' => 'nullable|string|max:50',
             'payment_proof' => 'nullable|prohibited_if:payment_method,cash_on_delivery|image|mimes:jpg,jpeg,png,webp|max:3072',
@@ -36,7 +36,7 @@ class CheckoutController extends Controller
             'items.*.quantity' => 'required|integer|min:1',
         ]);
 
-        if ($validated['payment_method'] !== 'cash_on_delivery' && !config('services.paymob.integration_id')) {
+        if ($validated['payment_method'] === 'online_card' && !config('services.paymob.integration_id')) {
             return response()->json([
                 'error' => 'Online payment is temporarily unavailable. Please choose cash on delivery.',
             ], 422);

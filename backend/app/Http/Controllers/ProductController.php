@@ -33,7 +33,8 @@ class ProductController extends Controller
                 ->where(function ($query) {
                     $query->where('status', 'approved')->where('is_approved', true);
                 })], 'rating')
-            ->where('status', 'active');
+            ->where('status', 'active')
+            ->whereNotIn('slug', ['discovery-set', 'men-gift-box', 'women-gift-box', 'discovery-gift-box']);
 
         if ($gender = request('gender')) {
             $query->where('gender', $gender);

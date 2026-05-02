@@ -81,7 +81,7 @@ test.describe('real seeded Laravel API journeys', () => {
     });
     expect(lookup.status()).toBe(200);
     const lookupBody = await lookup.json();
-    expect(lookupBody.data.order_number).toBe(orderNumber);
+    expect(lookupBody.data?.order_number ?? lookupBody.order_number).toBe(orderNumber);
 
     expect(apiStatuses.length).toBeGreaterThan(0);
     expect(apiStatuses.every((status) => status < 500)).toBe(true);

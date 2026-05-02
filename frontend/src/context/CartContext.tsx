@@ -47,7 +47,7 @@ function normalizeGuestItems(payload: CartItem[]) {
 }
 
 function isLocalStorefrontRuntime() {
-  return ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+  return import.meta.env.DEV && ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
 }
 
 function mapCartItems(payload: CartApiItem[]): CartItem[] {
