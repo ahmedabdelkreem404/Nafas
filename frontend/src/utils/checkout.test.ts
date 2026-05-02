@@ -3,7 +3,7 @@ import { buildCheckoutPayload, validatePaymentProof } from './checkout';
 
 describe('buildCheckoutPayload', () => {
   it('builds backend-safe payload from cart items', () => {
-    const payload = buildCheckoutPayload({ customer_name: 'Ahmed', payment_method: 'vodafone_cash', payment_reference: 'VC-1' }, [
+    const payload = buildCheckoutPayload({ customer_name: 'Ahmed', payment_method: 'vodafone_cash', payment_reference: 'VC-1', coupon_code: 'NAFAS10' }, [
       { variant: { id: 7 }, quantity: 2 },
     ]);
 
@@ -11,6 +11,7 @@ describe('buildCheckoutPayload', () => {
       customer_name: 'Ahmed',
       payment_method: 'vodafone_cash',
       payment_reference: 'VC-1',
+      coupon_code: 'NAFAS10',
       items: [{ variant_id: 7, quantity: 2 }],
     });
   });
@@ -34,12 +35,14 @@ describe('buildCheckoutPayload', () => {
       payment_method: 'instapay',
       payment_proof: proof,
       payment_reference: 'IP-1',
+      coupon_code: 'GIFT',
     }, [
       { variant: { id: 9 }, quantity: 1 },
     ]);
 
     expect(payload).toBeInstanceOf(FormData);
     expect((payload as FormData).get('payment_method')).toBe('instapay');
+    expect((payload as FormData).get('coupon_code')).toBe('GIFT');
     expect((payload as FormData).get('items[0][variant_id]')).toBe('9');
     expect((payload as FormData).get('payment_proof')).toBe(proof);
   });

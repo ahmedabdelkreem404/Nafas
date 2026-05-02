@@ -141,6 +141,7 @@ export default function ProductDetail() {
   }, [registerView, slug]);
 
   const isDiscoverySet = slug === 'discovery-set';
+  const isGiftBox = slug.includes('gift-box');
   const related = useMemo(() => {
     const candidates = products.filter((item) => item.slug !== slug);
     const discoverySet = !isDiscoverySet ? candidates.find((item) => item.slug === 'discovery-set') : null;
@@ -276,6 +277,23 @@ export default function ProductDetail() {
                 <span className="who-tag">{locale === 'ar' ? 'مناسب لو محتار تختار أنهي عطر' : 'Useful when you are unsure which scent fits'}</span>
                 <span className="who-tag">{locale === 'ar' ? 'جرّب على بشرتك قبل الزجاجة الكبيرة' : 'Try on skin before the full bottle'}</span>
                 <span className="who-tag">{locale === 'ar' ? 'خطوة آمنة قبل شراء الحجم الكبير' : 'A safer step before the larger size'}</span>
+              </div>
+            </Reveal>
+          ) : isGiftBox ? (
+            <Reveal className="story-card is-open" delay={140}>
+              <h2>{locale === 'ar' ? 'هدية جاهزة بهدوء' : 'A gift made easier'}</h2>
+              <div className="story-card__text">
+                <p>
+                  {locale === 'ar'
+                    ? 'اختيار مخصص للهدايا بتغليف أنيق وتجربة أسهل لو مش عارف ذوق الشخص بدقة. مناسب للمناسبات وبيوصل كاختيار واضح من نفَس.'
+                    : 'A gift-focused Nafas choice with elegant packaging, made for easier gifting when you are not fully sure of the recipient scent profile.'}
+                </p>
+              </div>
+              <div className="who-tags" aria-label={locale === 'ar' ? 'مميزات Gift Box' : 'Gift box benefits'}>
+                <span className="who-tag">{locale === 'ar' ? 'مناسب كهدية' : 'Gift-ready'}</span>
+                <span className="who-tag">{locale === 'ar' ? 'تغليف أنيق' : 'Elegant packaging'}</span>
+                <span className="who-tag">{locale === 'ar' ? 'اختيار أسهل لو مش عارف ذوق الشخص' : 'Easier when you are unsure of their taste'}</span>
+                <span className="who-tag">{locale === 'ar' ? 'مناسب للمناسبات' : 'Occasion-friendly'}</span>
               </div>
             </Reveal>
           ) : (
