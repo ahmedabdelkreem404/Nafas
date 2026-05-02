@@ -289,7 +289,7 @@ export default function ProductDetail() {
                     : 'A gift-focused Nafas choice with elegant packaging, made for easier gifting when you are not fully sure of the recipient scent profile.'}
                 </p>
               </div>
-              <div className="who-tags" aria-label={locale === 'ar' ? 'مميزات Gift Box' : 'Gift box benefits'}>
+              <div className="who-tags" aria-label={locale === 'ar' ? 'مميزات بوكس الهدية' : 'Gift box benefits'}>
                 <span className="who-tag">{locale === 'ar' ? 'مناسب كهدية' : 'Gift-ready'}</span>
                 <span className="who-tag">{locale === 'ar' ? 'تغليف أنيق' : 'Elegant packaging'}</span>
                 <span className="who-tag">{locale === 'ar' ? 'اختيار أسهل لو مش عارف ذوق الشخص' : 'Easier when you are unsure of their taste'}</span>
