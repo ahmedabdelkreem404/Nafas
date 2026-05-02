@@ -29,6 +29,7 @@ class CheckoutController extends Controller
             'payment_method' => 'required|string|in:cash_on_delivery,vodafone_cash,instapay',
             'payment_reference' => 'nullable|required_if:payment_method,vodafone_cash,instapay|string|max:255',
             'payment_payer_phone' => 'nullable|string|max:50',
+            'payment_proof' => 'nullable|prohibited_if:payment_method,cash_on_delivery|image|mimes:jpg,jpeg,png,webp|max:3072',
             'coupon_code' => 'nullable|string',
             'items' => 'required|array|min:1',
             'items.*.variant_id' => 'required|exists:product_variants,id',
@@ -142,6 +143,14 @@ class CheckoutController extends Controller
             }
 
             $isManualPayment = in_array($validated['payment_method'], ['vodafone_cash', 'instapay'], true);
+            $proofImagePath = null;
+
+            if ($isManualPayment && $request->hasFile('payment_proof')) {
+                $proofImagePath = $request->file('payment_proof')->store(
+                    'payment-proofs/' . $order->order_number,
+                    'local'
+                );
+            }
 
             Payment::create([
                 'order_id' => $order->id,
@@ -152,10 +161,12 @@ class CheckoutController extends Controller
                 'currency' => 'EGP',
                 'reference' => $isManualPayment ? ($validated['payment_reference'] ?? null) : 'COD-' . $order->order_number,
                 'payer_phone' => $validated['payment_payer_phone'] ?? null,
+                'proof_image_path' => $proofImagePath,
                 'review_status' => $isManualPayment ? 'pending' : null,
                 'provider_payload' => [
                     'source' => 'checkout',
                     'manual_review_required' => $isManualPayment,
+                    'proof_uploaded' => (bool) $proofImagePath,
                 ],
             ]);
 

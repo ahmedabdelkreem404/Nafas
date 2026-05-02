@@ -30,6 +30,16 @@ const AdminOrderDetail: React.FC = () => {
   };
   const canReviewPayment = ['vodafone_cash', 'instapay'].includes(payment?.method || payment?.provider);
 
+  const downloadPaymentProof = async () => {
+    const res = await adminApi.orders.downloadPaymentProof(id);
+    const url = window.URL.createObjectURL(res.data);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `payment-proof-${order.order_number}`;
+    link.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   const reviewPayment = async (reviewStatus: 'approved' | 'rejected') => {
     const res = await adminApi.orders.reviewPayment(id, {
       review_status: reviewStatus,
@@ -70,7 +80,19 @@ const AdminOrderDetail: React.FC = () => {
               <div className="data-card__row"><span className="data-card__label">الحالة</span><Badge tone={payment.status === 'approved' ? 'success' : payment.status === 'rejected' ? 'danger' : 'gold'}>{formatStatus(payment.status)}</Badge></div>
               {payment.reference ? <div className="data-card__row"><span className="data-card__label">رقم العملية</span><span>{payment.reference}</span></div> : null}
               {payment.payer_phone ? <div className="data-card__row"><span className="data-card__label">هاتف المحوّل</span><span>{payment.payer_phone}</span></div> : null}
-              {payment.proof_image_path ? <div className="data-card__row"><span className="data-card__label">إثبات الدفع</span><span>{payment.proof_image_path}</span></div> : null}
+              {payment.proof_image_path ? (
+                <div className="stack">
+                  <strong>إثبات الدفع</strong>
+                  <div className="data-card__row">
+                    <span className="data-card__label">المسار المخزن</span>
+                    <span style={{ overflowWrap: 'anywhere', textAlign: 'end' }}>{payment.proof_image_path}</span>
+                  </div>
+                  <Button variant="ghost" onClick={downloadPaymentProof}>تحميل إثبات الدفع</Button>
+                  <small className="copy-muted">رابط الإثبات محمي للأدمن فقط، ولا يتم عرضه كرابط عام للعملاء.</small>
+                </div>
+              ) : (
+                canReviewPayment ? <small className="copy-muted">لا توجد صورة إثبات مرفوعة. راجع رقم العملية مع بيانات التحويل يدويًا.</small> : null
+              )}
               {canReviewPayment ? (
                 <>
                   <Textarea value={paymentNote} onChange={(event) => setPaymentNote(event.target.value)} placeholder="ملاحظة مراجعة الدفع" />
