@@ -10,6 +10,7 @@ const AdminOrderDetail: React.FC = () => {
   const [notes, setNotes] = useState('');
   const [paymentNote, setPaymentNote] = useState('');
   const [error, setError] = useState('');
+  const [proofError, setProofError] = useState('');
 
   useEffect(() => {
     adminApi.orders.get(id).then((res) => {
@@ -31,13 +32,18 @@ const AdminOrderDetail: React.FC = () => {
   const canReviewPayment = ['vodafone_cash', 'instapay'].includes(payment?.method || payment?.provider);
 
   const downloadPaymentProof = async () => {
-    const res = await adminApi.orders.downloadPaymentProof(id);
-    const url = window.URL.createObjectURL(res.data);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `payment-proof-${order.order_number}`;
-    link.click();
-    window.URL.revokeObjectURL(url);
+    setProofError('');
+    try {
+      const res = await adminApi.orders.downloadPaymentProof(id);
+      const url = window.URL.createObjectURL(res.data);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `payment-proof-${order.order_number}`;
+      link.click();
+      window.URL.revokeObjectURL(url);
+    } catch {
+      setProofError('تعذّر تحميل إثبات الدفع. تأكد من وجود الملف أو راجع التخزين.');
+    }
   };
 
   const reviewPayment = async (reviewStatus: 'approved' | 'rejected') => {
@@ -88,6 +94,7 @@ const AdminOrderDetail: React.FC = () => {
                     <span style={{ overflowWrap: 'anywhere', textAlign: 'end' }}>{payment.proof_image_path}</span>
                   </div>
                   <Button variant="ghost" onClick={downloadPaymentProof}>تحميل إثبات الدفع</Button>
+                  {proofError ? <small className="ui-field-message ui-field-message--error">{proofError}</small> : null}
                   <small className="copy-muted">رابط الإثبات محمي للأدمن فقط، ولا يتم عرضه كرابط عام للعملاء.</small>
                 </div>
               ) : (

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { publicApi } from '../api/publicApi';
 import ProductMedia from '../components/ProductMedia';
@@ -21,6 +21,7 @@ export default function Checkout() {
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [paymentProof, setPaymentProof] = useState<File | null>(null);
+  const paymentProofInputRef = useRef<HTMLInputElement | null>(null);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState({
@@ -83,6 +84,16 @@ export default function Checkout() {
         payment_payer_phone: false,
         payment_proof: false,
       }));
+    }
+  };
+
+  const clearPaymentProof = () => {
+    setPaymentProof(null);
+    setErrors((current) => ({ ...current, payment_proof: '' }));
+    setTouched((current) => ({ ...current, payment_proof: false }));
+
+    if (paymentProofInputRef.current) {
+      paymentProofInputRef.current.value = '';
     }
   };
 
@@ -325,6 +336,7 @@ export default function Checkout() {
                 <label className={`is-wide ${paymentProofError && touched.payment_proof ? 'has-error' : ''}`}>
                   <span>{locale === 'ar' ? 'صورة إثبات الدفع (اختياري)' : 'Payment proof image (optional)'}</span>
                   <input
+                    ref={paymentProofInputRef}
                     type="file"
                     accept="image/jpeg,image/png,image/webp"
                     onBlur={() => setTouched((current) => ({ ...current, payment_proof: true }))}
@@ -345,6 +357,11 @@ export default function Checkout() {
                     </small>
                   ) : null}
                   {paymentProofError && touched.payment_proof ? <small className="field-error">{paymentProofError}</small> : null}
+                  {paymentProofError ? (
+                    <button type="button" className="text-button" onClick={clearPaymentProof}>
+                      {locale === 'ar' ? 'المتابعة بدون صورة إثبات' : 'Continue without proof image'}
+                    </button>
+                  ) : null}
                   <small className="field-hint">
                     {locale === 'ar'
                       ? 'الصيغ المقبولة: JPG أو PNG أو WEBP. الحد الأقصى 3MB.'
