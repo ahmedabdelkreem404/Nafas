@@ -21,7 +21,6 @@ class ProductVariantResource extends JsonResource
             'is_tester' => (bool) $this->is_tester,
             'is_ball_oil_only' => (bool) $this->is_ball_oil_only,
             'type' => $this->is_tester ? 'tester' : 'retail',
-            'product' => new ProductResource($this->whenLoaded('product')),
         ];
     }
 }

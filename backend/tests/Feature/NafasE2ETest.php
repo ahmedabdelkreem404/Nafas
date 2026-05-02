@@ -118,6 +118,11 @@ class NafasE2ETest extends TestCase
             'admin_note',
             'admin_notes',
             'reviewed_by',
+            'stock_quantity',
+            'is_active',
+            'is_tester',
+            'is_ball_oil_only',
+            'type',
         ] as $forbiddenField) {
             $this->assertStringNotContainsString(
                 "\"{$forbiddenField}\"",
