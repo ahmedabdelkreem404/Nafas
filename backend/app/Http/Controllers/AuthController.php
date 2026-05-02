@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CustomerOrderResource;
 use App\Models\Customer;
 use App\Models\User;
 use App\Notifications\WelcomeNotification;
@@ -147,16 +148,16 @@ class AuthController extends Controller
 
     public function myOrders(Request $request)
     {
-        return response()->json(
-            $request->user()->orders()->with('items.variant.product', 'history')->latest()->get()
-        );
+        $orders = $request->user()->orders()->with('items.variant.product', 'history', 'payment')->latest()->get();
+
+        return response()->json(CustomerOrderResource::collection($orders)->resolve());
     }
 
     public function myOrder(Request $request, $id)
     {
-        return response()->json(
-            $request->user()->orders()->with('items.variant.product', 'history')->findOrFail($id)
-        );
+        $order = $request->user()->orders()->with('items.variant.product', 'history', 'payment')->findOrFail($id);
+
+        return response()->json((new CustomerOrderResource($order))->resolve());
     }
 
     public function orderByNumber(Request $request, string $orderNumber)
@@ -185,7 +186,7 @@ class AuthController extends Controller
             });
         }
 
-        return response()->json($query->firstOrFail());
+        return response()->json((new CustomerOrderResource($query->firstOrFail()))->resolve());
     }
 
     protected function buildAuthResponse(User $user): array

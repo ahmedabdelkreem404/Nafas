@@ -7,6 +7,7 @@ use App\Models\Coupon;
 use App\Models\Customer;
 use App\Models\Formula;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\Review;
@@ -61,6 +62,38 @@ class NafasE2ETest extends TestCase
         return ProductVariant::where('is_active', true)
             ->whereHas('product', fn ($query) => $query->where('status', 'active'))
             ->firstOrFail();
+    }
+
+    private function assertPublicOrderPayloadIsSanitized(array $payload): void
+    {
+        $json = json_encode($payload);
+
+        foreach ([
+            'cost_price',
+            'wholesale_price',
+            'oil_percentage',
+            'alcohol_percentage',
+            'provider_payload',
+            'proof_image_path',
+            'admin_note',
+            'admin_notes',
+            'reviewed_by',
+            'reviewer',
+            'formula',
+            'ingredients',
+            'supplier',
+            'cost_material_per_bottle',
+            'cost_packaging_per_bottle',
+            'cost_filling_per_bottle',
+            'stock_quantity',
+            'low_stock_threshold',
+        ] as $forbiddenField) {
+            $this->assertStringNotContainsString(
+                "\"{$forbiddenField}\"",
+                $json,
+                "Public order payload leaked {$forbiddenField}."
+            );
+        }
     }
 
     public function test_public_product_detail_does_not_expose_formulas_or_cost_prices(): void
@@ -411,12 +444,158 @@ class NafasE2ETest extends TestCase
 
         $response->assertCreated()
             ->assertJsonPath('order.payment.status', 'pending_review')
-            ->assertJsonPath('order.payment.method', 'vodafone_cash');
+            ->assertJsonPath('order.payment.method', 'vodafone_cash')
+            ->assertJsonPath('order.payment.proof_uploaded', true)
+            ->assertJsonMissingPath('order.payment.proof_image_path')
+            ->assertJsonMissingPath('order.payment.provider_payload');
 
-        $proofPath = $response->json('order.payment.proof_image_path');
+        $this->assertPublicOrderPayloadIsSanitized($response->json('order'));
+
+        $proofPath = Payment::where('order_id', $response->json('order.id'))->value('proof_image_path');
         $this->assertNotEmpty($proofPath);
         $this->assertStringStartsWith('payment-proofs/', $proofPath);
         Storage::disk('local')->assertExists($proofPath);
+    }
+
+    public function test_checkout_response_does_not_expose_internal_order_fields(): void
+    {
+        $variant = $this->activePublicVariant();
+
+        $response = $this->postJson('/api/checkout', [
+            'customer_name' => 'Sanitized Checkout',
+            'phone' => '0123456789',
+            'address' => 'Detailed sanitized checkout address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'vodafone_cash',
+            'payment_reference' => 'VC-SAFE-1',
+            'payment_payer_phone' => '01012345678',
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ])->assertCreated();
+
+        $this->assertPublicOrderPayloadIsSanitized($response->json('order'));
+        $response->assertJsonPath('order.payment.proof_uploaded', false);
+    }
+
+    public function test_order_lookup_response_does_not_expose_internal_order_fields(): void
+    {
+        $variant = $this->activePublicVariant();
+
+        $checkout = $this->postJson('/api/checkout', [
+            'customer_name' => 'Lookup Sanitized',
+            'phone' => '0123000000',
+            'address' => 'Detailed lookup sanitized address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'instapay',
+            'payment_reference' => 'IP-SAFE-1',
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ])->assertCreated();
+
+        $response = $this->getJson("/api/orders/confirmation/{$checkout->json('order.order_number')}?phone=0123000000")
+            ->assertOk();
+
+        $this->assertPublicOrderPayloadIsSanitized($response->json());
+        $response->assertJsonPath('payment.method', 'instapay')
+            ->assertJsonPath('payment.reference', 'IP-SAFE-1')
+            ->assertJsonMissingPath('payment.provider_payload')
+            ->assertJsonMissingPath('payment.proof_image_path');
+    }
+
+    public function test_customer_order_endpoints_do_not_expose_internal_order_fields(): void
+    {
+        $variant = $this->activePublicVariant();
+        $user = User::factory()->create([
+            'role' => 'customer',
+            'password' => bcrypt('password123'),
+        ]);
+        $token = $this->postJson('/api/auth/login', [
+            'email' => $user->email,
+            'password' => 'password123',
+        ])->json('token');
+
+        $checkout = $this->withHeader('Authorization', 'Bearer ' . $token)->postJson('/api/checkout', [
+            'customer_name' => 'Customer Sanitized',
+            'phone' => '0111222333',
+            'email' => $user->email,
+            'address' => 'Detailed customer sanitized address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'cash_on_delivery',
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ])->assertCreated();
+
+        $orders = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->getJson('/api/me/orders')
+            ->assertOk();
+        $this->assertPublicOrderPayloadIsSanitized($orders->json('0'));
+
+        $order = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->getJson('/api/me/orders/' . $checkout->json('order.id'))
+            ->assertOk();
+        $this->assertPublicOrderPayloadIsSanitized($order->json());
+    }
+
+    public function test_public_order_response_hides_hidden_product_details(): void
+    {
+        $hiddenProduct = Product::where('slug', 'dafwa')->firstOrFail();
+        $hiddenVariant = ProductVariant::create([
+            'product_id' => $hiddenProduct->id,
+            'sku' => 'DAFWA-HIDDEN-TEST',
+            'size_ml' => 50,
+            'label' => 'Hidden test',
+            'bottle_type' => 'spray',
+            'packaging_type' => 'box',
+            'cost_price' => 1,
+            'wholesale_price' => 2,
+            'retail_price' => 100,
+            'stock_quantity' => 1,
+            'low_stock_threshold' => 1,
+            'is_active' => false,
+            'is_tester' => false,
+            'is_ball_oil_only' => false,
+            'oil_percentage' => 20,
+            'alcohol_percentage' => 80,
+        ]);
+        $order = Order::create([
+            'order_number' => 'ORD-HIDDEN-1',
+            'customer_name' => 'Hidden Product',
+            'customer_phone' => '0101010101',
+            'customer_email' => 'hidden@example.test',
+            'address' => 'Address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'subtotal_amount' => 100,
+            'discount_amount' => 0,
+            'shipping_amount' => 0,
+            'total_amount' => 100,
+            'status' => 'pending',
+            'payment_method' => 'cash_on_delivery',
+            'stock_deducted' => false,
+            'admin_notes' => 'internal note',
+        ]);
+        $order->items()->create([
+            'product_variant_id' => $hiddenVariant->id,
+            'quantity' => 1,
+            'unit_price' => 100,
+        ]);
+        Payment::create([
+            'order_id' => $order->id,
+            'provider' => 'cash_on_delivery',
+            'method' => 'cash_on_delivery',
+            'status' => 'pending',
+            'amount' => 100,
+            'currency' => 'EGP',
+            'reference' => 'COD-' . $order->order_number,
+        ]);
+
+        $response = $this->getJson("/api/orders/confirmation/{$order->order_number}?phone=0101010101")
+            ->assertOk();
+
+        $this->assertPublicOrderPayloadIsSanitized($response->json());
+        $response->assertJsonPath('items.0.product', null)
+            ->assertJsonPath('items.0.variant', null);
+        $this->assertStringNotContainsString('dafwa', json_encode($response->json()));
     }
 
     public function test_checkout_applies_valid_coupon_at_submission(): void
