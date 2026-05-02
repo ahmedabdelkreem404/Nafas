@@ -409,6 +409,47 @@ test.describe('Apple Nafas homepage', () => {
           })
           .filter((rect) => rect.left < -1 || rect.right > window.innerWidth + 1 || rect.height < 32 || rect.width < 32);
 
+        const homepageCards = [...document.querySelectorAll([
+          '.apple-nafas-page .anh-highlight-card.is-active',
+          '.apple-nafas-page .anh-viewer-panel',
+          '.apple-nafas-page .anh-love__inner',
+          '.apple-nafas-page .anh-senses__stage',
+          '.apple-nafas-page .anh-flow__panel',
+          '.apple-nafas-page .anh-flow__steps article',
+          '.apple-nafas-page .anh-together__grid',
+          '.apple-nafas-page .anh-selector__panel',
+          '.apple-nafas-page .anh-why__grid article',
+          '.apple-nafas-page .anh-compare-card',
+          '.apple-nafas-page .anh-explore-card',
+        ].join(','))]
+          .filter(visible)
+          .map((element) => {
+            const rect = element.getBoundingClientRect();
+            return {
+              className: String((element as HTMLElement).className || ''),
+              columns: window.getComputedStyle(element).gridTemplateColumns,
+              width: rect.width,
+            };
+          });
+
+        const multiColumnMobileCards = homepageCards
+          .filter((card) => card.columns && card.columns !== 'none')
+          .filter((card) => card.columns.split(' ').filter(Boolean).length > 1);
+
+        const narrowHomepageCards = homepageCards.filter((card) => card.width < 260);
+
+        const navControls = [...document.querySelectorAll('.site-nav a, .site-nav button')]
+          .filter(visible)
+          .map((element) => {
+            const rect = element.getBoundingClientRect();
+            return {
+              className: String((element as HTMLElement).className || ''),
+              height: rect.height,
+              text: element.textContent?.trim() || '',
+              width: rect.width,
+            };
+          });
+
         return {
           cta: minRect('.apple-nafas-page .anh-button'),
           clippedImportantButtons,
@@ -419,6 +460,9 @@ test.describe('Apple Nafas homepage', () => {
           ritualColumns: gridColumnCount('[data-section="ritual"] .anh-ritual-cinematic__inner'),
           ritualCopy: rectOf('[data-section="ritual"] .anh-ritual-cinematic__copy-panel'),
           ritualTitle: rectOf('[data-section="ritual"] .anh-ritual-cinematic__title-panel'),
+          multiColumnMobileCards,
+          narrowHomepageCards,
+          navControls,
           siteControls: minRect('.site-nav button, .site-nav a'),
           tinyHeadings,
           tooSmallText,
@@ -429,15 +473,22 @@ test.describe('Apple Nafas homepage', () => {
       expect(metrics.tooSmallText).toEqual([]);
       expect(metrics.tinyHeadings).toEqual([]);
       expect(metrics.cta.height).toBeGreaterThanOrEqual(44);
-      expect(metrics.dot.height).toBeGreaterThanOrEqual(32);
-      expect(metrics.dot.width).toBeGreaterThanOrEqual(32);
-      expect(metrics.siteControls.height).toBeGreaterThanOrEqual(32);
-      expect(metrics.siteControls.width).toBeGreaterThanOrEqual(32);
+      expect(metrics.dot.height).toBeGreaterThanOrEqual(36);
+      expect(metrics.dot.width).toBeGreaterThanOrEqual(36);
+      expect(metrics.siteControls.height).toBeGreaterThanOrEqual(36);
+      expect(metrics.siteControls.width).toBeGreaterThanOrEqual(36);
+      expect(metrics.navControls).toHaveLength(3);
+      for (const control of metrics.navControls) {
+        expect(control.width, `${control.className} ${control.text}`).toBeGreaterThanOrEqual(36);
+        expect(control.height, `${control.className} ${control.text}`).toBeGreaterThanOrEqual(36);
+      }
       expect(metrics.ritualColumns).toBeLessThanOrEqual(1);
       expect(metrics.ritualTitle.width).toBeGreaterThanOrEqual(width * 0.7);
       expect(metrics.ritualCopy.width).toBeGreaterThanOrEqual(width * 0.7);
       expect(metrics.productViewerColumns).toBeLessThanOrEqual(1);
       expect(metrics.compareColumns).toBeLessThanOrEqual(1);
+      expect(metrics.multiColumnMobileCards).toEqual([]);
+      expect(metrics.narrowHomepageCards).toEqual([]);
       expect(metrics.viewerControls.height).toBeGreaterThanOrEqual(44);
       expect(metrics.clippedImportantButtons).toEqual([]);
     });
