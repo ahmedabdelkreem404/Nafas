@@ -14,6 +14,21 @@ const PHONE_REGEX = /^(010|011|012|015)\d{8}$/;
 const VODAFONE_CASH_NUMBER = import.meta.env.VITE_VODAFONE_CASH_NUMBER || '';
 const INSTAPAY_HANDLE = import.meta.env.VITE_INSTAPAY_HANDLE || '';
 
+function formatCheckoutError(message: string, locale: 'ar' | 'en') {
+  if (locale !== 'ar') {
+    return message;
+  }
+
+  const couponErrors: Record<string, string> = {
+    'Invalid coupon code': 'كود الخصم غير صحيح أو غير متاح.',
+    'Coupon has expired': 'كود الخصم منتهي.',
+    'Coupon usage limit reached': 'تم استخدام كود الخصم بالكامل.',
+    'Coupon minimum not met': 'الطلب لا يحقق الحد الأدنى لهذا الكود.',
+  };
+
+  return couponErrors[message] || message;
+}
+
 export default function Checkout() {
   const { locale } = useLocale();
   const { clearCart, items, total } = useCart();
@@ -35,6 +50,7 @@ export default function Checkout() {
     payment_method: 'cash_on_delivery',
     payment_reference: '',
     payment_payer_phone: '',
+    coupon_code: '',
   });
   const paymentProofError = errors.payment_proof || '';
 
@@ -153,10 +169,15 @@ export default function Checkout() {
           const response = await publicApi.checkout(payload);
           const order = normalizeOrder(response.data.order);
           sessionStorage.setItem(`order_${order.order_number}`, JSON.stringify(order));
-          await clearCart();
+          try {
+            await clearCart();
+          } catch {
+            // The order is already created; confirmation must not be blocked by cart cleanup.
+          }
           navigate(`/order-confirmation/${order.order_number}`);
         } catch (err: any) {
-          setError(err.message || (locale === 'ar' ? 'تعذّر إتمام الطلب.' : 'Unable to place the order.'));
+          const message = err.message || (locale === 'ar' ? 'تعذّر إتمام الطلب.' : 'Unable to place the order.');
+          setError(formatCheckoutError(message, locale));
         } finally {
           setSubmitting(false);
         }
@@ -387,6 +408,19 @@ export default function Checkout() {
             ))}
           </div>
           <div className="price-line"><span>{locale === 'ar' ? 'الإجمالي' : 'Total'}</span><strong>{formatCurrency(total, locale)}</strong></div>
+          <label className="coupon-field">
+            <span>{locale === 'ar' ? 'عندك كود خصم؟' : 'Have a coupon code?'}</span>
+            <input
+              type="text"
+              value={form.coupon_code}
+              onChange={(event) => {
+                setForm({ ...form, coupon_code: event.target.value });
+                setError('');
+              }}
+              placeholder={locale === 'ar' ? 'اكتب الكود هنا' : 'Enter code'}
+            />
+            <small>{locale === 'ar' ? 'سيتم تطبيق الكود عند تأكيد الطلب' : 'The code will be applied when you confirm the order.'}</small>
+          </label>
           <button type="submit" className="n-btn n-btn--primary" disabled={submitting || hasErrors || !isComplete}>
             {submitting ? (locale === 'ar' ? 'جارِ التأكيد...' : 'Confirming...') : (locale === 'ar' ? 'تأكيد الطلب' : 'Confirm order')}
           </button>

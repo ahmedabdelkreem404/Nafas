@@ -268,6 +268,9 @@ p { margin: 0; color: var(--nts); }
 .summary-card .n-btn, .summary-card button { inline-size: 100%; }
 .price-line { align-items: center; justify-content: space-between; }
 .price-line--total { padding-block-start: .7rem; border-block-start: 1px solid var(--nbr); }
+.coupon-field { display: grid; gap: .45rem; }
+.coupon-field span { color: var(--nt); font-weight: 700; }
+.coupon-field small { color: var(--nm); line-height: 1.6; }
 .checkout-form, .orders-list { display: grid; gap: 1rem; }
 .form-grid { display: grid; gap: 1rem; }
 .form-card label { display: grid; gap: .45rem; }
