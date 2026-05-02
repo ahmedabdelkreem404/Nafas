@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\ContactInquiry;
+use App\Models\Coupon;
 use App\Models\Customer;
 use App\Models\Formula;
 use App\Models\Order;
@@ -418,6 +419,54 @@ class NafasE2ETest extends TestCase
         Storage::disk('local')->assertExists($proofPath);
     }
 
+    public function test_checkout_applies_valid_coupon_at_submission(): void
+    {
+        $variant = $this->activePublicVariant();
+        Coupon::create([
+            'code' => 'NAFAS10',
+            'discount_type' => 'fixed',
+            'discount_value' => 25,
+            'min_cart_total' => 0,
+            'usage_limit' => 5,
+            'used_count' => 0,
+            'is_active' => true,
+        ]);
+
+        $response = $this->postJson('/api/checkout', [
+            'customer_name' => 'Coupon Customer',
+            'phone' => '0123456789',
+            'address' => 'Detailed coupon address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'cash_on_delivery',
+            'coupon_code' => 'NAFAS10',
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ])->assertCreated();
+
+        $response->assertJsonPath('order.coupon_code', 'NAFAS10');
+        $order = Order::findOrFail($response->json('order.id'));
+        $this->assertEquals(25.0, (float) $order->discount_amount);
+        $this->assertEquals((float) $variant->retail_price - 25.0, (float) $order->total_amount);
+        $this->assertDatabaseHas('coupons', ['code' => 'NAFAS10', 'used_count' => 1]);
+    }
+
+    public function test_checkout_rejects_invalid_coupon_at_submission(): void
+    {
+        $variant = $this->activePublicVariant();
+
+        $this->postJson('/api/checkout', [
+            'customer_name' => 'Invalid Coupon',
+            'phone' => '0123456789',
+            'address' => 'Detailed invalid coupon address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'cash_on_delivery',
+            'coupon_code' => 'NOPE',
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ])->assertUnprocessable()
+            ->assertJsonPath('error', 'Invalid coupon code');
+    }
+
     public function test_manual_payment_checkout_rejects_invalid_proof_file_type(): void
     {
         Storage::fake('local');
@@ -527,7 +576,7 @@ class NafasE2ETest extends TestCase
             ->assertJsonPath('order.payment.admin_note', 'Matched manual transfer.');
     }
 
-    public function test_launch_catalog_contains_six_public_perfumes_and_discovery_set_only(): void
+    public function test_launch_catalog_contains_six_public_perfumes_discovery_set_and_gift_boxes_only(): void
     {
         $publicProducts = Product::where('status', 'active')->pluck('slug')->all();
 
@@ -539,6 +588,9 @@ class NafasE2ETest extends TestCase
             'nada',
             'ghayma',
             'discovery-set',
+            'men-gift-box',
+            'women-gift-box',
+            'discovery-gift-box',
         ], $publicProducts);
 
         $this->assertDatabaseHas('products', ['slug' => 'dafwa', 'status' => 'hidden']);
@@ -556,6 +608,10 @@ class NafasE2ETest extends TestCase
 
         $discoverySet = Product::where('slug', 'discovery-set')->firstOrFail();
         $this->assertEquals(149.0, (float) $discoverySet->variants()->where('is_active', true)->firstOrFail()->retail_price);
+
+        $this->assertEquals(699.0, (float) Product::where('slug', 'men-gift-box')->firstOrFail()->variants()->where('is_active', true)->firstOrFail()->retail_price);
+        $this->assertEquals(649.0, (float) Product::where('slug', 'women-gift-box')->firstOrFail()->variants()->where('is_active', true)->firstOrFail()->retail_price);
+        $this->assertEquals(249.0, (float) Product::where('slug', 'discovery-gift-box')->firstOrFail()->variants()->where('is_active', true)->firstOrFail()->retail_price);
     }
 
     public function test_cart_validation_blocks_out_of_stock_and_stale_price(): void

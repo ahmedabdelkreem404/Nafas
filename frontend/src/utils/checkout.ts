@@ -48,7 +48,7 @@ export const buildCheckoutPayload = (form: Record<string, unknown>, items: Array
   }
 
   return {
-    ...Object.fromEntries(Object.entries(form).filter(([key]) => key !== 'payment_proof')),
+    ...Object.fromEntries(Object.entries(form).filter(([key, value]) => key !== 'payment_proof' && value !== '')),
     items: normalizedItems,
   };
 };
