@@ -44,7 +44,7 @@ const AdminLogin: React.FC = () => {
           {error ? <div className="ui-field-message ui-field-message--error">{error}</div> : null}
           <Field label="البريد الإلكتروني"><Input type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="admin@nafas.com" /></Field>
           <Field label="كلمة المرور"><Input type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="••••••••" /></Field>
-          <Button fullWidth size="lg" disabled={loading}>{loading ? 'جارِ الدخول...' : 'دخول لوحة التحكم'}</Button>
+          <Button type="submit" fullWidth size="lg" disabled={loading}>{loading ? 'جارِ الدخول...' : 'دخول لوحة التحكم'}</Button>
         </form>
       </Card>
     </div>
