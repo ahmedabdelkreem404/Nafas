@@ -54,12 +54,18 @@ export default function Register() {
 
             navigate('/account');
           } catch (err: any) {
-            setError(err.message || (locale === 'ar' ? 'تعذّر إنشاء الحساب.' : 'Unable to create the account.'));
+            setError(err.message || (locale === 'ar' ? 'تعذر إنشاء الحساب.' : 'Unable to create the account.'));
           }
         }}
       >
         <img src={BRAND_LOGO} alt="نفَس" className="auth-card__brand" />
+        <span className="auth-card__eyebrow">{locale === 'ar' ? 'انضم إلى نفَس' : 'Join Nafas'}</span>
         <h1>{locale === 'ar' ? 'إنشاء حساب' : 'Create account'}</h1>
+        <p className="auth-card__copy">
+          {locale === 'ar'
+            ? 'احفظ بياناتك وتابع طلباتك بسهولة مع تجربة شراء هادئة وآمنة.'
+            : 'Save your details and follow your orders through a calm, secure experience.'}
+        </p>
 
         <label>
           <span>{locale === 'ar' ? 'الاسم' : 'Name'}</span>
@@ -97,7 +103,7 @@ export default function Register() {
 
         <p>
           {locale === 'ar' ? 'لديك حساب بالفعل؟' : 'Already have an account?'}{' '}
-          <Link to="/login">{locale === 'ar' ? 'سجّل الدخول' : 'Sign in'}</Link>
+          <Link to="/login">{locale === 'ar' ? 'سجل الدخول' : 'Sign in'}</Link>
         </p>
       </form>
     </div>

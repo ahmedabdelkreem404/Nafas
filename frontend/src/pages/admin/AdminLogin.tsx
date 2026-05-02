@@ -25,7 +25,7 @@ const AdminLogin: React.FC = () => {
       localStorage.setItem('user', JSON.stringify(res.data.user));
       navigate('/admin/dashboard');
     } catch (err: any) {
-      setError(err.message || 'تعذّر تسجيل الدخول');
+      setError(err.message || 'تعذر تسجيل الدخول');
     } finally {
       setLoading(false);
     }
@@ -38,13 +38,19 @@ const AdminLogin: React.FC = () => {
         <span className="heading-eyebrow">Operator access</span>
         <div className="stack">
           <h1 className="title">دخول فريق نفَس</h1>
-          <p className="copy">لوحة تشغيل أنيقة وعملية لإدارة المنتجات، الطلبات، والجودة.</p>
+          <p className="copy">لوحة تشغيل هادئة لإدارة المنتجات، الطلبات، المدفوعات، والجودة.</p>
         </div>
         <form onSubmit={handleLogin} className="stack">
           {error ? <div className="ui-field-message ui-field-message--error">{error}</div> : null}
-          <Field label="البريد الإلكتروني"><Input type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="admin@nafas.com" /></Field>
-          <Field label="كلمة المرور"><Input type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="••••••••" /></Field>
-          <Button type="submit" fullWidth size="lg" disabled={loading}>{loading ? 'جارِ الدخول...' : 'دخول لوحة التحكم'}</Button>
+          <Field label="البريد الإلكتروني">
+            <Input type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="admin@nafas.com" />
+          </Field>
+          <Field label="كلمة المرور">
+            <Input type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="••••••••" />
+          </Field>
+          <Button type="submit" fullWidth size="lg" disabled={loading}>
+            {loading ? 'جارِ الدخول...' : 'دخول لوحة التحكم'}
+          </Button>
         </form>
       </Card>
     </div>

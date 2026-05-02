@@ -47,12 +47,18 @@ export default function Login() {
 
             navigate('/account');
           } catch (err: any) {
-            setError(err.message || (locale === 'ar' ? 'تعذّر تسجيل الدخول.' : 'Unable to sign in.'));
+            setError(err.message || (locale === 'ar' ? 'تعذر تسجيل الدخول.' : 'Unable to sign in.'));
           }
         }}
       >
         <img src={BRAND_LOGO} alt="نفَس" className="auth-card__brand" />
+        <span className="auth-card__eyebrow">{locale === 'ar' ? 'حساب نفَس' : 'Nafas account'}</span>
         <h1>{locale === 'ar' ? 'تسجيل الدخول' : 'Sign in'}</h1>
+        <p className="auth-card__copy">
+          {locale === 'ar'
+            ? 'ادخل لحسابك لمتابعة الطلبات، حفظ العناوين، وتجربة شراء أهدأ.'
+            : 'Access your orders, saved details, and a calmer shopping flow.'}
+        </p>
 
         <label>
           <span>{locale === 'ar' ? 'البريد الإلكتروني' : 'Email'}</span>
@@ -80,7 +86,7 @@ export default function Login() {
 
         <p>
           {locale === 'ar' ? 'ليس لديك حساب؟' : 'No account yet?'}{' '}
-          <Link to="/register">{locale === 'ar' ? 'أنشئ حسابًا' : 'Create one'}</Link>
+          <Link to="/register">{locale === 'ar' ? 'أنشئ حسابا' : 'Create one'}</Link>
         </p>
       </form>
     </div>

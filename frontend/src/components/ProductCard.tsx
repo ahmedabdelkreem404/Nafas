@@ -17,6 +17,13 @@ export default function ProductCard({ product, crowned = false }: { product: Pro
   const metrics = getProductMetrics(product);
   const variant = useMemo(() => getPrimaryVariant(product), [product]);
   const outOfStock = !variant?.in_stock;
+  const isDiscovery = product.slug === 'discovery-set';
+  const isGiftBox = product.slug.includes('gift-box');
+  const badgeLabel = isDiscovery
+    ? (locale === 'ar' ? 'مجموعة التجربة' : 'Discovery Set')
+    : isGiftBox
+      ? (locale === 'ar' ? 'بوكس هدية' : 'Gift Box')
+      : (locale === 'ar' ? product.gender_ar || product.gender_en || '' : product.gender_en || product.gender_ar || '');
 
   const handleAdd = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -35,7 +42,7 @@ export default function ProductCard({ product, crowned = false }: { product: Pro
       data-accent={product.accent || 'gold'}
       aria-label={locale === 'ar' ? product.name_ar || product.name_en : product.name_en || product.name_ar}
     >
-      {crowned ? <span className="product-card__crown">✦ {locale === 'ar' ? 'الأكثر إعجابًا' : 'Most loved'}</span> : null}
+      <span className="product-card__crown">{crowned ? '✦ ' : ''}{badgeLabel}</span>
       <button
         type="button"
         className={`product-card__fav ${metrics.isFavorited ? 'is-active' : ''}`}
@@ -44,6 +51,7 @@ export default function ProductCard({ product, crowned = false }: { product: Pro
           event.stopPropagation();
           toggleFavorite(product);
         }}
+        aria-label={locale === 'ar' ? 'أضف للمفضلة' : 'Add to favorites'}
       >
         <Heart size={16} />
         <span>{formatNumber(metrics.favorites, locale)}</span>
@@ -59,7 +67,7 @@ export default function ProductCard({ product, crowned = false }: { product: Pro
         <h3 className="ncard__name">{locale === 'ar' ? product.name_ar || product.name_en : product.name_en || product.name_ar}</h3>
         <p className="ncard__desc">{locale === 'ar' ? product.personality_ar : product.personality_en}</p>
         <div className="product-card__foot ncard__footer">
-          <strong>{variant ? formatCurrency(variant.retail_price, locale) : '—'}</strong>
+          <strong>{variant ? formatCurrency(variant.retail_price, locale) : '-'}</strong>
           <button type="button" className={`product-card__add ${added ? 'is-added' : ''}`} onClick={handleAdd} disabled={outOfStock}>
             {added ? <Check size={16} /> : <ShoppingBag size={16} />}
             <span>{added ? (locale === 'ar' ? 'تمت' : 'Added') : (locale === 'ar' ? 'أضف' : 'Add')}</span>

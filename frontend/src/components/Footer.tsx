@@ -21,6 +21,7 @@ const footerCopy = {
       privacy: 'الخصوصية',
       quality: 'الجودة',
       returns: 'الاسترجاع',
+      shipping: 'الشحن والتوصيل',
       shop: 'كل العطور',
       terms: 'الشروط',
     },
@@ -43,6 +44,7 @@ const footerCopy = {
       privacy: 'Privacy',
       quality: 'Quality',
       returns: 'Returns',
+      shipping: 'Shipping',
       shop: 'All perfumes',
       terms: 'Terms',
     },
@@ -86,6 +88,7 @@ export default function Footer() {
         <nav aria-label={copy.legal}>
           <h3>{copy.legal}</h3>
           <Link to="/privacy-policy">{copy.sections.privacy}</Link>
+          <Link to="/shipping-policy">{copy.sections.shipping}</Link>
           <Link to="/return-policy">{copy.sections.returns}</Link>
           <Link to="/terms">{copy.sections.terms}</Link>
         </nav>

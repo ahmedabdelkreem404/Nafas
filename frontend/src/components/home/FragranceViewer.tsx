@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { LandingFragrance, LandingSizeOption } from '../../content/nafasLanding';
 import { LANDING_WHATSAPP_URL } from '../../content/nafasLanding';
@@ -103,15 +103,15 @@ export default function FragranceViewer({ fragrances, productsBySlug }: Fragranc
       lineAr: 'نعومة تتعلق في الذاكرة.',
       line: 'Softness that stays in memory.',
     },
-    dafwa: {
-      titleAr: 'دفوة',
-      title: 'Dafwa',
+    Nada: {
+      titleAr: 'ندى',
+      title: 'Nada',
       lineAr: 'قهوة دافية… وحضور مايتنسيش.',
       line: 'Warm coffee. Unforgettable presence.',
     },
-    zell: {
-      titleAr: 'ظلّ',
-      title: 'Zell',
+    Madar: {
+      titleAr: 'مدار',
+      title: 'Madar',
       lineAr: 'هادئ… لكنه بيسيب أثر.',
       line: 'Quiet, but never unnoticed.',
     },
@@ -377,3 +377,4 @@ export default function FragranceViewer({ fragrances, productsBySlug }: Fragranc
     </section>
   );
 }
+

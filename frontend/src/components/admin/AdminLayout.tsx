@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   BarChart3,
   Boxes,
+  FileText,
   FlaskConical,
   LayoutDashboard,
   LogOut,
@@ -14,7 +15,6 @@ import {
   TicketPercent,
   Users,
   Warehouse,
-  FileText,
   X,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
