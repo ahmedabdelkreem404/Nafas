@@ -338,6 +338,111 @@ test.describe('Apple Nafas homepage', () => {
     expect(clippedButtons).toBe(0);
   });
 
+  for (const width of [320, 390]) {
+    test(`uses a true mobile-native homepage layout at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: width === 320 ? 546 : 844 });
+      await gotoHome(page);
+
+      const metrics = await page.evaluate(() => {
+        const visible = (element: Element) => {
+          const rect = element.getBoundingClientRect();
+          const styles = window.getComputedStyle(element);
+          return rect.width > 0 && rect.height > 0 && styles.visibility !== 'hidden' && styles.display !== 'none';
+        };
+        const gridColumnCount = (selector: string) => {
+          const element = document.querySelector(selector);
+          if (!element) return 0;
+          const columns = window.getComputedStyle(element).gridTemplateColumns;
+          if (!columns || columns === 'none') return 0;
+          return columns.split(' ').filter(Boolean).length;
+        };
+        const rectOf = (selector: string) => {
+          const element = document.querySelector(selector);
+          const rect = element?.getBoundingClientRect();
+          return rect ? { height: rect.height, width: rect.width } : { height: 0, width: 0 };
+        };
+        const minRect = (selector: string) => {
+          const rects = [...document.querySelectorAll(selector)]
+            .filter(visible)
+            .map((element) => {
+              const rect = element.getBoundingClientRect();
+              return { height: rect.height, text: element.textContent?.trim() || '', width: rect.width };
+            });
+          return {
+            height: rects.length ? Math.min(...rects.map((rect) => rect.height)) : 0,
+            width: rects.length ? Math.min(...rects.map((rect) => rect.width)) : 0,
+            rects,
+          };
+        };
+
+        const tooSmallText = [...document.querySelectorAll('.apple-nafas-page *')]
+          .filter(visible)
+          .filter((element) => (element.textContent || '').trim().length > 1)
+          .filter((element) => {
+            const className = String((element as HTMLElement).className || '');
+            return !className.includes('anh-kicker')
+              && !className.includes('eyebrow')
+              && !className.includes('meta')
+              && !className.includes('sr-only')
+              && element.tagName.toLowerCase() !== 'small';
+          })
+          .map((element) => ({
+            fontSize: Number.parseFloat(window.getComputedStyle(element).fontSize),
+            tagName: element.tagName.toLowerCase(),
+            text: (element.textContent || '').trim().slice(0, 48),
+          }))
+          .filter((item) => item.fontSize < 12);
+
+        const tinyHeadings = [...document.querySelectorAll('.apple-nafas-page h1, .apple-nafas-page h2')]
+          .filter(visible)
+          .map((element) => ({
+            fontSize: Number.parseFloat(window.getComputedStyle(element).fontSize),
+            text: (element.textContent || '').trim().slice(0, 48),
+          }))
+          .filter((item) => item.fontSize < 28);
+
+        const clippedImportantButtons = [...document.querySelectorAll('.apple-nafas-page .anh-button, .apple-nafas-page button')]
+          .filter(visible)
+          .map((element) => {
+            const rect = element.getBoundingClientRect();
+            return { height: rect.height, left: rect.left, right: rect.right, text: element.textContent?.trim() || '', width: rect.width };
+          })
+          .filter((rect) => rect.left < -1 || rect.right > window.innerWidth + 1 || rect.height < 32 || rect.width < 32);
+
+        return {
+          cta: minRect('.apple-nafas-page .anh-button'),
+          clippedImportantButtons,
+          compareColumns: gridColumnCount('[data-section="comparison"] .anh-compare__grid'),
+          dot: minRect('.apple-nafas-page .anh-dots button'),
+          heading: minRect('.apple-nafas-page h1, .apple-nafas-page h2'),
+          productViewerColumns: gridColumnCount('[data-section="product-viewer"] .anh-viewer-panel'),
+          ritualColumns: gridColumnCount('[data-section="ritual"] .anh-ritual-cinematic__inner'),
+          ritualCopy: rectOf('[data-section="ritual"] .anh-ritual-cinematic__copy-panel'),
+          ritualTitle: rectOf('[data-section="ritual"] .anh-ritual-cinematic__title-panel'),
+          siteControls: minRect('.site-nav button, .site-nav a'),
+          tinyHeadings,
+          tooSmallText,
+          viewerControls: minRect('[data-section="product-viewer"] button'),
+        };
+      });
+
+      expect(metrics.tooSmallText).toEqual([]);
+      expect(metrics.tinyHeadings).toEqual([]);
+      expect(metrics.cta.height).toBeGreaterThanOrEqual(44);
+      expect(metrics.dot.height).toBeGreaterThanOrEqual(32);
+      expect(metrics.dot.width).toBeGreaterThanOrEqual(32);
+      expect(metrics.siteControls.height).toBeGreaterThanOrEqual(32);
+      expect(metrics.siteControls.width).toBeGreaterThanOrEqual(32);
+      expect(metrics.ritualColumns).toBeLessThanOrEqual(1);
+      expect(metrics.ritualTitle.width).toBeGreaterThanOrEqual(width * 0.7);
+      expect(metrics.ritualCopy.width).toBeGreaterThanOrEqual(width * 0.7);
+      expect(metrics.productViewerColumns).toBeLessThanOrEqual(1);
+      expect(metrics.compareColumns).toBeLessThanOrEqual(1);
+      expect(metrics.viewerControls.height).toBeGreaterThanOrEqual(44);
+      expect(metrics.clippedImportantButtons).toEqual([]);
+    });
+  }
+
   test('disables autoplay when reduced motion is requested', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await gotoHome(page);
