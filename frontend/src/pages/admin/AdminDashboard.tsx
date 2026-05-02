@@ -37,6 +37,22 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <AdminPageShell eyebrow="Dashboard" title="نظرة تشغيلية سريعة" description="لوحة أوضح للإيراد، الطلبات، المخزون، وأهم المنتجات مبيعًا هذا الشهر.">
+      <Card tone="strong" className="stack launch-ops-card">
+        <div className="launch-ops-card__head">
+          <div>
+            <strong>جاهزية التشغيل اليومي</strong>
+            <p className="copy-muted">اتبع هذه الخطوات مع كل دفعة طلبات قبل بدء التجهيز.</p>
+          </div>
+          <Badge tone="gold">Limited launch</Badge>
+        </div>
+        <div className="launch-ops-card__grid">
+          <span>راجع تحويلات Vodafone Cash وInstapay</span>
+          <span>حمّل إثبات الدفع من الطلب عند الحاجة</span>
+          <span>اعتمد أو ارفض الدفع قبل التجهيز</span>
+          <span>غيّر حالة الطلب إلى Confirmed لخصم المخزون</span>
+        </div>
+      </Card>
+
       <div className="kpi-grid">
         {[
           { label: 'إيرادات اليوم', value: formatCurrency(stats.today_revenue || 0) },
@@ -100,7 +116,7 @@ const AdminDashboard: React.FC = () => {
       </div>
 
       <div className="grid-auto">
-        <Link to="/admin/orders" className="ui-button ui-button--secondary ui-button--md">طلب جديد</Link>
+        <Link to="/admin/orders" className="ui-button ui-button--secondary ui-button--md">عرض الطلبات</Link>
         <Link to="/admin/products/create" className="ui-button ui-button--secondary ui-button--md">إضافة منتج</Link>
         <Link to="/admin/inventory" className="ui-button ui-button--secondary ui-button--md">تعديل المخزون</Link>
       </div>
