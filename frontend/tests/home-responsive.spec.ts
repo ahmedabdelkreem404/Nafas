@@ -239,7 +239,7 @@ test.describe('Apple Nafas homepage', () => {
 
     await ritual.focus();
     await page.keyboard.press('ArrowRight');
-    await expect(ritual).toHaveAttribute('data-active-scent', 'dafwa', { timeout: 2500 });
+    await expect(ritual).toHaveAttribute('data-active-scent', 'athar', { timeout: 2500 });
     await expect(ritual).toHaveAttribute('data-phase', 'idle', { timeout: 2500 });
 
     await page.getByTestId('cinematic-ritual-play-toggle').click();
@@ -306,12 +306,12 @@ test.describe('Apple Nafas homepage', () => {
     await viewer.getByRole('button', { name: 'النوتات' }).click();
     await expect(page.getByTestId('viewer-copy')).toContainText('كمثرى');
 
-    await viewer.getByRole('button', { name: 'دفوة' }).click();
-    await expect(viewer.getByRole('heading', { name: 'دفوة' })).toBeVisible();
-    await expect(page.getByTestId('viewer-copy')).toContainText('قهوة دافئة');
+    await viewer.getByRole('button', { name: 'مدار' }).click();
+    await expect(viewer.getByRole('heading', { name: 'مدار' })).toBeVisible();
+    await expect(page.getByTestId('viewer-copy')).toContainText('نظيف');
 
-    await viewer.getByRole('button', { name: 'ظلّ' }).click();
-    await expect(viewer.getByRole('heading', { name: 'ظلّ' })).toBeVisible();
+    await viewer.getByRole('button', { name: 'ندى' }).click();
+    await expect(viewer.getByRole('heading', { name: 'ندى' })).toBeVisible();
   });
 
   test('keeps key mobile controls usable at 390px', async ({ page }) => {

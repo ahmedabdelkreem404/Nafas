@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CustomerOrderResource;
 use App\Models\Coupon;
 use App\Models\CouponUsage;
 use App\Models\Customer;
@@ -179,11 +180,13 @@ class CheckoutController extends Controller
             $notificationService->sendOrderConfirmation($order);
             $notificationService->notifyAdminNewOrder($order);
 
+            $order->load('items.variant.product', 'history', 'payment');
+
             return response()->json([
                 'message' => $isManualPayment
                     ? 'Order created successfully. Payment is pending review.'
                     : 'Order created successfully',
-                'order' => $order->load('items.variant.product', 'history', 'payment'),
+                'order' => (new CustomerOrderResource($order))->resolve(),
             ], 201);
         });
     }
