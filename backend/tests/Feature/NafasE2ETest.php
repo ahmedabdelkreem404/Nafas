@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\ContactInquiry;
+use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\Coupon;
 use App\Models\Customer;
 use App\Models\Formula;
@@ -92,6 +94,40 @@ class NafasE2ETest extends TestCase
                 "\"{$forbiddenField}\"",
                 $json,
                 "Public order payload leaked {$forbiddenField}."
+            );
+        }
+    }
+
+    private function assertPublicCartPayloadIsSanitized(array $payload): void
+    {
+        $json = json_encode($payload);
+
+        foreach ([
+            'cost_price',
+            'wholesale_price',
+            'oil_percentage',
+            'alcohol_percentage',
+            'cost_material_per_bottle',
+            'cost_packaging_per_bottle',
+            'cost_filling_per_bottle',
+            'formula',
+            'ingredients',
+            'supplier',
+            'provider_payload',
+            'proof_image_path',
+            'admin_note',
+            'admin_notes',
+            'reviewed_by',
+            'stock_quantity',
+            'is_active',
+            'is_tester',
+            'is_ball_oil_only',
+            'type',
+        ] as $forbiddenField) {
+            $this->assertStringNotContainsString(
+                "\"{$forbiddenField}\"",
+                $json,
+                "Public cart payload leaked {$forbiddenField}."
             );
         }
     }
@@ -234,6 +270,128 @@ class NafasE2ETest extends TestCase
         $cartItemId = $cart->json('items.0.id');
         $this->patchJson("/api/cart/items/{$cartItemId}", ['quantity' => 3], ['X-Session-Key' => 'session-1'])->assertOk();
         $this->deleteJson("/api/cart/items/{$cartItemId}", [], ['X-Session-Key' => 'session-1'])->assertOk();
+    }
+
+    public function test_get_cart_response_is_sanitized(): void
+    {
+        $variant = $this->activePublicVariant();
+
+        $this->postJson('/api/cart/items', ['variant_id' => $variant->id, 'quantity' => 2], ['X-Session-Key' => 'cart-safe-get'])
+            ->assertCreated();
+
+        $response = $this->getJson('/api/cart', ['X-Session-Key' => 'cart-safe-get'])
+            ->assertOk()
+            ->assertJsonPath('items.0.quantity', 2);
+
+        $this->assertPublicCartPayloadIsSanitized($response->json());
+        $response->assertJsonMissingPath('items.0.variant.cost_price')
+            ->assertJsonMissingPath('items.0.variant.oil_percentage')
+            ->assertJsonMissingPath('items.0.variant.product.cost_material_per_bottle');
+    }
+
+    public function test_add_cart_item_response_is_sanitized(): void
+    {
+        $variant = $this->activePublicVariant();
+
+        $response = $this->postJson('/api/cart/items', ['variant_id' => $variant->id, 'quantity' => 1], ['X-Session-Key' => 'cart-safe-add'])
+            ->assertCreated()
+            ->assertJsonPath('items.0.variant.id', $variant->id);
+
+        $this->assertPublicCartPayloadIsSanitized($response->json());
+    }
+
+    public function test_update_cart_item_response_is_sanitized(): void
+    {
+        $variant = $this->activePublicVariant();
+
+        $this->postJson('/api/cart/items', ['variant_id' => $variant->id, 'quantity' => 1], ['X-Session-Key' => 'cart-safe-update'])
+            ->assertCreated();
+
+        $cartItemId = $this->getJson('/api/cart', ['X-Session-Key' => 'cart-safe-update'])->json('items.0.id');
+
+        $response = $this->patchJson("/api/cart/items/{$cartItemId}", ['quantity' => 3], ['X-Session-Key' => 'cart-safe-update'])
+            ->assertOk()
+            ->assertJsonPath('quantity', 3);
+
+        $this->assertPublicCartPayloadIsSanitized($response->json());
+    }
+
+    public function test_merge_cart_response_is_sanitized(): void
+    {
+        $variant = $this->activePublicVariant();
+        $user = User::factory()->create(['role' => 'customer', 'password' => bcrypt('password123')]);
+        $token = $this->postJson('/api/auth/login', ['email' => $user->email, 'password' => 'password123'])->json('token');
+
+        $response = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->postJson('/api/cart/merge', [
+                'items' => [['variant_id' => $variant->id, 'quantity' => 2]],
+            ])
+            ->assertOk()
+            ->assertJsonPath('items.0.quantity', 2);
+
+        $this->assertPublicCartPayloadIsSanitized($response->json());
+    }
+
+    public function test_hidden_product_details_do_not_leak_in_cart_responses(): void
+    {
+        $publicVariant = $this->activePublicVariant();
+        $hiddenProduct = Product::factory()->create([
+            'code' => 'RND-HIDDEN',
+            'slug' => 'hidden-rnd-cart',
+            'name_ar' => 'Hidden R&D',
+            'name_en' => 'Hidden R&D',
+            'gender' => 'Unisex',
+            'status' => 'draft',
+            'cost_material_per_bottle' => 123,
+            'cost_packaging_per_bottle' => 45,
+            'cost_filling_per_bottle' => 67,
+        ]);
+        $hiddenVariant = ProductVariant::create([
+            'product_id' => $hiddenProduct->id,
+            'sku' => 'RND-HIDDEN-30',
+            'size_ml' => 30,
+            'retail_price' => 999,
+            'stock_quantity' => 10,
+            'is_active' => true,
+            'cost_price' => 111,
+            'wholesale_price' => 222,
+            'oil_percentage' => 33,
+            'alcohol_percentage' => 67,
+        ]);
+
+        $cart = Cart::firstOrCreate(['session_key' => 'cart-hidden-safe']);
+        CartItem::create([
+            'cart_id' => $cart->id,
+            'product_variant_id' => $hiddenVariant->id,
+            'quantity' => 1,
+            'snapshot_price' => $hiddenVariant->retail_price,
+        ]);
+
+        $response = $this->getJson('/api/cart', ['X-Session-Key' => 'cart-hidden-safe'])
+            ->assertOk()
+            ->assertJsonCount(0, 'items');
+
+        $json = json_encode($response->json());
+        $this->assertStringNotContainsString('hidden-rnd-cart', $json);
+        $this->assertStringNotContainsString('RND-HIDDEN', $json);
+        $this->assertPublicCartPayloadIsSanitized($response->json());
+
+        $user = User::factory()->create(['role' => 'customer', 'password' => bcrypt('password123')]);
+        $token = $this->postJson('/api/auth/login', ['email' => $user->email, 'password' => 'password123'])->json('token');
+        $merge = $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->postJson('/api/cart/merge', [
+                'items' => [
+                    ['variant_id' => $hiddenVariant->id, 'quantity' => 1],
+                    ['variant_id' => $publicVariant->id, 'quantity' => 1],
+                ],
+            ])
+            ->assertOk()
+            ->assertJsonCount(1, 'items');
+
+        $mergeJson = json_encode($merge->json());
+        $this->assertStringNotContainsString('hidden-rnd-cart', $mergeJson);
+        $this->assertStringNotContainsString('RND-HIDDEN', $mergeJson);
+        $this->assertPublicCartPayloadIsSanitized($merge->json());
     }
 
     public function test_guest_session_cannot_update_or_delete_another_session_cart_item(): void
