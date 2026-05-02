@@ -23,6 +23,7 @@ export const adminApi = {
     update: (id: number | string, data: unknown) => client.patch(`/admin/orders/${id}`, data),
     updateStatus: (id: number | string, status: string, notes?: string) => client.patch(`/admin/orders/${id}/status`, { status, notes }),
     reviewPayment: (id: number | string, data: unknown) => client.patch(`/admin/orders/${id}/payment-review`, data),
+    downloadPaymentProof: (id: number | string) => client.get(`/admin/orders/${id}/payment-proof`, { responseType: 'blob' }),
   },
   formulas: {
     list: () => client.get('/admin/formulas'),

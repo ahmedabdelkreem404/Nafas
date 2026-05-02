@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { publicApi } from '../api/publicApi';
 import ProductMedia from '../components/ProductMedia';
 import { useLocale } from '../context/LocaleContext';
 import { useCart } from '../hooks/useCart';
-import { buildCheckoutPayload } from '../utils/checkout';
+import { buildCheckoutPayload, validatePaymentProof } from '../utils/checkout';
 import { formatCurrency } from '../utils/format';
 import { normalizeOrder } from '../utils/orders';
 
@@ -20,6 +20,8 @@ export default function Checkout() {
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [paymentProof, setPaymentProof] = useState<File | null>(null);
+  const paymentProofInputRef = useRef<HTMLInputElement | null>(null);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState({
@@ -34,6 +36,7 @@ export default function Checkout() {
     payment_reference: '',
     payment_payer_phone: '',
   });
+  const paymentProofError = errors.payment_proof || '';
 
   const validateField = (name: string, value: string) => {
     switch (name) {
@@ -68,16 +71,29 @@ export default function Checkout() {
     setForm((current) => ({ ...current, payment_method: paymentMethod }));
 
     if (paymentMethod === 'cash_on_delivery') {
+      setPaymentProof(null);
       setErrors((current) => ({
         ...current,
         payment_reference: '',
         payment_payer_phone: '',
+        payment_proof: '',
       }));
       setTouched((current) => ({
         ...current,
         payment_reference: false,
         payment_payer_phone: false,
+        payment_proof: false,
       }));
+    }
+  };
+
+  const clearPaymentProof = () => {
+    setPaymentProof(null);
+    setErrors((current) => ({ ...current, payment_proof: '' }));
+    setTouched((current) => ({ ...current, payment_proof: false }));
+
+    if (paymentProofInputRef.current) {
+      paymentProofInputRef.current.value = '';
     }
   };
 
@@ -111,6 +127,7 @@ export default function Checkout() {
           address: validateField('address', form.address),
           payment_reference: validateField('payment_reference', form.payment_reference),
           payment_payer_phone: validateField('payment_payer_phone', form.payment_payer_phone),
+          payment_proof: form.payment_method === 'cash_on_delivery' ? '' : validatePaymentProof(paymentProof, locale),
         };
         setErrors(nextErrors);
         setTouched({
@@ -122,6 +139,7 @@ export default function Checkout() {
           address: true,
           payment_reference: true,
           payment_payer_phone: true,
+          payment_proof: true,
         });
         if (Object.values(nextErrors).some(Boolean)) {
           return;
@@ -131,7 +149,7 @@ export default function Checkout() {
         setError('');
         try {
           await publicApi.validateCart(items.map((item) => ({ quantity: item.quantity, variant_id: item.variant.id })));
-          const payload = buildCheckoutPayload(form, items);
+          const payload = buildCheckoutPayload({ ...form, payment_proof: paymentProof }, items);
           const response = await publicApi.checkout(payload);
           const order = normalizeOrder(response.data.order);
           sessionStorage.setItem(`order_${order.order_number}`, JSON.stringify(order));
@@ -312,9 +330,44 @@ export default function Checkout() {
                 </label>
                 <small className="field-hint is-wide">
                   {locale === 'ar'
-                    ? 'بعد التحويل، اكتب رقم العملية أو المرجع فقط. رفع صورة إثبات الدفع غير مفعل في هذه المرحلة، وسيُراجع الفريق التحويل يدويًا.'
-                    : 'After transferring, enter the transaction reference only. Proof image upload is not enabled in this phase, and the team will review the transfer manually.'}
+                    ? 'بعد التحويل، اكتب رقم العملية أو المرجع. يمكنك رفع صورة إثبات الدفع اختياريًا لمساعدة الفريق في المراجعة اليدوية.'
+                    : 'After transferring, enter the transaction reference. You can optionally upload a proof image to help the team review payment manually.'}
                 </small>
+                <label className={`is-wide ${paymentProofError && touched.payment_proof ? 'has-error' : ''}`}>
+                  <span>{locale === 'ar' ? 'صورة إثبات الدفع (اختياري)' : 'Payment proof image (optional)'}</span>
+                  <input
+                    ref={paymentProofInputRef}
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    onBlur={() => setTouched((current) => ({ ...current, payment_proof: true }))}
+                    onChange={(event) => {
+                      const file = event.target.files?.[0] || null;
+                      const message = validatePaymentProof(file, locale);
+                      setPaymentProof(message ? null : file);
+                      setTouched((current) => ({ ...current, payment_proof: true }));
+                      setErrors((current) => ({ ...current, payment_proof: message }));
+                      if (message) {
+                        event.target.value = '';
+                      }
+                    }}
+                  />
+                  {paymentProof ? (
+                    <small className="field-hint">
+                      {locale === 'ar' ? `تم اختيار: ${paymentProof.name}` : `Selected: ${paymentProof.name}`}
+                    </small>
+                  ) : null}
+                  {paymentProofError && touched.payment_proof ? <small className="field-error">{paymentProofError}</small> : null}
+                  {paymentProofError ? (
+                    <button type="button" className="text-button" onClick={clearPaymentProof}>
+                      {locale === 'ar' ? 'المتابعة بدون صورة إثبات' : 'Continue without proof image'}
+                    </button>
+                  ) : null}
+                  <small className="field-hint">
+                    {locale === 'ar'
+                      ? 'الصيغ المقبولة: JPG أو PNG أو WEBP. الحد الأقصى 3MB.'
+                      : 'Accepted formats: JPG, PNG, or WEBP. Maximum size 3MB.'}
+                  </small>
+                </label>
               </div>
             ) : null}
           </section>

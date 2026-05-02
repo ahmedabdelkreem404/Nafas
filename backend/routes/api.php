@@ -68,6 +68,7 @@ Route::middleware(['auth:sanctum', 'role'])->prefix('admin')->group(function () 
         Route::apiResource('orders', AdminOrderController::class);
         Route::patch('/orders/{id}/status', [AdminOrderController::class, 'updateStatus']);
         Route::patch('/orders/{order}/payment-review', [AdminOrderController::class, 'reviewPayment']);
+        Route::get('/orders/{order}/payment-proof', [AdminOrderController::class, 'downloadPaymentProof']);
         Route::apiResource('customers', \App\Http\Controllers\AdminCustomerController::class);
         Route::apiResource('coupons', \App\Http\Controllers\AdminCouponController::class);
     });

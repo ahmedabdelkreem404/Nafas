@@ -12,7 +12,9 @@ use App\Models\Review;
 use App\Models\User;
 use App\Models\WholesaleInquiry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class NafasE2ETest extends TestCase
@@ -387,6 +389,114 @@ class NafasE2ETest extends TestCase
         $this->postJson('/api/checkout', $basePayload + [
             'payment_method' => 'bank_transfer',
         ])->assertUnprocessable();
+    }
+
+    public function test_manual_payment_checkout_accepts_valid_proof_image(): void
+    {
+        Storage::fake('local');
+        $variant = $this->activePublicVariant();
+
+        $response = $this->post('/api/checkout', [
+            'customer_name' => 'Proof Customer',
+            'phone' => '0123456789',
+            'address' => 'Detailed proof payment address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'vodafone_cash',
+            'payment_reference' => 'VC-PROOF-1',
+            'payment_proof' => UploadedFile::fake()->image('proof.webp')->size(256),
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ]);
+
+        $response->assertCreated()
+            ->assertJsonPath('order.payment.status', 'pending_review')
+            ->assertJsonPath('order.payment.method', 'vodafone_cash');
+
+        $proofPath = $response->json('order.payment.proof_image_path');
+        $this->assertNotEmpty($proofPath);
+        $this->assertStringStartsWith('payment-proofs/', $proofPath);
+        Storage::disk('local')->assertExists($proofPath);
+    }
+
+    public function test_manual_payment_checkout_rejects_invalid_proof_file_type(): void
+    {
+        Storage::fake('local');
+        $variant = $this->activePublicVariant();
+
+        $this->withHeader('Accept', 'application/json')->post('/api/checkout', [
+            'customer_name' => 'Bad Proof',
+            'phone' => '0123456789',
+            'address' => 'Detailed proof payment address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'instapay',
+            'payment_reference' => 'IP-BAD-1',
+            'payment_proof' => UploadedFile::fake()->create('proof.txt', 20, 'text/plain'),
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ])->assertUnprocessable()
+            ->assertJsonValidationErrors('payment_proof');
+    }
+
+    public function test_manual_payment_checkout_rejects_oversized_proof_file(): void
+    {
+        Storage::fake('local');
+        $variant = $this->activePublicVariant();
+
+        $this->withHeader('Accept', 'application/json')->post('/api/checkout', [
+            'customer_name' => 'Large Proof',
+            'phone' => '0123456789',
+            'address' => 'Detailed proof payment address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'vodafone_cash',
+            'payment_reference' => 'VC-LARGE-1',
+            'payment_proof' => UploadedFile::fake()->image('proof.jpg')->size(3073),
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ])->assertUnprocessable()
+            ->assertJsonValidationErrors('payment_proof');
+    }
+
+    public function test_cod_checkout_rejects_payment_proof_upload(): void
+    {
+        Storage::fake('local');
+        $variant = $this->activePublicVariant();
+
+        $this->withHeader('Accept', 'application/json')->post('/api/checkout', [
+            'customer_name' => 'COD Proof',
+            'phone' => '0123456789',
+            'address' => 'Detailed cod payment address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'cash_on_delivery',
+            'payment_proof' => UploadedFile::fake()->image('proof.png')->size(128),
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ])->assertUnprocessable()
+            ->assertJsonValidationErrors('payment_proof');
+    }
+
+    public function test_admin_can_download_manual_payment_proof_but_public_cannot(): void
+    {
+        Storage::fake('local');
+        $variant = $this->activePublicVariant();
+        $token = $this->loginAsRole('order_manager');
+
+        $orderId = $this->post('/api/checkout', [
+            'customer_name' => 'Download Proof',
+            'phone' => '0123456789',
+            'address' => 'Detailed proof payment address',
+            'city' => 'Cairo',
+            'governorate' => 'Cairo',
+            'payment_method' => 'instapay',
+            'payment_reference' => 'IP-DOWNLOAD-1',
+            'payment_proof' => UploadedFile::fake()->image('proof.png')->size(128),
+            'items' => [['variant_id' => $variant->id, 'quantity' => 1]],
+        ])->assertCreated()->json('order.id');
+
+        $this->getJson("/api/admin/orders/{$orderId}/payment-proof")->assertUnauthorized();
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->get("/api/admin/orders/{$orderId}/payment-proof")
+            ->assertOk();
     }
 
     public function test_manual_payment_review_can_be_approved_by_order_admin(): void
