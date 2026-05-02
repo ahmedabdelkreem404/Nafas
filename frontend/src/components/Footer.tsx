@@ -1,7 +1,7 @@
 import { MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLocale } from '../context/LocaleContext';
-import { BRAND_LOGO, HAS_WHATSAPP_SUPPORT, WHATSAPP_SUPPORT_URL } from '../utils/brand';
+import { BRAND_LOGO, WHATSAPP_SUPPORT_URL } from '../utils/brand';
 
 const footerCopy = {
   ar: {
@@ -24,7 +24,7 @@ const footerCopy = {
       shop: 'كل العطور',
       terms: 'الشروط',
     },
-    title: 'نفَس',
+    title: 'دار نفَس',
   },
   en: {
     brand: 'An Arabic perfume house built around calm discovery: try first, choose clearly, and expect realistic fragrance performance.',
@@ -61,12 +61,10 @@ export default function Footer() {
           <img src={BRAND_LOGO} alt="Nafas" className="site-footer__brand-logo" />
           <h2>{copy.title}</h2>
           <p>{copy.brand}</p>
-          {HAS_WHATSAPP_SUPPORT ? (
-            <a className="site-footer__whatsapp" href={WHATSAPP_SUPPORT_URL} target="_blank" rel="noreferrer">
-              <MessageCircle size={18} aria-hidden="true" />
-              {copy.contact}
-            </a>
-          ) : null}
+          <a className="site-footer__whatsapp" href={WHATSAPP_SUPPORT_URL} target="_blank" rel="noreferrer">
+            <MessageCircle size={18} aria-hidden="true" />
+            {copy.contact}
+          </a>
         </div>
 
         <nav aria-label={copy.shop}>
