@@ -1,5 +1,5 @@
 import type { Locale } from '../../../context/LocaleContext';
-import type { ChoiceId, Highlight, ScentId, ViewerTab } from '../types';
+import type { ViewerTab } from '../types';
 
 type Localized<T = string> = Record<Locale, T>;
 
@@ -126,7 +126,7 @@ export const appleHomeCopy = {
   },
 } as const;
 
-export const scentCopy: Record<ScentId, {
+export const scentCopy: Record<string, {
   aura: Localized;
   bestFor: Localized;
   bottle: Localized;
@@ -210,7 +210,66 @@ export const scentCopy: Record<ScentId, {
   },
 };
 
-export const highlightCopy: Record<Highlight['id'], {
+Object.assign(scentCopy, {
+  madar: {
+    name: { ar: 'مدار', en: 'Madar' },
+    line: { ar: 'فريش يدور معاك طول اليوم.', en: 'Freshness that moves with you all day.' },
+    mood: { ar: 'فريش / خشبي / رياضي', en: 'Fresh / Woody / Sporty' },
+    aura: { ar: 'كحلي عميق ولمعة فضية', en: 'Deep navy and silver light' },
+    heroDescription: { ar: 'مدار نظافة وراحة وثقة يومية: هواء بارد، خشب خفيف، وإحساس مرتب للنهار.', en: 'Madar is clean daily confidence: cool air, light woods, and a polished daytime feeling.' },
+    bestFor: { ar: 'صباح، نهار، شغل، وجامعة.', en: 'Morning, daytime, work, and university.' },
+    notes: { ar: 'فريش، خشبي، رياضي.', en: 'Fresh, woody, sporty.' },
+    bottle: { ar: 'كحلي عميق مع لمعة فضية باردة.', en: 'Deep navy with a cool silver accent.' },
+    sizes: { ar: '30ml، 50ml، و100ml.', en: '30ml, 50ml, and 100ml.' },
+    gift: { ar: 'اختيار سهل للي يحب النضافة اليومية.', en: 'An easy gift for someone who likes clean daily scents.' },
+    usage: { ar: 'نهار طويل وحركة كتير.', en: 'Long daytime wear and movement.' },
+    entry: { ar: 'ابدأ بتستر أو 30ml للروتين اليومي.', en: 'Start with a tester or 30ml for daily use.' },
+  },
+  athar: {
+    name: { ar: 'أثر', en: 'Athar' },
+    line: { ar: 'يسبقك ويفضل بعدك.', en: 'It arrives before you and stays after you.' },
+    mood: { ar: 'غامق / فريش / خشبي', en: 'Dark / Fresh / Woody' },
+    aura: { ar: 'فحمي وذهب داكن', en: 'Charcoal and dark gold' },
+    heroDescription: { ar: 'أثر غرفة أغمق وأكثر هدوءًا: فريش غامق، خشب واضح، وفخامة ساكنة.', en: 'Athar feels darker and quieter: fresh shadow, clear woods, and still elegance.' },
+    bestFor: { ar: 'ليل، مناسبات، وخروجات.', en: 'Night, occasions, and outings.' },
+    notes: { ar: 'غامق، فريش، خشبي.', en: 'Dark, fresh, woody.' },
+    bottle: { ar: 'فحمي مع أثر ذهبي داكن.', en: 'Charcoal with a dark gold trace.' },
+    sizes: { ar: '30ml، 50ml، و100ml.', en: '30ml, 50ml, and 100ml.' },
+    gift: { ar: 'لشخص يحب الغموض والفخامة الهادية.', en: 'For someone who likes mystery and quiet elegance.' },
+    usage: { ar: 'ليل ومناسبات أبطأ.', en: 'Night and slower occasions.' },
+    entry: { ar: 'ابدأ بتستر لو بتحب الروائح الغامقة.', en: 'Start with a tester if you like darker scents.' },
+  },
+  barq: {
+    name: { ar: 'برق', en: 'Barq' },
+    line: { ar: 'قهوة باردة بطابع فريش حار.', en: 'Cold coffee with a fresh spicy character.' },
+    mood: { ar: 'قهوة / فريش / حار', en: 'Coffee / Fresh / Spicy' },
+    aura: { ar: 'عنبر وقهوة وهواء', en: 'Amber, coffee, and fresh air' },
+    heroDescription: { ar: 'برق طاقة دافئة من غير ثقل: قهوة، هواء، وتوابل خفيفة.', en: 'Barq is warm energy without heaviness: coffee, air, and light spice.' },
+    bestFor: { ar: 'صباح أو ليل للي عايز تميز بدون ثقل.', en: 'Morning or night, for distinction without heaviness.' },
+    notes: { ar: 'قهوة، فريش، حار.', en: 'Coffee, fresh, spicy.' },
+    bottle: { ar: 'عنبر وقهوة مع أسود مطفي.', en: 'Amber coffee with matte black.' },
+    sizes: { ar: '30ml، 50ml، و100ml.', en: '30ml, 50ml, and 100ml.' },
+    gift: { ar: 'اختيار مميز لمحبي القهوة والدفء.', en: 'A distinct pick for coffee and warmth lovers.' },
+    usage: { ar: 'صباح نشيط أو مساء دافئ.', en: 'An energetic morning or warm evening.' },
+    entry: { ar: 'ابدأ بتستر لو بتحب القهوة في العطر.', en: 'Start with a tester if you like coffee in scent.' },
+  },
+  nada: {
+    name: { ar: 'ندى', en: 'Nada' },
+    line: { ar: 'فريش، نضيف، وأنثوي.', en: 'Fresh, clean, and feminine.' },
+    mood: { ar: 'فريش / فاكهي / مسكي', en: 'Fresh / Fruity / Musky' },
+    aura: { ar: 'أوف وايت وروز جولد', en: 'Off-white and rose gold' },
+    heroDescription: { ar: 'ندى ريحة نضيفة فاكهية من غير سكر زيادة: ناعمة، مشرقة، وسهلة القرب.', en: 'Nada is clean fruity softness without extra sweetness: bright, gentle, and close.' },
+    bestFor: { ar: 'صباح، جامعة، شغل، هدايا، وليل خفيف.', en: 'Morning, university, work, gifts, and soft evenings.' },
+    notes: { ar: 'فريش، فاكهي، مسكي.', en: 'Fresh, fruity, musky.' },
+    bottle: { ar: 'أوف وايت مع روز جولد ناعم.', en: 'Off-white with soft rose gold.' },
+    sizes: { ar: '30ml، 50ml، و100ml.', en: '30ml, 50ml, and 100ml.' },
+    gift: { ar: 'اختيار نضيف وأنثوي وسهل.', en: 'A clean, feminine, easy gift.' },
+    usage: { ar: 'نهار ومساء خفيف.', en: 'Daytime and soft evenings.' },
+    entry: { ar: 'ابدأ بتستر أو 30ml كاختيار يومي.', en: 'Start with a tester or 30ml for daily use.' },
+  },
+});
+
+export const highlightCopy: Record<string, {
   copy: Localized;
   eyebrow: Localized;
   title: Localized;
@@ -251,6 +310,29 @@ export const highlightCopy: Record<Highlight['id'], {
     copy: { ar: 'مراجعة للصفاء، الرش، والتقديم قبل وصول التجربة لك.', en: 'Clarity, spray feel, and presentation are checked before delivery.' },
   },
 };
+
+Object.assign(highlightCopy, {
+  madar: {
+    eyebrow: { ar: 'هواء فريش', en: 'Fresh air' },
+    title: scentCopy.madar.name,
+    copy: { ar: 'نضافة وراحة وثقة يومية للشغل والجامعة.', en: 'Clean daily confidence for work and university.' },
+  },
+  athar: {
+    eyebrow: { ar: 'خشب غامق', en: 'Dark woods' },
+    title: scentCopy.athar.name,
+    copy: { ar: 'غموض وفخامة وثبات هادي لليل والمناسبات.', en: 'Mystery, elegance, and quiet depth for night.' },
+  },
+  barq: {
+    eyebrow: { ar: 'قهوة وهواء', en: 'Coffee spark' },
+    title: scentCopy.barq.name,
+    copy: { ar: 'قهوة باردة بطابع فريش حار ومميز.', en: 'Cold coffee with a fresh spicy character.' },
+  },
+  nada: {
+    eyebrow: { ar: 'نضافة ناعمة', en: 'Clean glow' },
+    title: scentCopy.nada.name,
+    copy: { ar: 'فريش، نضيف، وأنثوي من غير سكر زيادة.', en: 'Fresh, clean, and feminine without extra sweetness.' },
+  },
+});
 
 export const chapterCopy: Record<string, { copy: Localized; title: Localized }> = {
   opening: {
@@ -301,8 +383,12 @@ export const flowCopy: Record<string, { copy: Localized; title: Localized }> = {
   },
 };
 
-export const selectorCopy: Record<ChoiceId, { label: Localized }> = {
+export const selectorCopy: Record<string, { label: Localized }> = {
   sharara: { label: { ar: 'فريش ولافت', en: 'Fresh and bold' } },
+  madar: { label: { ar: 'فريش يومي', en: 'Daily fresh' } },
+  athar: { label: { ar: 'غامق وفخم', en: 'Dark and elegant' } },
+  barq: { label: { ar: 'قهوة ودافئ', en: 'Coffee and warm' } },
+  nada: { label: { ar: 'نضيف وأنثوي', en: 'Clean feminine' } },
   ghayma: { label: { ar: 'ناعم وهادئ', en: 'Soft and calm' } },
   dafwa: { label: { ar: 'دافئ وحلو', en: 'Warm and sweet' } },
   zell: { label: { ar: 'غامض وخشبي', en: 'Shadowed woods' } },

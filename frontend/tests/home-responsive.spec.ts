@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+﻿import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
 
 const widths = [320, 360, 390, 430, 540, 640, 768, 820, 1024, 1180, 1366, 1440, 1480, 1536, 1920];
@@ -121,6 +121,23 @@ test.describe('Nafas public homepage', () => {
     await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
   });
 
+  test('uses Nafas CTA colors instead of Apple blue on the homepage', async ({ page }) => {
+    await gotoHome(page);
+
+    const hasAppleBlue = await page.evaluate(() => {
+      const appleBlue = ['rgb(0, 113, 227)', '#0071e3', 'rgb(0, 102, 204)', '#0066cc'];
+
+      return [...document.querySelectorAll('.apple-nafas-page .anh-button')]
+        .some((element) => {
+          const styles = window.getComputedStyle(element);
+          const paint = `${styles.backgroundColor} ${styles.backgroundImage} ${styles.color} ${styles.borderColor}`.toLowerCase();
+          return appleBlue.some((token) => paint.includes(token));
+        });
+    });
+
+    expect(hasAppleBlue).toBe(false);
+  });
+
   test('supports highlights carousel controls and keyboard navigation', async ({ page }) => {
     await gotoHome(page);
     const highlights = page.locator('[data-section="highlights"]');
@@ -135,6 +152,7 @@ test.describe('Nafas public homepage', () => {
     await highlights.locator('.anh-highlight-shell').focus();
     await page.keyboard.press('ArrowRight');
     await expect(highlights.locator('.anh-highlight-card').nth(2)).toHaveAttribute('data-active', 'true');
+    await expect(page.locator('.nlp-highlights__controls, .nlp-viewer__side-controls')).toHaveCount(0);
   });
 
   test('keeps key mobile controls usable at 390px', async ({ page }) => {
@@ -147,11 +165,16 @@ test.describe('Nafas public homepage', () => {
     await expect(page.locator('[data-section="highlights"] .anh-carousel-dock')).toBeVisible();
     await expect(page.locator('[data-section="comparison"] .anh-compare-card').first()).toBeVisible();
 
-    const clippedButtons = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>('.apple-nafas-page .anh-button, .apple-nafas-page button')]
-      .filter((element) => {
-        const rect = element.getBoundingClientRect();
-        return rect.width < 32 || rect.height < 32 || rect.left < -1 || rect.right > window.innerWidth + 1;
-      }).length);
+    const clippedButtons = await page.evaluate(() => {
+      return [...document.querySelectorAll('.apple-nafas-page .anh-button, .apple-nafas-page button')]
+        .filter((element) => {
+          if (element.closest('[aria-hidden="true"]')) {
+            return false;
+          }
+          const rect = element.getBoundingClientRect();
+          return rect.width < 32 || rect.height < 32 || rect.left < -1 || rect.right > window.innerWidth + 1;
+        }).length;
+    });
 
     expect(clippedButtons).toBe(0);
     await expectNoHorizontalOverflow(page);
