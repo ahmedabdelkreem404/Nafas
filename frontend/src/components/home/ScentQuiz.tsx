@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+﻿import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { landingFragrances, LANDING_WHATSAPP_URL, landingMedia } from '../../content/nafasLanding';
 import { useLocale } from '../../context/LocaleContext';
@@ -35,8 +35,8 @@ const quizOptions = {
 function recommendFragrance(state: QuizState) {
   if (state.timing === 'morning' && state.mood === 'fresh') return 'sharara';
   if (state.timing === 'gift' && state.mood === 'soft') return 'ghayma';
-  if (state.timing === 'evening' && state.mood === 'warm') return 'dafwa';
-  if (state.timing === 'signature' || state.mood === 'dark' || state.strength === 'deep') return 'zell';
+  if (state.timing === 'evening' && state.mood === 'warm') return 'Nada';
+  if (state.timing === 'signature' || state.mood === 'dark' || state.strength === 'deep') return 'Madar';
   return 'discovery';
 }
 
@@ -56,8 +56,8 @@ export default function ScentQuiz() {
       return {
         title: locale === 'ar' ? 'ابدأ بـ Discovery Mini' : 'Start with Discovery Mini',
         body: locale === 'ar'
-          ? 'لسه محتار؟ جرّب الأربع روائح أولًا، وبعدها ارجع للزجاجة اللي ارتحت لها أكثر.'
-          : 'Still undecided? Start with the four moods first, then return for the bottle that feels right.',
+          ? 'لسه محتار؟ جرّب الست روائح أولًا، وبعدها ارجع للزجاجة اللي ارتحت لها أكثر.'
+          : 'Still undecided? Start with the six launch scents first, then return for the bottle that feels right.',
       };
     }
 
@@ -79,9 +79,9 @@ export default function ScentQuiz() {
       };
     }
 
-    if (recommendation.id === 'dafwa') {
+    if (recommendation.id === 'Nada') {
       return {
-        title: locale === 'ar' ? 'ابدأ بدفوة' : 'Start with Dafwa',
+        title: locale === 'ar' ? 'ابدأ بندى' : 'Start with Nada',
         body: locale === 'ar'
           ? 'قهوة دافية وعمق شرقي حلو لليل، الشتاء، واللحظات الخاصة.'
           : 'Warm coffee and sweet oriental depth for evenings, cooler nights, and special moments.',
@@ -89,7 +89,7 @@ export default function ScentQuiz() {
     }
 
     return {
-      title: locale === 'ar' ? 'ابدأ بظلّ' : 'Start with Zell',
+      title: locale === 'ar' ? 'ابدأ بمدار' : 'Start with Madar',
       body: locale === 'ar'
         ? 'خشبي داكن ومسكي هادئ لذوق يحب العمق من غير دوشة.'
         : 'Dark woods and calm musk for a taste that prefers quiet depth.',
@@ -196,3 +196,4 @@ export default function ScentQuiz() {
     </section>
   );
 }
+

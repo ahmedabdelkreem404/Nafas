@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { adminApi } from '../../api/adminApi';
-import { AdminPageShell, Button, Card, EmptyState, Field, Input, LoadingState, Select, Textarea } from '../../components/ui';
+import { AdminPageShell, Button, Card, EmptyState, ErrorState, Field, Input, LoadingState, Select, Textarea } from '../../components/ui';
 import { formatCurrency } from '../../utils/format';
 
 const blankFormula = { product_id: '', oil_percentage: 24, alcohol_percentage: 76, ifra_status: '', sds_status: '', supplier_name: '', supplier_reference: '', supplier_batch_reference: '', internal_notes: '' };
@@ -13,14 +13,19 @@ const AdminFormulas: React.FC = () => {
   const [formulaForm, setFormulaForm] = useState<any>(blankFormula);
   const [itemForms, setItemForms] = useState<Record<number, any>>({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   const load = () => {
     setLoading(true);
+    setError('');
     Promise.all([adminApi.formulas.list(), adminApi.products.list(), adminApi.ingredients.list()])
       .then(([formulasRes, productsRes, ingredientsRes]) => {
         setFormulas(formulasRes.data || []);
         setProducts(productsRes.data || []);
         setIngredients(ingredientsRes.data || []);
+      })
+      .catch((err) => {
+        setError(err.message || 'تعذر تحميل التركيبات. تأكد من اتصال الـ API ثم أعد المحاولة.');
       })
       .finally(() => setLoading(false));
   };
@@ -33,14 +38,19 @@ const AdminFormulas: React.FC = () => {
   })), [formulas]);
 
   return (
-    <AdminPageShell eyebrow="Formulas" title="التركيبات والامتثال" description="عرض أوضح للتركيبات الداخلية، الموردين، وعناصر التكلفة لكل مكوّن.">
+    <AdminPageShell eyebrow="Formulas" title="التركيبات والامتثال" description="منطقة داخلية محمية لإدارة التركيبات، الموردين، وعناصر التكلفة لفريق التشغيل فقط.">
       <Card tone="strong">
         <form className="stack" onSubmit={(event) => {
           event.preventDefault();
           adminApi.formulas.create(formulaForm).then(() => { setFormulaForm(blankFormula); load(); });
         }}>
           <div className="grid-auto">
-            <Field label="المنتج"><Select value={formulaForm.product_id} onChange={(event) => setFormulaForm({ ...formulaForm, product_id: event.target.value })}><option value="">اختر المنتج</option>{products.map((product) => <option key={product.id} value={product.id}>{product.name_en}</option>)}</Select></Field>
+            <Field label="المنتج">
+              <Select value={formulaForm.product_id} onChange={(event) => setFormulaForm({ ...formulaForm, product_id: event.target.value })}>
+                <option value="">اختر المنتج</option>
+                {products.map((product) => <option key={product.id} value={product.id}>{product.name_ar || product.name_en}</option>)}
+              </Select>
+            </Field>
             <Field label="نسبة الزيت"><Input type="number" value={formulaForm.oil_percentage} onChange={(event) => setFormulaForm({ ...formulaForm, oil_percentage: Number(event.target.value) })} /></Field>
             <Field label="نسبة الكحول"><Input type="number" value={formulaForm.alcohol_percentage} onChange={(event) => setFormulaForm({ ...formulaForm, alcohol_percentage: Number(event.target.value) })} /></Field>
             <Field label="IFRA"><Input value={formulaForm.ifra_status} onChange={(event) => setFormulaForm({ ...formulaForm, ifra_status: event.target.value })} /></Field>
@@ -54,7 +64,16 @@ const AdminFormulas: React.FC = () => {
         </form>
       </Card>
 
-      {loading ? <LoadingState label="جاري تحميل التركيبات..." /> : !formulas.length ? <EmptyState title="لا توجد تركيبات" description="أضف أول تركيبة داخلية لهذا المنتج." /> : (
+      {loading ? (
+        <LoadingState label="جارِ تحميل التركيبات..." />
+      ) : error ? (
+        <ErrorState
+          message={error}
+          action={<Button type="button" variant="secondary" onClick={load}>إعادة المحاولة</Button>}
+        />
+      ) : !formulas.length ? (
+        <EmptyState title="لا توجد تركيبات" description="أضف أول تركيبة داخلية لهذا المنتج." />
+      ) : (
         <div className="stack">
           {formulas.map((formula) => (
             <Card key={formula.id} tone="strong" className="stack">
@@ -88,18 +107,23 @@ const AdminFormulas: React.FC = () => {
                   <span>تكلفة التركيبة الكاملة</span>
                   <strong>{formatCurrency(formulaTotals[formula.id] || 0)}</strong>
                 </div>
-                <small className="copy-muted">لكل ١٠٠ مل تقريبًا</small>
+                <small className="copy-muted">لكل 100 مل تقريبا</small>
               </div>
               <form className="stack" onSubmit={(event) => {
                 event.preventDefault();
                 adminApi.formulas.createItem(formula.id, itemForms[formula.id] || blankItem).then(() => { setItemForms({ ...itemForms, [formula.id]: blankItem }); load(); });
               }}>
                 <div className="grid-auto">
-                  <Field label="المكوّن"><Select value={itemForms[formula.id]?.ingredient_id || ''} onChange={(event) => setItemForms({ ...itemForms, [formula.id]: { ...(itemForms[formula.id] || blankItem), ingredient_id: event.target.value } })}><option value="">اختر مكوّنًا</option>{ingredients.map((ingredient) => <option key={ingredient.id} value={ingredient.id}>{ingredient.name}</option>)}</Select></Field>
+                  <Field label="المكون">
+                    <Select value={itemForms[formula.id]?.ingredient_id || ''} onChange={(event) => setItemForms({ ...itemForms, [formula.id]: { ...(itemForms[formula.id] || blankItem), ingredient_id: event.target.value } })}>
+                      <option value="">اختر مكونا</option>
+                      {ingredients.map((ingredient) => <option key={ingredient.id} value={ingredient.id}>{ingredient.name}</option>)}
+                    </Select>
+                  </Field>
                   <Field label="الاسم"><Input value={itemForms[formula.id]?.ingredient_name || ''} onChange={(event) => setItemForms({ ...itemForms, [formula.id]: { ...(itemForms[formula.id] || blankItem), ingredient_name: event.target.value } })} /></Field>
-                  <Field label="الكمية grams"><Input value={itemForms[formula.id]?.quantity_grams || ''} onChange={(event) => setItemForms({ ...itemForms, [formula.id]: { ...(itemForms[formula.id] || blankItem), quantity_grams: event.target.value } })} /></Field>
+                  <Field label="الكمية بالجرام"><Input value={itemForms[formula.id]?.quantity_grams || ''} onChange={(event) => setItemForms({ ...itemForms, [formula.id]: { ...(itemForms[formula.id] || blankItem), quantity_grams: event.target.value } })} /></Field>
                   <Field label="التكلفة لكل جرام"><Input value={itemForms[formula.id]?.cost_per_gram || ''} onChange={(event) => setItemForms({ ...itemForms, [formula.id]: { ...(itemForms[formula.id] || blankItem), cost_per_gram: event.target.value } })} /></Field>
-                  <Field label="الكمية ml"><Input value={itemForms[formula.id]?.quantity_ml || ''} onChange={(event) => setItemForms({ ...itemForms, [formula.id]: { ...(itemForms[formula.id] || blankItem), quantity_ml: event.target.value } })} /></Field>
+                  <Field label="الكمية مل"><Input value={itemForms[formula.id]?.quantity_ml || ''} onChange={(event) => setItemForms({ ...itemForms, [formula.id]: { ...(itemForms[formula.id] || blankItem), quantity_ml: event.target.value } })} /></Field>
                   <Field label="النسبة"><Input value={itemForms[formula.id]?.percentage || ''} onChange={(event) => setItemForms({ ...itemForms, [formula.id]: { ...(itemForms[formula.id] || blankItem), percentage: event.target.value } })} /></Field>
                 </div>
                 <Field label="ملاحظات"><Textarea value={itemForms[formula.id]?.internal_notes || ''} onChange={(event) => setItemForms({ ...itemForms, [formula.id]: { ...(itemForms[formula.id] || blankItem), internal_notes: event.target.value } })} /></Field>

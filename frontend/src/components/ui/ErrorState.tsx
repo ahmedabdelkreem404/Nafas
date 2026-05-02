@@ -8,7 +8,7 @@ export const ErrorState: React.FC<{
 }> = ({
   action,
   message,
-  title = 'تعذّر تحميل البيانات',
+  title = 'تعذر تحميل البيانات',
 }) => (
   <Card className="state-card state-card--error">
     <div className="state-icon">!</div>

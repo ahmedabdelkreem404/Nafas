@@ -1,4 +1,4 @@
-import type { Locale } from '../context/LocaleContext';
+﻿import type { Locale } from '../context/LocaleContext';
 
 const pageBody = {
   about: {
@@ -175,7 +175,7 @@ const pageBody = {
         },
         {
           title: 'توفر المنتجات',
-          body: 'قد تختلف الأسعار أو التوافر بحسب المخزون الفعلي، ويظل عرض الحالة داخل الصفحة هو المرجع الأقرب للمستخدم.',
+          body: 'قد تختلف الأسعار أو التوافر بحسب المخزون الفعلي، وتبقى حالة المنتج داخل الصفحة هي المرجع الأقرب للمستخدم.',
         },
       ],
     },
@@ -297,7 +297,7 @@ export const publicCopy = {
       supportLine: 'صناعة محلية بروح راقية وتجربة شراء واضحة.',
     },
     home: {
-      collectionBody: 'ثمانية توقيعات عطرية بحضور واضح وصورة حقيقية للعبوة، لتعرف العطر أسرع وتختار بثقة أكبر.',
+      collectionBody: 'ست روائح ومجموعة تجربة وبوكسات هدية بحضور واضح وصورة حقيقية للعبوة، لتعرف العطر أسرع وتختار بثقة أكبر.',
       collectionTitle: 'المجموعة المميّزة',
       ctaBody: 'حين تعرف أي نفَس يشبهك، اجعل الطلب التالي أسرع وأوضح.',
       ctaTitle: 'اختر نفَسك الآن',
@@ -525,7 +525,7 @@ export const publicCopy = {
       supportLine: 'Locally made, visually refined, and easier to shop.',
     },
     home: {
-      collectionBody: 'Eight fragrance signatures with a real bottle view, faster scent understanding, and a more premium path to purchase.',
+      collectionBody: 'Six launch scents, a discovery set, and gift boxes with a real bottle view, faster scent understanding, and a more premium path to purchase.',
       collectionTitle: 'Signature collection',
       ctaBody: 'Once you know which Nafas fits you, let the next order feel faster and clearer.',
       ctaTitle: 'Choose your breath now',
@@ -662,3 +662,4 @@ export function getContentPageCopy(slug: string, locale: Locale) {
   const key = (slug in pageBody ? slug : 'about') as keyof typeof pageBody;
   return pageBody[key][locale];
 }
+
