@@ -12,7 +12,7 @@
       "firstTop": 77.59375,
       "tinyTargets": [
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "site-nav__brand",
           "width": 87.0625,
           "height": 33.59375,
@@ -21,7 +21,7 @@
           "right": 103.265625
         },
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "mobile-panel__brand",
           "width": 103.4375,
           "height": 26.640625,
@@ -122,7 +122,7 @@
       ],
       "offscreenTargets": [
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "mobile-panel__brand",
           "width": 103.4375,
           "height": 26.640625,
@@ -554,7 +554,7 @@
       "firstTop": 88.796875,
       "tinyTargets": [
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "site-nav__brand",
           "width": 99.671875,
           "height": 37.59375,
@@ -599,7 +599,7 @@
           "right": 389.890625
         },
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "mobile-panel__brand",
           "width": 103.4375,
           "height": 26.640625,
@@ -700,7 +700,7 @@
       ],
       "offscreenTargets": [
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "mobile-panel__brand",
           "width": 103.4375,
           "height": 26.640625,
@@ -1159,7 +1159,7 @@
       "firstTop": 88.796875,
       "tinyTargets": [
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "site-nav__brand",
           "width": 106.546875,
           "height": 42.5,
@@ -1204,7 +1204,7 @@
           "right": 730.890625
         },
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "mobile-panel__brand",
           "width": 103.4375,
           "height": 26.640625,
@@ -1305,7 +1305,7 @@
       ],
       "offscreenTargets": [
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "mobile-panel__brand",
           "width": 103.4375,
           "height": 26.640625,

@@ -71,7 +71,7 @@ export const appleHomeCopy = {
     },
   },
   hero: {
-    kicker: { ar: 'دار نفَس', en: 'Maison Nafas' },
+    kicker: { ar: 'نفَس', en: 'Maison Nafas' },
     title: { ar: 'نفَس قريب منك.', en: 'Nafas, worn close.' },
     lead: {
       ar: 'أربع روائح محلية بهوية هادئة: شرارة، غيمة، دفوة، وظلّ. ابدأ بتستر صغير واختر الرائحة التي تشبه حضورك.',

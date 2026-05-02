@@ -8,7 +8,7 @@
     <div style="max-width:680px;margin:0 auto;padding:32px 20px;">
         <div style="background:#15111d;border:1px solid rgba(201,160,78,.28);border-radius:24px;padding:32px;">
             <p style="margin:0 0 12px;color:#c9a04e;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">
-                {{ $locale === 'en' ? 'Maison Nafas' : 'دار نفَس' }}
+                {{ $locale === 'en' ? 'Maison Nafas' : 'نفَس' }}
             </p>
             <h1 style="margin:0 0 12px;font-size:30px;line-height:1.2;">
                 {{ $locale === 'en' ? 'Your order has been received' : 'تم استلام طلبك بنجاح' }}
