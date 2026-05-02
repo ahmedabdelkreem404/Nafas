@@ -24,7 +24,7 @@ const footerCopy = {
       shop: 'كل العطور',
       terms: 'الشروط',
     },
-    title: 'دار نفَس',
+    title: 'نفَس',
   },
   en: {
     brand: 'An Arabic perfume house built around calm discovery: try first, choose clearly, and expect realistic fragrance performance.',

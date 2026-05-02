@@ -167,7 +167,7 @@ export default function Navbar() {
             </span>
             <span className="site-nav__brand-copy">
               <img src={BRAND_LOGO} alt="Nafas" className="site-nav__brand-logo" />
-              <small>{locale === 'ar' ? 'دار نفَس' : 'Maison Nafas'}</small>
+              <small>{locale === 'ar' ? 'نفَس' : 'Maison Nafas'}</small>
             </span>
           </Link>
 
@@ -245,7 +245,7 @@ export default function Navbar() {
         <div className="mobile-panel__head">
           <Link to="/" className="mobile-panel__brand" onClick={() => setOpen(false)}>
             <img src={BRAND_LOGO} alt="Nafas" className="mobile-panel__logo" />
-            <span>{locale === 'ar' ? 'دار نفَس' : 'Maison Nafas'}</span>
+            <span>{locale === 'ar' ? 'نفَس' : 'Maison Nafas'}</span>
           </Link>
           <button type="button" className="site-icon" onClick={() => setOpen(false)} aria-label={copy.close}>
             <X size={18} aria-hidden="true" />
