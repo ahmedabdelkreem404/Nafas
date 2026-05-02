@@ -267,12 +267,12 @@ export default function ProductDetail() {
               <div className="story-card__text">
                 <p>
                   {locale === 'ar'
-                    ? '6 عينات من عطور نافَس تساعدك تختار بهدوء، تجرب الرائحة على بشرتك، وتاخد خطوة آمنة قبل شراء الزجاجة الكبيرة.'
+                    ? '6 عينات من عطور نفَس تساعدك تختار بهدوء، تجرب الرائحة على بشرتك، وتاخد خطوة آمنة قبل شراء الزجاجة الكبيرة.'
                     : 'Six Nafas samples to help you choose calmly, test each scent on your skin, and decide before buying a full bottle.'}
                 </p>
               </div>
               <div className="who-tags" aria-label={locale === 'ar' ? 'مميزات مجموعة التجربة' : 'Discovery Set benefits'}>
-                <span className="who-tag">{locale === 'ar' ? '6 عينات من عطور نافَس' : '6 Nafas samples'}</span>
+                <span className="who-tag">{locale === 'ar' ? '6 عينات من عطور نفَس' : '6 Nafas samples'}</span>
                 <span className="who-tag">{locale === 'ar' ? 'مناسب لو محتار تختار أنهي عطر' : 'Useful when you are unsure which scent fits'}</span>
                 <span className="who-tag">{locale === 'ar' ? 'جرّب على بشرتك قبل الزجاجة الكبيرة' : 'Try on skin before the full bottle'}</span>
                 <span className="who-tag">{locale === 'ar' ? 'خطوة آمنة قبل شراء الحجم الكبير' : 'A safer step before the larger size'}</span>
