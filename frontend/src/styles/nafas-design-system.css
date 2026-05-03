@@ -1550,7 +1550,12 @@ body:has(.checkout-page) .whatsapp-float {
 /* Admin shell */
 .admin-layout {
   color: var(--nf-ink);
-  background: var(--nf-warm);
+  min-height: 100svh;
+  grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(201, 161, 90, 0.12), transparent 24rem),
+    linear-gradient(180deg, #f7edde 0%, #f2e5d3 100%);
+  overflow-x: clip;
 }
 
 .admin-sidebar,
@@ -1561,10 +1566,92 @@ body:has(.checkout-page) .whatsapp-float {
   box-shadow: var(--nf-shadow-sm);
 }
 
+.admin-sidebar {
+  height: 100svh;
+  padding: 0.9rem;
+  overflow: hidden;
+}
+
+.admin-sidebar__inner {
+  min-block-size: 0;
+}
+
+.admin-sidebar__brand {
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 248, 238, 0.96), rgba(251, 242, 228, 0.82)),
+    var(--nf-surface);
+}
+
+.admin-sidebar__brand strong {
+  font-size: clamp(1.65rem, 2.2vw, 2.15rem);
+}
+
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 1.85rem;
+  padding: 0.32rem 0.72rem;
+  border: 1px solid rgba(58, 36, 25, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 248, 238, 0.78);
+  color: var(--nf-muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.ui-badge--gold {
+  border-color: rgba(201, 161, 90, 0.28);
+  background: rgba(201, 161, 90, 0.15);
+  color: #6f431f;
+}
+
+.ui-badge--success {
+  border-color: rgba(62, 132, 91, 0.24);
+  background: rgba(62, 132, 91, 0.12);
+  color: #2f6f4b;
+}
+
+.ui-badge--danger {
+  border-color: rgba(156, 54, 54, 0.24);
+  background: rgba(156, 54, 54, 0.1);
+  color: #8f2f23;
+}
+
+.ui-badge--muted {
+  border-color: rgba(58, 36, 25, 0.12);
+  background: rgba(58, 36, 25, 0.06);
+  color: rgba(33, 23, 19, 0.58);
+}
+
+.ui-badge--rose {
+  border-color: rgba(184, 109, 59, 0.2);
+  background: rgba(184, 109, 59, 0.1);
+  color: #8a4a28;
+}
+
+.admin-sidebar__nav {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(58, 36, 25, 0.26) transparent;
+}
+
+.admin-nav-group {
+  gap: 0.35rem;
+}
+
+.admin-nav-group__label {
+  padding-inline: 0.4rem;
+}
+
 .admin-nav-link {
   min-block-size: 2.75rem;
   border-radius: var(--nf-radius-md);
   color: var(--nf-muted);
+  font-weight: 800;
 }
 
 .admin-nav-link.is-active {
@@ -1572,9 +1659,137 @@ body:has(.checkout-page) .whatsapp-float {
   background: rgba(201, 161, 90, 0.16);
 }
 
+.admin-main {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding: clamp(1rem, 2.2vw, 1.75rem);
+}
+
+.admin-topbar {
+  inset-block-start: clamp(0.55rem, 1vw, 0.9rem);
+  margin-block-end: clamp(1rem, 2vw, 1.35rem);
+}
+
+.admin-topbar__title strong {
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+}
+
+.admin-page-shell {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+}
+
+.admin-page-shell > .page-header {
+  align-items: end;
+  gap: 1rem;
+  padding: 0.35rem 0 0.25rem;
+}
+
+.admin-page-shell .page-header__title {
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  line-height: 1.05;
+}
+
+.admin-page-shell .page-header__copy {
+  max-width: 62ch;
+}
+
+.admin-page-shell .kpi-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.admin-page-shell .kpi-card {
+  min-height: 128px;
+  align-content: space-between;
+}
+
+.admin-page-shell .grid-auto {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-page-shell .state-card {
+  min-height: auto;
+  max-width: 560px;
+  margin-inline: auto;
+  padding: clamp(1.2rem, 2vw, 1.65rem);
+  justify-items: center;
+  text-align: center;
+}
+
+.admin-page-shell .state-card__brand {
+  display: inline-flex;
+  inline-size: 4rem;
+  block-size: 4rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-page-shell .state-card__brand img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+}
+
+.admin-page-shell .loading-bar {
+  max-width: 22rem;
+}
+
 .admin-topbar__menu,
 .admin-sidebar__logout {
   min-block-size: 2.75rem;
+}
+
+@media (max-width: 1180px) {
+  .admin-page-shell .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1023px) {
+  .admin-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-main {
+    max-width: none;
+    padding: 0.85rem;
+  }
+
+  .admin-page-shell {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-main {
+    padding: 0.75rem;
+  }
+
+  .admin-topbar {
+    border-radius: 20px;
+    align-items: start;
+  }
+
+  .admin-topbar__actions {
+    flex-wrap: wrap;
+    justify-content: end;
+  }
+
+  .admin-page-shell > .page-header {
+    align-items: start;
+  }
+
+  .admin-page-shell .page-header__title {
+    font-size: clamp(1.85rem, 9vw, 2.45rem);
+  }
+
+  .admin-page-shell .kpi-grid,
+  .admin-page-shell .grid-auto {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 1180px) {
