@@ -21,12 +21,26 @@ function remoteRequest<T>(request: () => Promise<T>) {
   return shouldUseRemoteAuth() ? request() : localBackendUnavailable();
 }
 
+let meRequest: Promise<any> | null = null;
+let meRequestExpiresAt = 0;
+
+function getMe() {
+  const now = Date.now();
+  if (meRequest && now < meRequestExpiresAt) {
+    return meRequest;
+  }
+
+  meRequest = remoteRequest(() => client.get('/me'));
+  meRequestExpiresAt = now + 5000;
+  return meRequest;
+}
+
 export const authApi = {
   login: (payload: { email: string; password: string }) => remoteRequest(() => client.post('/auth/login', payload)),
   register: (payload: { name: string; email: string; password: string }) => remoteRequest(() => client.post('/auth/register', payload)),
   googleAuth: (idToken: string) => remoteRequest(() => client.post('/auth/google', { id_token: idToken })),
   logout: () => remoteRequest(() => client.post('/auth/logout')),
-  me: () => remoteRequest(() => client.get('/me')),
+  me: getMe,
   myOrders: () => remoteRequest(() => client.get('/me/orders')),
   myOrder: (id: number | string) => remoteRequest(() => client.get(`/me/orders/${id}`)),
   orderByNumber: (orderNumber: string, params?: { phone?: string; email?: string }) =>

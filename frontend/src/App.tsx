@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import OffcanvasCart from './components/OffcanvasCart';
@@ -42,12 +42,25 @@ const AdminQuality = lazy(() => import('./pages/admin/AdminQuality'));
 const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
 
 function RouteFallback() {
+  const location = useLocation();
+  if (location.pathname.startsWith('/admin')) {
+    return (
+      <div className="admin-route-fallback" dir="rtl">
+        <div className="admin-route-fallback__panel">
+          <div className="loading-bar loading-bar--lg" />
+          <div className="loading-bar" />
+          <div className="loading-bar" />
+        </div>
+      </div>
+    );
+  }
+
   return <div className="n-container n-section"><div className="empty-panel">Nafas...</div></div>;
 }
 
 function PublicLayout() {
   return (
-    <>
+    <CartProvider>
       <div className="app-shell">
         <Navbar />
         <main className="page-shell">
@@ -57,7 +70,7 @@ function PublicLayout() {
         <OffcanvasCart />
         <WhatsAppFloatButton />
       </div>
-    </>
+    </CartProvider>
   );
 }
 
@@ -75,55 +88,53 @@ export default function App() {
   return (
     <LocaleProvider>
       <EngagementProvider>
-        <CartProvider>
-          <BrowserRouter>
-            <Suspense fallback={<RouteFallback />}>
-              <Routes>
-                <Route path="/" element={<PublicLayout />}>
-                  <Route index element={<Home />} />
-                  <Route path="shop" element={<Shop />} />
-                  <Route path="products/:slug" element={<ProductDetail />} />
-                  <Route path="favorites" element={<Favorites />} />
-                  <Route path="cart" element={<Cart />} />
-                  <Route path="checkout" element={<Checkout />} />
-                  <Route path="order-confirmation/:orderNumber" element={<OrderConfirmation />} />
-                  <Route path="login" element={<Login />} />
-                  <Route path="register" element={<Register />} />
-                  <Route path="account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
-                  <Route path="account/orders" element={<ProtectedRoute><AccountOrders /></ProtectedRoute>} />
-                  <Route path="account/orders/:id" element={<ProtectedRoute><AccountOrderDetail /></ProtectedRoute>} />
-                  <Route path="about" element={<ContentPage />} />
-                  <Route path="faq" element={<ContentPage />} />
-                  <Route path="quality" element={<ContentPage />} />
-                  <Route path="privacy-policy" element={<ContentPage />} />
-                  <Route path="return-policy" element={<ContentPage />} />
-                  <Route path="terms" element={<ContentPage />} />
-                </Route>
+        <BrowserRouter>
+          <Suspense fallback={<RouteFallback />}>
+            <Routes>
+              <Route path="/" element={<PublicLayout />}>
+                <Route index element={<Home />} />
+                <Route path="shop" element={<Shop />} />
+                <Route path="products/:slug" element={<ProductDetail />} />
+                <Route path="favorites" element={<Favorites />} />
+                <Route path="cart" element={<Cart />} />
+                <Route path="checkout" element={<Checkout />} />
+                <Route path="order-confirmation/:orderNumber" element={<OrderConfirmation />} />
+                <Route path="login" element={<Login />} />
+                <Route path="register" element={<Register />} />
+                <Route path="account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+                <Route path="account/orders" element={<ProtectedRoute><AccountOrders /></ProtectedRoute>} />
+                <Route path="account/orders/:id" element={<ProtectedRoute><AccountOrderDetail /></ProtectedRoute>} />
+                <Route path="about" element={<ContentPage />} />
+                <Route path="faq" element={<ContentPage />} />
+                <Route path="quality" element={<ContentPage />} />
+                <Route path="privacy-policy" element={<ContentPage />} />
+                <Route path="return-policy" element={<ContentPage />} />
+                <Route path="terms" element={<ContentPage />} />
+              </Route>
 
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route path="/admin" element={<AdminShell />}>
-                  <Route path="dashboard" element={<AdminDashboard />} />
-                  <Route path="products" element={<AdminProducts />} />
-                  <Route path="products/create" element={<AdminProductForm />} />
-                  <Route path="products/:id/edit" element={<AdminProductForm />} />
-                  <Route path="products/:id/media" element={<AdminProductMedia />} />
-                  <Route path="products/:id/variants" element={<AdminProductVariants />} />
-                  <Route path="orders" element={<AdminOrders />} />
-                  <Route path="orders/:id" element={<AdminOrderDetail />} />
-                  <Route path="coupons" element={<AdminCoupons />} />
-                  <Route path="content" element={<AdminContent />} />
-                  <Route path="quality" element={<AdminQuality />} />
-                  <Route path="formulas" element={<AdminFormulas />} />
-                  <Route path="batches" element={<AdminBatches />} />
-                  <Route path="inventory" element={<AdminInventory />} />
-                  <Route path="customers" element={<AdminCustomers />} />
-                  <Route path="analytics" element={<AdminAnalytics />} />
-                  <Route path="settings" element={<AdminSettings />} />
-                </Route>
-              </Routes>
-            </Suspense>
-          </BrowserRouter>
-        </CartProvider>
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<AdminShell />}>
+                <Route path="dashboard" element={<AdminDashboard />} />
+                <Route path="products" element={<AdminProducts />} />
+                <Route path="products/create" element={<AdminProductForm />} />
+                <Route path="products/:id/edit" element={<AdminProductForm />} />
+                <Route path="products/:id/media" element={<AdminProductMedia />} />
+                <Route path="products/:id/variants" element={<AdminProductVariants />} />
+                <Route path="orders" element={<AdminOrders />} />
+                <Route path="orders/:id" element={<AdminOrderDetail />} />
+                <Route path="coupons" element={<AdminCoupons />} />
+                <Route path="content" element={<AdminContent />} />
+                <Route path="quality" element={<AdminQuality />} />
+                <Route path="formulas" element={<AdminFormulas />} />
+                <Route path="batches" element={<AdminBatches />} />
+                <Route path="inventory" element={<AdminInventory />} />
+                <Route path="customers" element={<AdminCustomers />} />
+                <Route path="analytics" element={<AdminAnalytics />} />
+                <Route path="settings" element={<AdminSettings />} />
+              </Route>
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
       </EngagementProvider>
     </LocaleProvider>
   );

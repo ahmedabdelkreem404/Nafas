@@ -1,7 +1,36 @@
 ﻿import React, { useEffect, useState } from 'react';
-import client from '../../api/client';
-import { AdminPageShell, Card, ErrorState, LoadingState } from '../../components/ui';
+import { adminApi } from '../../api/adminApi';
+import { AdminPageShell, Card, ErrorState } from '../../components/ui';
 import { formatCurrency } from '../../utils/format';
+
+function AnalyticsSkeleton() {
+  return (
+    <div className="admin-analytics-skeleton" aria-label="جاري تحميل التحليلات">
+      <div className="kpi-grid">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div key={index} className="kpi-card admin-skeleton-card">
+            <div className="loading-bar" />
+            <div className="loading-bar loading-bar--lg" />
+          </div>
+        ))}
+      </div>
+      <div className="grid-auto">
+        <Card tone="strong" className="stack admin-skeleton-card">
+          <strong>المبيعات عبر الزمن</strong>
+          <div className="loading-bar loading-bar--lg" />
+          <div className="loading-bar" />
+          <div className="loading-bar" />
+        </Card>
+        <Card tone="strong" className="stack admin-skeleton-card">
+          <strong>أفضل المنتجات</strong>
+          <div className="loading-bar loading-bar--lg" />
+          <div className="loading-bar" />
+          <div className="loading-bar" />
+        </Card>
+      </div>
+    </div>
+  );
+}
 
 const AdminAnalytics: React.FC = () => {
   const [sales, setSales] = useState<any[]>([]);
@@ -10,7 +39,7 @@ const AdminAnalytics: React.FC = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    Promise.all([client.get('/admin/analytics/sales'), client.get('/admin/analytics/products')])
+    Promise.all([adminApi.analytics.sales(), adminApi.analytics.products()])
       .then(([salesRes, productsRes]) => {
         setSales(salesRes.data || []);
         setTopProducts(productsRes.data || []);
@@ -21,7 +50,7 @@ const AdminAnalytics: React.FC = () => {
 
   return (
     <AdminPageShell eyebrow="Analytics" title="تحليلات المبيعات" description="عرض عملي سريع للمبيعات والمنتجات الأعلى حركة." >
-      {loading ? <LoadingState label="جاري تحميل التحليلات..." /> : error ? <ErrorState message={error} /> : (
+      {loading ? <AnalyticsSkeleton /> : error ? <ErrorState message={error} /> : (
         <div className="grid-auto">
           <Card tone="strong" className="stack">
             <strong>المبيعات عبر الزمن</strong>

@@ -1737,6 +1737,92 @@ body:has(.checkout-page) .whatsapp-float {
   max-width: 22rem;
 }
 
+.admin-route-fallback {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2rem);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(201, 161, 90, 0.12), transparent 24rem),
+    linear-gradient(180deg, #f7edde 0%, #f2e5d3 100%);
+}
+
+.admin-route-fallback__panel {
+  width: min(100%, 26rem);
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(58, 36, 25, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 248, 238, 0.84);
+  box-shadow: var(--nf-shadow-sm);
+}
+
+.admin-route-fallback .loading-bar {
+  inline-size: min(100%, 18rem);
+  block-size: 0.72rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(58, 36, 25, 0.08), rgba(201, 161, 90, 0.16), rgba(58, 36, 25, 0.08));
+  background-size: 220% 100%;
+  animation: adminLoadingBar 1.5s ease-in-out infinite;
+}
+
+.admin-route-fallback .loading-bar--lg {
+  inline-size: min(100%, 12rem);
+  block-size: 1.35rem;
+}
+
+.admin-analytics-skeleton {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.35rem);
+}
+
+.admin-skeleton-card {
+  overflow: hidden;
+  position: relative;
+}
+
+.admin-skeleton-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.34) 42%, transparent 72%);
+  transform: translateX(-100%);
+  animation: adminSkeletonSweep 1.65s ease-in-out infinite;
+}
+
+.admin-analytics-skeleton .loading-bar {
+  inline-size: min(100%, 18rem);
+  block-size: 0.72rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(58, 36, 25, 0.08), rgba(201, 161, 90, 0.16), rgba(58, 36, 25, 0.08));
+  background-size: 220% 100%;
+  animation: adminLoadingBar 1.5s ease-in-out infinite;
+}
+
+.admin-analytics-skeleton .loading-bar--lg {
+  inline-size: min(100%, 12rem);
+  block-size: 1.35rem;
+}
+
+@keyframes adminSkeletonSweep {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes adminLoadingBar {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 .admin-topbar__menu,
 .admin-sidebar__logout {
   min-block-size: 2.75rem;

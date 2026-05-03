@@ -1,7 +1,25 @@
 import client from './client';
 
+const readCache = new Map<string, { expiresAt: number; promise: Promise<any> }>();
+
+function cachedGet(key: string, url: string, ttlMs = 5000) {
+  const now = Date.now();
+  const cached = readCache.get(key);
+  if (cached && now < cached.expiresAt) {
+    return cached.promise;
+  }
+
+  const promise = client.get(url);
+  readCache.set(key, { expiresAt: now + ttlMs, promise });
+  return promise;
+}
+
 export const adminApi = {
-  getDashboard: () => client.get('/admin/dashboard'),
+  getDashboard: () => cachedGet('dashboard', '/admin/dashboard'),
+  analytics: {
+    sales: () => cachedGet('analytics:sales', '/admin/analytics/sales'),
+    products: () => cachedGet('analytics:products', '/admin/analytics/products'),
+  },
   products: {
     list: () => client.get('/admin/products'),
     get: (id: number | string) => client.get(`/admin/products/${id}`),
