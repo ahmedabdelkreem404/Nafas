@@ -27,8 +27,8 @@ class OrderConfirmedNotification extends Notification implements ShouldQueue
     {
         $locale = $this->resolveLocale();
         $subject = $locale === 'en'
-            ? "Your order #{$this->order->order_number} is confirmed — Nafas"
-            : "تم استلام طلبك #{$this->order->order_number} — نفَس";
+            ? "Your order #{$this->order->order_number} is confirmed - Nafas"
+            : "تم استلام طلبك #{$this->order->order_number} - نفَس";
 
         return (new MailMessage())
             ->subject($subject)
@@ -37,7 +37,7 @@ class OrderConfirmedNotification extends Notification implements ShouldQueue
                 'locale' => $locale,
                 'order' => $this->order->loadMissing('items.variant.product'),
                 'shopUrl' => config('app.frontend_url', 'http://localhost:5173/shop'),
-                'supportUrl' => 'https://wa.me/201000000000',
+                'supportUrl' => config('services.whatsapp.url'),
             ]);
     }
 

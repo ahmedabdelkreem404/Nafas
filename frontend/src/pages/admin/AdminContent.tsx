@@ -14,14 +14,14 @@ const AdminContent: React.FC = () => {
   useEffect(() => { load(); }, []);
 
   return (
-    <AdminPageShell eyebrow="Content" title="إدارة الصفحات والمحتوى" description="تجربة تحرير محتوى أكثر ترتيبًا للصفحات القانونية والتعريفية وأقسامها.">
+    <AdminPageShell eyebrow="المحتوى" title="إدارة الصفحات والمحتوى" description="تجربة تحرير محتوى أكثر ترتيبًا للصفحات القانونية والتعريفية وأقسامها.">
       <Card tone="strong">
         <form className="stack" onSubmit={(event) => {
           event.preventDefault();
           adminApi.pages.create(pageForm).then(() => { setPageForm(blankPage); load(); });
         }}>
           <div className="grid-auto">
-            <Field label="slug"><Input value={pageForm.slug} onChange={(event) => setPageForm({ ...pageForm, slug: event.target.value })} /></Field>
+            <Field label="الرابط المختصر"><Input value={pageForm.slug} onChange={(event) => setPageForm({ ...pageForm, slug: event.target.value })} /></Field>
             <Field label="العنوان"><Input value={pageForm.title} onChange={(event) => setPageForm({ ...pageForm, title: event.target.value })} /></Field>
           </div>
           <Field label="المحتوى"><Textarea value={pageForm.content} onChange={(event) => setPageForm({ ...pageForm, content: event.target.value })} /></Field>
@@ -59,7 +59,7 @@ const AdminContent: React.FC = () => {
               }}>
                 <div className="grid-auto">
                   <Field label="عنوان القسم"><Input value={sectionForms[page.id]?.title || ''} onChange={(event) => setSectionForms({ ...sectionForms, [page.id]: { ...(sectionForms[page.id] || blankSection), title: event.target.value } })} /></Field>
-                  <Field label="section key"><Input value={sectionForms[page.id]?.section_key || ''} onChange={(event) => setSectionForms({ ...sectionForms, [page.id]: { ...(sectionForms[page.id] || blankSection), section_key: event.target.value } })} /></Field>
+                  <Field label="مفتاح القسم"><Input value={sectionForms[page.id]?.section_key || ''} onChange={(event) => setSectionForms({ ...sectionForms, [page.id]: { ...(sectionForms[page.id] || blankSection), section_key: event.target.value } })} /></Field>
                 </div>
                 <Field label="المحتوى"><Textarea value={sectionForms[page.id]?.content || ''} onChange={(event) => setSectionForms({ ...sectionForms, [page.id]: { ...(sectionForms[page.id] || blankSection), content: event.target.value } })} /></Field>
                 <Button type="submit" variant="secondary">إضافة قسم</Button>

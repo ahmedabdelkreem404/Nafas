@@ -1,6 +1,6 @@
 import { Gift, Heart, Minus, MoonStar, Plus, Shield, Snowflake, Users } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { getCachedProduct, getCachedProducts } from '../cache/productCache';
 import ProductCard from '../components/ProductCard';
 import ProductGallery from '../components/ProductGallery';
@@ -10,9 +10,10 @@ import { useLocale } from '../context/LocaleContext';
 import { useCart } from '../hooks/useCart';
 import { useEngagement } from '../hooks/useEngagement';
 import type { Product } from '../types/store';
-import { WHATSAPP_SUPPORT_URL } from '../utils/brand';
+import { HAS_WHATSAPP_SUPPORT } from '../utils/brand';
 import { formatCurrency, formatNumber } from '../utils/format';
 import { getPrimaryVariant } from '../utils/products';
+import { buildProductWhatsAppUrl } from '../utils/whatsapp';
 
 function getMeterScore(label?: string) {
   const value = String(label || '').toLowerCase();
@@ -109,6 +110,7 @@ function ScentWheel({ locale, notes }: { locale: 'ar' | 'en'; notes: string[] })
 
 export default function ProductDetail() {
   const { slug = '' } = useParams();
+  const location = useLocation();
   const { locale } = useLocale();
   const { addToCart, openCart } = useCart();
   const { getProductMetrics, registerView, toggleFavorite } = useEngagement();
@@ -138,7 +140,15 @@ export default function ProductDetail() {
       });
   }, [registerView, slug]);
 
-  const related = useMemo(() => products.filter((item) => item.slug !== slug).slice(0, 3), [products, slug]);
+  const isDiscoverySet = slug === 'discovery-set';
+  const isGiftBox = slug.includes('gift-box');
+  const related = useMemo(() => {
+    const candidates = products.filter((item) => item.slug !== slug);
+    const discoverySet = !isDiscoverySet ? candidates.find((item) => item.slug === 'discovery-set') : null;
+    const others = candidates.filter((item) => item.slug !== 'discovery-set');
+
+    return [...(discoverySet ? [discoverySet] : []), ...others].slice(0, 3);
+  }, [isDiscoverySet, products, slug]);
   const metrics = product ? getProductMetrics(product) : null;
 
   const selectedVariant = useMemo(() => {
@@ -157,6 +167,13 @@ export default function ProductDetail() {
   const moodTags = locale === 'ar' ? product?.tags_ar || [] : product?.tags_en || [];
   const longevityScore = getMeterScore(locale === 'ar' ? product?.longevity_label_ar || product?.longevity_label : product?.longevity_label_en || product?.longevity_label);
   const projectionScore = getMeterScore(locale === 'ar' ? product?.projection_label_ar || product?.projection_label : product?.projection_label_en || product?.projection_label);
+  const productWhatsAppUrl = product && selectedVariant ? buildProductWhatsAppUrl({
+    locale,
+    path: location.pathname,
+    product,
+    quantity,
+    variant: selectedVariant,
+  }) : '';
 
   useEffect(() => {
     if (!selectedVariantId) {
@@ -245,6 +262,56 @@ export default function ProductDetail() {
             </button>
           </Reveal>
 
+          {isDiscoverySet ? (
+            <Reveal className="story-card is-open" delay={140}>
+              <h2>{locale === 'ar' ? 'ليه مجموعة التجربة؟' : 'Why the Discovery Set?'}</h2>
+              <div className="story-card__text">
+                <p>
+                  {locale === 'ar'
+                    ? '6 عينات من عطور نفَس تساعدك تختار بهدوء، تجرب الرائحة على بشرتك، وتاخد خطوة آمنة قبل شراء الزجاجة الكبيرة.'
+                    : 'Six Nafas samples to help you choose calmly, test each scent on your skin, and decide before buying a full bottle.'}
+                </p>
+              </div>
+              <div className="who-tags" aria-label={locale === 'ar' ? 'مميزات مجموعة التجربة' : 'Discovery Set benefits'}>
+                <span className="who-tag">{locale === 'ar' ? '6 عينات من عطور نفَس' : '6 Nafas samples'}</span>
+                <span className="who-tag">{locale === 'ar' ? 'مناسب لو محتار تختار أنهي عطر' : 'Useful when you are unsure which scent fits'}</span>
+                <span className="who-tag">{locale === 'ar' ? 'جرّب على بشرتك قبل الزجاجة الكبيرة' : 'Try on skin before the full bottle'}</span>
+                <span className="who-tag">{locale === 'ar' ? 'خطوة آمنة قبل شراء الحجم الكبير' : 'A safer step before the larger size'}</span>
+              </div>
+            </Reveal>
+          ) : isGiftBox ? (
+            <Reveal className="story-card is-open" delay={140}>
+              <h2>{locale === 'ar' ? 'هدية جاهزة بهدوء' : 'A gift made easier'}</h2>
+              <div className="story-card__text">
+                <p>
+                  {locale === 'ar'
+                    ? 'اختيار مخصص للهدايا بتغليف أنيق وتجربة أسهل لو مش عارف ذوق الشخص بدقة. مناسب للمناسبات وبيوصل كاختيار واضح من نفَس.'
+                    : 'A gift-focused Nafas choice with elegant packaging, made for easier gifting when you are not fully sure of the recipient scent profile.'}
+                </p>
+              </div>
+              <div className="who-tags" aria-label={locale === 'ar' ? 'مميزات بوكس الهدية' : 'Gift box benefits'}>
+                <span className="who-tag">{locale === 'ar' ? 'مناسب كهدية' : 'Gift-ready'}</span>
+                <span className="who-tag">{locale === 'ar' ? 'تغليف أنيق' : 'Elegant packaging'}</span>
+                <span className="who-tag">{locale === 'ar' ? 'اختيار أسهل لو مش عارف ذوق الشخص' : 'Easier when you are unsure of their taste'}</span>
+                <span className="who-tag">{locale === 'ar' ? 'مناسب للمناسبات' : 'Occasion-friendly'}</span>
+              </div>
+            </Reveal>
+          ) : (
+            <Reveal className="story-card is-open" delay={140}>
+              <h2>{locale === 'ar' ? 'مش متأكد؟' : 'Still choosing?'}</h2>
+              <div className="story-card__text">
+                <p>
+                  {locale === 'ar'
+                    ? 'جرّب مجموعة التجربة الأول لو محتار بين الروائح. ولو العطر هدية، مقاس 30ml أو مجموعة التجربة اختيار أخف وأسهل.'
+                    : 'Try the Discovery Set first if you are choosing between scents. For gifting, the 30ml size or Discovery Set is a lighter, easier choice.'}
+                </p>
+              </div>
+              <Link to="/products/discovery-set" className="inline-link">
+                {locale === 'ar' ? 'شوف مجموعة التجربة' : 'View Discovery Set'}
+              </Link>
+            </Reveal>
+          )}
+
           <Reveal className="variant-card" delay={160}>
             <h2>{locale === 'ar' ? 'الأحجام' : 'Variants'}</h2>
             <div className="variant-grid">
@@ -312,9 +379,11 @@ export default function ProductDetail() {
                   {locale === 'ar' ? 'أضف إلى السلة' : 'Add to cart'}
                 </button>
 
-                <a href={WHATSAPP_SUPPORT_URL} target="_blank" rel="noreferrer" className="n-btn n-btn--ghost n-btn--full">
-                  {locale === 'ar' ? 'استفسر عبر واتساب' : 'Ask on WhatsApp'}
-                </a>
+                {HAS_WHATSAPP_SUPPORT && productWhatsAppUrl ? (
+                  <a href={productWhatsAppUrl} target="_blank" rel="noreferrer" className="n-btn n-btn--ghost n-btn--full">
+                    {locale === 'ar' ? 'استفسر عبر واتساب' : 'Ask on WhatsApp'}
+                  </a>
+                ) : null}
               </>
             )}
 

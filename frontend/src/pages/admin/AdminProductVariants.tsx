@@ -46,7 +46,7 @@ const AdminProductVariants: React.FC = () => {
   ], [load]);
 
   return (
-    <AdminPageShell eyebrow="Catalog" title="أحجام ومتغيرات المنتج" description="تحكم واضح في المقاسات والأسعار والمخزون مع تجربة مريحة حتى على الهاتف.">
+    <AdminPageShell eyebrow="الكتالوج" title="أحجام ومتغيرات المنتج" description="تحكم واضح في المقاسات والأسعار والمخزون مع تجربة مريحة حتى على الهاتف.">
       {error ? <ErrorState message={error} /> : null}
       <Card tone="strong">
         <form className="stack" onSubmit={save}>

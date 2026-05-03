@@ -9,7 +9,7 @@ const emptyState = {
   name_ar: '',
   name_en: '',
   slug: '',
-  gender: 'Men',
+  gender: 'men',
   status: 'active',
   story: '',
   personality: '',
@@ -86,14 +86,14 @@ const AdminProductForm: React.FC = () => {
 
   if (loading) {
     return (
-      <AdminPageShell eyebrow="Catalog" title="تحميل المنتج" description="">
+      <AdminPageShell eyebrow="الكتالوج" title="تحميل المنتج" description="">
         <LoadingState label="جاري تحميل المنتج..." />
       </AdminPageShell>
     );
   }
 
   return (
-    <AdminPageShell eyebrow="Catalog" title={id ? 'تعديل المنتج' : 'إضافة منتج'} description="نموذج واضح ومنظّم لبيانات المنتج التسويقية والعطرية والربحية.">
+    <AdminPageShell eyebrow="الكتالوج" title={id ? 'تعديل المنتج' : 'إضافة منتج'} description="نموذج واضح ومنظّم لبيانات المنتج التسويقية والعطرية والربحية.">
       {error ? <ErrorState message={error} /> : null}
       <Card tone="strong">
         <form onSubmit={submit} className="stack">
@@ -101,9 +101,9 @@ const AdminProductForm: React.FC = () => {
             <Field label="الاسم العربي"><Input value={form.name_ar} onChange={(event) => setForm({ ...form, name_ar: event.target.value })} /></Field>
             <Field label="الاسم الإنجليزي"><Input value={form.name_en} onChange={(event) => setForm({ ...form, name_en: event.target.value })} /></Field>
             <Field label="الكود"><Input value={form.code} onChange={(event) => setForm({ ...form, code: event.target.value })} /></Field>
-            <Field label="الرابط slug"><Input value={form.slug} onChange={(event) => setForm({ ...form, slug: event.target.value })} /></Field>
-            <Field label="الجنس"><Select value={form.gender} onChange={(event) => setForm({ ...form, gender: event.target.value })}><option value="Men">Men</option><option value="Women">Women</option><option value="Unisex">Unisex</option></Select></Field>
-            <Field label="الحالة"><Select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value })}><option value="active">active</option><option value="hidden">hidden</option><option value="draft">draft</option></Select></Field>
+            <Field label="الرابط المختصر"><Input value={form.slug} onChange={(event) => setForm({ ...form, slug: event.target.value })} /></Field>
+            <Field label="الجنس"><Select value={form.gender} onChange={(event) => setForm({ ...form, gender: event.target.value })}><option value="men">رجالي</option><option value="women">حريمي</option><option value="unisex">يونيسكس</option></Select></Field>
+            <Field label="الحالة"><Select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value })}><option value="active">نشط</option><option value="hidden">مخفي</option><option value="draft">مسودة</option></Select></Field>
             <Field label="الشخصية"><Input value={form.personality} onChange={(event) => setForm({ ...form, personality: event.target.value })} /></Field>
             <Field label="النوتات"><Input value={form.scent_notes} onChange={(event) => setForm({ ...form, scent_notes: event.target.value })} /></Field>
             <Field label="الموسم"><Input value={form.season} onChange={(event) => setForm({ ...form, season: event.target.value })} /></Field>

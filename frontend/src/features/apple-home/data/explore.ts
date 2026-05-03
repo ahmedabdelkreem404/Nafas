@@ -1,5 +1,5 @@
 import type { ExploreCard } from '../types';
-import { WHATSAPP_BASE_URL } from '../utils/whatsapp';
+import { HAS_WHATSAPP_URL, WHATSAPP_BASE_URL } from '../utils/whatsapp';
 
 export const exploreCards: ExploreCard[] = [
   {
@@ -20,11 +20,11 @@ export const exploreCards: ExploreCard[] = [
     copy: 'القصة والفلسفة خلف نفَس.',
     href: '/about',
   },
-  {
+  ...(HAS_WHATSAPP_URL ? [{
     id: 'whatsapp',
     title: 'WhatsApp',
     copy: 'اسألنا أو اطلب مباشرة.',
     href: WHATSAPP_BASE_URL,
     external: true,
-  },
+  }] : []),
 ];

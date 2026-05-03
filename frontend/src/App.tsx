@@ -1,4 +1,5 @@
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import OffcanvasCart from './components/OffcanvasCart';
@@ -8,40 +9,58 @@ import AdminLayout from './components/admin/AdminLayout';
 import { CartProvider } from './context/CartContext';
 import { EngagementProvider } from './context/EngagementContext';
 import { LocaleProvider } from './context/LocaleContext';
-import Account from './pages/Account';
-import AccountOrderDetail from './pages/AccountOrderDetail';
-import AccountOrders from './pages/AccountOrders';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
-import ContentPage from './pages/ContentPage';
-import Favorites from './pages/Favorites';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import OrderConfirmation from './pages/OrderConfirmation';
-import ProductDetail from './pages/ProductDetail';
-import Register from './pages/Register';
-import Shop from './pages/Shop';
-import AdminAnalytics from './pages/admin/AdminAnalytics';
-import AdminBatches from './pages/admin/AdminBatches';
-import AdminContent from './pages/admin/AdminContent';
-import AdminCoupons from './pages/admin/AdminCoupons';
-import AdminCustomers from './pages/admin/AdminCustomers';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminFormulas from './pages/admin/AdminFormulas';
-import AdminInventory from './pages/admin/AdminInventory';
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminOrderDetail from './pages/admin/AdminOrderDetail';
-import AdminOrders from './pages/admin/AdminOrders';
-import AdminProductForm from './pages/admin/AdminProductForm';
-import AdminProductMedia from './pages/admin/AdminProductMedia';
-import AdminProductVariants from './pages/admin/AdminProductVariants';
-import AdminProducts from './pages/admin/AdminProducts';
-import AdminQuality from './pages/admin/AdminQuality';
-import AdminSettings from './pages/admin/AdminSettings';
+
+const Account = lazy(() => import('./pages/Account'));
+const AccountOrderDetail = lazy(() => import('./pages/AccountOrderDetail'));
+const AccountOrders = lazy(() => import('./pages/AccountOrders'));
+const Cart = lazy(() => import('./pages/Cart'));
+const Checkout = lazy(() => import('./pages/Checkout'));
+const ContentPage = lazy(() => import('./pages/ContentPage'));
+const Favorites = lazy(() => import('./pages/Favorites'));
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const OrderConfirmation = lazy(() => import('./pages/OrderConfirmation'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+const Register = lazy(() => import('./pages/Register'));
+const Shop = lazy(() => import('./pages/Shop'));
+const AdminAnalytics = lazy(() => import('./pages/admin/AdminAnalytics'));
+const AdminBatches = lazy(() => import('./pages/admin/AdminBatches'));
+const AdminContent = lazy(() => import('./pages/admin/AdminContent'));
+const AdminCoupons = lazy(() => import('./pages/admin/AdminCoupons'));
+const AdminCustomers = lazy(() => import('./pages/admin/AdminCustomers'));
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+const AdminFormulas = lazy(() => import('./pages/admin/AdminFormulas'));
+const AdminInventory = lazy(() => import('./pages/admin/AdminInventory'));
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
+const AdminOrderDetail = lazy(() => import('./pages/admin/AdminOrderDetail'));
+const AdminOrders = lazy(() => import('./pages/admin/AdminOrders'));
+const AdminProductForm = lazy(() => import('./pages/admin/AdminProductForm'));
+const AdminProductMedia = lazy(() => import('./pages/admin/AdminProductMedia'));
+const AdminProductVariants = lazy(() => import('./pages/admin/AdminProductVariants'));
+const AdminProducts = lazy(() => import('./pages/admin/AdminProducts'));
+const AdminQuality = lazy(() => import('./pages/admin/AdminQuality'));
+const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
+
+function RouteFallback() {
+  const location = useLocation();
+  if (location.pathname.startsWith('/admin')) {
+    return (
+      <div className="admin-route-fallback" dir="rtl">
+        <div className="admin-route-fallback__panel">
+          <div className="loading-bar loading-bar--lg" />
+          <div className="loading-bar" />
+          <div className="loading-bar" />
+        </div>
+      </div>
+    );
+  }
+
+  return <div className="n-container n-section"><div className="empty-panel">Nafas...</div></div>;
+}
 
 function PublicLayout() {
   return (
-    <>
+    <CartProvider>
       <div className="app-shell">
         <Navbar />
         <main className="page-shell">
@@ -51,7 +70,7 @@ function PublicLayout() {
         <OffcanvasCart />
         <WhatsAppFloatButton />
       </div>
-    </>
+    </CartProvider>
   );
 }
 
@@ -69,8 +88,8 @@ export default function App() {
   return (
     <LocaleProvider>
       <EngagementProvider>
-        <CartProvider>
-          <BrowserRouter>
+        <BrowserRouter>
+          <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={<PublicLayout />}>
                 <Route index element={<Home />} />
@@ -114,8 +133,8 @@ export default function App() {
                 <Route path="settings" element={<AdminSettings />} />
               </Route>
             </Routes>
-          </BrowserRouter>
-        </CartProvider>
+          </Suspense>
+        </BrowserRouter>
       </EngagementProvider>
     </LocaleProvider>
   );

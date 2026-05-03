@@ -100,7 +100,7 @@
       ],
       "tinyTargets": [
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "site-nav__brand",
           "width": 101.6875,
           "height": 41.59375
@@ -275,7 +275,7 @@
       ],
       "tinyTargets": [
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "site-nav__brand",
           "width": 101.6875,
           "height": 41.59375
@@ -625,7 +625,7 @@
       ],
       "tinyTargets": [
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "site-nav__brand",
           "width": 102.875,
           "height": 37.59375
@@ -975,7 +975,7 @@
       ],
       "tinyTargets": [
         {
-          "text": "دار نفَس",
+          "text": "نفَس",
           "cls": "site-nav__brand",
           "width": 113.75,
           "height": 43.4375

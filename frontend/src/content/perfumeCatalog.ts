@@ -5,7 +5,7 @@ export type CatalogEntry = {
   accent: 'amber' | 'copper' | 'gold' | 'rose';
   categoryAr: string;
   categoryEn: string;
-  code: string;
+  code?: string;
   genderAr: string;
   genderEn: string;
   localMedia: string[];
@@ -34,8 +34,10 @@ export type CatalogEntry = {
 
 export const launchSlugs = ['sharara', 'madar', 'athar', 'barq', 'nada', 'ghayma'] as const;
 export type LaunchSlug = (typeof launchSlugs)[number];
+export const catalogSlugs = [...launchSlugs, 'discovery-set', 'men-gift-box', 'women-gift-box', 'discovery-gift-box'] as const;
+export type CatalogSlug = (typeof catalogSlugs)[number];
 
-export const perfumeCatalog: Record<LaunchSlug, CatalogEntry> = {
+export const perfumeCatalog: Record<CatalogSlug, CatalogEntry> = {
   sharara: {
     accent: 'gold',
     categoryAr: 'رجالي يومي فريش',
@@ -216,15 +218,152 @@ export const perfumeCatalog: Record<LaunchSlug, CatalogEntry> = {
     tagsAr: ['الكل', 'حريمي', 'هدايا', 'فاكهي', 'مسكي', 'تستر'],
     tagsEn: ['All', 'Women', 'Gifts', 'Fruity', 'Musky', 'Tester'],
   },
+  'men-gift-box': {
+    accent: 'copper',
+    categoryAr: 'هدية رجالي',
+    categoryEn: 'Men gift box',
+    genderAr: 'رجالي',
+    genderEn: 'Men',
+    localMedia: [
+      `${STOCK_ROOT}/shop-perfume-black.webp`,
+      `${STOCK_ROOT}/product-perfume-closeup.webp`,
+      `${STOCK_ROOT}/hero-perfume-dark.webp`,
+    ],
+    longevityAr: 'حسب العطر المختار',
+    longevityEn: 'Varies by selected scent',
+    moodAr: 'هدية، مناسبة، اختيار أسهل',
+    moodEn: 'Gift, occasion, easier choice',
+    nameAr: 'بوكس هدية رجالي',
+    nameEn: 'Men Gift Box',
+    notesAr: ['تغليف أنيق', 'عطر من نفَس', 'مناسبة جاهزة'],
+    notesEn: ['Elegant packaging', 'Nafas fragrance', 'Occasion ready'],
+    personalityAr: 'هدية رجالية جاهزة بتغليف أنيق واختيار واضح للمناسبات.',
+    personalityEn: 'A men gift box with elegant packaging and a clear occasion-ready choice.',
+    projectionAr: 'حسب العطر المختار',
+    projectionEn: 'Varies by selected scent',
+    seasonAr: 'كل المناسبات',
+    seasonEn: 'All occasions',
+    slug: 'men-gift-box',
+    storyAr: 'هدية جاهزة لعطر رجالي من نفَس بتغليف أنيق، مناسبة لو عايز اختيار مرتب من غير تعقيد.',
+    storyEn: 'A gift-ready men fragrance from Nafas, wrapped cleanly for an easier, polished choice.',
+    strengthAr: 'هدية جاهزة',
+    strengthEn: 'Gift-ready',
+    tagsAr: ['الكل', 'هدايا', 'رجالي'],
+    tagsEn: ['All', 'Gifts', 'Men'],
+  },
+  'women-gift-box': {
+    accent: 'rose',
+    categoryAr: 'هدية حريمي',
+    categoryEn: 'Women gift box',
+    genderAr: 'نسائي',
+    genderEn: 'Women',
+    localMedia: [
+      `${STOCK_ROOT}/shop-perfume-luxury.webp`,
+      `${STOCK_ROOT}/hero-perfume-fabric.webp`,
+      `${STOCK_ROOT}/product-perfume-closeup.webp`,
+    ],
+    longevityAr: 'حسب العطر المختار',
+    longevityEn: 'Varies by selected scent',
+    moodAr: 'هدية، ناعمة، مناسبة',
+    moodEn: 'Gift, soft, occasion',
+    nameAr: 'بوكس هدية حريمي',
+    nameEn: 'Women Gift Box',
+    notesAr: ['تغليف أنيق', 'عطر من نفَس', 'اختيار هادئ'],
+    notesEn: ['Elegant packaging', 'Nafas fragrance', 'Calm choice'],
+    personalityAr: 'هدية نسائية أنيقة وسهلة لو محتار تختار عطر مناسب.',
+    personalityEn: 'An elegant women gift box for easier gifting when choosing the right scent.',
+    projectionAr: 'حسب العطر المختار',
+    projectionEn: 'Varies by selected scent',
+    seasonAr: 'كل المناسبات',
+    seasonEn: 'All occasions',
+    slug: 'women-gift-box',
+    storyAr: 'اختيار هدية أنيق من نفَس، بتغليف مرتب ولمسة مناسبة للمناسبات.',
+    storyEn: 'A polished Nafas gift choice with clean packaging and an occasion-friendly presence.',
+    strengthAr: 'هدية جاهزة',
+    strengthEn: 'Gift-ready',
+    tagsAr: ['الكل', 'هدايا', 'نسائي'],
+    tagsEn: ['All', 'Gifts', 'Women'],
+  },
+  'discovery-gift-box': {
+    accent: 'gold',
+    categoryAr: 'هدية تجربة',
+    categoryEn: 'Discovery gift box',
+    genderAr: 'للجميع',
+    genderEn: 'Unisex',
+    localMedia: [
+      `${STOCK_ROOT}/shop-perfume-luxury.webp`,
+      `${STOCK_ROOT}/product-perfume-closeup.webp`,
+      `${STOCK_ROOT}/hero-perfume-fabric.webp`,
+    ],
+    longevityAr: 'حسب العطر المختار',
+    longevityEn: 'Varies by scent',
+    moodAr: 'اكتشاف، هدية، اختيار هادئ',
+    moodEn: 'Discovery, gifting, calm choice',
+    nameAr: 'بوكس التجربة',
+    nameEn: 'Discovery Gift Box',
+    notesAr: ['شرارة', 'مدار', 'أثر', 'برق', 'ندى', 'غيمة'],
+    notesEn: ['Sharara', 'Madar', 'Athar', 'Barq', 'Nada', 'Ghayma'],
+    personalityAr: 'هدية خفيفة لاكتشاف عطور نفَس الستة قبل اختيار الزجاجة.',
+    personalityEn: 'A light gift for discovering the six Nafas launch scents before choosing a bottle.',
+    projectionAr: 'حسب العطر المختار',
+    projectionEn: 'Varies by scent',
+    seasonAr: 'كل المناسبات',
+    seasonEn: 'All occasions',
+    slug: 'discovery-gift-box',
+    storyAr: 'مجموعة تجربة مغلفة كهدية، مناسبة لو عايز تقدم إحساس الاكتشاف بدل اختيار عطر واحد.',
+    storyEn: 'A discovery set wrapped as a gift, ideal when you want to offer exploration instead of choosing one scent.',
+    strengthAr: 'هدية تجربة',
+    strengthEn: 'Discovery gift',
+    tagsAr: ['الكل', 'هدايا', 'تستر'],
+    tagsEn: ['All', 'Gifts', 'Tester'],
+  },
+  'discovery-set': {
+    accent: 'gold',
+    categoryAr: 'مجموعة تجربة',
+    categoryEn: 'Discovery Set',
+    genderAr: 'للجميع',
+    genderEn: 'Unisex',
+    localMedia: [
+      `${STOCK_ROOT}/shop-perfume-luxury.webp`,
+      `${STOCK_ROOT}/product-perfume-closeup.webp`,
+      `${STOCK_ROOT}/hero-perfume-fabric.webp`,
+    ],
+    longevityAr: 'حسب العطر المختار',
+    longevityEn: 'Varies by scent',
+    moodAr: 'اكتشاف، هدية، اختيار هادئ',
+    moodEn: 'Discovery, gifting, calm choice',
+    nameAr: 'مجموعة التجربة',
+    nameEn: 'Discovery Set',
+    notesAr: ['شرارة', 'مدار', 'أثر', 'برق', 'ندى', 'غيمة'],
+    notesEn: ['Sharara', 'Madar', 'Athar', 'Barq', 'Nada', 'Ghayma'],
+    personalityAr: 'ست عينات صغيرة لتجربة عطور نفَس قبل اختيار الزجاجة المناسبة.',
+    personalityEn: 'Six small samples to explore Nafas before choosing a full bottle.',
+    projectionAr: 'حسب العطر المختار',
+    projectionEn: 'Varies by scent',
+    seasonAr: 'كل المواسم',
+    seasonEn: 'All seasons',
+    slug: 'discovery-set',
+    storyAr: 'مجموعة تجربة بسيطة تجمع عطور الإطلاق الستة في عينات صغيرة، لتجرب الرائحة على بشرتك وتختار بهدوء.',
+    storyEn: 'A simple set of the six launch scents in small samples, made for trying each scent on skin before choosing calmly.',
+    strengthAr: 'تجربة كاملة',
+    strengthEn: 'Complete discovery',
+    tagsAr: ['الكل', 'هدايا', 'تستر'],
+    tagsEn: ['All', 'Gifts', 'Tester'],
+  },
 };
 
-const aliases: Record<string, LaunchSlug> = {
+const aliases: Record<string, CatalogSlug> = {
   'nfs-001': 'sharara',
   'nfs-002': 'madar',
   'nfs-003': 'athar',
   'nfs-004': 'barq',
   'nfs-005': 'nada',
   'nfs-006': 'ghayma',
+  'nfs-gb-disc-01': 'discovery-gift-box',
+  'nfs-gb-men-01': 'men-gift-box',
+  'nfs-gb-women-01': 'women-gift-box',
+  'nfs-ghm-02': 'ghayma',
+  'nfs-shr-01': 'sharara',
 };
 
 function normalizeKey(value?: string) {
@@ -247,7 +386,7 @@ export function getCatalogKey(productOrSlug?: any) {
 }
 
 export function getCatalogEntry(productOrSlug?: any) {
-  return perfumeCatalog[getCatalogKey(productOrSlug) as LaunchSlug];
+  return perfumeCatalog[getCatalogKey(productOrSlug) as CatalogSlug];
 }
 
 function normalizeVariant(variant: any, index: number) {

@@ -10,8 +10,6 @@ use App\Models\OrderStatusHistory;
 use App\Models\Payment;
 use App\Models\ProductVariant;
 use App\Services\Notifications\OrderNotificationService;
-use App\Services\Payments\CashOnDeliveryProvider;
-use App\Services\Payments\PaymobProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -28,14 +26,17 @@ class CheckoutController extends Controller
             'city' => 'required|string',
             'governorate' => 'required|string',
             'delivery_notes' => 'nullable|string',
-            'payment_method' => 'required|string|in:cash_on_delivery,online_card,bank_transfer',
+            'payment_method' => 'required|string|in:cash_on_delivery,vodafone_cash,instapay,online_card',
+            'payment_reference' => 'nullable|required_if:payment_method,vodafone_cash,instapay|string|max:255',
+            'payment_payer_phone' => 'nullable|string|max:50',
+            'payment_proof' => 'nullable|prohibited_if:payment_method,cash_on_delivery|image|mimes:jpg,jpeg,png,webp|max:3072',
             'coupon_code' => 'nullable|string',
             'items' => 'required|array|min:1',
             'items.*.variant_id' => 'required|exists:product_variants,id',
             'items.*.quantity' => 'required|integer|min:1',
         ]);
 
-        if ($validated['payment_method'] !== 'cash_on_delivery' && !config('services.paymob.integration_id')) {
+        if ($validated['payment_method'] === 'online_card' && !config('services.paymob.integration_id')) {
             return response()->json([
                 'error' => 'Online payment is temporarily unavailable. Please choose cash on delivery.',
             ], 422);
@@ -141,20 +142,32 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            $provider = $validated['payment_method'] === 'cash_on_delivery'
-                ? new CashOnDeliveryProvider()
-                : new PaymobProvider();
+            $isManualPayment = in_array($validated['payment_method'], ['vodafone_cash', 'instapay'], true);
+            $proofImagePath = null;
 
-            $paymentPayload = $provider->createPayment($order);
+            if ($isManualPayment && $request->hasFile('payment_proof')) {
+                $proofImagePath = $request->file('payment_proof')->store(
+                    'payment-proofs/' . $order->order_number,
+                    'local'
+                );
+            }
 
             Payment::create([
                 'order_id' => $order->id,
-                'provider' => $paymentPayload['provider'],
-                'status' => $paymentPayload['status'],
+                'provider' => $validated['payment_method'],
+                'method' => $validated['payment_method'],
+                'status' => $isManualPayment ? 'pending_review' : 'pending',
                 'amount' => $totalAmount,
                 'currency' => 'EGP',
-                'reference' => $paymentPayload['reference'],
-                'provider_payload' => $paymentPayload['payload'],
+                'reference' => $isManualPayment ? ($validated['payment_reference'] ?? null) : 'COD-' . $order->order_number,
+                'payer_phone' => $validated['payment_payer_phone'] ?? null,
+                'proof_image_path' => $proofImagePath,
+                'review_status' => $isManualPayment ? 'pending' : null,
+                'provider_payload' => [
+                    'source' => 'checkout',
+                    'manual_review_required' => $isManualPayment,
+                    'proof_uploaded' => (bool) $proofImagePath,
+                ],
             ]);
 
             OrderStatusHistory::create([
@@ -173,7 +186,9 @@ class CheckoutController extends Controller
             $notificationService->notifyAdminNewOrder($order);
 
             return response()->json([
-                'message' => 'Order created successfully',
+                'message' => $isManualPayment
+                    ? 'Order created successfully. Payment is pending review.'
+                    : 'Order created successfully',
                 'order' => $order->load('items.variant.product', 'history', 'payment'),
             ], 201);
         });

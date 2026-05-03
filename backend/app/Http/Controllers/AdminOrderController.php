@@ -8,6 +8,7 @@ use App\Models\ProductVariant;
 use App\Services\OrderInventoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AdminOrderController extends Controller
 {
@@ -19,7 +20,7 @@ class AdminOrderController extends Controller
 
         $recentOrders = Order::query()
             ->latest()
-            ->with('customer')
+            ->with('customer', 'payment')
             ->take(5)
             ->get();
 
@@ -73,7 +74,7 @@ class AdminOrderController extends Controller
 
     public function index()
     {
-        return response()->json(Order::with('items.variant.product', 'history')->latest()->get());
+        return response()->json(Order::with('items.variant.product', 'history', 'payment')->latest()->get());
     }
 
     public function store(Request $request)
@@ -83,7 +84,7 @@ class AdminOrderController extends Controller
 
     public function show(Order $order)
     {
-        return response()->json($order->load('items.variant.product', 'history'));
+        return response()->json($order->load('items.variant.product', 'history', 'payment.reviewer'));
     }
 
     public function update(Request $request, Order $order)
@@ -94,7 +95,7 @@ class AdminOrderController extends Controller
 
         $order->update($validated);
 
-        return response()->json($order->fresh('items.variant.product', 'history'));
+        return response()->json($order->fresh('items.variant.product', 'history', 'payment.reviewer'));
     }
 
     public function destroy(Order $order)
@@ -141,5 +142,43 @@ class AdminOrderController extends Controller
             'message' => "Order status updated to {$newStatus}",
             'order' => $order->fresh('items.variant.product', 'history'),
         ]);
+    }
+
+    public function reviewPayment(Request $request, Order $order)
+    {
+        $validated = $request->validate([
+            'review_status' => ['required', 'in:approved,rejected'],
+            'admin_note' => ['nullable', 'string'],
+        ]);
+
+        $payment = $order->payment()->firstOrFail();
+
+        if (!in_array($payment->method ?: $payment->provider, ['vodafone_cash', 'instapay'], true)) {
+            return response()->json(['message' => 'Only manual payments can be reviewed'], 422);
+        }
+
+        $payment->update([
+            'status' => $validated['review_status'],
+            'review_status' => $validated['review_status'],
+            'reviewed_at' => now(),
+            'reviewed_by' => $request->user()?->id,
+            'admin_note' => $validated['admin_note'] ?? null,
+        ]);
+
+        return response()->json([
+            'message' => "Payment {$validated['review_status']}",
+            'order' => $order->fresh('items.variant.product', 'history', 'payment.reviewer'),
+        ]);
+    }
+
+    public function downloadPaymentProof(Order $order)
+    {
+        $payment = $order->payment()->firstOrFail();
+
+        if (!$payment->proof_image_path || !Storage::disk('local')->exists($payment->proof_image_path)) {
+            abort(404, 'Payment proof not found');
+        }
+
+        return Storage::disk('local')->download($payment->proof_image_path);
     }
 }

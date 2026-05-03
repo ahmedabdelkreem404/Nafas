@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\ProductVariant;
 use App\Services\CartService;
@@ -42,11 +41,16 @@ class CartController extends Controller
         return response()->json($cart->fresh('items.variant.product'), 201);
     }
 
-    public function update(Request $request, CartItem $cartItem)
+    public function update(Request $request, CartService $cartService, CartItem $cartItem)
     {
         $validated = $request->validate([
             'quantity' => ['required', 'integer', 'min:1'],
         ]);
+
+        $cart = $cartService->resolveCart($request->user(), $request->header('X-Session-Key'));
+        if ((int) $cartItem->cart_id !== (int) $cart->id) {
+            abort(404);
+        }
 
         $variant = $cartItem->variant()->with('product')->firstOrFail();
         if (!$variant->is_active || !$variant->product || $variant->product->status !== 'active') {
@@ -64,8 +68,13 @@ class CartController extends Controller
         return response()->json($cartItem->load('variant.product'));
     }
 
-    public function destroy(CartItem $cartItem)
+    public function destroy(Request $request, CartService $cartService, CartItem $cartItem)
     {
+        $cart = $cartService->resolveCart($request->user(), $request->header('X-Session-Key'));
+        if ((int) $cartItem->cart_id !== (int) $cart->id) {
+            abort(404);
+        }
+
         $cartItem->delete();
         return response()->json(['message' => 'Cart item removed']);
     }

@@ -30,6 +30,7 @@ export const SHOP_PERFUME_LUXURY = `${STOCK_ROOT}/shop-perfume-luxury.webp`;
 export const PRODUCT_PERFUME_CLOSEUP = `${STOCK_ROOT}/product-perfume-closeup.webp`;
 export const FRAGRANCE_SPRAY_MOMENT = `${STOCK_ROOT}/fragrance-spray-moment.webp`;
 export const WHATSAPP_SUPPORT_URL = 'https://wa.me/201000000000';
+export const HAS_WHATSAPP_SUPPORT = Boolean(WHATSAPP_SUPPORT_URL);
 
 const productVisuals: Record<string, string> = {
   athar: `${PRODUCT_ROOT}/athar-visual.webp`,

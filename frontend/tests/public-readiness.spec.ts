@@ -81,6 +81,14 @@ async function mockGuestCartApi(page: Page) {
 }
 
 async function mockAdminDashboardApi(page: Page) {
+  await page.route('**/api/me', async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ id: 1, name: 'Admin', role: 'super_admin' }),
+    });
+  });
+
   await page.route('**/api/admin/dashboard', async (route) => {
     await route.fulfill({
       status: 200,
@@ -103,6 +111,69 @@ async function mockAdminDashboardApi(page: Page) {
       }),
     });
   });
+
+  await page.route('**/api/admin/products**', async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ data: [], products: [], meta: { total: 0 } }),
+    });
+  });
+
+  await page.route('**/api/admin/orders**', async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ data: [], orders: [], meta: { total: 0 } }),
+    });
+  });
+}
+
+async function expectMobileUsable(page: Page) {
+  const metrics = await page.evaluate(() => {
+    const visible = (element: Element) => {
+      const rect = element.getBoundingClientRect();
+      const styles = window.getComputedStyle(element);
+      return rect.width > 0 && rect.height > 0 && styles.visibility !== 'hidden' && styles.display !== 'none';
+    };
+
+    const minRect = (selector: string) => {
+      const rects = [...document.querySelectorAll(selector)]
+        .filter(visible)
+        .map((element) => {
+          const rect = element.getBoundingClientRect();
+          return { height: rect.height, left: rect.left, right: rect.right, width: rect.width };
+        });
+
+      return {
+        clipped: rects.filter((rect) => rect.left < -1 || rect.right > window.innerWidth + 1),
+        height: rects.length ? Math.min(...rects.map((rect) => rect.height)) : 999,
+        width: rects.length ? Math.min(...rects.map((rect) => rect.width)) : 999,
+      };
+    };
+
+    const tinyMainText = [...document.querySelectorAll('main p, main li, main label, main input, main textarea, main select')]
+      .filter(visible)
+      .map((element) => Number.parseFloat(window.getComputedStyle(element).fontSize))
+      .filter((fontSize) => fontSize > 0 && fontSize < 12);
+
+    const tinyHeadings = [...document.querySelectorAll('main h1, main h2')]
+      .filter(visible)
+      .map((element) => Number.parseFloat(window.getComputedStyle(element).fontSize))
+      .filter((fontSize) => fontSize > 0 && fontSize < 24);
+
+    return {
+      controls: minRect('.site-nav button, .site-nav a, main button, main a, main input, main textarea, main select'),
+      headings: tinyHeadings,
+      tinyMainText,
+    };
+  });
+
+  expect(metrics.controls.clipped).toEqual([]);
+  expect(metrics.controls.height).toBeGreaterThanOrEqual(32);
+  expect(metrics.controls.width).toBeGreaterThanOrEqual(32);
+  expect(metrics.tinyMainText).toEqual([]);
+  expect(metrics.headings).toEqual([]);
 }
 
 test.describe('Nafas public readiness surfaces', () => {
@@ -170,6 +241,28 @@ test.describe('Nafas public readiness surfaces', () => {
     await expectNoHorizontalOverflow(page);
   });
 
+  for (const route of [
+    '/shop?lang=ar',
+    '/products/sharara?lang=ar',
+    '/cart?lang=ar',
+    '/checkout?lang=ar',
+    '/about?lang=ar',
+    '/quality?lang=ar',
+    '/faq?lang=ar',
+    '/admin/login?lang=ar',
+  ]) {
+    test(`${route} keeps real-phone controls readable at 320px`, async ({ page }) => {
+      if (route.includes('/checkout')) {
+        await mockGuestCartApi(page);
+        await seedGuestCart(page, 'ar');
+      }
+
+      await gotoPublic(page, route, 320, 720);
+      await expectNoHorizontalOverflow(page);
+      await expectMobileUsable(page);
+    });
+  }
+
   test('Arabic and English direction are applied from LocaleContext', async ({ page }) => {
     await gotoPublic(page, '/shop?lang=ar', 390);
     await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
@@ -192,4 +285,20 @@ test.describe('Nafas public readiness surfaces', () => {
     await expect(page.locator('.admin-mobile-drawer.is-open')).toBeVisible();
     await expectNoHorizontalOverflow(page);
   });
+
+  for (const adminPath of ['/admin/dashboard', '/admin/products', '/admin/orders']) {
+    test(`${adminPath} remains usable in the 390px admin shell`, async ({ page }) => {
+      await mockAdminDashboardApi(page);
+      await page.addInitScript(() => {
+        localStorage.setItem('token', 'playwright-token');
+        localStorage.setItem('user', JSON.stringify({ id: 1, name: 'Admin', role: 'super_admin' }));
+      });
+
+      await gotoPublic(page, adminPath, 390, 900);
+
+      await expect(page.locator('.admin-layout')).toBeVisible();
+      await expectNoHorizontalOverflow(page);
+      await expectMobileUsable(page);
+    });
+  }
 });

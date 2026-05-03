@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Badge, Card, ErrorState, LoadingState } from '../../components/ui';
+import { adminStatusLabel } from '../../utils/adminLabels';
 import { formatCurrency, formatNumber } from '../../utils/format';
 
 const AdminDashboard: React.FC = () => {
@@ -16,7 +17,7 @@ const AdminDashboard: React.FC = () => {
 
   if (error) {
     return (
-      <AdminPageShell eyebrow="Dashboard" title="لوحة التحكم" description="">
+      <AdminPageShell eyebrow="لوحة التحكم" title="لوحة التحكم" description="">
         <ErrorState message={error} />
       </AdminPageShell>
     );
@@ -24,7 +25,7 @@ const AdminDashboard: React.FC = () => {
 
   if (!stats) {
     return (
-      <AdminPageShell eyebrow="Dashboard" title="لوحة التحكم" description="">
+      <AdminPageShell eyebrow="لوحة التحكم" title="لوحة التحكم" description="">
         <LoadingState label="جاري تحميل لوحة التحكم..." />
       </AdminPageShell>
     );
@@ -35,8 +36,23 @@ const AdminDashboard: React.FC = () => {
     ...(stats.low_stock || []).map((variant: any) => ({ ...variant, tone: 'gold', label: 'تنبيه: مخزون منخفض' })),
   ];
 
+  const controlCenters = [
+    { label: 'المنتجات', description: 'الأسماء، الحالة، الأكواد، وصف المنتج، والتسعير', to: '/admin/products' },
+    { label: 'إضافة منتج', description: 'إنشاء منتج جديد بكل بياناته التسويقية والتشغيلية', to: '/admin/products/create' },
+    { label: 'الطلبات', description: 'متابعة الحالات، تفاصيل الدفع، وملاحظات التشغيل', to: '/admin/orders' },
+    { label: 'المخزون', description: 'تعديل الكميات ومراجعة حركات المخزون والتنبيهات', to: '/admin/inventory' },
+    { label: 'التركيبات', description: 'إدارة التركيبات الداخلية وبيانات التكلفة داخل الأدمن فقط', to: '/admin/formulas' },
+    { label: 'الدفعات', description: 'متابعة الخلط والتعتيق والمراجعة قبل البيع', to: '/admin/batches' },
+    { label: 'الجودة', description: 'فحوص الصفاء والبخاخ والتسريب والاعتماد', to: '/admin/quality' },
+    { label: 'الكوبونات', description: 'إنشاء العروض وتفعيلها أو إيقافها بسرعة', to: '/admin/coupons' },
+    { label: 'المحتوى', description: 'صفحات الموقع والأقسام القانونية والتعريفية', to: '/admin/content' },
+    { label: 'العملاء', description: 'بيانات العملاء وتاريخ التعاملات والطلبات', to: '/admin/customers' },
+    { label: 'التحليلات', description: 'المبيعات والمنتجات الأعلى حركة', to: '/admin/analytics' },
+    { label: 'الإعدادات', description: 'مفاتيح التحكم العامة في تجربة الموقع', to: '/admin/settings' },
+  ];
+
   return (
-    <AdminPageShell eyebrow="Dashboard" title="نظرة تشغيلية سريعة" description="لوحة أوضح للإيراد، الطلبات، المخزون، وأهم المنتجات مبيعًا هذا الشهر.">
+    <AdminPageShell eyebrow="لوحة التحكم" title="نظرة تشغيلية سريعة" description="لوحة أوضح للإيراد، الطلبات، المخزون، وأهم المنتجات مبيعًا هذا الشهر.">
       <div className="kpi-grid">
         {[
           { label: 'إيرادات اليوم', value: formatCurrency(stats.today_revenue || 0) },
@@ -68,6 +84,23 @@ const AdminDashboard: React.FC = () => {
         </Card>
       ) : null}
 
+      <Card tone="strong" className="stack">
+        <div className="data-card__row">
+          <div>
+            <strong>مراكز التحكم</strong>
+            <div className="copy-muted">كل جزء تشغيلي في نفس من مكان واحد، بدون ازدحام أو قوائم مخفية.</div>
+          </div>
+        </div>
+        <div className="admin-control-grid">
+          {controlCenters.map((item) => (
+            <Link key={item.to} to={item.to} className="admin-control-tile">
+              <strong>{item.label}</strong>
+              <span>{item.description}</span>
+            </Link>
+          ))}
+        </div>
+      </Card>
+
       <div className="grid-auto">
         <Card tone="strong" className="stack">
           <strong>آخر 5 طلبات</strong>
@@ -75,10 +108,10 @@ const AdminDashboard: React.FC = () => {
             <div key={order.id} className="data-card__row">
               <div>
                 <strong>{order.order_number}</strong>
-                <div className="copy-muted">{order.customer_name || order.customer?.name || 'Guest'}</div>
+                <div className="copy-muted">{order.customer_name || order.customer?.name || 'زائر'}</div>
               </div>
               <div style={{ textAlign: 'end' }}>
-                <Badge tone={order.status === 'delivered' ? 'success' : 'gold'}>{order.status}</Badge>
+                <Badge tone={order.status === 'delivered' ? 'success' : 'gold'}>{adminStatusLabel(order.status)}</Badge>
                 <div className="copy-muted">{formatCurrency(order.total_amount || order.total || 0)}</div>
               </div>
             </div>
@@ -91,7 +124,7 @@ const AdminDashboard: React.FC = () => {
             <div key={product.id} className="data-card__row">
               <div>
                 <strong>{product.name_ar || product.name_en}</strong>
-                <div className="copy-muted">{product.name_en}</div>
+                <div className="copy-muted">{product.code || 'منتج من نفس'}</div>
               </div>
               <Badge tone="success">{formatNumber(product.sales_count || 0)}</Badge>
             </div>

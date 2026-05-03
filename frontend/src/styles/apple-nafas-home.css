@@ -310,6 +310,7 @@
   padding: 0.62rem 1rem;
   background: rgba(251, 242, 228, 0.94);
   border-block-end: 1px solid rgba(70, 45, 31, 0.1);
+  border-radius: 0 0 var(--anh-radius) var(--anh-radius);
   text-align: center;
   font-size: 0.92rem;
 }
@@ -961,6 +962,8 @@
 .apple-nafas-page .anh-why,
 .apple-nafas-page .anh-final {
   background: var(--anh-surface);
+  border-radius: var(--anh-radius);
+  overflow: hidden;
 }
 
 .apple-nafas-page .anh-viewer,
@@ -968,6 +971,8 @@
 .apple-nafas-page .anh-selector,
 .apple-nafas-page .anh-compare {
   background: var(--anh-panel);
+  border-radius: var(--anh-radius);
+  overflow: hidden;
 }
 
 .apple-nafas-page .anh-love,
@@ -975,6 +980,8 @@
 .apple-nafas-page .anh-together,
 .apple-nafas-page .anh-explore {
   background: var(--anh-cream);
+  border-radius: var(--anh-radius);
+  overflow: hidden;
 }
 
 .apple-nafas-page .anh-highlight-shell {
@@ -3259,6 +3266,928 @@
 
   .apple-nafas-page .anh-ritual-cinematic__stage {
     min-block-size: clamp(22rem, 52svh, 29rem);
+  }
+}
+
+/* First homepage section: responsive pass. Keep these rules late so legacy overrides do not win. */
+.apple-nafas-page .anh-ritual--cinematic {
+  min-block-size: max(620px, calc(100svh - var(--navh, 0px) - 48px));
+  padding-block: clamp(2rem, 5svh, 4.25rem) clamp(5rem, 9svh, 6.25rem);
+}
+
+.apple-nafas-page .anh-ritual-cinematic__inner {
+  inline-size: min(100%, 1440px);
+  min-block-size: min(760px, calc(100svh - var(--navh, 0px) - 8rem));
+  grid-template-columns: minmax(12rem, 0.72fr) minmax(18rem, 0.96fr) minmax(14rem, 0.76fr);
+  gap: clamp(1rem, 2.4vw, 2.5rem);
+}
+
+.apple-nafas-page .anh-ritual--cinematic h2 {
+  max-inline-size: 7ch;
+  font-size: clamp(4.9rem, 7vw, 8.2rem);
+  line-height: 1.06;
+}
+
+.apple-nafas-page .anh-ritual-cinematic__stage {
+  min-block-size: clamp(25rem, 58svh, 36rem);
+}
+
+.apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
+  inline-size: clamp(14rem, 18vw, 20rem);
+}
+
+.apple-nafas-page .anh-ritual-cinematic__halo {
+  inline-size: min(26rem, 78%);
+}
+
+.apple-nafas-page .anh-ritual-cinematic__line,
+.apple-nafas-page .anh-ritual-cinematic__description {
+  overflow-wrap: anywhere;
+}
+
+.apple-nafas-page .anh-ritual-cinematic__controls {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 1180px) {
+  .apple-nafas-page .anh-ritual--cinematic {
+    min-block-size: auto;
+    padding-block: clamp(2.25rem, 4.5svh, 3.5rem) clamp(5rem, 7svh, 5.75rem);
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__inner {
+    min-block-size: auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(0.85rem, 2.5vw, 1.4rem);
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__title-panel {
+    padding-inline-start: 0;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__title-stack,
+  .apple-nafas-page .anh-ritual-cinematic__copy-stack {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic h2 {
+    max-inline-size: 9ch;
+    font-size: clamp(4rem, 10vw, 6.4rem);
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__stage {
+    min-block-size: clamp(20rem, 42svh, 30rem);
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
+    inline-size: clamp(12.5rem, 24vw, 17rem);
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__line,
+  .apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__description {
+    max-inline-size: min(42rem, 92vw);
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic .anh-actions {
+    justify-content: center;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__controls {
+    position: relative;
+    inset: auto;
+    justify-self: center;
+    margin-block-start: clamp(0.55rem, 2vw, 1rem);
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .apple-nafas-page .anh-ritual--cinematic {
+    padding-block: clamp(1.25rem, 4svh, 2rem);
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__inner {
+    inline-size: min(100%, calc(100vw - 1rem));
+    gap: clamp(0.55rem, 2.6vw, 0.95rem);
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic h2 {
+    max-inline-size: 10ch;
+    font-size: clamp(3.05rem, 15vw, 5rem);
+    line-height: 1.12;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__latin {
+    font-size: 1rem;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__stage {
+    min-block-size: clamp(15.75rem, 58vw, 22rem);
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
+    inline-size: clamp(9.75rem, 42vw, 13rem);
+  }
+
+  .apple-nafas-page .anh-ritual-scene__pedestal {
+    inset-block-end: 30%;
+    inline-size: min(24rem, 78vw);
+    block-size: clamp(4.6rem, 14vw, 6.25rem);
+  }
+
+  .apple-nafas-page .anh-ritual-scene__brand-flash {
+    font-size: clamp(4rem, 18vw, 7rem);
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__line {
+    font-size: clamp(1.08rem, 4.8vw, 1.32rem);
+    line-height: 1.55;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__description {
+    max-inline-size: 34ch;
+    font-size: 0.94rem;
+    line-height: 1.75;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__copy-stack {
+    gap: 0.6rem;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic .anh-actions {
+    inline-size: min(100%, 23rem);
+    align-items: stretch;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic .anh-actions .anh-button {
+    flex: 1 1 10rem;
+    min-inline-size: 0;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__controls {
+    max-inline-size: calc(100vw - 1.2rem);
+    min-block-size: 3.25rem;
+    margin-block-start: 0.5rem;
+  }
+
+  .apple-nafas-page .anh-ritual-control {
+    inline-size: 2.85rem;
+    block-size: 2.85rem;
+    flex-basis: 2.85rem;
+  }
+
+  .apple-nafas-page .anh-ritual-dots {
+    gap: 0.28rem;
+    min-inline-size: 0;
+    padding-inline: 0.25rem;
+  }
+
+  .apple-nafas-page .anh-ritual-dots button {
+    inline-size: 1.55rem;
+    flex-basis: 1.55rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .apple-nafas-page .anh-ritual--cinematic h2 {
+    font-size: clamp(2.65rem, 14vw, 3.35rem);
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__stage {
+    min-block-size: 14.5rem;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
+    inline-size: 9rem;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic .anh-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile-native acceptance polish.
+   Keep the restored Apple-like landing sections intact, but stop tiny phones
+   from rendering the desktop/tablet composition as a squeezed miniature. */
+@media (max-width: 480px) {
+  .apple-nafas-page {
+    font-size: 15px;
+    overflow-x: clip;
+  }
+
+  .apple-nafas-page .anh-container {
+    inline-size: min(100%, calc(100vw - 40px));
+    padding-inline: 0;
+  }
+
+  .apple-nafas-page > [data-section]:not(.anh-ribbon) {
+    padding-block: clamp(3rem, 12vw, 4.25rem);
+  }
+
+  .apple-nafas-page .anh-section-head {
+    max-inline-size: 100%;
+    margin-inline: auto;
+    margin-block-end: 1.35rem;
+    text-align: center;
+  }
+
+  .apple-nafas-page .anh-section-head p,
+  .apple-nafas-page .anh-love p,
+  .apple-nafas-page .anh-landing-hero__lead,
+  .apple-nafas-page .anh-ritual-cinematic__description,
+  .apple-nafas-page .anh-viewer-panel__copy p,
+  .apple-nafas-page .anh-compare-card p,
+  .apple-nafas-page .anh-explore-card p {
+    font-size: max(0.95rem, 14px);
+    line-height: 1.72;
+  }
+
+  .apple-nafas-page .anh-section-head h2,
+  .apple-nafas-page .anh-love h2,
+  .apple-nafas-page .anh-viewer-panel h3,
+  .apple-nafas-page .anh-together h2,
+  .apple-nafas-page .anh-selector h2,
+  .apple-nafas-page .anh-why h2,
+  .apple-nafas-page .anh-compare h2,
+  .apple-nafas-page .anh-explore h2,
+  .apple-nafas-page .anh-final h2 {
+    max-inline-size: 10.5ch;
+    margin-inline: auto;
+    font-size: clamp(2rem, 10.5vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .apple-nafas-page .anh-ribbon {
+    padding: 0.95rem 1.25rem;
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .apple-nafas-page .anh-ribbon p {
+    max-inline-size: 100%;
+  }
+
+  .apple-nafas-page .anh-button {
+    min-block-size: 44px;
+    inline-size: 100%;
+    justify-content: center;
+    padding-block: 0.78rem;
+    padding-inline: 1.05rem;
+    font-size: 0.95rem;
+    white-space: normal;
+  }
+
+  .apple-nafas-page .anh-actions {
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic {
+    min-block-size: auto;
+    padding-block: 2.25rem 3rem;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__inner {
+    inline-size: min(100%, calc(100vw - 40px));
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1rem;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__title-panel,
+  .apple-nafas-page .anh-ritual-cinematic__copy-panel {
+    inline-size: 100%;
+    max-inline-size: none;
+    min-inline-size: 0;
+    padding: 0;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__title-stack,
+  .apple-nafas-page .anh-ritual-cinematic__copy-stack {
+    inline-size: 100%;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic h2 {
+    max-inline-size: 8ch;
+    font-size: clamp(2.75rem, 13.5vw, 4rem);
+    line-height: 1.08;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__stage {
+    order: 1;
+    inline-size: 100%;
+    min-block-size: clamp(17.5rem, 74vw, 22rem);
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__title-panel {
+    order: 0;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__copy-panel {
+    order: 2;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
+    inline-size: clamp(10.75rem, 48vw, 13.25rem);
+  }
+
+  .apple-nafas-page .anh-ritual-scene__depth-left,
+  .apple-nafas-page .anh-ritual-scene__depth-right {
+    opacity: 0.28;
+    inline-size: 28vw;
+  }
+
+  .apple-nafas-page .anh-ritual-scene__brand-flash {
+    opacity: 0.08;
+    font-size: clamp(4.5rem, 24vw, 7rem);
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__line {
+    max-inline-size: 100%;
+    font-size: clamp(1.12rem, 5.4vw, 1.45rem);
+    line-height: 1.55;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__description,
+  .apple-nafas-page .anh-ritual--cinematic p.anh-ritual-cinematic__mood {
+    max-inline-size: 100%;
+  }
+
+  .apple-nafas-page .anh-carousel-dock,
+  .apple-nafas-page .anh-ritual-cinematic__controls {
+    inline-size: min(100%, 18rem);
+    max-inline-size: calc(100vw - 40px);
+    min-block-size: 52px;
+    margin-inline: auto;
+    justify-content: center;
+    gap: 0.5rem;
+    overflow: visible;
+  }
+
+  .apple-nafas-page .anh-dock-button,
+  .apple-nafas-page .anh-ritual-control {
+    min-inline-size: 44px;
+    inline-size: 44px;
+    min-block-size: 44px;
+    block-size: 44px;
+    flex: 0 0 44px;
+  }
+
+  .apple-nafas-page .anh-dots {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    gap: 0.35rem;
+  }
+
+  .apple-nafas-page .anh-dots button,
+  .apple-nafas-page .anh-ritual-dots button {
+    min-inline-size: 34px;
+    inline-size: 34px;
+    min-block-size: 34px;
+    block-size: 34px;
+    flex: 0 0 34px;
+  }
+
+  .apple-nafas-page .anh-highlight-card,
+  .apple-nafas-page .anh-viewer-panel,
+  .apple-nafas-page .anh-together__grid,
+  .apple-nafas-page .anh-selector__panel,
+  .apple-nafas-page .anh-flow__panel,
+  .apple-nafas-page .anh-senses__stage,
+  .apple-nafas-page .anh-compare-card,
+  .apple-nafas-page .anh-explore-card {
+    inline-size: 100%;
+    min-inline-size: 0;
+    padding: clamp(1rem, 5vw, 1.25rem);
+    border-radius: 24px;
+  }
+
+  .apple-nafas-page .anh-compare-card,
+  .apple-nafas-page .anh-explore-card {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .apple-nafas-page .anh-highlight-card:not([data-active='true']) {
+    visibility: hidden;
+  }
+
+  .apple-nafas-page .anh-highlight-card[data-active='true'] {
+    visibility: visible;
+  }
+
+  .apple-nafas-page .anh-viewer-panel,
+  .apple-nafas-page .anh-together__grid,
+  .apple-nafas-page .anh-selector__panel,
+  .apple-nafas-page .anh-flow__panel,
+  .apple-nafas-page .anh-senses__stage,
+  .apple-nafas-page .anh-love__inner {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .apple-nafas-page .anh-flow__steps,
+  .apple-nafas-page .anh-why__grid,
+  .apple-nafas-page .anh-compare__grid,
+  .apple-nafas-page .anh-explore__grid,
+  .apple-nafas-page .anh-chapter-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1rem;
+  }
+
+  .apple-nafas-page .anh-viewer-panel__controls,
+  .apple-nafas-page .anh-viewer-panel__tabs,
+  .apple-nafas-page .anh-selector__options {
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.55rem;
+  }
+
+  .apple-nafas-page .anh-viewer-panel__controls button,
+  .apple-nafas-page .anh-viewer-panel__tabs button,
+  .apple-nafas-page .anh-selector__options button {
+    min-block-size: 44px;
+    min-inline-size: 0;
+    inline-size: 100%;
+    font-size: 0.94rem;
+  }
+
+  .apple-nafas-page .anh-viewer-panel__visual,
+  .apple-nafas-page .anh-senses__visual,
+  .apple-nafas-page .anh-together__visual,
+  .apple-nafas-page .anh-compare-card__visual {
+    min-block-size: clamp(13.5rem, 58vw, 17rem);
+    block-size: auto;
+  }
+
+  .apple-nafas-page .anh-viewer-panel__copy,
+  .apple-nafas-page .anh-compare-card,
+  .apple-nafas-page .anh-explore-card {
+    text-align: center;
+  }
+
+  .apple-nafas-page .anh-landing-hero__content {
+    inline-size: min(100%, calc(100vw - 40px));
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 1.6rem 2.4rem;
+  }
+
+  .apple-nafas-page .anh-landing-hero h1 {
+    max-inline-size: 9ch;
+    font-size: clamp(2rem, 10.8vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .apple-nafas-page .anh-landing-hero__media {
+    min-block-size: clamp(15rem, 72vw, 18rem);
+  }
+}
+
+@media (max-width: 340px) {
+  .apple-nafas-page .anh-container,
+  .apple-nafas-page .anh-ritual-cinematic__inner,
+  .apple-nafas-page .anh-landing-hero__content {
+    inline-size: min(100%, calc(100vw - 36px));
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic h2,
+  .apple-nafas-page .anh-landing-hero h1,
+  .apple-nafas-page .anh-section-head h2,
+  .apple-nafas-page .anh-love h2,
+  .apple-nafas-page .anh-viewer-panel h3,
+  .apple-nafas-page .anh-compare h2,
+  .apple-nafas-page .anh-explore h2,
+  .apple-nafas-page .anh-final h2 {
+    font-size: clamp(2rem, 11.5vw, 2.75rem);
+  }
+}
+
+/* Hard mobile composition: this is intentionally last so <=430px can never
+   fall back to the desktop/tablet scenic grids. */
+@media (max-width: 430px) {
+  .apple-nafas-page {
+    --mobile-page-gutter: 20px;
+    --mobile-card-radius: 26px;
+    font-size: 16px;
+  }
+
+  .apple-nafas-page .anh-container,
+  .apple-nafas-page .anh-ritual-cinematic__inner,
+  .apple-nafas-page .anh-landing-hero__content {
+    inline-size: min(100%, calc(100vw - (var(--mobile-page-gutter) * 2)));
+    max-inline-size: none;
+  }
+
+  .apple-nafas-page > [data-section]:not(.anh-ribbon) {
+    min-block-size: auto;
+    padding-block: 3.25rem;
+  }
+
+  .apple-nafas-page :is(p, li, dd, dt),
+  .apple-nafas-page :is(.anh-highlight-card__copy p, .anh-viewer-panel__copy p, .anh-ritual-cinematic__description, .anh-ritual-cinematic__mood) {
+    font-size: max(1rem, 14px);
+    line-height: 1.7;
+  }
+
+  .apple-nafas-page :is(.anh-section-head h2, .anh-love h2, .anh-viewer-panel h3, .anh-together h2, .anh-selector h2, .anh-why h2, .anh-compare h2, .anh-explore h2, .anh-final h2, .anh-landing-hero h1) {
+    max-inline-size: 11ch;
+    margin-inline: auto;
+    font-size: clamp(2.15rem, 11vw, 3rem);
+    line-height: 1.08;
+    text-align: center;
+  }
+
+  .apple-nafas-page .anh-kicker {
+    font-size: 0.84rem;
+  }
+
+  .apple-nafas-page .anh-button,
+  .apple-nafas-page .anh-viewer-panel button,
+  .apple-nafas-page .anh-selector button {
+    min-block-size: 48px;
+    inline-size: 100%;
+    min-inline-size: 0;
+    font-size: 1rem;
+  }
+
+  .apple-nafas-page .anh-actions,
+  .apple-nafas-page .anh-flow__actions {
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic {
+    overflow: hidden;
+    padding-block: 3rem 3.5rem;
+    background:
+      radial-gradient(circle at 50% 28%, rgba(255, 248, 238, 0.92), rgba(231, 201, 133, 0.24) 34%, transparent 62%),
+      linear-gradient(180deg, var(--scene-bg-start), var(--scene-bg-end));
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__inner {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-areas:
+      "title"
+      "stage"
+      "copy";
+    gap: 1.15rem;
+    align-items: center;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__title-panel {
+    grid-area: title;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__stage {
+    grid-area: stage;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__copy-panel {
+    grid-area: copy;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__title-panel,
+  .apple-nafas-page .anh-ritual-cinematic__copy-panel,
+  .apple-nafas-page .anh-ritual-cinematic__title-stack,
+  .apple-nafas-page .anh-ritual-cinematic__copy-stack {
+    inline-size: 100%;
+    max-inline-size: none;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic h2 {
+    max-inline-size: 9ch;
+    font-size: clamp(3rem, 14vw, 4.25rem);
+    line-height: 1.04;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__stage {
+    inline-size: 100%;
+    min-block-size: clamp(18.5rem, 82vw, 23rem);
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
+    inline-size: clamp(11.5rem, 54vw, 14rem);
+  }
+
+  .apple-nafas-page .anh-ritual-scene__depth-left,
+  .apple-nafas-page .anh-ritual-scene__depth-right {
+    display: none;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__line {
+    max-inline-size: 100%;
+    font-size: clamp(1.25rem, 6vw, 1.55rem) !important;
+    line-height: 1.45 !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__description,
+  .apple-nafas-page .anh-ritual-cinematic__mood {
+    max-inline-size: 100% !important;
+  }
+
+  .apple-nafas-page .anh-carousel-dock,
+  .apple-nafas-page .anh-ritual-cinematic__controls {
+    inline-size: min(100%, 19.5rem);
+    min-block-size: 56px;
+    padding: 0.35rem;
+    gap: 0.45rem;
+  }
+
+  .apple-nafas-page .anh-dock-button,
+  .apple-nafas-page .anh-ritual-control {
+    min-inline-size: 46px;
+    inline-size: 46px;
+    min-block-size: 46px;
+    block-size: 46px;
+    flex-basis: 46px;
+  }
+
+  .apple-nafas-page .anh-dots,
+  .apple-nafas-page .anh-ritual-dots {
+    gap: 0.4rem;
+  }
+
+  .apple-nafas-page .anh-dots button,
+  .apple-nafas-page .anh-ritual-dots button {
+    min-inline-size: 38px;
+    inline-size: 38px;
+    min-block-size: 38px;
+    block-size: 38px;
+    flex-basis: 38px;
+  }
+
+  .apple-nafas-page :is(
+    .anh-highlight-card,
+    .anh-viewer-panel,
+    .anh-love__inner,
+    .anh-senses__stage,
+    .anh-flow__panel,
+    .anh-together__grid,
+    .anh-selector__panel,
+    .anh-compare-card,
+    .anh-explore-card,
+    .anh-chapter
+  ) {
+    inline-size: 100%;
+    min-inline-size: 0;
+    max-inline-size: none;
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding: 1.15rem;
+    border-radius: var(--mobile-card-radius);
+  }
+
+  .apple-nafas-page :is(
+    .anh-highlight-card,
+    .anh-viewer-panel,
+    .anh-love__inner,
+    .anh-senses__stage,
+    .anh-flow__panel,
+    .anh-together__grid,
+    .anh-selector__panel,
+    .anh-compare-card,
+    .anh-explore-card,
+    .anh-chapter,
+    .anh-flow__steps article,
+    .anh-why__grid article
+  ) {
+    min-inline-size: min(100%, 260px);
+  }
+
+  .apple-nafas-page :is(
+    .anh-flow__steps,
+    .anh-why__grid,
+    .anh-compare__grid,
+    .anh-explore__grid,
+    .anh-chapter-grid
+  ) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1rem;
+  }
+
+  .apple-nafas-page .anh-highlight-shell,
+  .apple-nafas-page .anh-highlight-track {
+    inline-size: 100%;
+  }
+
+  .apple-nafas-page .anh-highlight-card {
+    min-block-size: auto;
+    gap: 1rem;
+  }
+
+  .apple-nafas-page .anh-highlight-card__copy {
+    inline-size: 100%;
+    max-inline-size: none;
+    padding: 0;
+    text-align: center;
+  }
+
+  .apple-nafas-page .anh-highlight-card__copy h3 {
+    font-size: clamp(2rem, 11vw, 2.8rem);
+  }
+
+  .apple-nafas-page .anh-highlight-card img,
+  .apple-nafas-page .anh-highlight-bottle {
+    inline-size: min(68vw, 13rem) !important;
+  }
+
+  .apple-nafas-page .anh-viewer-panel__controls,
+  .apple-nafas-page .anh-viewer-panel__tabs,
+  .apple-nafas-page .anh-selector__options {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .apple-nafas-page .anh-viewer-panel__visual,
+  .apple-nafas-page .anh-senses__visual,
+  .apple-nafas-page .anh-together__visual,
+  .apple-nafas-page .anh-compare-card__visual {
+    min-block-size: 17rem;
+  }
+
+  .apple-nafas-page .anh-landing-hero__content {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+@media (max-width: 340px) {
+  .apple-nafas-page {
+    --mobile-page-gutter: 18px;
+  }
+
+  .apple-nafas-page .anh-dots button,
+  .apple-nafas-page .anh-ritual-dots button {
+    min-inline-size: 36px;
+    inline-size: 36px;
+    min-block-size: 36px;
+    block-size: 36px;
+    flex-basis: 36px;
+  }
+}
+
+@media (max-width: 430px) {
+  .apple-nafas-page .anh-highlight-track {
+    transform: none !important;
+    display: block;
+  }
+
+  .apple-nafas-page .anh-highlight-card:not(.is-active) {
+    display: none !important;
+  }
+
+  .apple-nafas-page .anh-highlight-card.is-active {
+    display: grid !important;
+    transform: none !important;
+  }
+
+  .apple-nafas-page :is(.anh-flow__panel, .anh-selector__panel) {
+    padding: 0.65rem;
+  }
+
+  .apple-nafas-page :is(.anh-flow__steps article, .anh-why__grid article, .anh-selector__result) {
+    inline-size: 100%;
+    min-inline-size: min(100%, 260px);
+  }
+}
+
+@media (max-width: 430px) {
+  .apple-nafas-page > [data-section]:not(.anh-ribbon) {
+    padding-block: 2.25rem;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic {
+    padding-block: 1.75rem 2.15rem !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__inner {
+    gap: 0.75rem !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__title-panel {
+    min-block-size: auto;
+  }
+
+  .apple-nafas-page .anh-ritual--cinematic h2 {
+    font-size: clamp(2.55rem, 12vw, 3.35rem) !important;
+    line-height: 1.04;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__latin {
+    font-size: 0.98rem !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__stage {
+    min-block-size: clamp(13.5rem, 58vw, 16.5rem) !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__bottle.anh-bottle-visual {
+    inline-size: clamp(9.5rem, 42vw, 11.25rem) !important;
+  }
+
+  .apple-nafas-page .anh-ritual-scene__pedestal {
+    block-size: 3.6rem !important;
+    inline-size: min(18rem, 72vw) !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__copy-stack {
+    gap: 0.45rem !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__line {
+    font-size: clamp(1.08rem, 5vw, 1.3rem) !important;
+    line-height: 1.42 !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__description,
+  .apple-nafas-page .anh-ritual-cinematic__mood {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__controls {
+    min-block-size: 48px !important;
+    margin-block-start: 0.35rem !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__actions,
+  .apple-nafas-page .anh-ritual-cinematic__copy-panel .anh-actions {
+    inline-size: min(100%, calc(100vw - 48px)) !important;
+    margin-inline: auto !important;
+    justify-items: stretch !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__actions .anh-button,
+  .apple-nafas-page .anh-ritual-cinematic__copy-panel .anh-actions .anh-button {
+    inline-size: 100% !important;
+    max-inline-size: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .apple-nafas-page .anh-ritual-control {
+    inline-size: 42px !important;
+    min-inline-size: 42px !important;
+    block-size: 42px !important;
+    min-block-size: 42px !important;
+    flex-basis: 42px !important;
+  }
+
+  .apple-nafas-page .anh-ritual-dots button,
+  .apple-nafas-page .anh-dots button {
+    inline-size: 36px !important;
+    min-inline-size: 36px !important;
+    block-size: 36px !important;
+    min-block-size: 36px !important;
+    flex-basis: 36px !important;
+  }
+
+  .apple-nafas-page .anh-highlight-card {
+    min-block-size: auto !important;
+    padding: 1rem !important;
+  }
+
+  .apple-nafas-page .anh-highlight-card__copy h3 {
+    font-size: clamp(1.7rem, 9vw, 2.25rem) !important;
+  }
+
+  .apple-nafas-page .anh-highlight-card__copy p {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .apple-nafas-page .anh-highlight-card img,
+  .apple-nafas-page .anh-highlight-bottle {
+    inline-size: min(58vw, 10.5rem) !important;
+  }
+
+  .apple-nafas-page .anh-chapter img,
+  .apple-nafas-page .anh-chapter:nth-child(even) img {
+    inline-size: 100% !important;
+    block-size: clamp(11.5rem, 58vw, 13rem) !important;
+    aspect-ratio: 16 / 10 !important;
+    object-fit: cover !important;
+  }
+
+  .apple-nafas-page .anh-senses__visual,
+  .apple-nafas-page .anh-together__visual,
+  .apple-nafas-page .anh-viewer-panel__visual,
+  .apple-nafas-page .anh-compare-card__visual {
+    block-size: clamp(13rem, 60vw, 15rem) !important;
+    min-block-size: 0 !important;
+  }
+
+  .apple-nafas-page .anh-senses__visual img,
+  .apple-nafas-page .anh-together__visual img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
   }
 }
 
