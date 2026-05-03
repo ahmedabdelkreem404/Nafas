@@ -1,20 +1,23 @@
 import { MessageCircle } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import { useSiteSettings } from '../context/SiteSettingsContext';
 import { useCart } from '../hooks/useCart';
-import { HAS_WHATSAPP_SUPPORT, WHATSAPP_SUPPORT_URL } from '../utils/brand';
+import { WHATSAPP_SUPPORT_URL } from '../utils/brand';
 
 export default function WhatsAppFloatButton() {
   const { isOpen } = useCart();
+  const { getSetting } = useSiteSettings();
   const location = useLocation();
+  const whatsappUrl = getSetting('whatsapp_url', WHATSAPP_SUPPORT_URL);
 
-  if (!HAS_WHATSAPP_SUPPORT || isOpen || location.pathname === '/') {
+  if (!whatsappUrl || isOpen || location.pathname === '/') {
     return null;
   }
 
   return (
     <a
       className="whatsapp-float"
-      href={WHATSAPP_SUPPORT_URL}
+      href={whatsappUrl}
       target="_blank"
       rel="noreferrer"
       aria-label="WhatsApp support"

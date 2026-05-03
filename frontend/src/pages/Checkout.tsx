@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { publicApi } from '../api/publicApi';
 import ProductMedia from '../components/ProductMedia';
 import { useLocale } from '../context/LocaleContext';
+import { useSiteSettings } from '../context/SiteSettingsContext';
 import { useCart } from '../hooks/useCart';
 import { buildCheckoutPayload, validatePaymentProof } from '../utils/checkout';
 import { formatCurrency } from '../utils/format';
@@ -64,6 +65,7 @@ function formatCheckoutError(message: string, locale: 'ar' | 'en') {
 
 export default function Checkout() {
   const { locale } = useLocale();
+  const { getSetting } = useSiteSettings();
   const { clearCart, items, total } = useCart();
   const navigate = useNavigate();
   const [error, setError] = useState('');
@@ -86,6 +88,8 @@ export default function Checkout() {
     coupon_code: '',
   });
   const paymentProofError = errors.payment_proof || '';
+  const vodafoneCashNumber = getSetting('vodafone_cash_number', VODAFONE_CASH_NUMBER);
+  const instapayHandle = getSetting('instapay_handle', INSTAPAY_HANDLE);
 
   const validateField = (name: string, value: string) => {
     switch (name) {
@@ -316,13 +320,13 @@ export default function Checkout() {
                 key: 'vodafone_cash',
                 title: locale === 'ar' ? 'فودافون كاش' : 'Vodafone Cash',
                 body: locale === 'ar' ? 'حوّل المبلغ على الرقم الموضح، ثم اكتب رقم العملية أو المرجع ليتم مراجعة الدفع يدويًا قبل تأكيد التجهيز.' : 'Transfer to the configured number, then enter the transaction reference so the team can manually review payment before preparation.',
-                destination: VODAFONE_CASH_NUMBER,
+                destination: vodafoneCashNumber,
               },
               {
                 key: 'instapay',
                 title: locale === 'ar' ? 'إنستاباي' : 'Instapay',
                 body: locale === 'ar' ? 'حوّل المبلغ عبر حساب إنستاباي الموضح، ثم اكتب رقم العملية أو المرجع ليتم مراجعة الدفع يدويًا قبل تأكيد التجهيز.' : 'Pay through the configured Instapay account, then enter the transaction reference so the team can manually review payment before preparation.',
-                destination: INSTAPAY_HANDLE,
+                destination: instapayHandle,
               },
             ].map((method) => (
               <label key={method.key} className="radio-card">
