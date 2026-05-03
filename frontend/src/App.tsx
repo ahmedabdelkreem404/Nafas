@@ -9,6 +9,7 @@ import AdminLayout from './components/admin/AdminLayout';
 import { CartProvider } from './context/CartContext';
 import { EngagementProvider } from './context/EngagementContext';
 import { LocaleProvider } from './context/LocaleContext';
+import { NotificationProvider } from './context/NotificationContext';
 import { SiteSettingsProvider } from './context/SiteSettingsContext';
 
 const Account = lazy(() => import('./pages/Account'));
@@ -94,10 +95,11 @@ function AdminShell() {
 export default function App() {
   return (
     <LocaleProvider>
-      <EngagementProvider>
-        <BrowserRouter>
-          <Suspense fallback={<RouteFallback />}>
-            <Routes>
+      <NotificationProvider>
+        <EngagementProvider>
+          <BrowserRouter>
+            <Suspense fallback={<RouteFallback />}>
+              <Routes>
               <Route path="/" element={<PublicLayout />}>
                 <Route index element={<Home />} />
                 <Route path="shop" element={<Shop />} />
@@ -144,10 +146,11 @@ export default function App() {
                 <Route path="analytics" element={<AdminAnalytics />} />
                 <Route path="settings" element={<AdminSettings />} />
               </Route>
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </EngagementProvider>
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </EngagementProvider>
+      </NotificationProvider>
     </LocaleProvider>
   );
 }

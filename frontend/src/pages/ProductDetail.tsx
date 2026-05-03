@@ -7,6 +7,7 @@ import ProductGallery from '../components/ProductGallery';
 import ProductReviews from '../components/ProductReviews';
 import Reveal from '../components/Reveal';
 import { useLocale } from '../context/LocaleContext';
+import { useNotifications } from '../hooks/useNotifications';
 import { useSiteSettings } from '../context/SiteSettingsContext';
 import { useCart } from '../hooks/useCart';
 import { useEngagement } from '../hooks/useEngagement';
@@ -113,6 +114,7 @@ export default function ProductDetail() {
   const { slug = '' } = useParams();
   const location = useLocation();
   const { locale } = useLocale();
+  const { notifyError, notifyInfo, notifySuccess } = useNotifications();
   const { getSetting } = useSiteSettings();
   const { addToCart, openCart } = useCart();
   const { getProductMetrics, registerView, toggleFavorite } = useEngagement();
@@ -198,6 +200,7 @@ export default function ProductDetail() {
 
   const saveStockNotify = () => {
     if (!notifyEmail.trim()) {
+      notifyInfo(locale === 'ar' ? 'اكتب البريد الإلكتروني' : 'Enter your email', locale === 'ar' ? 'املأ البريد قبل حفظ تنبيه التوفر.' : 'Fill your email before saving the stock alert.');
       return;
     }
 
@@ -210,6 +213,7 @@ export default function ProductDetail() {
     localStorage.setItem(key, JSON.stringify(next));
     setNotifySaved(true);
     setNotifyEmail('');
+    notifySuccess(locale === 'ar' ? 'تم حفظ التنبيه' : 'Alert saved', locale === 'ar' ? 'سنحتفظ بطلب التنبيه محليًا حتى يتم ربطه بالنظام.' : 'The alert has been saved locally until backend alerts are connected.');
   };
 
   return (
@@ -373,11 +377,16 @@ export default function ProductDetail() {
               <>
                 <button
                   type="button"
-                  className="n-btn n-btn--primary n-btn--full"
-                  onClick={async () => {
-                    await addToCart(product, selectedVariant, quantity);
-                    openCart();
-                  }}
+                    className="n-btn n-btn--primary n-btn--full"
+                    onClick={async () => {
+                      try {
+                        await addToCart(product, selectedVariant, quantity);
+                        openCart();
+                        notifySuccess(locale === 'ar' ? 'تمت الإضافة للسلة' : 'Added to cart', locale === 'ar' ? `${product.name_ar || product.name_en} أصبح جاهزًا لإتمام الطلب.` : `${product.name_en || product.name_ar} is ready for checkout.`);
+                      } catch {
+                        notifyError(locale === 'ar' ? 'تعذر إضافة المنتج' : 'Unable to add product', locale === 'ar' ? 'حاول مرة أخرى أو راجع اتصال المتجر.' : 'Please try again or check the store connection.');
+                      }
+                    }}
                 >
                   {locale === 'ar' ? 'أضف إلى السلة' : 'Add to cart'}
                 </button>
@@ -441,11 +450,16 @@ export default function ProductDetail() {
           <strong>{formatCurrency(selectedVariant.retail_price, locale)}</strong>
           <button
             type="button"
-            className="n-btn n-btn--primary"
-            onClick={async () => {
-              await addToCart(product, selectedVariant, quantity);
-              openCart();
-            }}
+              className="n-btn n-btn--primary"
+              onClick={async () => {
+                try {
+                  await addToCart(product, selectedVariant, quantity);
+                  openCart();
+                  notifySuccess(locale === 'ar' ? 'تمت الإضافة للسلة' : 'Added to cart', locale === 'ar' ? `${product.name_ar || product.name_en} أصبح في السلة.` : `${product.name_en || product.name_ar} is now in your cart.`);
+                } catch {
+                  notifyError(locale === 'ar' ? 'تعذر إضافة المنتج' : 'Unable to add product', locale === 'ar' ? 'حاول مرة أخرى أو راجع اتصال المتجر.' : 'Please try again or check the store connection.');
+                }
+              }}
           >
             {locale === 'ar' ? 'أضف للسلة' : 'Add to cart'}
           </button>

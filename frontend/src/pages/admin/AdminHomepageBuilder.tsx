@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Badge, Button, Card, EmptyState, Field, Input, Select, Textarea } from '../../components/ui';
+import { useNotifications } from '../../hooks/useNotifications';
 
 type HomeItem = {
   id: number;
@@ -118,6 +119,7 @@ function itemPayload(item: Partial<HomeItem>) {
 }
 
 const AdminHomepageBuilder: React.FC = () => {
+  const { notifyError, notifySuccess } = useNotifications();
   const [sections, setSections] = useState<HomeSection[]>([]);
   const [products, setProducts] = useState<ProductOption[]>([]);
   const [newSection, setNewSection] = useState<Partial<HomeSection>>(blankSection);
@@ -134,8 +136,11 @@ const AdminHomepageBuilder: React.FC = () => {
   };
 
   useEffect(() => {
-    load().catch(() => setMessage('تعذر تحميل بيانات الرئيسية. تأكد من تشغيل Laravel API.'));
-  }, []);
+    load().catch(() => {
+      setMessage('تعذر تحميل بيانات الرئيسية. تأكد من تشغيل Laravel API.');
+      notifyError('تعذر تحميل بيانات الرئيسية', 'تأكد من تشغيل Laravel API ثم حاول مرة أخرى.');
+    });
+  }, [notifyError]);
 
   const productOptions = useMemo(() => products.map((product) => ({
     value: String(product.id),
@@ -151,8 +156,12 @@ const AdminHomepageBuilder: React.FC = () => {
           event.preventDefault();
           adminApi.homeSections.create(sectionPayload(newSection)).then(() => {
             setNewSection(blankSection);
+            notifySuccess('تمت إضافة السكشن', 'تم تحديث محرر الصفحة الرئيسية.');
             load();
-          }).catch(() => setMessage('راجع مفتاح السكشن والحقول المطلوبة.'));
+          }).catch(() => {
+            setMessage('راجع مفتاح السكشن والحقول المطلوبة.');
+            notifyError('تعذر إضافة السكشن', 'املأ مفتاح السكشن والعنوانين بشكل صحيح.');
+          });
         }}>
           <div className="grid-auto">
             <Field label="مفتاح السكشن"><Input value={newSection.section_key || ''} onChange={(event) => setNewSection({ ...newSection, section_key: event.target.value })} /></Field>
@@ -194,9 +203,21 @@ const AdminHomepageBuilder: React.FC = () => {
                 <Field label="CTA"><Input value={section.cta_url || ''} onChange={(event) => setSections((current) => current.map((entry) => entry.id === section.id ? { ...entry, cta_url: event.target.value } : entry))} /></Field>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <Button onClick={() => adminApi.homeSections.update(section.id, sectionPayload(section)).then(load)}>حفظ السكشن</Button>
-                <Button variant="secondary" onClick={() => adminApi.homeSections.update(section.id, sectionPayload({ ...section, is_active: !section.is_active })).then(load)}>{section.is_active ? 'إخفاء' : 'إظهار'}</Button>
-                <Button variant="danger" onClick={() => adminApi.homeSections.delete(section.id).then(load)}>حذف</Button>
+                <Button onClick={() => adminApi.homeSections.update(section.id, sectionPayload(section)).then(() => {
+                  notifySuccess('تم حفظ السكشن', 'تغييرات الصفحة الرئيسية اتسجلت بنجاح.');
+                  load();
+                }).catch(() => notifyError('تعذر حفظ السكشن', 'راجع الحقول وحاول مرة أخرى.'))}>حفظ السكشن</Button>
+                <Button variant="secondary" onClick={() => adminApi.homeSections.update(section.id, sectionPayload({ ...section, is_active: !section.is_active })).then(() => {
+                  notifySuccess(section.is_active ? 'تم إخفاء السكشن' : 'تم إظهار السكشن', 'تم تحديث حالة الظهور في الرئيسية.');
+                  load();
+                }).catch(() => notifyError('تعذر تغيير حالة السكشن', 'حاول مرة أخرى بعد لحظات.'))}>{section.is_active ? 'إخفاء' : 'إظهار'}</Button>
+                <Button variant="danger" onClick={() => {
+                  if (!window.confirm('هل تريد حذف هذا السكشن من الرئيسية؟')) return;
+                  adminApi.homeSections.delete(section.id).then(() => {
+                    notifySuccess('تم حذف السكشن', 'تم تحديث الصفحة الرئيسية.');
+                    load();
+                  }).catch(() => notifyError('تعذر حذف السكشن', 'قد يحتوي على عناصر مرتبطة أو حدث خطأ في الخادم.'));
+                }}>حذف</Button>
               </div>
 
               <div className="soft-divider" />
@@ -278,8 +299,9 @@ const AdminHomepageBuilder: React.FC = () => {
                             delete next[item.id];
                             return next;
                           });
+                          notifySuccess('تم حفظ عنصر الرئيسية', 'تم تحديث النص أو الصورة أو الرابط.');
                           load();
-                        })}>حفظ العنصر</Button>
+                        }).catch(() => notifyError('تعذر حفظ العنصر', 'راجع بيانات العنصر وحاول مرة أخرى.'))}>حفظ العنصر</Button>
                         <Button size="sm" variant="ghost" onClick={() => setEditingItems((current) => {
                           const next = { ...current };
                           delete next[item.id];
@@ -289,8 +311,17 @@ const AdminHomepageBuilder: React.FC = () => {
                     ) : (
                       <Button size="sm" variant="secondary" onClick={() => setEditingItems((current) => ({ ...current, [item.id]: { ...item } }))}>تعديل العنصر</Button>
                     )}
-                    <Button size="sm" variant="secondary" onClick={() => adminApi.homeSections.updateItem(item.id, itemPayload({ ...item, is_active: !item.is_active })).then(load)}>{item.is_active ? 'إخفاء' : 'إظهار'}</Button>
-                    <Button size="sm" variant="danger" onClick={() => adminApi.homeSections.deleteItem(item.id).then(load)}>حذف</Button>
+                    <Button size="sm" variant="secondary" onClick={() => adminApi.homeSections.updateItem(item.id, itemPayload({ ...item, is_active: !item.is_active })).then(() => {
+                      notifySuccess(item.is_active ? 'تم إخفاء العنصر' : 'تم إظهار العنصر', 'تم تحديث حالة العنصر داخل السكشن.');
+                      load();
+                    }).catch(() => notifyError('تعذر تغيير حالة العنصر', 'حاول مرة أخرى بعد لحظات.'))}>{item.is_active ? 'إخفاء' : 'إظهار'}</Button>
+                    <Button size="sm" variant="danger" onClick={() => {
+                      if (!window.confirm('هل تريد حذف هذا العنصر؟')) return;
+                      adminApi.homeSections.deleteItem(item.id).then(() => {
+                        notifySuccess('تم حذف العنصر', 'تم تحديث عناصر السكشن.');
+                        load();
+                      }).catch(() => notifyError('تعذر حذف العنصر', 'حاول مرة أخرى بعد لحظات.'));
+                    }}>حذف</Button>
                   </div>
                 </div>
               ))}
@@ -300,8 +331,9 @@ const AdminHomepageBuilder: React.FC = () => {
                 const form = itemForms[section.id] || blankItem;
                 adminApi.homeSections.createItem(section.id, itemPayload(form)).then(() => {
                   setItemForms((current) => ({ ...current, [section.id]: blankItem }));
+                  notifySuccess('تمت إضافة عنصر للرئيسية', 'يمكنك ترتيبه أو ربطه بمنتج من نفس السكشن.');
                   load();
-                });
+                }).catch(() => notifyError('تعذر إضافة العنصر', 'املأ البيانات المطلوبة أو اختر منتجًا صالحًا.'));
               }}>
                 <div className="grid-auto">
                   <Field label="منتج مرتبط">

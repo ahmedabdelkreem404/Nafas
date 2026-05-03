@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Button, Card, EmptyState, Field, Input, LoadingState, Select, Textarea } from '../../components/ui';
+import { useNotifications } from '../../hooks/useNotifications';
 
 const settingGroups = [
   {
@@ -37,6 +38,7 @@ const settingGroups = [
 ];
 
 const AdminSettings: React.FC = () => {
+  const { notifyError, notifySuccess } = useNotifications();
   const [settings, setSettings] = useState<any[]>([]);
   const [newSetting, setNewSetting] = useState({ key: '', value: '', type: 'string' });
   const [loading, setLoading] = useState(true);
@@ -77,9 +79,13 @@ const AdminSettings: React.FC = () => {
     request
       .then(() => {
         setMessage('تم حفظ الإعداد.');
+        notifySuccess('تم حفظ الإعداد', 'التغيير أصبح جاهزًا للاستخدام في الواجهة.');
         load();
       })
-      .catch(() => setMessage('تعذر حفظ الإعداد. تأكد من أن المفتاح غير مكرر.'))
+      .catch(() => {
+        setMessage('تعذر حفظ الإعداد. تأكد من أن المفتاح غير مكرر.');
+        notifyError('تعذر حفظ الإعداد', 'راجع القيمة أو المفتاح ثم حاول مرة أخرى.');
+      })
       .finally(() => setSavingKey(''));
   };
 
@@ -124,8 +130,9 @@ const AdminSettings: React.FC = () => {
           event.preventDefault();
           adminApi.settings.create(newSetting).then(() => {
             setNewSetting({ key: '', value: '', type: 'string' });
+            notifySuccess('تمت إضافة الإعداد', 'يمكنك استخدامه الآن في الموقع أو الداشبورد.');
             load();
-          });
+          }).catch(() => notifyError('تعذر إضافة الإعداد', 'تأكد من كتابة المفتاح والقيمة بشكل صحيح.'));
         }}>
           <div className="data-card__title">إعداد مخصص</div>
           <div className="grid-auto">

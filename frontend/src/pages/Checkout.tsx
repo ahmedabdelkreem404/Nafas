@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { publicApi } from '../api/publicApi';
 import ProductMedia from '../components/ProductMedia';
 import { useLocale } from '../context/LocaleContext';
+import { useNotifications } from '../hooks/useNotifications';
 import { useSiteSettings } from '../context/SiteSettingsContext';
 import { useCart } from '../hooks/useCart';
 import { buildCheckoutPayload, validatePaymentProof } from '../utils/checkout';
@@ -65,6 +66,7 @@ function formatCheckoutError(message: string, locale: 'ar' | 'en') {
 
 export default function Checkout() {
   const { locale } = useLocale();
+  const { notifyError, notifyInfo, notifySuccess } = useNotifications();
   const { getSetting } = useSiteSettings();
   const { clearCart, items, total } = useCart();
   const navigate = useNavigate();
@@ -195,6 +197,10 @@ export default function Checkout() {
           payment_proof: true,
         });
         if (Object.values(nextErrors).some(Boolean)) {
+          notifyInfo(
+            locale === 'ar' ? 'راجع بيانات الطلب' : 'Review order details',
+            locale === 'ar' ? 'فيه حقول ناقصة أو محتاجة تصحيح قبل تأكيد الطلب.' : 'Some fields are missing or need correction before placing the order.',
+          );
           return;
         }
 
@@ -216,13 +222,19 @@ export default function Checkout() {
             order = createLocalOrder(form, items, total);
           }
           sessionStorage.setItem(`order_${order.order_number}`, JSON.stringify(order));
+          notifySuccess(
+            locale === 'ar' ? 'تم تسجيل الطلب' : 'Order placed',
+            locale === 'ar' ? 'سيتم نقلك الآن لصفحة التأكيد.' : 'Taking you to the confirmation page now.',
+          );
           navigate(`/order-confirmation/${order.order_number}`);
           void clearCart().catch(() => {
             // The order is already created; confirmation must not be blocked by cart cleanup.
           });
         } catch (err: any) {
           const message = err.message || (locale === 'ar' ? 'تعذّر إتمام الطلب.' : 'Unable to place the order.');
-          setError(formatCheckoutError(message, locale));
+          const formattedMessage = formatCheckoutError(message, locale);
+          setError(formattedMessage);
+          notifyError(locale === 'ar' ? 'تعذر إتمام الطلب' : 'Unable to place order', formattedMessage);
         } finally {
           setSubmitting(false);
         }

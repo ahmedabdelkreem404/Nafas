@@ -2,6 +2,7 @@ import { Check, Heart, ShoppingBag } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocale } from '../context/LocaleContext';
+import { useNotifications } from '../hooks/useNotifications';
 import { useCart } from '../hooks/useCart';
 import { useEngagement } from '../hooks/useEngagement';
 import type { Product } from '../types/store';
@@ -11,6 +12,7 @@ import ProductMedia from './ProductMedia';
 
 export default function ProductCard({ product, crowned = false }: { product: Product; crowned?: boolean }) {
   const { locale } = useLocale();
+  const { notifyError, notifySuccess } = useNotifications();
   const { addToCart, openCart } = useCart();
   const { getProductMetrics, toggleFavorite } = useEngagement();
   const [added, setAdded] = useState(false);
@@ -22,10 +24,15 @@ export default function ProductCard({ product, crowned = false }: { product: Pro
     event.preventDefault();
     event.stopPropagation();
     if (!variant || outOfStock) return;
-    await addToCart(product, variant, 1);
-    openCart();
-    setAdded(true);
-    window.setTimeout(() => setAdded(false), 1400);
+    try {
+      await addToCart(product, variant, 1);
+      openCart();
+      setAdded(true);
+      notifySuccess(locale === 'ar' ? 'تمت الإضافة للسلة' : 'Added to cart', locale === 'ar' ? `${product.name_ar || product.name_en} أصبح في السلة.` : `${product.name_en || product.name_ar} is now in your cart.`);
+      window.setTimeout(() => setAdded(false), 1400);
+    } catch {
+      notifyError(locale === 'ar' ? 'تعذر إضافة المنتج' : 'Unable to add product', locale === 'ar' ? 'حاول مرة أخرى أو راجع اتصال المتجر.' : 'Please try again or check the store connection.');
+    }
   };
 
   return (

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Badge, Button, Card, EmptyState } from '../../components/ui';
+import { useNotifications } from '../../hooks/useNotifications';
 
 type Catalog = {
   id: number;
@@ -14,15 +15,19 @@ type Catalog = {
 };
 
 const AdminCatalogs: React.FC = () => {
+  const { notifyError, notifySuccess } = useNotifications();
   const [catalogs, setCatalogs] = useState<Catalog[]>([]);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const load = () => adminApi.catalogs.list()
+  const load = useCallback(() => adminApi.catalogs.list()
     .then((response) => setCatalogs(response.data?.data || []))
-    .catch(() => setMessage('تعذر تحميل الكتالوجات.'));
+    .catch(() => {
+      setMessage('تعذر تحميل الكتالوجات.');
+      notifyError('تعذر تحميل الكتالوجات', 'حاول تحديث الصفحة أو راجع اتصال الـ API.');
+    }), [notifyError]);
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => { load(); }, [load]);
 
   return (
     <AdminPageShell eyebrow="الكتالوجات" title="إدارة الكتالوجات والمجموعات" description="أنشئ مجموعات مستقبلية واربط بها منتجات نفس بدون تعديل الكود.">
@@ -44,7 +49,13 @@ const AdminCatalogs: React.FC = () => {
               <p className="copy-muted">{catalog.products?.length || 0} منتج داخل الكتالوج</p>
               <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                 <Button onClick={() => navigate(`/admin/catalogs/${catalog.id}/edit`)} variant="secondary">تعديل</Button>
-                <Button variant="danger" onClick={() => adminApi.catalogs.delete(catalog.id).then(load)}>حذف</Button>
+                <Button variant="danger" onClick={() => {
+                  if (!window.confirm('هل تريد حذف هذا الكتالوج؟')) return;
+                  adminApi.catalogs.delete(catalog.id).then(() => {
+                    notifySuccess('تم حذف الكتالوج', 'تم تحديث قائمة الكتالوجات.');
+                    load();
+                  }).catch(() => notifyError('تعذر حذف الكتالوج', 'قد يكون مرتبطًا ببيانات أخرى أو حدث خطأ في الخادم.'));
+                }}>حذف</Button>
               </div>
             </Card>
           ))}

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Badge, Button, Card, Field, Input, Select, Textarea } from '../../components/ui';
+import { useNotifications } from '../../hooks/useNotifications';
 
 type CatalogForm = {
   slug: string;
@@ -32,6 +33,7 @@ const blankCatalog: CatalogForm = {
 const AdminCatalogForm: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { notifyError, notifyInfo, notifySuccess } = useNotifications();
   const [form, setForm] = useState<CatalogForm>(blankCatalog);
   const [products, setProducts] = useState<any[]>([]);
   const [attachProductId, setAttachProductId] = useState('');
@@ -41,7 +43,10 @@ const AdminCatalogForm: React.FC = () => {
   const load = useCallback(() => Promise.all([
     id ? adminApi.catalogs.get(id).then((response) => setForm(response.data?.data || blankCatalog)) : Promise.resolve(),
     adminApi.products.list().then((response) => setProducts(response.data || [])),
-  ]).catch(() => setMessage('تعذر تحميل بيانات الكتالوج.')), [id]);
+  ]).catch(() => {
+    setMessage('تعذر تحميل بيانات الكتالوج.');
+    notifyError('تعذر تحميل بيانات الكتالوج', 'حاول مرة أخرى أو راجع اتصال لوحة التحكم.');
+  }), [id, notifyError]);
 
   useEffect(() => { load(); }, [load]);
 
@@ -79,9 +84,13 @@ const AdminCatalogForm: React.FC = () => {
     const request = id ? adminApi.catalogs.update(id, payload) : adminApi.catalogs.create(payload);
     request.then((response) => {
       const next = response.data?.data;
+      notifySuccess(id ? 'تم حفظ الكتالوج' : 'تم إنشاء الكتالوج', 'التغييرات أصبحت جاهزة للظهور حسب حالة الكتالوج.');
       if (!id && next?.id) navigate(`/admin/catalogs/${next.id}/edit`);
       else load();
-    }).catch(() => setMessage('راجع الحقول المطلوبة: الرابط، الاسم العربي، الاسم الإنجليزي.'));
+    }).catch(() => {
+      setMessage('راجع الحقول المطلوبة: الرابط، الاسم العربي، الاسم الإنجليزي.');
+      notifyError('تعذر حفظ الكتالوج', 'املأ الاسم العربي والإنجليزي والرابط المختصر بشكل صحيح.');
+    });
   };
 
   const updateCatalogProductDraft = (pivotId: number | string, patch: Partial<{ is_featured: boolean; sort_order: number }>) => {
@@ -101,7 +110,13 @@ const AdminCatalogForm: React.FC = () => {
     adminApi.catalogs.updateProduct(pivotId, {
       is_featured: draft.is_featured,
       sort_order: Number(draft.sort_order || 0),
-    }).then(load).catch(() => setMessage('تعذر حفظ ترتيب المنتج داخل الكتالوج.'));
+    }).then(() => {
+      notifySuccess('تم حفظ ترتيب المنتج', 'تم تحديث مكان المنتج داخل الكتالوج.');
+      load();
+    }).catch(() => {
+      setMessage('تعذر حفظ ترتيب المنتج داخل الكتالوج.');
+      notifyError('تعذر حفظ ترتيب المنتج', 'راجع الرقم وحاول مرة أخرى.');
+    });
   };
 
   return (
@@ -142,7 +157,17 @@ const AdminCatalogForm: React.FC = () => {
                 {productOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
               </Select>
             </Field>
-            <Button variant="secondary" disabled={!attachProductId} onClick={() => adminApi.catalogs.attachProduct(id, { product_id: Number(attachProductId), sort_order: (form.products?.length || 0) * 10 }).then(() => { setAttachProductId(''); load(); })}>إضافة للكتالوج</Button>
+            <Button variant="secondary" disabled={!attachProductId} onClick={() => {
+              if (!attachProductId) {
+                notifyInfo('اختر منتجًا أولًا', 'لا يمكن إضافة عنصر للكتالوج بدون اختيار منتج.');
+                return;
+              }
+              adminApi.catalogs.attachProduct(id, { product_id: Number(attachProductId), sort_order: (form.products?.length || 0) * 10 }).then(() => {
+                setAttachProductId('');
+                notifySuccess('تمت إضافة المنتج للكتالوج', 'سيظهر حسب حالة المنتج والكتالوج وترتيبه.');
+                load();
+              }).catch(() => notifyError('تعذر إضافة المنتج', 'قد يكون المنتج موجودًا بالفعل داخل هذا الكتالوج.'));
+            }}>إضافة للكتالوج</Button>
           </div>
           {(form.products || []).map((product) => (
             <div key={product.id} className="data-card">
@@ -171,7 +196,13 @@ const AdminCatalogForm: React.FC = () => {
               ) : null}
               <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                 {product.pivot?.id ? <Button size="sm" variant="secondary" onClick={() => saveCatalogProduct(product.pivot.id)}>حفظ ترتيب المنتج</Button> : null}
-                <Button size="sm" variant="danger" onClick={() => adminApi.catalogs.detachProduct(product.pivot?.id).then(load)}>إزالة</Button>
+                <Button size="sm" variant="danger" onClick={() => {
+                  if (!window.confirm('هل تريد إزالة المنتج من هذا الكتالوج؟')) return;
+                  adminApi.catalogs.detachProduct(product.pivot?.id).then(() => {
+                    notifySuccess('تمت إزالة المنتج', 'تم تحديث منتجات الكتالوج.');
+                    load();
+                  }).catch(() => notifyError('تعذر إزالة المنتج', 'حاول مرة أخرى بعد لحظات.'));
+                }}>إزالة</Button>
               </div>
             </div>
           ))}

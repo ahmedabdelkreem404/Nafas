@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Badge, Button, Card, DataTable, EmptyState, ErrorState, Field, Input, LoadingState, Select } from '../../components/ui';
+import { useNotifications } from '../../hooks/useNotifications';
 
 const blankMedia = {
   url: '',
@@ -17,6 +18,7 @@ const typeLabel: Record<string, string> = {
 
 const AdminProductMedia: React.FC = () => {
   const { id = '' } = useParams();
+  const { notifyError, notifySuccess } = useNotifications();
   const [media, setMedia] = useState<any[]>([]);
   const [form, setForm] = useState<any>(blankMedia);
   const [files, setFiles] = useState<File[]>([]);
@@ -30,9 +32,12 @@ const AdminProductMedia: React.FC = () => {
     setError('');
     adminApi.products.media(id)
       .then((res) => setMedia(res.data || []))
-      .catch((err) => setError(err.message || 'تعذر تحميل وسائط المنتج.'))
+      .catch((err) => {
+        setError(err.message || 'تعذر تحميل وسائط المنتج.');
+        notifyError('تعذر تحميل الوسائط', 'راجع اتصال لوحة التحكم أو حاول مرة أخرى.');
+      })
       .finally(() => setLoading(false));
-  }, [id]);
+  }, [id, notifyError]);
 
   useEffect(() => { load(); }, [load]);
 
@@ -59,10 +64,12 @@ const AdminProductMedia: React.FC = () => {
         files.forEach((file) => payload.append('files[]', file));
         await adminApi.products.createMedia(id, payload);
       }
+      notifySuccess(editingId ? 'تم حفظ الوسيط' : 'تمت إضافة الوسائط', editingId ? 'تم تحديث بيانات الصورة أو الفيديو.' : 'تم رفع أو حفظ الوسائط وربطها بالمنتج.');
       resetForm();
       load();
     } catch (err: any) {
       setError(err.message || 'تعذر حفظ الوسائط. تأكد من الرابط أو نوع الملف.');
+      notifyError('تعذر حفظ الوسائط', 'تأكد من رابط صحيح أو ملف مدعوم وحجم مناسب.');
     } finally {
       setSaving(false);
     }
@@ -88,12 +95,21 @@ const AdminProductMedia: React.FC = () => {
       cell: (item: any) => (
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           <Button size="sm" variant="secondary" onClick={() => { setEditingId(item.id); setForm({ ...blankMedia, ...item }); setFiles([]); }}>تعديل</Button>
-          {!item.is_primary ? <Button size="sm" variant="ghost" onClick={() => adminApi.products.updateMedia(item.id, { ...item, is_primary: true }).then(load)}>تعيين رئيسية</Button> : null}
-          <Button size="sm" variant="danger" onClick={() => adminApi.products.deleteMedia(item.id).then(load)}>حذف</Button>
+          {!item.is_primary ? <Button size="sm" variant="ghost" onClick={() => adminApi.products.updateMedia(item.id, { ...item, is_primary: true }).then(() => {
+            notifySuccess('تم تعيين الوسيط كرئيسي', 'سيستخدم المنتج هذا الوسيط كأولوية في العرض.');
+            load();
+          }).catch(() => notifyError('تعذر تعيين الوسيط', 'حاول مرة أخرى بعد لحظات.'))}>تعيين رئيسية</Button> : null}
+          <Button size="sm" variant="danger" onClick={() => {
+            if (!window.confirm('هل تريد حذف هذا الوسيط؟')) return;
+            adminApi.products.deleteMedia(item.id).then(() => {
+              notifySuccess('تم حذف الوسيط', 'تم تحديث وسائط المنتج.');
+              load();
+            }).catch(() => notifyError('تعذر حذف الوسيط', 'قد يكون الملف غير متاح أو حدث خطأ في الخادم.'));
+          }}>حذف</Button>
         </div>
       ),
     },
-  ], [load]);
+  ], [load, notifyError, notifySuccess]);
 
   return (
     <AdminPageShell

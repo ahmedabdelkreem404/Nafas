@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Badge, Button, Card, EmptyState, ErrorState, Field, Input, LoadingState, Select } from '../../components/ui';
+import { useNotifications } from '../../hooks/useNotifications';
 import { adminGenderLabel, adminStatusLabel } from '../../utils/adminLabels';
 
 const productTypeLabel: Record<string, string> = {
@@ -23,6 +24,7 @@ function normalizeAdminListResponse(responseData: any) {
 }
 
 const AdminProducts: React.FC = () => {
+  const { notifyError, notifySuccess } = useNotifications();
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -35,9 +37,12 @@ const AdminProducts: React.FC = () => {
     const params = Object.fromEntries(Object.entries(filters).filter(([, value]) => value)) as Record<string, string>;
     adminApi.products.list(params)
       .then((res) => setProducts(normalizeAdminListResponse(res.data)))
-      .catch((err) => setError(err.message || 'تعذر تحميل المنتجات.'))
+      .catch((err) => {
+        setError(err.message || 'تعذر تحميل المنتجات.');
+        notifyError('تعذر تحميل المنتجات', 'راجع اتصال لوحة التحكم أو إعدادات الـ API.');
+      })
       .finally(() => setLoading(false));
-  }, [filters]);
+  }, [filters, notifyError]);
 
   useEffect(() => { load(); }, [load]);
   useEffect(() => {
@@ -53,9 +58,15 @@ const AdminProducts: React.FC = () => {
   const removeProduct = useCallback((productId: number | string) => {
     if (!window.confirm('هل تريد حذف هذا المنتج؟')) return;
     adminApi.products.delete(productId)
-      .then(load)
-      .catch((err) => setError(err.message || 'تعذر حذف المنتج.'));
-  }, [load]);
+      .then(() => {
+        notifySuccess('تم حذف المنتج', 'تم تحديث قائمة المنتجات.');
+        load();
+      })
+      .catch((err) => {
+        setError(err.message || 'تعذر حذف المنتج.');
+        notifyError('تعذر حذف المنتج', 'قد يكون مرتبطًا بطلبات أو بيانات تشغيلية.');
+      });
+  }, [load, notifyError, notifySuccess]);
 
   return (
     <AdminPageShell

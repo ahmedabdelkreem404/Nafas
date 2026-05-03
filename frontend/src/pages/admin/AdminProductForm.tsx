@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Button, Card, ErrorState, Field, Input, LoadingState, Select, Textarea } from '../../components/ui';
+import { useNotifications } from '../../hooks/useNotifications';
 import { formatCurrency, formatNumber } from '../../utils/format';
 
 type CatalogMembership = {
@@ -58,6 +59,7 @@ const emptyState = {
 const AdminProductForm: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { notifyError, notifySuccess } = useNotifications();
   const [form, setForm] = useState<any>(emptyState);
   const [loading, setLoading] = useState(Boolean(id));
   const [error, setError] = useState('');
@@ -83,13 +85,16 @@ const AdminProductForm: React.FC = () => {
       })
       : Promise.resolve();
 
-    Promise.all([
-      loadProduct,
-      adminApi.catalogs.listSafe().then((response) => setCatalogs(response.data?.data || [])),
-    ])
-      .catch((err) => setError(err.message || 'تعذّر تحميل بيانات المنتج'))
-      .finally(() => setLoading(false));
-  }, [id]);
+      Promise.all([
+        loadProduct,
+        adminApi.catalogs.listSafe().then((response) => setCatalogs(response.data?.data || [])),
+      ])
+        .catch((err) => {
+          setError(err.message || 'تعذّر تحميل بيانات المنتج');
+          notifyError('تعذر تحميل بيانات المنتج', 'راجع اتصال لوحة التحكم أو حاول مرة أخرى.');
+        })
+        .finally(() => setLoading(false));
+  }, [id, notifyError]);
 
   const toggleCatalog = (catalog: { id: number; name_ar: string; name_en: string; slug: string }, checked: boolean) => {
     setCatalogMemberships((current) => {
@@ -189,9 +194,11 @@ const AdminProductForm: React.FC = () => {
           await syncCatalogMemberships(productId, []);
         }
       }
+      notifySuccess(id ? 'تم حفظ المنتج' : 'تمت إضافة المنتج', 'تم تحديث بيانات المنتج وربطه بالكتالوجات المحددة.');
       navigate('/admin/products');
     } catch (err: any) {
       setError(err.message || 'تعذّر حفظ المنتج');
+      notifyError('تعذر حفظ المنتج', 'راجع الحقول المطلوبة، الاسم العربي/الإنجليزي، الكود، والأسعار.');
     } finally {
       setSaving(false);
     }
