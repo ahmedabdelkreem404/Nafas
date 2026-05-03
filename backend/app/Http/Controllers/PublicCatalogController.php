@@ -36,11 +36,14 @@ class PublicCatalogController extends Controller
 
         $products = $catalog->products()
             ->where('status', 'active')
+            ->where('show_in_shop', true)
             ->with([
                 'variants' => fn ($builder) => $builder->where('is_active', true),
                 'media',
                 'catalogs' => fn ($builder) => $builder->where('catalogs.is_active', true),
             ])
+            ->orderBy('catalog_product.sort_order')
+            ->orderBy('products.id')
             ->get();
 
         return ProductResource::collection($products)->additional([

@@ -144,11 +144,16 @@ class DynamicHomeCatalogTest extends TestCase
 
     public function test_public_shop_respects_product_shop_visibility(): void
     {
-        Product::where('slug', 'sharara')->firstOrFail()->update([
+        $product = Product::where('slug', 'sharara')->firstOrFail();
+        $product->update([
             'show_in_shop' => false,
         ]);
 
         $this->getJson('/api/products')
+            ->assertOk()
+            ->assertJsonMissing(['slug' => 'sharara']);
+
+        $this->getJson('/api/catalogs/nafas-signature/products')
             ->assertOk()
             ->assertJsonMissing(['slug' => 'sharara']);
 

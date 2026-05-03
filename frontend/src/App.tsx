@@ -14,6 +14,7 @@ const Account = lazy(() => import('./pages/Account'));
 const AccountOrderDetail = lazy(() => import('./pages/AccountOrderDetail'));
 const AccountOrders = lazy(() => import('./pages/AccountOrders'));
 const Cart = lazy(() => import('./pages/Cart'));
+const CatalogPage = lazy(() => import('./pages/CatalogPage'));
 const Checkout = lazy(() => import('./pages/Checkout'));
 const ContentPage = lazy(() => import('./pages/ContentPage'));
 const Favorites = lazy(() => import('./pages/Favorites'));
@@ -97,6 +98,7 @@ export default function App() {
               <Route path="/" element={<PublicLayout />}>
                 <Route index element={<Home />} />
                 <Route path="shop" element={<Shop />} />
+                <Route path="catalogs/:slug" element={<CatalogPage />} />
                 <Route path="products/:slug" element={<ProductDetail />} />
                 <Route path="favorites" element={<Favorites />} />
                 <Route path="cart" element={<Cart />} />
