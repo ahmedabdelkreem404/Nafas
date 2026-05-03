@@ -7,10 +7,11 @@ import ProductGallery from '../components/ProductGallery';
 import ProductReviews from '../components/ProductReviews';
 import Reveal from '../components/Reveal';
 import { useLocale } from '../context/LocaleContext';
+import { useSiteSettings } from '../context/SiteSettingsContext';
 import { useCart } from '../hooks/useCart';
 import { useEngagement } from '../hooks/useEngagement';
 import type { Product } from '../types/store';
-import { HAS_WHATSAPP_SUPPORT } from '../utils/brand';
+import { WHATSAPP_SUPPORT_URL } from '../utils/brand';
 import { formatCurrency, formatNumber } from '../utils/format';
 import { getPrimaryVariant } from '../utils/products';
 import { buildProductWhatsAppUrl } from '../utils/whatsapp';
@@ -112,6 +113,7 @@ export default function ProductDetail() {
   const { slug = '' } = useParams();
   const location = useLocation();
   const { locale } = useLocale();
+  const { getSetting } = useSiteSettings();
   const { addToCart, openCart } = useCart();
   const { getProductMetrics, registerView, toggleFavorite } = useEngagement();
   const [product, setProduct] = useState<Product | null>(null);
@@ -167,13 +169,14 @@ export default function ProductDetail() {
   const moodTags = locale === 'ar' ? product?.tags_ar || [] : product?.tags_en || [];
   const longevityScore = getMeterScore(locale === 'ar' ? product?.longevity_label_ar || product?.longevity_label : product?.longevity_label_en || product?.longevity_label);
   const projectionScore = getMeterScore(locale === 'ar' ? product?.projection_label_ar || product?.projection_label : product?.projection_label_en || product?.projection_label);
+  const whatsappUrl = getSetting('whatsapp_url', WHATSAPP_SUPPORT_URL);
   const productWhatsAppUrl = product && selectedVariant ? buildProductWhatsAppUrl({
     locale,
     path: location.pathname,
     product,
     quantity,
     variant: selectedVariant,
-  }) : '';
+  }, whatsappUrl) : '';
 
   useEffect(() => {
     if (!selectedVariantId) {
@@ -379,7 +382,7 @@ export default function ProductDetail() {
                   {locale === 'ar' ? 'أضف إلى السلة' : 'Add to cart'}
                 </button>
 
-                {HAS_WHATSAPP_SUPPORT && productWhatsAppUrl ? (
+                {whatsappUrl && productWhatsAppUrl ? (
                   <a href={productWhatsAppUrl} target="_blank" rel="noreferrer" className="n-btn n-btn--ghost n-btn--full">
                     {locale === 'ar' ? 'استفسر عبر واتساب' : 'Ask on WhatsApp'}
                   </a>

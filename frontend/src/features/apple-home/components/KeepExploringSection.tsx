@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useLocale } from '../../../context/LocaleContext';
+import { useSiteSettings } from '../../../context/SiteSettingsContext';
 import { SECTION_LABELS } from '../constants';
 import { appleHomeCopy, exploreCopy, text } from '../data/appleHomeCopy';
 import type { ExploreCard } from '../types';
-import { buildWhatsappUrl, HAS_WHATSAPP_URL } from '../utils/whatsapp';
+import { buildWhatsappUrl, WHATSAPP_BASE_URL } from '../utils/whatsapp';
 
 type KeepExploringSectionProps = {
   cards: ExploreCard[];
@@ -11,7 +12,9 @@ type KeepExploringSectionProps = {
 
 export default function KeepExploringSection({ cards }: KeepExploringSectionProps) {
   const { locale } = useLocale();
+  const { getSetting } = useSiteSettings();
   const copy = appleHomeCopy.explore;
+  const whatsappUrl = getSetting('whatsapp_url', WHATSAPP_BASE_URL);
 
   return (
     <section className="anh-section anh-explore" data-section={SECTION_LABELS.explore} aria-labelledby="explore-title">
@@ -30,9 +33,9 @@ export default function KeepExploringSection({ cards }: KeepExploringSectionProp
               </>
             );
 
-            if (card.external && HAS_WHATSAPP_URL) {
+            if (card.external && whatsappUrl) {
               return (
-                <a key={card.id} className="anh-explore-card" href={buildWhatsappUrl(text(copy.whatsappMessage, locale))} target="_blank" rel="noreferrer">
+                <a key={card.id} className="anh-explore-card" href={buildWhatsappUrl(text(copy.whatsappMessage, locale), whatsappUrl)} target="_blank" rel="noreferrer">
                   {content}
                 </a>
               );

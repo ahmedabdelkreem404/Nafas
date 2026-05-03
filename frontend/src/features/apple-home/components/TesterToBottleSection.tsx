@@ -1,9 +1,10 @@
 import { BadgeCheck, FlaskConical, RotateCcw, Sparkles } from 'lucide-react';
 import { useLocale } from '../../../context/LocaleContext';
+import { useSiteSettings } from '../../../context/SiteSettingsContext';
 import { SECTION_LABELS } from '../constants';
 import { appleHomeCopy, flowCopy, text } from '../data/appleHomeCopy';
 import type { FlowStep } from '../types';
-import { buildWhatsappUrl, HAS_WHATSAPP_URL } from '../utils/whatsapp';
+import { buildWhatsappUrl, WHATSAPP_BASE_URL } from '../utils/whatsapp';
 
 type TesterToBottleSectionProps = {
   steps: FlowStep[];
@@ -18,7 +19,9 @@ const icons = {
 
 export default function TesterToBottleSection({ steps }: TesterToBottleSectionProps) {
   const { locale } = useLocale();
+  const { getSetting } = useSiteSettings();
   const copy = appleHomeCopy.flow;
+  const whatsappUrl = getSetting('whatsapp_url', WHATSAPP_BASE_URL);
 
   return (
     <section className="anh-section anh-flow" id="tester-path" data-section={SECTION_LABELS.tester} aria-labelledby="flow-title" data-proof="tester">
@@ -44,10 +47,10 @@ export default function TesterToBottleSection({ steps }: TesterToBottleSectionPr
             })}
           </div>
           <div className="anh-flow__actions">
-            {HAS_WHATSAPP_URL ? (
+            {whatsappUrl ? (
               <>
-                <a className="anh-button anh-button--primary" href={buildWhatsappUrl(text(copy.primaryMessage, locale))} target="_blank" rel="noreferrer">{text(copy.primaryCta, locale)}</a>
-                <a className="anh-button anh-button--secondary" href={buildWhatsappUrl(text(copy.orderMessage, locale))} target="_blank" rel="noreferrer">{text(copy.whatsappCta, locale)}</a>
+                <a className="anh-button anh-button--primary" href={buildWhatsappUrl(text(copy.primaryMessage, locale), whatsappUrl)} target="_blank" rel="noreferrer">{text(copy.primaryCta, locale)}</a>
+                <a className="anh-button anh-button--secondary" href={buildWhatsappUrl(text(copy.orderMessage, locale), whatsappUrl)} target="_blank" rel="noreferrer">{text(copy.whatsappCta, locale)}</a>
               </>
             ) : null}
             <a className="anh-button anh-button--secondary" href="#choose">{text(copy.sizesCta, locale)}</a>
