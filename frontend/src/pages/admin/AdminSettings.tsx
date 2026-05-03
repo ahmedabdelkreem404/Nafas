@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { adminApi } from '../../api/adminApi';
-import { AdminPageShell, Button, Card, EmptyState, Field, Input, LoadingState, Textarea } from '../../components/ui';
+import { AdminPageShell, Button, Card, EmptyState, Field, Input, LoadingState, Select, Textarea } from '../../components/ui';
 
 const AdminSettings: React.FC = () => {
   const [settings, setSettings] = useState<any[]>([]);
@@ -23,7 +23,14 @@ const AdminSettings: React.FC = () => {
           <div className="grid-auto">
             <Field label="المفتاح"><Input value={newSetting.key} onChange={(event) => setNewSetting({ ...newSetting, key: event.target.value })} /></Field>
             <Field label="القيمة"><Input value={newSetting.value} onChange={(event) => setNewSetting({ ...newSetting, value: event.target.value })} /></Field>
-            <Field label="النوع"><Input value={newSetting.type} onChange={(event) => setNewSetting({ ...newSetting, type: event.target.value })} /></Field>
+            <Field label="النوع">
+              <Select value={newSetting.type} onChange={(event) => setNewSetting({ ...newSetting, type: event.target.value })}>
+                <option value="string">نص</option>
+                <option value="number">رقم</option>
+                <option value="boolean">تشغيل / إيقاف</option>
+                <option value="json">بيانات منظمة</option>
+              </Select>
+            </Field>
           </div>
           <Button type="submit">إضافة إعداد</Button>
         </form>

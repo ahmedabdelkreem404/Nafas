@@ -59,7 +59,7 @@ const AdminContent: React.FC = () => {
               }}>
                 <div className="grid-auto">
                   <Field label="عنوان القسم"><Input value={sectionForms[page.id]?.title || ''} onChange={(event) => setSectionForms({ ...sectionForms, [page.id]: { ...(sectionForms[page.id] || blankSection), title: event.target.value } })} /></Field>
-                  <Field label="section key"><Input value={sectionForms[page.id]?.section_key || ''} onChange={(event) => setSectionForms({ ...sectionForms, [page.id]: { ...(sectionForms[page.id] || blankSection), section_key: event.target.value } })} /></Field>
+                  <Field label="مفتاح القسم"><Input value={sectionForms[page.id]?.section_key || ''} onChange={(event) => setSectionForms({ ...sectionForms, [page.id]: { ...(sectionForms[page.id] || blankSection), section_key: event.target.value } })} /></Field>
                 </div>
                 <Field label="المحتوى"><Textarea value={sectionForms[page.id]?.content || ''} onChange={(event) => setSectionForms({ ...sectionForms, [page.id]: { ...(sectionForms[page.id] || blankSection), content: event.target.value } })} /></Field>
                 <Button type="submit" variant="secondary">إضافة قسم</Button>
