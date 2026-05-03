@@ -28,6 +28,8 @@ class AdminFormulaItemController extends Controller
             'sds_status' => ['nullable', 'string'],
         ]);
 
+        $validated['quantity_ml'] = $validated['quantity_ml'] ?? 0;
+
         return response()->json($formula->items()->create($validated), 201);
     }
 
