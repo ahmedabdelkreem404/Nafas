@@ -4117,6 +4117,20 @@
     margin-block-start: 0.35rem !important;
   }
 
+  .apple-nafas-page .anh-ritual-cinematic__actions,
+  .apple-nafas-page .anh-ritual-cinematic__copy-panel .anh-actions {
+    inline-size: min(100%, calc(100vw - 48px)) !important;
+    margin-inline: auto !important;
+    justify-items: stretch !important;
+  }
+
+  .apple-nafas-page .anh-ritual-cinematic__actions .anh-button,
+  .apple-nafas-page .anh-ritual-cinematic__copy-panel .anh-actions .anh-button {
+    inline-size: 100% !important;
+    max-inline-size: 100% !important;
+    box-sizing: border-box !important;
+  }
+
   .apple-nafas-page .anh-ritual-control {
     inline-size: 42px !important;
     min-inline-size: 42px !important;

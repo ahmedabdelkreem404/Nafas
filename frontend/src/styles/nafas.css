@@ -6662,24 +6662,37 @@ a:has(> .ui-button) {
     block-size: 1.45rem !important;
   }
 
-  .mobile-panel,
+  .mobile-panel {
+    inset-block: 12px !important;
+    inline-size: min(88vw, 360px) !important;
+    max-inline-size: calc(100vw - 24px) !important;
+    max-block-size: calc(100svh - 24px) !important;
+    max-height: calc(100svh - 24px) !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    border-radius: 24px !important;
+    padding-block-end: max(24px, env(safe-area-inset-bottom)) !important;
+  }
+
   .cart-drawer {
-    inset-block: 0.7rem !important;
-    inline-size: min(86vw, 340px) !important;
-    max-inline-size: calc(100vw - 1.4rem) !important;
+    inset-block: 12px !important;
+    inline-size: min(88vw, 360px) !important;
+    max-inline-size: calc(100vw - 24px) !important;
+    max-block-size: calc(100svh - 24px) !important;
+    max-height: calc(100svh - 24px) !important;
     border-radius: 24px !important;
   }
 
   .mobile-panel--ar,
   .cart-drawer--ar {
     inset-inline-start: auto !important;
-    inset-inline-end: 0.7rem !important;
+    inset-inline-end: 12px !important;
     transform: translateX(calc(100% + 1rem)) !important;
   }
 
   .mobile-panel--en,
   .cart-drawer--en {
-    inset-inline-start: 0.7rem !important;
+    inset-inline-start: 12px !important;
     inset-inline-end: auto !important;
     transform: translateX(calc(-100% - 1rem)) !important;
   }
