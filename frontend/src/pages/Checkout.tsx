@@ -212,12 +212,10 @@ export default function Checkout() {
             order = createLocalOrder(form, items, total);
           }
           sessionStorage.setItem(`order_${order.order_number}`, JSON.stringify(order));
-          try {
-            await clearCart();
-          } catch {
-            // The order is already created; confirmation must not be blocked by cart cleanup.
-          }
           navigate(`/order-confirmation/${order.order_number}`);
+          void clearCart().catch(() => {
+            // The order is already created; confirmation must not be blocked by cart cleanup.
+          });
         } catch (err: any) {
           const message = err.message || (locale === 'ar' ? 'تعذّر إتمام الطلب.' : 'Unable to place the order.');
           setError(formatCheckoutError(message, locale));

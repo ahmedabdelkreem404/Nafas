@@ -6,6 +6,8 @@ use App\Models\Catalog;
 use App\Models\HomeSection;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class DynamicHomeCatalogTest extends TestCase
@@ -130,5 +132,45 @@ class DynamicHomeCatalogTest extends TestCase
             ->assertJsonMissing(['Never public'])
             ->assertJsonMissing(['internal_reference'])
             ->assertJsonMissing(['internal_notes']);
+    }
+
+    public function test_admin_can_add_product_media_from_uploads_and_url(): void
+    {
+        Storage::fake('public');
+
+        $token = $this->token();
+        $product = Product::where('slug', 'sharara')->firstOrFail();
+
+        $this->withToken($token)->post("/api/admin/products/{$product->id}/media", [
+            'files' => [
+                UploadedFile::fake()->image('bottle-front.jpg', 900, 1200),
+                UploadedFile::fake()->image('bottle-side.webp', 900, 1200),
+            ],
+            'alt_text' => 'شرارة - صور المنتج',
+            'is_primary' => true,
+        ], ['Accept' => 'application/json'])
+            ->assertCreated()
+            ->assertJsonCount(2, 'data')
+            ->assertJsonPath('data.0.type', 'image')
+            ->assertJsonPath('data.0.is_primary', true)
+            ->assertJsonPath('data.1.is_primary', false);
+
+        $this->assertDatabaseCount('product_media', 2);
+
+        $this->withToken($token)->postJson("/api/admin/products/{$product->id}/media", [
+            'url' => 'https://cdn.nafas.test/sharara-launch.mp4',
+            'type' => 'video',
+            'alt_text' => 'شرارة - فيديو قصير',
+            'is_primary' => false,
+        ])
+            ->assertCreated()
+            ->assertJsonPath('type', 'video')
+            ->assertJsonPath('url', 'https://cdn.nafas.test/sharara-launch.mp4');
+
+        $this->assertDatabaseHas('product_media', [
+            'product_id' => $product->id,
+            'type' => 'video',
+            'url' => 'https://cdn.nafas.test/sharara-launch.mp4',
+        ]);
     }
 }

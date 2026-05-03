@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductMedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminProductMediaController extends Controller
 {
@@ -16,8 +17,10 @@ class AdminProductMediaController extends Controller
     public function store(Request $request, Product $product)
     {
         $validated = $request->validate([
-            'url' => 'required|url',
-            'type' => 'required|string',
+            'url' => 'nullable|url|required_without:files',
+            'files' => 'nullable|array',
+            'files.*' => 'file|max:61440|mimetypes:image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime',
+            'type' => 'nullable|string|in:image,video',
             'alt_text' => 'nullable|string',
             'is_primary' => 'boolean',
         ]);
@@ -26,8 +29,30 @@ class AdminProductMediaController extends Controller
             $product->media()->update(['is_primary' => false]);
         }
 
-        $media = $product->media()->create($validated);
-        return response()->json($media, 201);
+        $created = collect();
+        $files = $request->file('files', []);
+
+        foreach ($files as $index => $file) {
+            $path = $file->store("products/{$product->id}", 'public');
+            $mime = (string) $file->getMimeType();
+            $created->push($product->media()->create([
+                'url' => Storage::disk('public')->url($path),
+                'type' => str_starts_with($mime, 'video/') ? 'video' : 'image',
+                'alt_text' => $validated['alt_text'] ?? $product->name_ar,
+                'is_primary' => ($validated['is_primary'] ?? false) && $index === 0,
+            ]));
+        }
+
+        if (! $created->count() && ! empty($validated['url'])) {
+            $created->push($product->media()->create([
+                'url' => $validated['url'],
+                'type' => $validated['type'] ?? 'image',
+                'alt_text' => $validated['alt_text'] ?? null,
+                'is_primary' => $validated['is_primary'] ?? false,
+            ]));
+        }
+
+        return response()->json($created->count() === 1 ? $created->first() : ['data' => $created->values()], 201);
     }
 
     public function show(ProductMedia $medium)
@@ -39,7 +64,7 @@ class AdminProductMediaController extends Controller
     {
         $validated = $request->validate([
             'url' => 'sometimes|url',
-            'type' => 'sometimes|string',
+            'type' => 'sometimes|string|in:image,video',
             'alt_text' => 'nullable|string',
             'is_primary' => 'nullable|boolean',
         ]);

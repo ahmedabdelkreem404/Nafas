@@ -6165,6 +6165,122 @@ a:has(> .ui-button) {
   }
 }
 
+.admin-product-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-product-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.admin-product-card__main {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  min-inline-size: 0;
+}
+
+.admin-product-card__thumb {
+  display: grid;
+  place-items: center;
+  inline-size: 92px;
+  block-size: 92px;
+  overflow: hidden;
+  border: 1px solid rgba(91, 63, 45, 0.12);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(255, 248, 238, 0.95), rgba(231, 201, 133, 0.18));
+  color: #3a2419;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.admin-product-card__thumb img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.admin-product-card__body,
+.admin-product-card__title-row {
+  min-inline-size: 0;
+}
+
+.admin-product-card__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.admin-product-card__title-row h2 {
+  margin: 0;
+  color: #211713;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.25;
+}
+
+.admin-product-card__title-row p {
+  margin: 0.25rem 0 0;
+  color: rgba(33, 23, 19, 0.58);
+  word-break: break-word;
+}
+
+.admin-product-card__meta,
+.admin-product-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.admin-product-card__meta {
+  margin-block-start: 0.75rem;
+}
+
+.admin-product-card__meta span {
+  padding: 0.42rem 0.72rem;
+  border: 1px solid rgba(91, 63, 45, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 248, 238, 0.7);
+  color: rgba(33, 23, 19, 0.72);
+  font-size: 0.88rem;
+}
+
+.admin-product-card__actions {
+  justify-content: flex-end;
+}
+
+@media (max-width: 760px) {
+  .admin-product-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-product-card__actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 430px) {
+  .admin-product-card__main {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .admin-product-card__thumb {
+    inline-size: 72px;
+    block-size: 72px;
+    border-radius: 20px;
+  }
+
+  .admin-product-card__title-row {
+    display: grid;
+  }
+}
+
 /* Admin operating-system primitives used by the dashboard shell. */
 .admin-page-shell,
 .admin-page-shell .stack,

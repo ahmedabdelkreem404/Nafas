@@ -14,4 +14,8 @@ class ProductMedia extends Model
         'alt_text',
         'is_primary',
     ];
+
+    protected $casts = [
+        'is_primary' => 'boolean',
+    ];
 }
