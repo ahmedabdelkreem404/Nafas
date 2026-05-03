@@ -9,7 +9,35 @@ class AdminProductController extends Controller
 {
     public function index()
     {
-        return response()->json(Product::with('variants', 'formula.items', 'media')->get());
+        $query = Product::with('variants', 'formula.items', 'media', 'catalogs');
+
+        if ($search = request('search')) {
+            $query->where(function ($builder) use ($search) {
+                $builder
+                    ->where('name_ar', 'like', "%{$search}%")
+                    ->orWhere('name_en', 'like', "%{$search}%")
+                    ->orWhere('code', 'like', "%{$search}%")
+                    ->orWhere('slug', 'like', "%{$search}%");
+            });
+        }
+
+        if ($status = request('status')) {
+            $query->where('status', $status);
+        }
+
+        if ($type = request('product_type')) {
+            $query->where('product_type', $type);
+        }
+
+        if ($catalog = request('catalog')) {
+            $query->whereHas('catalogs', fn ($builder) => $builder->where('catalogs.slug', $catalog));
+        }
+
+        if (request()->has('is_featured')) {
+            $query->where('is_featured', filter_var(request('is_featured'), FILTER_VALIDATE_BOOLEAN));
+        }
+
+        return response()->json($query->get());
     }
 
     public function store(Request $request)
@@ -24,6 +52,8 @@ class AdminProductController extends Controller
             'story' => 'nullable|string',
             'personality' => 'nullable|string',
             'marketing_line_ar' => 'nullable|string',
+            'marketing_line_en' => 'nullable|string',
+            'design_direction' => 'nullable|string',
             'scent_notes' => 'nullable|string',
             'season' => 'nullable|string',
             'time_of_day' => 'nullable|string',
@@ -33,6 +63,18 @@ class AdminProductController extends Controller
             'cost_material_per_bottle' => 'nullable|numeric|min:0',
             'cost_packaging_per_bottle' => 'nullable|numeric|min:0',
             'cost_filling_per_bottle' => 'nullable|numeric|min:0',
+            'product_type' => 'nullable|string',
+            'public_label_ar' => 'nullable|string',
+            'public_label_en' => 'nullable|string',
+            'internal_reference' => 'nullable|string',
+            'internal_notes' => 'nullable|string',
+            'hero_image_url' => 'nullable|string',
+            'card_image_url' => 'nullable|string',
+            'mobile_image_url' => 'nullable|string',
+            'scent_family' => 'nullable|string',
+            'tags' => 'nullable|array',
+            'is_featured' => 'nullable|boolean',
+            'show_on_home' => 'nullable|boolean',
         ]);
 
         $product = Product::create($validated);
@@ -41,7 +83,7 @@ class AdminProductController extends Controller
 
     public function show($id)
     {
-        return response()->json(Product::with('variants', 'formula.items', 'media')->findOrFail($id));
+        return response()->json(Product::with('variants', 'formula.items', 'media', 'catalogs')->findOrFail($id));
     }
 
     public function update(Request $request, $id)
@@ -58,6 +100,8 @@ class AdminProductController extends Controller
             'story' => 'nullable|string',
             'personality' => 'nullable|string',
             'marketing_line_ar' => 'nullable|string',
+            'marketing_line_en' => 'nullable|string',
+            'design_direction' => 'nullable|string',
             'scent_notes' => 'nullable|string',
             'season' => 'nullable|string',
             'time_of_day' => 'nullable|string',
@@ -67,6 +111,18 @@ class AdminProductController extends Controller
             'cost_material_per_bottle' => 'nullable|numeric|min:0',
             'cost_packaging_per_bottle' => 'nullable|numeric|min:0',
             'cost_filling_per_bottle' => 'nullable|numeric|min:0',
+            'product_type' => 'nullable|string',
+            'public_label_ar' => 'nullable|string',
+            'public_label_en' => 'nullable|string',
+            'internal_reference' => 'nullable|string',
+            'internal_notes' => 'nullable|string',
+            'hero_image_url' => 'nullable|string',
+            'card_image_url' => 'nullable|string',
+            'mobile_image_url' => 'nullable|string',
+            'scent_family' => 'nullable|string',
+            'tags' => 'nullable|array',
+            'is_featured' => 'nullable|boolean',
+            'show_on_home' => 'nullable|boolean',
         ]);
 
         $product->update($validated);

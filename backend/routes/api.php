@@ -9,6 +9,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PublicCatalogController;
+use App\Http\Controllers\PublicHomeController;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 
 $publicWritesThrottle = ThrottleRequests::class.':public-writes';
@@ -29,6 +31,10 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{slug}', [ProductController::class, 'show']);
 Route::get('/categories', [ProductController::class, 'categories']);
 Route::get('/home', [ProductController::class, 'homeContent']);
+Route::get('/homepage', PublicHomeController::class);
+Route::get('/catalogs', [PublicCatalogController::class, 'index']);
+Route::get('/catalogs/{slug}', [PublicCatalogController::class, 'show']);
+Route::get('/catalogs/{slug}/products', [PublicCatalogController::class, 'products']);
 Route::get('/pages/{slug}', [PageController::class, 'show']);
 Route::post('/cart/validate', [ProductController::class, 'validateCart'])->middleware($publicWritesThrottle);
 Route::post('/checkout', [CheckoutController::class, 'store'])->middleware(['optional.auth', $publicWritesThrottle]);
@@ -57,6 +63,14 @@ Route::middleware(['auth:sanctum', 'role'])->prefix('admin')->group(function () 
         Route::apiResource('products', AdminProductController::class);
         Route::apiResource('products.variants', \App\Http\Controllers\AdminProductVariantController::class)->shallow();
         Route::apiResource('products.media', \App\Http\Controllers\AdminProductMediaController::class)->shallow();
+        Route::apiResource('home-sections', \App\Http\Controllers\AdminHomeSectionController::class);
+        Route::post('/home-sections/{homeSection}/items', [\App\Http\Controllers\AdminHomeSectionItemController::class, 'store']);
+        Route::patch('/home-section-items/{homeSectionItem}', [\App\Http\Controllers\AdminHomeSectionItemController::class, 'update']);
+        Route::delete('/home-section-items/{homeSectionItem}', [\App\Http\Controllers\AdminHomeSectionItemController::class, 'destroy']);
+        Route::apiResource('catalogs', \App\Http\Controllers\AdminCatalogController::class);
+        Route::post('/catalogs/{catalog}/products', [\App\Http\Controllers\AdminCatalogProductController::class, 'store']);
+        Route::patch('/catalog-products/{catalogProduct}', [\App\Http\Controllers\AdminCatalogProductController::class, 'update']);
+        Route::delete('/catalog-products/{catalogProduct}', [\App\Http\Controllers\AdminCatalogProductController::class, 'destroy']);
         
         Route::apiResource('pages', \App\Http\Controllers\AdminPageController::class);
         Route::apiResource('pages.sections', \App\Http\Controllers\AdminPageSectionController::class)->shallow();

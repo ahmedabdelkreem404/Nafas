@@ -1,0 +1,134 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\Catalog;
+use App\Models\HomeSection;
+use App\Models\Product;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class DynamicHomeCatalogTest extends TestCase
+{
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed(\Database\Seeders\DatabaseSeeder::class);
+    }
+
+    private function token(): string
+    {
+        return (string) $this->postJson('/api/auth/login', [
+            'email' => 'admin@nafas.com',
+            'password' => 'password123',
+        ])->json('token');
+    }
+
+    public function test_public_homepage_returns_active_ordered_sections_with_safe_products(): void
+    {
+        $response = $this->getJson('/api/homepage')->assertOk();
+
+        $response->assertJsonFragment(['section_key' => 'ritual']);
+        $response->assertJsonFragment(['section_key' => 'product-viewer']);
+        $response->assertJsonFragment(['slug' => 'sharara']);
+        $response->assertJsonMissing(['internal_reference']);
+        $response->assertJsonMissing(['internal_notes']);
+        $response->assertJsonMissing(['cost_material_per_bottle']);
+        $response->assertJsonMissing(['formula']);
+    }
+
+    public function test_admin_can_crud_home_sections_and_items(): void
+    {
+        $token = $this->token();
+        $product = Product::where('slug', 'sharara')->firstOrFail();
+
+        $sectionId = $this->withToken($token)->postJson('/api/admin/home-sections', [
+            'section_key' => 'launch-note',
+            'type' => 'feature',
+            'title_ar' => 'رسالة إطلاق',
+            'title_en' => 'Launch note',
+            'sort_order' => 999,
+            'is_active' => true,
+        ])->assertCreated()->json('data.id');
+
+        $itemId = $this->withToken($token)->postJson("/api/admin/home-sections/{$sectionId}/items", [
+            'product_id' => $product->id,
+            'title_ar' => 'شرارة',
+            'sort_order' => 10,
+            'is_active' => true,
+        ])->assertCreated()->json('data.id');
+
+        $this->withToken($token)->patchJson("/api/admin/home-section-items/{$itemId}", [
+            'title_ar' => 'شرارة مميزة',
+            'sort_order' => 20,
+            'is_active' => true,
+        ])->assertOk()->assertJsonPath('data.title_ar', 'شرارة مميزة');
+
+        $this->withToken($token)->deleteJson("/api/admin/home-section-items/{$itemId}")->assertNoContent();
+        $this->withToken($token)->deleteJson("/api/admin/home-sections/{$sectionId}")->assertNoContent();
+    }
+
+    public function test_catalog_public_endpoints_return_active_products_only(): void
+    {
+        $this->getJson('/api/catalogs')->assertOk()->assertJsonFragment(['slug' => 'nafas-signature']);
+
+        $this->getJson('/api/catalogs/nafas-signature/products')
+            ->assertOk()
+            ->assertJsonFragment(['slug' => 'sharara'])
+            ->assertJsonMissing(['slug' => 'dafwa'])
+            ->assertJsonMissing(['internal_reference'])
+            ->assertJsonMissing(['internal_notes']);
+    }
+
+    public function test_admin_can_crud_catalog_and_attach_product(): void
+    {
+        $token = $this->token();
+        $product = Product::where('slug', 'madar')->firstOrFail();
+
+        $catalogId = $this->withToken($token)->postJson('/api/admin/catalogs', [
+            'slug' => 'seasonal-tests',
+            'name_ar' => 'اختبارات موسمية',
+            'name_en' => 'Seasonal tests',
+            'sort_order' => 200,
+            'is_active' => true,
+        ])->assertCreated()->json('data.id');
+
+        $pivotId = $this->withToken($token)->postJson("/api/admin/catalogs/{$catalogId}/products", [
+            'product_id' => $product->id,
+            'sort_order' => 10,
+            'is_featured' => true,
+        ])->assertCreated()->json('data.id');
+
+        $this->assertDatabaseHas('catalog_product', [
+            'catalog_id' => $catalogId,
+            'product_id' => $product->id,
+        ]);
+
+        $this->withToken($token)->patchJson("/api/admin/catalog-products/{$pivotId}", [
+            'sort_order' => 30,
+            'is_featured' => false,
+        ])->assertOk()->assertJsonPath('data.sort_order', 30);
+
+        $this->withToken($token)->deleteJson("/api/admin/catalog-products/{$pivotId}")->assertNoContent();
+        $this->withToken($token)->deleteJson("/api/admin/catalogs/{$catalogId}")->assertNoContent();
+    }
+
+    public function test_public_product_resource_hides_internal_expansion_fields(): void
+    {
+        Product::where('slug', 'sharara')->firstOrFail()->update([
+            'internal_reference' => 'PRIVATE-SHEET-ROW-9',
+            'internal_notes' => 'Never public',
+            'product_type' => 'nafas_signature',
+        ]);
+
+        $this->getJson('/api/products/sharara')
+            ->assertOk()
+            ->assertJsonPath('data.product_type', 'nafas_signature')
+            ->assertJsonMissing(['PRIVATE-SHEET-ROW-9'])
+            ->assertJsonMissing(['Never public'])
+            ->assertJsonMissing(['internal_reference'])
+            ->assertJsonMissing(['internal_notes']);
+    }
+}

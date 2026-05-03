@@ -22,6 +22,7 @@ class ProductController extends Controller
         $query = Product::with([
             'variants' => fn ($builder) => $builder->where('is_active', true),
             'media',
+            'catalogs' => fn ($builder) => $builder->where('catalogs.is_active', true),
         ])
             ->withCount(['reviews as reviews_count' => fn ($builder) => $builder
                 ->whereNull('parent_id')
@@ -33,11 +34,24 @@ class ProductController extends Controller
                 ->where(function ($query) {
                     $query->where('status', 'approved')->where('is_approved', true);
                 })], 'rating')
-            ->where('status', 'active')
-            ->whereNotIn('slug', ['discovery-set', 'men-gift-box', 'women-gift-box', 'discovery-gift-box']);
+            ->where('status', 'active');
+
+        if (! request('catalog') && ! request('product_type')) {
+            $query->whereIn('product_type', ['nafas_signature', 'special_blend', 'inspired_blend']);
+        }
 
         if ($gender = request('gender')) {
             $query->where('gender', $gender);
+        }
+
+        if ($productType = request('product_type')) {
+            $query->where('product_type', $productType);
+        }
+
+        if ($catalog = request('catalog')) {
+            $query->whereHas('catalogs', fn ($builder) => $builder
+                ->where('catalogs.slug', $catalog)
+                ->where('catalogs.is_active', true));
         }
 
         if ($search = request('search')) {
@@ -58,6 +72,7 @@ class ProductController extends Controller
         $product = Product::with([
             'variants' => fn ($builder) => $builder->where('is_active', true),
             'media',
+            'catalogs' => fn ($builder) => $builder->where('catalogs.is_active', true),
         ])
             ->withCount(['reviews as reviews_count' => fn ($builder) => $builder
                 ->whereNull('parent_id')

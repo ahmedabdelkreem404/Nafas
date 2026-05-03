@@ -34,6 +34,24 @@ class Product extends Model
         'cost_packaging_per_bottle',
         'cost_filling_per_bottle',
         'status',
+        'product_type',
+        'public_label_ar',
+        'public_label_en',
+        'internal_reference',
+        'internal_notes',
+        'hero_image_url',
+        'card_image_url',
+        'mobile_image_url',
+        'scent_family',
+        'tags',
+        'is_featured',
+        'show_on_home',
+    ];
+
+    protected $casts = [
+        'tags' => 'array',
+        'is_featured' => 'boolean',
+        'show_on_home' => 'boolean',
     ];
 
     public function variants()
@@ -54,5 +72,13 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function catalogs()
+    {
+        return $this->belongsToMany(Catalog::class)
+            ->using(CatalogProduct::class)
+            ->withPivot(['id', 'sort_order', 'is_featured'])
+            ->withTimestamps();
     }
 }
