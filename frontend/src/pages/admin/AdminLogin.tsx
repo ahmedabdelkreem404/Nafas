@@ -43,8 +43,8 @@ const AdminLogin: React.FC = () => {
   return (
     <div className="auth-shell">
       <Card className="auth-card stack" tone="strong">
-        <BrandLogo variant="logo" className="auth-card__brand" alt="Nafas logo" />
-        <span className="heading-eyebrow">Operator access</span>
+        <BrandLogo variant="logo" className="auth-card__brand" alt="شعار نفس" />
+        <span className="heading-eyebrow">دخول فريق التشغيل</span>
         <div className="stack">
           <h1 className="title">دخول فريق نفَس</h1>
           <p className="copy">لوحة تشغيل أنيقة وعملية لإدارة المنتجات، الطلبات، والجودة.</p>

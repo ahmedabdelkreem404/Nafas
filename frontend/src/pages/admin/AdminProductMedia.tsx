@@ -37,7 +37,7 @@ const AdminProductMedia: React.FC = () => {
   ], [load]);
 
   return (
-    <AdminPageShell eyebrow="Catalog" title="وسائط المنتج" description="صور وروابط المنتج داخل واجهة مرتبة وقابلة للاستخدام على الشاشات الصغيرة.">
+    <AdminPageShell eyebrow="الكتالوج" title="وسائط المنتج" description="صور وروابط المنتج داخل واجهة مرتبة وقابلة للاستخدام على الشاشات الصغيرة.">
       <Card tone="strong">
         <form className="stack" onSubmit={submit}>
           <div className="grid-auto">

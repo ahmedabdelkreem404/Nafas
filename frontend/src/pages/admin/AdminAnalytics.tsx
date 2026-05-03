@@ -49,7 +49,7 @@ const AdminAnalytics: React.FC = () => {
   }, []);
 
   return (
-    <AdminPageShell eyebrow="Analytics" title="تحليلات المبيعات" description="عرض عملي سريع للمبيعات والمنتجات الأعلى حركة." >
+    <AdminPageShell eyebrow="التحليلات" title="تحليلات المبيعات" description="عرض عملي سريع للمبيعات والمنتجات الأعلى حركة." >
       {loading ? <AnalyticsSkeleton /> : error ? <ErrorState message={error} /> : (
         <div className="grid-auto">
           <Card tone="strong" className="stack">
@@ -58,7 +58,7 @@ const AdminAnalytics: React.FC = () => {
           </Card>
           <Card tone="strong" className="stack">
             <strong>أفضل المنتجات</strong>
-            {(topProducts || []).map((entry) => <div key={entry.name_en} className="data-card__row"><span>{entry.name_en}</span><strong>{entry.total_sold}</strong></div>)}
+            {(topProducts || []).map((entry) => <div key={entry.name_en} className="data-card__row"><span>{entry.name_ar || entry.name_en || 'منتج من نفس'}</span><strong>{entry.total_sold}</strong></div>)}
           </Card>
         </div>
       )}

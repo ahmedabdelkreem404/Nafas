@@ -30,7 +30,7 @@ const AdminCoupons: React.FC = () => {
   ], []);
 
   return (
-    <AdminPageShell eyebrow="Coupons" title="إدارة الكوبونات" description="واجهة أبسط وأوضح لإنشاء الأكواد وتفعيلها أو تعطيلها بسرعة.">
+    <AdminPageShell eyebrow="الكوبونات" title="إدارة الكوبونات" description="واجهة أبسط وأوضح لإنشاء الأكواد وتفعيلها أو تعطيلها بسرعة.">
       <Card tone="strong">
         <form onSubmit={submit} className="stack">
           <div className="grid-auto">

@@ -23,8 +23,8 @@ class AdminAnalyticsController extends Controller
         $topProducts = DB::table('order_items')
             ->join('product_variants', 'order_items.product_variant_id', '=', 'product_variants.id')
             ->join('products', 'product_variants.product_id', '=', 'products.id')
-            ->select('products.name_en', DB::raw('SUM(order_items.quantity) as total_sold'))
-            ->groupBy('products.id', 'products.name_en')
+            ->select('products.name_ar', 'products.name_en', DB::raw('SUM(order_items.quantity) as total_sold'))
+            ->groupBy('products.id', 'products.name_ar', 'products.name_en')
             ->orderByDesc('total_sold')
             ->limit(10)
             ->get();

@@ -33,7 +33,7 @@ const AdminFormulas: React.FC = () => {
   })), [formulas]);
 
   return (
-    <AdminPageShell eyebrow="Formulas" title="التركيبات والامتثال" description="عرض أوضح للتركيبات الداخلية، الموردين، وعناصر التكلفة لكل مكوّن.">
+    <AdminPageShell eyebrow="التركيبات" title="التركيبات والامتثال" description="عرض أوضح للتركيبات الداخلية، الموردين، وعناصر التكلفة لكل مكوّن.">
       <Card tone="strong">
         <form className="stack" onSubmit={(event) => {
           event.preventDefault();
@@ -60,7 +60,7 @@ const AdminFormulas: React.FC = () => {
             <Card key={formula.id} tone="strong" className="stack">
               <div className="data-card__row">
                 <strong>{formula.product?.name_ar || formula.product?.name_en || 'Formula'}</strong>
-                <span className="copy-muted">{formula.ifra_status || 'IFRA pending'}</span>
+                <span className="copy-muted">{formula.ifra_status || 'بانتظار مراجعة الامتثال'}</span>
               </div>
               <Textarea value={formula.internal_notes || ''} onChange={(event) => setFormulas((current) => current.map((entry) => entry.id === formula.id ? { ...entry, internal_notes: event.target.value } : entry))} />
               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>

@@ -1,6 +1,7 @@
 ﻿import React, { useEffect, useMemo, useState } from 'react';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Badge, Button, Card, DataTable, EmptyState, Field, Input, LoadingState, Select, Textarea } from '../../components/ui';
+import { adminQualityValueLabel, adminStatusLabel } from '../../utils/adminLabels';
 
 const blank = { production_batch_id: '', clarity_test: '', sprayer_test: '', leak_test: '', scent_test: '', projection_notes: '', longevity_notes: '', approval_status: 'pending', notes: '' };
 
@@ -32,23 +33,23 @@ const AdminQuality: React.FC = () => {
 
   const columns = useMemo(() => [
     { key: 'batch', header: 'الدفعة', cell: (quality: any) => quality.batch?.batch_code || '—' },
-    { key: 'approval', header: 'النتيجة', cell: (quality: any) => <Badge tone={quality.approval_status === 'approved' ? 'success' : quality.approval_status === 'rejected' ? 'danger' : 'gold'}>{quality.approval_status}</Badge> },
-    { key: 'clarity', header: 'الشفافية', cell: (quality: any) => quality.clarity_test || '—' },
-    { key: 'sprayer', header: 'البخاخ', cell: (quality: any) => quality.sprayer_test || '—' },
+    { key: 'approval', header: 'النتيجة', cell: (quality: any) => <Badge tone={quality.approval_status === 'approved' ? 'success' : quality.approval_status === 'rejected' ? 'danger' : 'gold'}>{adminStatusLabel(quality.approval_status)}</Badge> },
+    { key: 'clarity', header: 'الشفافية', cell: (quality: any) => adminQualityValueLabel(quality.clarity_test) },
+    { key: 'sprayer', header: 'البخاخ', cell: (quality: any) => adminQualityValueLabel(quality.sprayer_test) },
     { key: 'actions', header: 'إجراءات', cell: (quality: any) => <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}><Button size="sm" variant="secondary" onClick={() => { setEditingId(quality.id); setForm({ ...quality, production_batch_id: quality.production_batch_id || quality.batch?.id || '' }); }}>تعديل</Button><Button size="sm" variant="danger" onClick={() => adminApi.quality.delete(quality.id).then(load)}>حذف</Button></div> },
   ], []);
 
   return (
-    <AdminPageShell eyebrow="Quality" title="فحوص الجودة" description="مراجعة واضحة لاختبارات الشفافية والبخاخ والتسريب والرائحة مع ربط مباشر بالدفعات.">
+    <AdminPageShell eyebrow="الجودة" title="فحوص الجودة" description="مراجعة واضحة لاختبارات الشفافية والبخاخ والتسريب والرائحة مع ربط مباشر بالدفعات.">
       <Card tone="strong">
         <form className="stack" onSubmit={submit}>
           <div className="grid-auto">
             <Field label="الدفعة"><Select value={form.production_batch_id} onChange={(event) => setForm({ ...form, production_batch_id: event.target.value })}><option value="">اختر دفعة</option>{batches.map((batch) => <option key={batch.id} value={batch.id}>{batch.batch_code}</option>)}</Select></Field>
-            <Field label="Clarity"><Input value={form.clarity_test} onChange={(event) => setForm({ ...form, clarity_test: event.target.value })} /></Field>
-            <Field label="Sprayer"><Input value={form.sprayer_test} onChange={(event) => setForm({ ...form, sprayer_test: event.target.value })} /></Field>
-            <Field label="Leak"><Input value={form.leak_test} onChange={(event) => setForm({ ...form, leak_test: event.target.value })} /></Field>
-            <Field label="Scent"><Input value={form.scent_test} onChange={(event) => setForm({ ...form, scent_test: event.target.value })} /></Field>
-            <Field label="النتيجة"><Select value={form.approval_status} onChange={(event) => setForm({ ...form, approval_status: event.target.value })}><option value="pending">pending</option><option value="approved">approved</option><option value="rejected">rejected</option></Select></Field>
+            <Field label="الصفاء"><Input value={form.clarity_test} onChange={(event) => setForm({ ...form, clarity_test: event.target.value })} /></Field>
+            <Field label="البخاخ"><Input value={form.sprayer_test} onChange={(event) => setForm({ ...form, sprayer_test: event.target.value })} /></Field>
+            <Field label="التسريب"><Input value={form.leak_test} onChange={(event) => setForm({ ...form, leak_test: event.target.value })} /></Field>
+            <Field label="الرائحة"><Input value={form.scent_test} onChange={(event) => setForm({ ...form, scent_test: event.target.value })} /></Field>
+            <Field label="النتيجة"><Select value={form.approval_status} onChange={(event) => setForm({ ...form, approval_status: event.target.value })}><option value="pending">قيد المراجعة</option><option value="approved">معتمد</option><option value="rejected">مرفوض</option></Select></Field>
           </div>
           <div className="grid-auto">
             <Field label="ملاحظات الفوحان"><Textarea value={form.projection_notes} onChange={(event) => setForm({ ...form, projection_notes: event.target.value })} /></Field>
@@ -61,7 +62,7 @@ const AdminQuality: React.FC = () => {
           </div>
         </form>
       </Card>
-      {loading ? <LoadingState label="جاري تحميل فحوص الجودة..." /> : !qualityChecks.length ? <EmptyState title="لا توجد فحوص جودة" description="أضف أول فحص مرتبط بدفعة إنتاج." /> : <Card tone="strong"><DataTable rows={qualityChecks} columns={columns} cardTitle={(quality) => quality.batch?.batch_code || 'Quality check'} /></Card>}
+      {loading ? <LoadingState label="جاري تحميل فحوص الجودة..." /> : !qualityChecks.length ? <EmptyState title="لا توجد فحوص جودة" description="أضف أول فحص مرتبط بدفعة إنتاج." /> : <Card tone="strong"><DataTable rows={qualityChecks} columns={columns} cardTitle={(quality) => quality.batch?.batch_code || 'فحص جودة'} /></Card>}
     </AdminPageShell>
   );
 };

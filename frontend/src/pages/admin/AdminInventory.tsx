@@ -33,7 +33,7 @@ const AdminInventory: React.FC = () => {
   ], []);
 
   return (
-    <AdminPageShell eyebrow="Inventory" title="المخزون والحركات" description="تنبيهات مخزون منخفض، وتعديل سريع مباشر، وسجل حركات واضح وقابل للمراجعة.">
+    <AdminPageShell eyebrow="المخزون" title="المخزون والحركات" description="تنبيهات مخزون منخفض، وتعديل سريع مباشر، وسجل حركات واضح وقابل للمراجعة.">
       <div className="grid-auto">
         {(lowStock || []).map((variant) => (
           <Card key={variant.id} tone="strong" className="stack">

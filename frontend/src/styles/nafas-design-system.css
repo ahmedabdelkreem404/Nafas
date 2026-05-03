@@ -1737,6 +1737,38 @@ body:has(.checkout-page) .whatsapp-float {
   max-width: 22rem;
 }
 
+.admin-control-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.admin-control-tile {
+  min-height: 7.5rem;
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  padding: 1rem;
+  border: 1px solid rgba(58, 36, 25, 0.11);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 248, 238, 0.82), rgba(251, 242, 228, 0.62)),
+    var(--nf-surface);
+  color: var(--nf-ink);
+  box-shadow: var(--nf-shadow-sm);
+}
+
+.admin-control-tile:hover {
+  border-color: rgba(201, 161, 90, 0.32);
+  transform: translateY(-1px);
+}
+
+.admin-control-tile span {
+  color: var(--nf-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
 .admin-route-fallback {
   min-height: 100svh;
   display: grid;
@@ -1879,6 +1911,10 @@ body:has(.checkout-page) .whatsapp-float {
   .admin-page-shell .kpi-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .admin-control-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 1023px) {
@@ -1921,6 +1957,7 @@ body:has(.checkout-page) .whatsapp-float {
 
   .admin-page-shell .kpi-grid,
   .admin-page-shell .grid-auto,
+  .admin-control-grid,
   .admin-loading-state__grid {
     grid-template-columns: 1fr;
   }

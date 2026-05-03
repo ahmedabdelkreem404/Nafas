@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { authApi } from '../../api/authApi';
+import { adminRoleLabel, adminUserNameLabel } from '../../utils/adminLabels';
 import { Badge, Button, cx } from '../ui';
 
 type AdminNavLink = {
@@ -36,7 +37,7 @@ type AdminNavGroup = {
 const navGroups: AdminNavGroup[] = [
   {
     id: 'overview',
-    label: 'Overview',
+    label: 'نظرة عامة',
     links: [
       { to: '/admin/dashboard', label: 'لوحة التحكم', icon: LayoutDashboard },
       { to: '/admin/analytics', label: 'التحليلات', icon: BarChart3 },
@@ -44,7 +45,7 @@ const navGroups: AdminNavGroup[] = [
   },
   {
     id: 'catalog',
-    label: 'Catalog',
+    label: 'الكتالوج',
     links: [
       { to: '/admin/products', label: 'المنتجات', icon: Package },
       { to: '/admin/formulas', label: 'التركيبات', icon: FlaskConical },
@@ -53,7 +54,7 @@ const navGroups: AdminNavGroup[] = [
   },
   {
     id: 'orders',
-    label: 'Orders & Customers',
+    label: 'الطلبات والعملاء',
     links: [
       { to: '/admin/orders', label: 'الطلبات', icon: ShoppingCart },
       { to: '/admin/customers', label: 'العملاء', icon: Users },
@@ -61,7 +62,7 @@ const navGroups: AdminNavGroup[] = [
   },
   {
     id: 'operations',
-    label: 'Operations',
+    label: 'التشغيل والجودة',
     links: [
       { to: '/admin/quality', label: 'الجودة', icon: ShieldCheck },
       { to: '/admin/batches', label: 'الدفعات', icon: Boxes },
@@ -69,7 +70,7 @@ const navGroups: AdminNavGroup[] = [
   },
   {
     id: 'marketing',
-    label: 'Marketing',
+    label: 'التسويق والمحتوى',
     links: [
       { to: '/admin/coupons', label: 'الكوبونات', icon: TicketPercent },
       { to: '/admin/content', label: 'المحتوى', icon: FileText },
@@ -77,7 +78,7 @@ const navGroups: AdminNavGroup[] = [
   },
   {
     id: 'settings',
-    label: 'Settings',
+    label: 'الإعدادات',
     links: [
       { to: '/admin/settings', label: 'الإعدادات', icon: Settings },
     ],
@@ -135,7 +136,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     try {
       await authApi.logout();
     } catch {
-      console.debug('logout failed');
+      console.debug('تعذّر تسجيل الخروج');
     } finally {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
@@ -165,12 +166,12 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <div className="admin-layout" dir="rtl">
-      <aside className="admin-sidebar" aria-label="Admin navigation">
+      <aside className="admin-sidebar" aria-label="تنقل لوحة التحكم">
         <div className="admin-sidebar__inner">
           <div className="admin-sidebar__brand">
             <strong>نفَس</strong>
-            <span>Operator console</span>
-            <Badge tone="muted">{user.role || 'admin'}</Badge>
+            <span>لوحة التشغيل الداخلية</span>
+            <Badge tone="muted">{adminRoleLabel(user.role)}</Badge>
           </div>
           {navContent}
           <Button variant="ghost" className="admin-sidebar__logout" onClick={handleLogout}>
@@ -184,10 +185,10 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <header className="admin-topbar">
           <div className="admin-topbar__title">
             <strong>{currentLink?.label || 'الإدارة'}</strong>
-            <span>واجهة تشغيل Nafas الداخلية</span>
+            <span>واجهة تشغيل نفس الداخلية</span>
           </div>
           <div className="admin-topbar__actions">
-            <Badge>{user.name || 'Admin'}</Badge>
+            <Badge>{adminUserNameLabel(user.name)}</Badge>
             <Button
               variant="ghost"
               size="sm"
@@ -210,7 +211,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <div className="admin-mobile-drawer__head">
             <div className="admin-sidebar__brand">
               <strong>نفَس</strong>
-              <span>Operator console</span>
+              <span>لوحة التشغيل الداخلية</span>
             </div>
             <Button variant="ghost" size="sm" onClick={() => setDrawerOpen(false)} aria-label="إغلاق القائمة">
               <X size={18} aria-hidden="true" />

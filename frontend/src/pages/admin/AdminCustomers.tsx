@@ -33,7 +33,7 @@ const AdminCustomers: React.FC = () => {
   ], []);
 
   return (
-    <AdminPageShell eyebrow="Customers" title="العملاء" description="سجل أوضح للعملاء مع تفاصيل تاريخ الطلبات وتجزئة مبدئية قابلة للاستخدام لاحقًا في التسويق.">
+    <AdminPageShell eyebrow="العملاء" title="العملاء" description="سجل أوضح للعملاء مع تفاصيل تاريخ الطلبات وتجزئة مبدئية قابلة للاستخدام لاحقًا في التسويق.">
       <Card tone="strong">
         <form className="stack" onSubmit={(event) => {
           event.preventDefault();

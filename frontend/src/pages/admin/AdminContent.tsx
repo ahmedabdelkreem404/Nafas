@@ -14,14 +14,14 @@ const AdminContent: React.FC = () => {
   useEffect(() => { load(); }, []);
 
   return (
-    <AdminPageShell eyebrow="Content" title="إدارة الصفحات والمحتوى" description="تجربة تحرير محتوى أكثر ترتيبًا للصفحات القانونية والتعريفية وأقسامها.">
+    <AdminPageShell eyebrow="المحتوى" title="إدارة الصفحات والمحتوى" description="تجربة تحرير محتوى أكثر ترتيبًا للصفحات القانونية والتعريفية وأقسامها.">
       <Card tone="strong">
         <form className="stack" onSubmit={(event) => {
           event.preventDefault();
           adminApi.pages.create(pageForm).then(() => { setPageForm(blankPage); load(); });
         }}>
           <div className="grid-auto">
-            <Field label="slug"><Input value={pageForm.slug} onChange={(event) => setPageForm({ ...pageForm, slug: event.target.value })} /></Field>
+            <Field label="الرابط المختصر"><Input value={pageForm.slug} onChange={(event) => setPageForm({ ...pageForm, slug: event.target.value })} /></Field>
             <Field label="العنوان"><Input value={pageForm.title} onChange={(event) => setPageForm({ ...pageForm, title: event.target.value })} /></Field>
           </div>
           <Field label="المحتوى"><Textarea value={pageForm.content} onChange={(event) => setPageForm({ ...pageForm, content: event.target.value })} /></Field>

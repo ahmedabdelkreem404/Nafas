@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Badge, Button, Card, DataTable, EmptyState, ErrorState, LoadingState } from '../../components/ui';
+import { adminGenderLabel, adminStatusLabel } from '../../utils/adminLabels';
 
 const AdminProducts: React.FC = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -42,13 +43,13 @@ const AdminProducts: React.FC = () => {
       cell: (product: any) => (
         <div className="stack" style={{ gap: '0.2rem' }}>
           <strong>{product.name_ar}</strong>
-          <span className="copy-muted">{product.name_en}</span>
+          <span className="copy-muted">{product.code}</span>
         </div>
       ),
     },
     { key: 'code', header: 'الكود', cell: (product: any) => product.code },
-    { key: 'status', header: 'الحالة', cell: (product: any) => <Badge tone={product.status === 'active' ? 'success' : 'muted'}>{product.status}</Badge> },
-    { key: 'gender', header: 'الفئة', cell: (product: any) => product.gender },
+    { key: 'status', header: 'الحالة', cell: (product: any) => <Badge tone={product.status === 'active' ? 'success' : 'muted'}>{adminStatusLabel(product.status)}</Badge> },
+    { key: 'gender', header: 'الفئة', cell: (product: any) => adminGenderLabel(product.gender) },
     {
       key: 'actions',
       header: 'الإجراءات',
@@ -65,7 +66,7 @@ const AdminProducts: React.FC = () => {
 
   return (
     <AdminPageShell
-      eyebrow="Catalog"
+      eyebrow="الكتالوج"
       title="إدارة المنتجات"
       description="راجع أسماء المنتجات وحالاتها وأكوادها قبل نشرها في المتجر."
       actions={<Link to="/admin/products/create"><Button>إضافة منتج</Button></Link>}

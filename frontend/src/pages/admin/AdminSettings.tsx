@@ -14,7 +14,7 @@ const AdminSettings: React.FC = () => {
   useEffect(() => { load(); }, []);
 
   return (
-    <AdminPageShell eyebrow="Settings" title="إعدادات الموقع" description="مفاتيح المحتوى والإعدادات العامة داخل واجهة مرتبة وقابلة للتعديل السريع.">
+    <AdminPageShell eyebrow="الإعدادات" title="إعدادات الموقع" description="مفاتيح المحتوى والإعدادات العامة داخل واجهة مرتبة وقابلة للتعديل السريع.">
       <Card tone="strong">
         <form className="stack" onSubmit={(event) => {
           event.preventDefault();

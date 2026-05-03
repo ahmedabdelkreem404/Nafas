@@ -20,8 +20,8 @@ const AdminOrderDetail: React.FC = () => {
     }).catch((err) => setError(err.message || 'تعذّر تحميل تفاصيل الطلب'));
   }, [id]);
 
-  if (error) return <AdminPageShell eyebrow="Orders" title="تفاصيل الطلب" description=""><ErrorState message={error} /></AdminPageShell>;
-  if (!order) return <AdminPageShell eyebrow="Orders" title="تفاصيل الطلب" description=""><LoadingState label="جاري تحميل الطلب..." /></AdminPageShell>;
+  if (error) return <AdminPageShell eyebrow="الطلبات" title="تفاصيل الطلب" description=""><ErrorState message={error} /></AdminPageShell>;
+  if (!order) return <AdminPageShell eyebrow="الطلبات" title="تفاصيل الطلب" description=""><LoadingState label="جاري تحميل الطلب..." /></AdminPageShell>;
 
   const payment = order.payment || null;
   const paymentMethodLabel: Record<string, string> = {
@@ -59,7 +59,7 @@ const AdminOrderDetail: React.FC = () => {
       <div className="detail-layout" style={{ gridTemplateColumns: 'minmax(0, 1fr) minmax(320px, 0.8fr)' }}>
         <Card tone="strong" className="stack">
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
-            <strong>{order.customer_name || 'Guest'}</strong>
+            <strong>{order.customer_name || 'زائر'}</strong>
             <Badge tone={order.status === 'delivered' ? 'success' : order.status === 'cancelled' ? 'danger' : 'gold'}>{formatStatus(order.status)}</Badge>
           </div>
           {(order.items || []).map((item: any) => (
@@ -107,7 +107,7 @@ const AdminOrderDetail: React.FC = () => {
                     <Button onClick={() => reviewPayment('approved')}>اعتماد الدفع</Button>
                     <Button variant="ghost" onClick={() => reviewPayment('rejected')}>رفض الدفع</Button>
                   </div>
-                  <small className="copy-muted">بعد اعتماد الدفع، غيّر حالة الطلب إلى Confirmed لبدء التجهيز.</small>
+                  <small className="copy-muted">بعد اعتماد الدفع، غيّر حالة الطلب إلى مؤكد لبدء التجهيز.</small>
                 </>
               ) : null}
             </div>
