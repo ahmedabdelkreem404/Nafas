@@ -69,7 +69,7 @@ export default function OrderConfirmation() {
   return (
     <div className="n-container n-section order-page">
       {order ? (
-        <section className="order-confirmation-card" aria-labelledby="order-confirmation-title">
+        <section className="order-confirmation-card confirmation-card" aria-labelledby="order-confirmation-title">
           <div className="order-confirmation-card__hero">
             <div className="order-confirmation-card__icon" aria-hidden="true">
               <CheckCircle2 size={34} />
@@ -95,7 +95,7 @@ export default function OrderConfirmation() {
               <div className="order-confirmation-lines">
                 <div className="order-confirmation-line">
                   <span>{locale === 'ar' ? 'رقم الطلب' : 'Order number'}</span>
-                  <strong>{order.order_number}</strong>
+                  <strong className="mono">{order.order_number}</strong>
                 </div>
                 <div className="order-confirmation-line">
                   <span>{locale === 'ar' ? 'حالة الطلب' : 'Order status'}</span>

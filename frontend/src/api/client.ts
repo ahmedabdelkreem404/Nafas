@@ -13,10 +13,14 @@ export const client = axios.create({
 client.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   const skipAuth = config.headers['X-Skip-Auth'] === '1';
+  const skipRedirect = config.headers['X-Skip-Redirect'] === '1';
   if (!skipAuth && token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   delete config.headers['X-Skip-Auth'];
+  if (skipRedirect) {
+    config.headers['X-Skip-Redirect'] = '1';
+  }
   config.headers['X-Session-Key'] = getSessionKey();
   return config;
 });
@@ -26,7 +30,9 @@ client.interceptors.response.use(
   (error) => {
     const status = error.response?.status;
 
-    if (status === 401) {
+    const skipRedirect = error.config?.headers?.['X-Skip-Redirect'] === '1';
+
+    if (status === 401 && !skipRedirect) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       const nextPath = window.location.pathname.startsWith('/admin') ? '/admin/login' : '/login';

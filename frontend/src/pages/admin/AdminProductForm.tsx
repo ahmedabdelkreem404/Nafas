@@ -11,6 +11,18 @@ const emptyState = {
   slug: '',
   gender: 'men',
   status: 'active',
+  product_type: 'nafas_signature',
+  public_label_ar: '',
+  public_label_en: '',
+  internal_reference: '',
+  internal_notes: '',
+  hero_image_url: '',
+  card_image_url: '',
+  mobile_image_url: '',
+  scent_family: '',
+  tags: [],
+  is_featured: false,
+  show_on_home: false,
   story: '',
   personality: '',
   marketing_line_ar: '',
@@ -71,10 +83,16 @@ const AdminProductForm: React.FC = () => {
     setSaving(true);
     setError('');
     try {
+      const payload = {
+        ...form,
+        tags: Array.isArray(form.tags)
+          ? form.tags
+          : String(form.tags || '').split(',').map((tag) => tag.trim()).filter(Boolean),
+      };
       if (id) {
-        await adminApi.products.update(id, form);
+        await adminApi.products.update(id, payload);
       } else {
-        await adminApi.products.create(form);
+        await adminApi.products.create(payload);
       }
       navigate('/admin/products');
     } catch (err: any) {
@@ -104,6 +122,14 @@ const AdminProductForm: React.FC = () => {
             <Field label="الرابط المختصر"><Input value={form.slug} onChange={(event) => setForm({ ...form, slug: event.target.value })} /></Field>
             <Field label="الجنس"><Select value={form.gender} onChange={(event) => setForm({ ...form, gender: event.target.value })}><option value="men">رجالي</option><option value="women">حريمي</option><option value="unisex">يونيسكس</option></Select></Field>
             <Field label="الحالة"><Select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value })}><option value="active">نشط</option><option value="hidden">مخفي</option><option value="draft">مسودة</option></Select></Field>
+            <Field label="نوع المنتج"><Select value={form.product_type || 'nafas_signature'} onChange={(event) => setForm({ ...form, product_type: event.target.value })}><option value="nafas_signature">كولكشن نفس الأساسي</option><option value="special_blend">تركيبة خاصة</option><option value="inspired_blend">تركيبة خارجية</option><option value="tester">عينة</option><option value="gift_box">بوكس هدية</option><option value="discovery_set">مجموعة تجربة</option><option value="raw_oil">زيت خام</option><option value="other">أخرى</option></Select></Field>
+            <Field label="وسم عربي"><Input value={form.public_label_ar || ''} onChange={(event) => setForm({ ...form, public_label_ar: event.target.value })} /></Field>
+            <Field label="وسم إنجليزي"><Input value={form.public_label_en || ''} onChange={(event) => setForm({ ...form, public_label_en: event.target.value })} /></Field>
+            <Field label="عائلة العطر"><Input value={form.scent_family || ''} onChange={(event) => setForm({ ...form, scent_family: event.target.value })} /></Field>
+            <Field label="كلمات عامة"><Input value={Array.isArray(form.tags) ? form.tags.join(', ') : form.tags || ''} onChange={(event) => setForm({ ...form, tags: event.target.value })} /></Field>
+            <Field label="صورة الهيرو"><Input value={form.hero_image_url || ''} onChange={(event) => setForm({ ...form, hero_image_url: event.target.value })} /></Field>
+            <Field label="صورة الكارت"><Input value={form.card_image_url || ''} onChange={(event) => setForm({ ...form, card_image_url: event.target.value })} /></Field>
+            <Field label="صورة الموبايل"><Input value={form.mobile_image_url || ''} onChange={(event) => setForm({ ...form, mobile_image_url: event.target.value })} /></Field>
             <Field label="الشخصية"><Input value={form.personality} onChange={(event) => setForm({ ...form, personality: event.target.value })} /></Field>
             <Field label="النوتات"><Input value={form.scent_notes} onChange={(event) => setForm({ ...form, scent_notes: event.target.value })} /></Field>
             <Field label="الموسم"><Input value={form.season} onChange={(event) => setForm({ ...form, season: event.target.value })} /></Field>
@@ -115,6 +141,16 @@ const AdminProductForm: React.FC = () => {
           </div>
 
           <Field label="القصة العطرية"><Textarea value={form.story} onChange={(event) => setForm({ ...form, story: event.target.value })} /></Field>
+
+          <Card tone="soft" className="stack">
+            <strong>إعدادات الظهور والبيانات الداخلية</strong>
+            <div className="grid-auto">
+              <Field label="مرجع داخلي"><Input value={form.internal_reference || ''} onChange={(event) => setForm({ ...form, internal_reference: event.target.value })} /></Field>
+              <Field label="ملاحظات داخلية"><Textarea value={form.internal_notes || ''} onChange={(event) => setForm({ ...form, internal_notes: event.target.value })} /></Field>
+            </div>
+            <label className="checkbox-row"><input type="checkbox" checked={Boolean(form.is_featured)} onChange={(event) => setForm({ ...form, is_featured: event.target.checked })} /> منتج مميز</label>
+            <label className="checkbox-row"><input type="checkbox" checked={Boolean(form.show_on_home)} onChange={(event) => setForm({ ...form, show_on_home: event.target.checked })} /> يظهر في الرئيسية</label>
+          </Card>
 
           <Card tone="soft" className="stack">
             <strong>💰 تحليل الربحية</strong>

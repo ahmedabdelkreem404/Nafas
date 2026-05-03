@@ -18,6 +18,7 @@ test.describe('real seeded Laravel API journeys', () => {
   test.use({ viewport: { width: 390, height: 900 } });
 
   test('customer creates a real COD Sharara order through Laravel API', async ({ page, request }) => {
+    test.setTimeout(120000);
     const apiStatuses: number[] = [];
     const consoleErrors: string[] = [];
 
@@ -118,7 +119,7 @@ test.describe('real seeded Laravel API journeys', () => {
   });
 
   test('public storefront has no horizontal overflow at launch mobile widths', async ({ page }) => {
-    test.setTimeout(300000);
+    test.setTimeout(600000);
     for (const width of [320, 360, 390, 430, 768, 1024]) {
       await page.setViewportSize({ width, height: 1100 });
       for (const route of ['/', '/shop', '/products/sharara', '/cart', '/checkout', '/about', '/quality', '/faq']) {

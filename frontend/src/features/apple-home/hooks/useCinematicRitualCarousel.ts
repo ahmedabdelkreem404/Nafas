@@ -53,7 +53,7 @@ export function useCinematicRitualCarousel(length: number) {
   const goTo = useCallback((index: number, userInitiated = true) => {
     const nextIndex = wrapIndex(index, length);
 
-    if (length <= 1 || nextIndex === activeIndex || phase !== 'idle') {
+    if (length <= 1 || nextIndex === activeIndex || (phase !== 'idle' && !userInitiated)) {
       return;
     }
 

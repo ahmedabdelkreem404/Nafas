@@ -1,6 +1,7 @@
 import { Search } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { publicApi } from '../api/publicApi';
 import { getCachedProducts } from '../cache/productCache';
 import ProductCard from '../components/ProductCard';
 import Reveal from '../components/Reveal';
@@ -17,18 +18,30 @@ export default function Shop() {
   const { getProductMetrics, getScore, getTopProductSlug } = useEngagement();
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
+  const [catalogs, setCatalogs] = useState<Array<{ slug: string; name_ar: string; name_en: string }>>([]);
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const [debouncedQuery, setDebouncedQuery] = useState((searchParams.get('q') || '').trim().toLowerCase());
   const [filter, setFilter] = useState(searchParams.get('filter') || 'all');
   const [sortBy, setSortBy] = useState<(typeof sortKeys)[number]>((searchParams.get('sort') as (typeof sortKeys)[number]) || 'favorite');
+  const currentCatalog = searchParams.get('catalog') || undefined;
 
   useEffect(() => {
-    getCachedProducts().then(setProducts).catch(() => setProducts([]));
+    publicApi
+      .getProducts(currentCatalog ? { catalog: currentCatalog } : undefined)
+      .then((response) => setProducts(response.data?.data || response.data || []))
+      .catch(() => getCachedProducts().then(setProducts).catch(() => setProducts([])));
+  }, [currentCatalog]);
+
+  useEffect(() => {
+    publicApi
+      .getCatalogs()
+      .then((response) => setCatalogs(response.data?.data || []))
+      .catch(() => setCatalogs([]));
   }, []);
 
   useEffect(() => {
     setQuery(searchParams.get('q') || '');
-    setFilter(searchParams.get('filter') || 'all');
+    setFilter(searchParams.get('catalog') ? `catalog:${searchParams.get('catalog')}` : searchParams.get('filter') || 'all');
     setSortBy((searchParams.get('sort') as (typeof sortKeys)[number]) || 'favorite');
   }, [searchParams]);
 
@@ -43,8 +56,14 @@ export default function Shop() {
     if (debouncedQuery) nextParams.set('q', query.trim());
     else nextParams.delete('q');
 
-    if (filter && filter !== 'all') nextParams.set('filter', filter);
-    else nextParams.delete('filter');
+    if (filter.startsWith('catalog:')) {
+      nextParams.set('catalog', filter.replace('catalog:', ''));
+      nextParams.delete('filter');
+    } else {
+      nextParams.delete('catalog');
+      if (filter && filter !== 'all') nextParams.set('filter', filter);
+      else nextParams.delete('filter');
+    }
 
     if (sortBy !== 'favorite') nextParams.set('sort', sortBy);
     else nextParams.delete('sort');
@@ -61,7 +80,7 @@ export default function Shop() {
       .filter((product) => {
         const searchable = buildSearchableText(product);
         const normalizedFilter = filter === 'testers' ? 'tester' : filter;
-        return (!debouncedQuery || searchable.includes(debouncedQuery)) && (filter === 'all' || searchable.includes(normalizedFilter.toLowerCase()));
+        return (!debouncedQuery || searchable.includes(debouncedQuery)) && (filter === 'all' || filter.startsWith('catalog:') || searchable.includes(normalizedFilter.toLowerCase()));
       })
       .sort((left, right) => {
         const leftMetrics = getProductMetrics(left);
@@ -106,8 +125,18 @@ export default function Shop() {
       'price-asc': { ar: 'السعر ↑', en: 'Price ↑' },
       'price-desc': { ar: 'السعر ↓', en: 'Price ↓' },
     };
+    if (key.startsWith('catalog:')) {
+      const slug = key.replace('catalog:', '');
+      const catalog = catalogs.find((item) => item.slug === slug);
+      return (locale === 'ar' ? catalog?.name_ar : catalog?.name_en) || slug;
+    }
     return map[key][locale];
   };
+
+  const dynamicFilterKeys = useMemo(() => {
+    const catalogFilters = catalogs.map((catalog) => `catalog:${catalog.slug}`);
+    return ['all', ...catalogFilters, ...filterKeys.filter((key) => key !== 'all')];
+  }, [catalogs]);
 
   return (
     <div className="page-shop">
@@ -125,7 +154,7 @@ export default function Shop() {
           </label>
 
           <div className="chip-row">
-            {filterKeys.map((key) => (
+            {dynamicFilterKeys.map((key) => (
               <button key={key} type="button" className={`chip ${filter === key ? 'is-active' : ''}`} onClick={() => setFilter(key)}>
                 {chipLabel(key)}
               </button>

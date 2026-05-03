@@ -25,11 +25,14 @@ const Register = lazy(() => import('./pages/Register'));
 const Shop = lazy(() => import('./pages/Shop'));
 const AdminAnalytics = lazy(() => import('./pages/admin/AdminAnalytics'));
 const AdminBatches = lazy(() => import('./pages/admin/AdminBatches'));
+const AdminCatalogForm = lazy(() => import('./pages/admin/AdminCatalogForm'));
+const AdminCatalogs = lazy(() => import('./pages/admin/AdminCatalogs'));
 const AdminContent = lazy(() => import('./pages/admin/AdminContent'));
 const AdminCoupons = lazy(() => import('./pages/admin/AdminCoupons'));
 const AdminCustomers = lazy(() => import('./pages/admin/AdminCustomers'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminFormulas = lazy(() => import('./pages/admin/AdminFormulas'));
+const AdminHomepageBuilder = lazy(() => import('./pages/admin/AdminHomepageBuilder'));
 const AdminInventory = lazy(() => import('./pages/admin/AdminInventory'));
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const AdminOrderDetail = lazy(() => import('./pages/admin/AdminOrderDetail'));
@@ -120,6 +123,10 @@ export default function App() {
                 <Route path="products/:id/edit" element={<AdminProductForm />} />
                 <Route path="products/:id/media" element={<AdminProductMedia />} />
                 <Route path="products/:id/variants" element={<AdminProductVariants />} />
+                <Route path="homepage" element={<AdminHomepageBuilder />} />
+                <Route path="catalogs" element={<AdminCatalogs />} />
+                <Route path="catalogs/create" element={<AdminCatalogForm />} />
+                <Route path="catalogs/:id/edit" element={<AdminCatalogForm />} />
                 <Route path="orders" element={<AdminOrders />} />
                 <Route path="orders/:id" element={<AdminOrderDetail />} />
                 <Route path="coupons" element={<AdminCoupons />} />

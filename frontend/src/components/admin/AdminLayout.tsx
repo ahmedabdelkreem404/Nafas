@@ -48,6 +48,7 @@ const navGroups: AdminNavGroup[] = [
     label: 'الكتالوج',
     links: [
       { to: '/admin/products', label: 'المنتجات', icon: Package },
+      { to: '/admin/catalogs', label: 'الكتالوجات', icon: Boxes },
       { to: '/admin/formulas', label: 'التركيبات', icon: FlaskConical },
       { to: '/admin/inventory', label: 'المخزون', icon: Warehouse },
     ],
@@ -73,6 +74,7 @@ const navGroups: AdminNavGroup[] = [
     label: 'التسويق والمحتوى',
     links: [
       { to: '/admin/coupons', label: 'الكوبونات', icon: TicketPercent },
+      { to: '/admin/homepage', label: 'الرئيسية', icon: FileText },
       { to: '/admin/content', label: 'المحتوى', icon: FileText },
     ],
   },

@@ -1,6 +1,6 @@
 import type { KeyboardEvent, TouchEvent } from 'react';
 
-export type ScentId = 'sharara' | 'madar' | 'athar' | 'barq' | 'nada' | 'ghayma';
+export type ScentId = string;
 export type ChoiceId = ScentId | 'discovery';
 export type ViewerTab = 'scent' | 'notes' | 'bottle' | 'sizes' | 'gift' | 'usage';
 
