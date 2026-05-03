@@ -25,6 +25,15 @@ const AdminLogin: React.FC = () => {
       localStorage.setItem('user', JSON.stringify(res.data.user));
       navigate('/admin/dashboard');
     } catch (err: any) {
+      const isBackendUnavailable = err?.status === 0 || String(err?.message || '').includes('Laravel API is not connected');
+      if (isBackendUnavailable) {
+        setError('واجهة Laravel غير متصلة حالياً. شغّل الباك اند أو اضبط VITE_API_BASE_URL قبل دخول لوحة التحكم.');
+        return;
+      }
+      if (err?.status === 422) {
+        setError('اكتب البريد الإلكتروني وكلمة المرور بشكل صحيح قبل الدخول.');
+        return;
+      }
       setError(err.message || 'تعذّر تسجيل الدخول');
     } finally {
       setLoading(false);
