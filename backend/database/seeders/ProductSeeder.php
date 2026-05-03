@@ -229,11 +229,34 @@ class ProductSeeder extends Seeder
             ],
         ];
 
+        $signatureHomeOrder = [
+            'sharara' => 10,
+            'ghayma' => 20,
+            'athar' => 30,
+            'barq' => 40,
+            'nada' => 50,
+            'madar' => 60,
+        ];
+
         foreach ($products as $productData) {
             $variants = $productData['variants'];
             unset($productData['variants']);
 
             $productData['slug'] = Str::slug($productData['name_en']);
+
+            if (isset($signatureHomeOrder[$productData['slug']])) {
+                $productData += [
+                    'product_type' => 'nafas_signature',
+                    'public_label_ar' => 'من كولكشن نفس',
+                    'public_label_en' => 'Nafas Signature',
+                    'show_in_shop' => true,
+                    'show_on_home' => true,
+                    'home_sort_order' => $signatureHomeOrder[$productData['slug']],
+                    'shop_sort_order' => $signatureHomeOrder[$productData['slug']],
+                    'is_featured' => true,
+                ];
+            }
+
             $product = Product::updateOrCreate(
                 ['slug' => $productData['slug']],
                 $productData

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "test": "vitest run",
-    "test:responsive": "playwright test",
+    "test:responsive": "playwright test --workers=1",
     "lint": "node scripts/run-eslint.mjs",
     "preview": "vite preview"
   },
