@@ -50,6 +50,10 @@ function isLocalStorefrontRuntime() {
   return import.meta.env.DEV && ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
 }
 
+function shouldUseRemoteCart() {
+  return Boolean(import.meta.env.VITE_API_BASE_URL) || !isLocalStorefrontRuntime();
+}
+
 function mapCartItems(payload: CartApiItem[]): CartItem[] {
   return payload.map((item, index) => ({
     id: Number(item.id ?? Date.now() + index),
@@ -107,6 +111,13 @@ export const CartProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
   const loadCart = useCallback(async () => {
     setLoading(true);
 
+    if (!shouldUseRemoteCart()) {
+      loadGuestCart();
+      setError('');
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await publicApi.getCart();
       setNormalizedItems(response.data);
@@ -133,16 +144,7 @@ export const CartProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
   }, []);
 
   const addToCart = useCallback(async (product: Product, variant: Variant, quantity = 1) => {
-    try {
-      const response = await publicApi.addCartItem({ quantity, variant_id: variant.id });
-      setNormalizedItems(response.data);
-      setError('');
-      return { product, quantity, variant };
-    } catch (err: any) {
-      if (!isLocalStorefrontRuntime()) {
-        throw err;
-      }
-
+    const addGuestItem = () => {
       let nextItems: CartItem[] = [];
       setItems((currentItems) => {
         const existing = currentItems.find((item) => item.variant.id === variant.id);
@@ -166,20 +168,68 @@ export const CartProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
       });
       setError('');
       return { product, quantity, variant };
+    };
+
+    if (!shouldUseRemoteCart()) {
+      return addGuestItem();
+    }
+
+    try {
+      const response = await publicApi.addCartItem({ quantity, variant_id: variant.id });
+      setNormalizedItems(response.data);
+      setError('');
+      return { product, quantity, variant };
+    } catch (err: any) {
+      if (!isLocalStorefrontRuntime()) {
+        throw err;
+      }
+
+      return addGuestItem();
     }
   }, [setNormalizedItems, syncGuestStorage]);
 
   const updateQuantity = useCallback(async (cartItemId: number, quantity: number) => {
+    if (!shouldUseRemoteCart()) {
+      let nextItems: CartItem[] = [];
+      setItems((currentItems) => {
+        nextItems = currentItems
+          .map((item) => (item.id === cartItemId ? { ...item, quantity } : item))
+          .filter((item) => item.quantity > 0);
+        syncGuestStorage(nextItems);
+        return nextItems;
+      });
+      setError('');
+      return;
+    }
+
     await publicApi.updateCartItem(cartItemId, quantity);
     await loadCart();
-  }, [loadCart]);
+  }, [loadCart, syncGuestStorage]);
 
   const removeFromCart = useCallback(async (cartItemId: number) => {
+    if (!shouldUseRemoteCart()) {
+      let nextItems: CartItem[] = [];
+      setItems((currentItems) => {
+        nextItems = currentItems.filter((item) => item.id !== cartItemId);
+        syncGuestStorage(nextItems);
+        return nextItems;
+      });
+      setError('');
+      return;
+    }
+
     await publicApi.removeCartItem(cartItemId);
     await loadCart();
-  }, [loadCart]);
+  }, [loadCart, syncGuestStorage]);
 
   const clearCart = useCallback(async () => {
+    if (!shouldUseRemoteCart()) {
+      setItems([]);
+      syncGuestStorage([]);
+      setError('');
+      return;
+    }
+
     try {
       await publicApi.clearCart();
     } finally {
