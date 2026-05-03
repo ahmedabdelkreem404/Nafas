@@ -35,6 +35,7 @@ const AdminCatalogForm: React.FC = () => {
   const [form, setForm] = useState<CatalogForm>(blankCatalog);
   const [products, setProducts] = useState<any[]>([]);
   const [attachProductId, setAttachProductId] = useState('');
+  const [productDrafts, setProductDrafts] = useState<Record<string, { is_featured: boolean; sort_order: number }>>({});
   const [message, setMessage] = useState('');
 
   const load = useCallback(() => Promise.all([
@@ -43,6 +44,19 @@ const AdminCatalogForm: React.FC = () => {
   ]).catch(() => setMessage('تعذر تحميل بيانات الكتالوج.')), [id]);
 
   useEffect(() => { load(); }, [load]);
+
+  useEffect(() => {
+    const nextDrafts: Record<string, { is_featured: boolean; sort_order: number }> = {};
+    (form.products || []).forEach((product) => {
+      const pivotId = product.pivot?.id;
+      if (!pivotId) return;
+      nextDrafts[String(pivotId)] = {
+        is_featured: Boolean(product.pivot?.is_featured),
+        sort_order: Number(product.pivot?.sort_order || 0),
+      };
+    });
+    setProductDrafts(nextDrafts);
+  }, [form.products]);
 
   const productOptions = useMemo(() => products.map((product) => ({
     value: String(product.id),
@@ -68,6 +82,26 @@ const AdminCatalogForm: React.FC = () => {
       if (!id && next?.id) navigate(`/admin/catalogs/${next.id}/edit`);
       else load();
     }).catch(() => setMessage('راجع الحقول المطلوبة: الرابط، الاسم العربي، الاسم الإنجليزي.'));
+  };
+
+  const updateCatalogProductDraft = (pivotId: number | string, patch: Partial<{ is_featured: boolean; sort_order: number }>) => {
+    setProductDrafts((current) => ({
+      ...current,
+      [String(pivotId)]: {
+        ...(current[String(pivotId)] || { is_featured: false, sort_order: 0 }),
+        ...patch,
+      },
+    }));
+  };
+
+  const saveCatalogProduct = (pivotId: number | string) => {
+    const draft = productDrafts[String(pivotId)];
+    if (!draft) return;
+
+    adminApi.catalogs.updateProduct(pivotId, {
+      is_featured: draft.is_featured,
+      sort_order: Number(draft.sort_order || 0),
+    }).then(load).catch(() => setMessage('تعذر حفظ ترتيب المنتج داخل الكتالوج.'));
   };
 
   return (
@@ -116,7 +150,27 @@ const AdminCatalogForm: React.FC = () => {
                 <strong>{product.name_ar || product.name_en}</strong>
                 <span className="copy-muted">/{product.slug}</span>
               </div>
+              {product.pivot?.id ? (
+                <div className="grid-auto">
+                  <Field label="ترتيب المنتج">
+                    <Input
+                      type="number"
+                      value={productDrafts[String(product.pivot.id)]?.sort_order || 0}
+                      onChange={(event) => updateCatalogProductDraft(product.pivot.id, { sort_order: Number(event.target.value) })}
+                    />
+                  </Field>
+                  <label className="checkbox-row">
+                    <input
+                      type="checkbox"
+                      checked={Boolean(productDrafts[String(product.pivot.id)]?.is_featured)}
+                      onChange={(event) => updateCatalogProductDraft(product.pivot.id, { is_featured: event.target.checked })}
+                    />
+                    مميز داخل الكتالوج
+                  </label>
+                </div>
+              ) : null}
               <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                {product.pivot?.id ? <Button size="sm" variant="secondary" onClick={() => saveCatalogProduct(product.pivot.id)}>حفظ ترتيب المنتج</Button> : null}
                 <Button size="sm" variant="danger" onClick={() => adminApi.catalogs.detachProduct(product.pivot?.id).then(load)}>إزالة</Button>
               </div>
             </div>

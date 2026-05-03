@@ -6268,6 +6268,29 @@ a:has(> .ui-button) {
   background: rgba(255, 248, 238, 0.72);
 }
 
+.admin-catalog-memberships {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.admin-catalog-membership {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  border: 1px solid rgba(91, 63, 45, 0.12);
+  border-radius: 20px;
+  background: rgba(255, 248, 238, 0.55);
+}
+
+.admin-catalog-membership.is-selected {
+  border-color: rgba(201, 161, 90, 0.5);
+  background: linear-gradient(135deg, rgba(255, 248, 238, 0.92), rgba(231, 201, 133, 0.15));
+}
+
+.admin-catalog-membership .checkbox-row {
+  justify-content: flex-start;
+}
+
 @media (max-width: 760px) {
   .admin-product-card {
     grid-template-columns: minmax(0, 1fr);

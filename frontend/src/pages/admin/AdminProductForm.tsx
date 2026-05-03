@@ -4,6 +4,16 @@ import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Button, Card, ErrorState, Field, Input, LoadingState, Select, Textarea } from '../../components/ui';
 import { formatCurrency, formatNumber } from '../../utils/format';
 
+type CatalogMembership = {
+  catalog_id: number;
+  id?: number;
+  is_featured: boolean;
+  name_ar?: string;
+  name_en?: string;
+  slug?: string;
+  sort_order: number;
+};
+
 const emptyState = {
   code: '',
   name_ar: '',
@@ -52,17 +62,90 @@ const AdminProductForm: React.FC = () => {
   const [loading, setLoading] = useState(Boolean(id));
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
+  const [catalogs, setCatalogs] = useState<Array<{ id: number; name_ar: string; name_en: string; slug: string }>>([]);
+  const [catalogMemberships, setCatalogMemberships] = useState<CatalogMembership[]>([]);
+
+  const normalizeMemberships = (productCatalogs: any[] = []): CatalogMembership[] => productCatalogs.map((catalog) => ({
+    catalog_id: Number(catalog.id),
+    id: catalog.pivot?.id,
+    is_featured: Boolean(catalog.pivot?.is_featured),
+    name_ar: catalog.name_ar,
+    name_en: catalog.name_en,
+    slug: catalog.slug,
+    sort_order: Number(catalog.pivot?.sort_order || 0),
+  }));
 
   useEffect(() => {
-    if (!id) {
-      return;
-    }
+    const loadProduct = id
+      ? adminApi.products.get(id).then((res) => {
+        setForm({ ...emptyState, ...res.data });
+        setCatalogMemberships(normalizeMemberships(res.data?.catalogs || []));
+      })
+      : Promise.resolve();
 
-    adminApi.products.get(id)
-      .then((res) => setForm({ ...emptyState, ...res.data }))
-      .catch((err) => setError(err.message || 'تعذّر تحميل المنتج'))
+    Promise.all([
+      loadProduct,
+      adminApi.catalogs.listSafe().then((response) => setCatalogs(response.data?.data || [])),
+    ])
+      .catch((err) => setError(err.message || 'تعذّر تحميل بيانات المنتج'))
       .finally(() => setLoading(false));
   }, [id]);
+
+  const toggleCatalog = (catalog: { id: number; name_ar: string; name_en: string; slug: string }, checked: boolean) => {
+    setCatalogMemberships((current) => {
+      if (!checked) {
+        return current.filter((item) => item.catalog_id !== catalog.id);
+      }
+
+      if (current.some((item) => item.catalog_id === catalog.id)) {
+        return current;
+      }
+
+      return [
+        ...current,
+        {
+          catalog_id: catalog.id,
+          is_featured: false,
+          name_ar: catalog.name_ar,
+          name_en: catalog.name_en,
+          slug: catalog.slug,
+          sort_order: current.length * 10,
+        },
+      ];
+    });
+  };
+
+  const updateMembership = (catalogId: number, patch: Partial<CatalogMembership>) => {
+    setCatalogMemberships((current) => current.map((item) => (
+      item.catalog_id === catalogId ? { ...item, ...patch } : item
+    )));
+  };
+
+  const syncCatalogMemberships = async (productId: number | string, originalCatalogs: any[] = []) => {
+    const originalMemberships = normalizeMemberships(originalCatalogs);
+    const selectedIds = new Set(catalogMemberships.map((item) => item.catalog_id));
+    const originalByCatalog = new Map(originalMemberships.map((item) => [item.catalog_id, item]));
+
+    await Promise.all([
+      ...originalMemberships
+        .filter((item) => item.id && !selectedIds.has(item.catalog_id))
+        .map((item) => adminApi.catalogs.detachProduct(item.id as number)),
+      ...catalogMemberships.map((item) => {
+        const original = originalByCatalog.get(item.catalog_id);
+        const payload = {
+          is_featured: item.is_featured,
+          product_id: Number(productId),
+          sort_order: Number(item.sort_order || 0),
+        };
+
+        if (original?.id) {
+          return adminApi.catalogs.updateProduct(original.id, payload);
+        }
+
+        return adminApi.catalogs.attachProduct(item.catalog_id, payload);
+      }),
+    ]);
+  };
 
   const sellingPrice = useMemo(() => {
     const prices = (form.variants || []).map((variant: any) => Number(variant.retail_price || 0)).filter(Boolean);
@@ -97,9 +180,14 @@ const AdminProductForm: React.FC = () => {
           : String(form.tags || '').split(',').map((tag) => tag.trim()).filter(Boolean),
       };
       if (id) {
-        await adminApi.products.update(id, payload);
+        const response = await adminApi.products.update(id, payload);
+        await syncCatalogMemberships(id, response.data?.catalogs || form.catalogs || []);
       } else {
-        await adminApi.products.create(payload);
+        const response = await adminApi.products.create(payload);
+        const productId = response.data?.id || response.data?.data?.id;
+        if (productId) {
+          await syncCatalogMemberships(productId, []);
+        }
       }
       navigate('/admin/products');
     } catch (err: any) {
@@ -152,6 +240,54 @@ const AdminProductForm: React.FC = () => {
               <label className="checkbox-row"><input type="checkbox" checked={Boolean(form.show_on_home)} onChange={(event) => setForm({ ...form, show_on_home: event.target.checked })} /> يظهر في الرئيسية</label>
               <label className="checkbox-row"><input type="checkbox" checked={Boolean(form.is_featured)} onChange={(event) => setForm({ ...form, is_featured: event.target.checked })} /> منتج مميز</label>
             </div>
+          </Card>
+
+          <Card tone="soft" className="stack">
+            <strong>الكتالوجات والمجموعات</strong>
+            <p className="copy-muted">اختار أين يظهر المنتج داخل المتجر. يمكن ربط نفس المنتج بأكثر من كتالوج مع ترتيب مختلف.</p>
+            {catalogs.length ? (
+              <div className="admin-catalog-memberships">
+                {catalogs.map((catalog) => {
+                  const membership = catalogMemberships.find((item) => item.catalog_id === catalog.id);
+                  const selected = Boolean(membership);
+
+                  return (
+                    <div key={catalog.id} className={`admin-catalog-membership ${selected ? 'is-selected' : ''}`}>
+                      <label className="checkbox-row">
+                        <input
+                          type="checkbox"
+                          checked={selected}
+                          onChange={(event) => toggleCatalog(catalog, event.target.checked)}
+                        />
+                        <span>{catalog.name_ar}</span>
+                        <small className="copy-muted">/{catalog.slug}</small>
+                      </label>
+                      {selected ? (
+                        <div className="grid-auto">
+                          <Field label="ترتيب داخل الكتالوج">
+                            <Input
+                              type="number"
+                              value={membership?.sort_order || 0}
+                              onChange={(event) => updateMembership(catalog.id, { sort_order: Number(event.target.value) })}
+                            />
+                          </Field>
+                          <label className="checkbox-row">
+                            <input
+                              type="checkbox"
+                              checked={Boolean(membership?.is_featured)}
+                              onChange={(event) => updateMembership(catalog.id, { is_featured: event.target.checked })}
+                            />
+                            مميز داخل الكتالوج
+                          </label>
+                        </div>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="copy-muted">لا توجد كتالوجات بعد. أضف كتالوج من صفحة الكتالوجات ثم اربط المنتج به.</p>
+            )}
           </Card>
 
           <Card tone="soft" className="stack">
