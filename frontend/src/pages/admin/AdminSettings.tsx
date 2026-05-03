@@ -1,25 +1,133 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { adminApi } from '../../api/adminApi';
 import { AdminPageShell, Button, Card, EmptyState, Field, Input, LoadingState, Select, Textarea } from '../../components/ui';
+
+const settingGroups = [
+  {
+    fields: [
+      ['brand_name_ar', 'اسم البراند عربي'],
+      ['brand_name_en', 'اسم البراند إنجليزي'],
+      ['brand_subtitle_ar', 'وصف قصير عربي'],
+      ['brand_subtitle_en', 'وصف قصير إنجليزي'],
+      ['logo_url', 'رابط اللوجو'],
+      ['icon_url', 'رابط الأيقونة'],
+    ],
+    title: 'هوية البراند',
+  },
+  {
+    fields: [
+      ['whatsapp_url', 'رابط واتساب'],
+      ['instagram_url', 'رابط إنستجرام'],
+      ['vodafone_cash_number', 'رقم فودافون كاش'],
+      ['instapay_handle', 'حساب إنستاباي'],
+    ],
+    title: 'التواصل والدفع',
+  },
+  {
+    fields: [
+      ['footer_title_ar', 'عنوان الفوتر عربي'],
+      ['footer_title_en', 'عنوان الفوتر إنجليزي'],
+      ['footer_brand_ar', 'نص الفوتر عربي'],
+      ['footer_brand_en', 'نص الفوتر إنجليزي'],
+      ['footer_note_ar', 'ملاحظة الثقة عربي'],
+      ['footer_note_en', 'ملاحظة الثقة إنجليزي'],
+    ],
+    title: 'الفوتر والثقة',
+  },
+];
 
 const AdminSettings: React.FC = () => {
   const [settings, setSettings] = useState<any[]>([]);
   const [newSetting, setNewSetting] = useState({ key: '', value: '', type: 'string' });
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState('');
+  const [savingKey, setSavingKey] = useState('');
 
   const load = () => {
     setLoading(true);
     adminApi.settings.list().then((res) => setSettings(res.data || [])).finally(() => setLoading(false));
   };
+
   useEffect(() => { load(); }, []);
 
+  const findSetting = (key: string) => settings.find((setting) => setting.key === key);
+
+  const setSettingValue = (key: string, value: string) => {
+    setSettings((current) => {
+      const existing = current.find((setting) => setting.key === key);
+      if (existing) {
+        return current.map((setting) => setting.key === key ? { ...setting, value } : setting);
+      }
+
+      return [...current, { id: `new-${key}`, key, type: 'string', value }];
+    });
+  };
+
+  const saveSettingKey = (key: string) => {
+    const setting = findSetting(key);
+    if (!setting) return;
+
+    setSavingKey(key);
+    setMessage('');
+
+    const request = String(setting.id).startsWith('new-')
+      ? adminApi.settings.create({ key, type: setting.type || 'string', value: setting.value || '' })
+      : adminApi.settings.update(setting.id, { value: setting.value || '' });
+
+    request
+      .then(() => {
+        setMessage('تم حفظ الإعداد.');
+        load();
+      })
+      .catch(() => setMessage('تعذر حفظ الإعداد. تأكد من أن المفتاح غير مكرر.'))
+      .finally(() => setSavingKey(''));
+  };
+
   return (
-    <AdminPageShell eyebrow="الإعدادات" title="إعدادات الموقع" description="مفاتيح المحتوى والإعدادات العامة داخل واجهة مرتبة وقابلة للتعديل السريع.">
+    <AdminPageShell eyebrow="الإعدادات" title="إعدادات الموقع" description="تحكم في هوية البراند، بيانات التواصل، الدفع، والفوتر بدون تعديل الكود.">
+      {message ? <Card tone="strong"><strong>{message}</strong></Card> : null}
+
+      {loading ? (
+        <LoadingState label="جاري تحميل الإعدادات..." />
+      ) : (
+        <div className="stack">
+          {settingGroups.map((group) => (
+            <Card key={group.title} tone="strong" className="stack">
+              <div className="data-card__title">{group.title}</div>
+              <div className="grid-auto">
+                {group.fields.map(([key, label]) => {
+                  const setting = findSetting(key);
+                  const value = setting?.value || '';
+                  const isLong = key.includes('footer_') && !key.includes('title');
+
+                  return (
+                    <Field key={key} label={label}>
+                      {isLong ? (
+                        <Textarea value={value} onChange={(event) => setSettingValue(key, event.target.value)} />
+                      ) : (
+                        <Input value={value} onChange={(event) => setSettingValue(key, event.target.value)} />
+                      )}
+                      <Button size="sm" variant="secondary" type="button" disabled={savingKey === key} onClick={() => saveSettingKey(key)}>
+                        {savingKey === key ? 'جاري الحفظ...' : 'حفظ'}
+                      </Button>
+                    </Field>
+                  );
+                })}
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
+
       <Card tone="strong">
         <form className="stack" onSubmit={(event) => {
           event.preventDefault();
-          adminApi.settings.create(newSetting).then(() => { setNewSetting({ key: '', value: '', type: 'string' }); load(); });
+          adminApi.settings.create(newSetting).then(() => {
+            setNewSetting({ key: '', value: '', type: 'string' });
+            load();
+          });
         }}>
+          <div className="data-card__title">إعداد مخصص</div>
           <div className="grid-auto">
             <Field label="المفتاح"><Input value={newSetting.key} onChange={(event) => setNewSetting({ ...newSetting, key: event.target.value })} /></Field>
             <Field label="القيمة"><Input value={newSetting.value} onChange={(event) => setNewSetting({ ...newSetting, value: event.target.value })} /></Field>
@@ -36,22 +144,9 @@ const AdminSettings: React.FC = () => {
         </form>
       </Card>
 
-      {loading ? <LoadingState label="جاري تحميل الإعدادات..." /> : !settings.length ? <EmptyState title="لا توجد إعدادات" description="أنشئ أول إعداد عام من هنا." /> : (
-        <div className="stack">
-          {settings.map((setting) => (
-            <Card key={setting.id} tone="strong" className="stack">
-              <div className="data-card__title">{setting.key}</div>
-              <Field label="القيمة">
-                {String(setting.value || '').length > 120 ? <Textarea value={setting.value || ''} onChange={(event) => setSettings((current) => current.map((entry) => entry.id === setting.id ? { ...entry, value: event.target.value } : entry))} /> : <Input value={setting.value || ''} onChange={(event) => setSettings((current) => current.map((entry) => entry.id === setting.id ? { ...entry, value: event.target.value } : entry))} />}
-              </Field>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <Button onClick={() => adminApi.settings.update(setting.id, { value: setting.value }).then(load)}>حفظ</Button>
-                <Button variant="danger" onClick={() => adminApi.settings.delete(setting.id).then(load)}>حذف</Button>
-              </div>
-            </Card>
-          ))}
-        </div>
-      )}
+      {!loading && !settings.length ? (
+        <EmptyState title="لا توجد إعدادات" description="أنشئ أول إعداد عام من هنا." />
+      ) : null}
     </AdminPageShell>
   );
 };

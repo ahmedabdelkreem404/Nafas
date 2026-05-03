@@ -9,6 +9,7 @@ import AdminLayout from './components/admin/AdminLayout';
 import { CartProvider } from './context/CartContext';
 import { EngagementProvider } from './context/EngagementContext';
 import { LocaleProvider } from './context/LocaleContext';
+import { SiteSettingsProvider } from './context/SiteSettingsContext';
 
 const Account = lazy(() => import('./pages/Account'));
 const AccountOrderDetail = lazy(() => import('./pages/AccountOrderDetail'));
@@ -65,15 +66,17 @@ function RouteFallback() {
 function PublicLayout() {
   return (
     <CartProvider>
-      <div className="app-shell">
-        <Navbar />
-        <main className="page-shell">
-          <Outlet />
-        </main>
-        <Footer />
-        <OffcanvasCart />
-        <WhatsAppFloatButton />
-      </div>
+      <SiteSettingsProvider>
+        <div className="app-shell">
+          <Navbar />
+          <main className="page-shell">
+            <Outlet />
+          </main>
+          <Footer />
+          <OffcanvasCart />
+          <WhatsAppFloatButton />
+        </div>
+      </SiteSettingsProvider>
     </CartProvider>
   );
 }

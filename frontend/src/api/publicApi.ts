@@ -11,6 +11,7 @@ export const publicApi = {
   getCategories: () => client.get('/categories'),
   getHomeContent: () => client.get('/home'),
   getHomepage: () => client.get('/homepage'),
+  getSiteSettings: () => client.get('/site-settings'),
   getCatalogs: () => client.get('/catalogs'),
   getCatalog: (slug: string) => client.get(`/catalogs/${slug}`),
   getCatalogProducts: (slug: string) => client.get(`/catalogs/${slug}/products`),

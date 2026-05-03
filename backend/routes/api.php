@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PublicCatalogController;
 use App\Http\Controllers\PublicHomeController;
+use App\Http\Controllers\PublicSettingController;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 
 $publicWritesThrottle = ThrottleRequests::class.':public-writes';
@@ -32,6 +33,7 @@ Route::get('/products/{slug}', [ProductController::class, 'show']);
 Route::get('/categories', [ProductController::class, 'categories']);
 Route::get('/home', [ProductController::class, 'homeContent']);
 Route::get('/homepage', PublicHomeController::class);
+Route::get('/site-settings', PublicSettingController::class);
 Route::get('/catalogs', [PublicCatalogController::class, 'index']);
 Route::get('/catalogs/{slug}', [PublicCatalogController::class, 'show']);
 Route::get('/catalogs/{slug}/products', [PublicCatalogController::class, 'products']);

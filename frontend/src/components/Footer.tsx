@@ -1,6 +1,7 @@
 import { MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLocale } from '../context/LocaleContext';
+import { useSiteSettings } from '../context/SiteSettingsContext';
 import { BRAND_LOGO, WHATSAPP_SUPPORT_URL } from '../utils/brand';
 
 const footerCopy = {
@@ -52,16 +53,23 @@ const footerCopy = {
 
 export default function Footer() {
   const { locale } = useLocale();
+  const { getSetting } = useSiteSettings();
   const copy = footerCopy[locale];
+  const suffix = locale === 'ar' ? 'ar' : 'en';
+  const logoUrl = getSetting('logo_url', BRAND_LOGO);
+  const whatsappUrl = getSetting('whatsapp_url', WHATSAPP_SUPPORT_URL);
+  const title = getSetting(`footer_title_${suffix}`, copy.title);
+  const brand = getSetting(`footer_brand_${suffix}`, copy.brand);
+  const note = getSetting(`footer_note_${suffix}`, copy.note);
 
   return (
     <footer className="site-footer">
       <div className="n-container site-footer__grid">
         <div className="site-footer__brand-block">
-          <img src={BRAND_LOGO} alt="Nafas" className="site-footer__brand-logo" />
-          <h2>{copy.title}</h2>
-          <p>{copy.brand}</p>
-          <a className="site-footer__whatsapp" href={WHATSAPP_SUPPORT_URL} target="_blank" rel="noreferrer">
+          <img src={logoUrl} alt="Nafas" className="site-footer__brand-logo" />
+          <h2>{title}</h2>
+          <p>{brand}</p>
+          <a className="site-footer__whatsapp" href={whatsappUrl} target="_blank" rel="noreferrer">
             <MessageCircle size={18} aria-hidden="true" />
             {copy.contact}
           </a>
@@ -90,7 +98,7 @@ export default function Footer() {
       </div>
 
       <div className="n-container site-footer__bottom">
-        <p>{copy.note}</p>
+        <p>{note}</p>
         <span>{copy.copyright} © 2026</span>
       </div>
     </footer>

@@ -2,6 +2,7 @@ import { Heart, Languages, Menu, MessageCircle, ShoppingBag, User, X } from 'luc
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useLocale } from '../context/LocaleContext';
+import { useSiteSettings } from '../context/SiteSettingsContext';
 import { useCart } from '../hooks/useCart';
 import { useEngagement } from '../hooks/useEngagement';
 import { getStoredUser, getUserFirstName, isAuthenticated } from '../utils/auth';
@@ -58,6 +59,7 @@ const drawerId = 'nafas-mobile-drawer';
 
 export default function Navbar() {
   const { locale, toggleLocale } = useLocale();
+  const { getSetting } = useSiteSettings();
   const { openCart, totalCount } = useCart();
   const { favoriteCount } = useEngagement();
   const [open, setOpen] = useState(false);
@@ -71,6 +73,11 @@ export default function Navbar() {
   const initials = user?.name?.trim()?.charAt(0)?.toUpperCase() || 'N';
   const links = navItems[locale];
   const copy = drawerCopy[locale];
+  const suffix = locale === 'ar' ? 'ar' : 'en';
+  const brandIcon = getSetting('icon_url', BRAND_ICON);
+  const brandLogo = getSetting('logo_url', BRAND_LOGO);
+  const brandName = getSetting(`brand_name_${suffix}`, locale === 'ar' ? 'دار نفَس' : 'Maison Nafas');
+  const whatsappUrl = getSetting('whatsapp_url', WHATSAPP_SUPPORT_URL);
 
   useEffect(() => {
     setOpen(false);
@@ -163,11 +170,11 @@ export default function Navbar() {
         <nav className={`site-nav site-nav--${locale}`} aria-label="Nafas">
           <Link to="/" className="site-nav__brand" aria-label="Nafas">
             <span className="site-nav__brand-icon">
-              <img src={BRAND_ICON} alt="" className="site-nav__brand-icon-image" />
+              <img src={brandIcon} alt="" className="site-nav__brand-icon-image" />
             </span>
             <span className="site-nav__brand-copy">
-              <img src={BRAND_LOGO} alt="Nafas" className="site-nav__brand-logo" />
-              <small>{locale === 'ar' ? 'دار نفَس' : 'Maison Nafas'}</small>
+              <img src={brandLogo} alt="Nafas" className="site-nav__brand-logo" />
+              <small>{brandName}</small>
             </span>
           </Link>
 
@@ -244,8 +251,8 @@ export default function Navbar() {
       >
         <div className="mobile-panel__head">
           <Link to="/" className="mobile-panel__brand" onClick={() => setOpen(false)}>
-            <img src={BRAND_LOGO} alt="Nafas" className="mobile-panel__logo" />
-            <span>{locale === 'ar' ? 'دار نفَس' : 'Maison Nafas'}</span>
+            <img src={brandLogo} alt="Nafas" className="mobile-panel__logo" />
+            <span>{brandName}</span>
           </Link>
           <button type="button" className="site-icon" onClick={() => setOpen(false)} aria-label={copy.close}>
             <X size={18} aria-hidden="true" />
@@ -281,7 +288,7 @@ export default function Navbar() {
             <Link to="/account" className="mobile-panel__link" onClick={() => setOpen(false)}>
               {signedIn && firstName ? `${copy.welcome} ${firstName}` : copy.account}
             </Link>
-            <a href={WHATSAPP_SUPPORT_URL} className="mobile-panel__link mobile-panel__link--gold" target="_blank" rel="noreferrer">
+            <a href={whatsappUrl} className="mobile-panel__link mobile-panel__link--gold" target="_blank" rel="noreferrer">
               <MessageCircle size={18} aria-hidden="true" />
               {copy.contact}
             </a>

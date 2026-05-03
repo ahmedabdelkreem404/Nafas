@@ -162,6 +162,21 @@ class DynamicHomeCatalogTest extends TestCase
             ->assertJsonPath('data.slug', 'sharara');
     }
 
+    public function test_public_site_settings_expose_only_safe_brand_keys(): void
+    {
+        \App\Models\Setting::updateOrCreate(
+            ['key' => 'private_margin_target'],
+            ['value' => '70%', 'type' => 'string']
+        );
+
+        $this->getJson('/api/site-settings')
+            ->assertOk()
+            ->assertJsonPath('data.brand_name_ar', 'دار نفَس')
+            ->assertJsonPath('data.whatsapp_url', 'https://wa.me/201000000000')
+            ->assertJsonMissing(['private_margin_target'])
+            ->assertJsonMissing(['70%']);
+    }
+
     public function test_admin_can_add_product_media_from_uploads_and_url(): void
     {
         Storage::fake('public');
