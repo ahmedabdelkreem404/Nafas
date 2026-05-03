@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import { useLocale } from '../../../context/LocaleContext';
 import { SECTION_LABELS, viewerTabs } from '../constants';
-import { appleHomeCopy, scentCopy, text, viewerTabCopy } from '../data/appleHomeCopy';
+import { appleHomeCopy, getScentCopy, text, viewerTabCopy } from '../data/appleHomeCopy';
 import { useProductViewer } from '../hooks/useProductViewer';
 import type { Scent } from '../types';
 import BottleVisual from './BottleVisual';
@@ -14,7 +14,7 @@ export default function ProductViewerSection({ scents }: ProductViewerSectionPro
   const { locale } = useLocale();
   const viewer = useProductViewer(scents, locale);
   const copy = appleHomeCopy.viewer;
-  const activeCopy = scentCopy[viewer.activeScent.id];
+  const activeCopy = getScentCopy(viewer.activeScent);
 
   return (
     <section className="anh-section anh-viewer" data-section={SECTION_LABELS.viewer} aria-labelledby="viewer-title" data-proof="viewer">
@@ -34,7 +34,7 @@ export default function ProductViewerSection({ scents }: ProductViewerSectionPro
                 onClick={() => viewer.selectScent(scent.id)}
                 aria-pressed={viewer.selectedScentId === scent.id}
               >
-                {text(scentCopy[scent.id].name, locale)}
+                {text(getScentCopy(scent).name, locale)}
               </button>
             ))}
           </div>
@@ -61,7 +61,9 @@ export default function ProductViewerSection({ scents }: ProductViewerSectionPro
                 </button>
               ))}
             </div>
-            <a className="anh-button anh-button--primary" href="#tester-path">{text(copy.cta, locale)}</a>
+            <a className="anh-button anh-button--primary" href={viewer.activeScent.href || `/products/${viewer.activeScent.id}`}>
+              {locale === 'ar' ? 'افتح صفحة المنتج' : 'Open product'}
+            </a>
           </div>
         </div>
       </div>

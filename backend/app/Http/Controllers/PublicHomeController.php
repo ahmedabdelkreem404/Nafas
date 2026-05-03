@@ -4,11 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
 use App\Models\HomeSection;
+use App\Models\Product;
 
 class PublicHomeController extends Controller
 {
     public function __invoke()
     {
+        $homeProducts = Product::query()
+            ->where('status', 'active')
+            ->where('show_on_home', true)
+            ->with([
+                'variants' => fn ($builder) => $builder->where('is_active', true),
+                'media',
+                'catalogs' => fn ($builder) => $builder->where('catalogs.is_active', true),
+            ])
+            ->orderBy('home_sort_order')
+            ->orderBy('id')
+            ->get();
+
         $sections = HomeSection::query()
             ->where('is_active', true)
             ->with(['items' => function ($query) {
@@ -28,8 +41,7 @@ class PublicHomeController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        return response()->json([
-            'sections' => $sections->map(fn (HomeSection $section) => [
+        $payloadSections = $sections->map(fn (HomeSection $section) => [
                 'id' => $section->id,
                 'section_key' => $section->section_key,
                 'type' => $section->type,
@@ -73,7 +85,40 @@ class PublicHomeController extends Controller
                     'sort_order' => $item->sort_order,
                     'product' => $item->product ? new ProductResource($item->product) : null,
                 ]),
-            ]),
+            ]);
+
+        if ($homeProducts->isNotEmpty()) {
+            $dynamicProductItems = $homeProducts->map(fn (Product $product) => [
+                'id' => "product-{$product->id}",
+                'product_id' => $product->id,
+                'title_ar' => $product->name_ar,
+                'title_en' => $product->name_en,
+                'subtitle_ar' => $product->marketing_line_ar,
+                'subtitle_en' => $product->marketing_line_en,
+                'body_ar' => $product->personality,
+                'body_en' => $product->personality,
+                'image_url' => $product->home_image_url ?: $product->card_image_url ?: $product->hero_image_url,
+                'mobile_image_url' => $product->home_mobile_image_url ?: $product->mobile_image_url ?: $product->home_image_url,
+                'link_url' => $product->home_link_url ?: "/products/{$product->slug}",
+                'cta_label_ar' => 'اعرف أكتر',
+                'cta_label_en' => 'Explore',
+                'accent_color' => null,
+                'settings' => ['source' => 'product_visibility'],
+                'sort_order' => $product->home_sort_order,
+                'product' => new ProductResource($product),
+            ]);
+
+            $payloadSections = $payloadSections->map(function ($section) use ($dynamicProductItems) {
+                if (in_array($section['section_key'], ['ritual', 'highlights', 'product-viewer', 'comparison'], true)) {
+                    $section['items'] = $dynamicProductItems->values();
+                }
+
+                return $section;
+            });
+        }
+
+        return response()->json([
+            'sections' => $payloadSections,
         ]);
     }
 }

@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocale } from '../../../context/LocaleContext';
 import { SECTION_LABELS } from '../constants';
-import { appleHomeCopy, scentCopy, text } from '../data/appleHomeCopy';
+import { appleHomeCopy, getScentCopy, text } from '../data/appleHomeCopy';
 import type { Scent } from '../types';
 import BottleVisual from './BottleVisual';
 
@@ -24,7 +24,7 @@ export default function ComparisonSection({ scents }: ComparisonSectionProps) {
         </div>
         <div className="anh-compare__grid">
           {comparedScents.map((scent) => {
-            const localizedScent = scentCopy[scent.id];
+            const localizedScent = getScentCopy(scent);
 
             return (
               <article key={scent.id} className="anh-compare-card" style={{ '--accent': scent.accent } as CSSProperties}>
@@ -48,7 +48,7 @@ export default function ComparisonSection({ scents }: ComparisonSectionProps) {
                     <dd>{text(localizedScent.entry, locale)}</dd>
                   </div>
                 </dl>
-                <Link className="anh-button anh-button--secondary" to={`/products/${scent.id}`}>{text(copy.cta, locale)}</Link>
+                <Link className="anh-button anh-button--secondary" to={scent.href || `/products/${scent.id}`}>{text(copy.cta, locale)}</Link>
               </article>
             );
           })}

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { Locale } from '../../../context/LocaleContext';
-import { scentCopy, text } from '../data/appleHomeCopy';
+import { getScentCopy, text } from '../data/appleHomeCopy';
 import type { ChoiceId, Scent } from '../types';
 
 export function useScentChoice(scents: Scent[], locale: Locale) {
@@ -11,7 +11,7 @@ export function useScentChoice(scents: Scent[], locale: Locale) {
     }
 
     const scent = scents.find((item) => item.id === selectedChoice);
-    return scent ? text(scentCopy[scent.id].name, locale) : 'Discovery Mini';
+    return scent ? text(getScentCopy(scent).name, locale) : 'Discovery Mini';
   }, [locale, scents, selectedChoice]);
 
   return {

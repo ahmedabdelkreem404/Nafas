@@ -6254,6 +6254,20 @@ a:has(> .ui-button) {
   justify-content: flex-end;
 }
 
+.admin-toggle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.admin-toggle-grid .checkbox-row {
+  min-block-size: 48px;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid rgba(91, 63, 45, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 248, 238, 0.72);
+}
+
 @media (max-width: 760px) {
   .admin-product-card {
     grid-template-columns: minmax(0, 1fr);

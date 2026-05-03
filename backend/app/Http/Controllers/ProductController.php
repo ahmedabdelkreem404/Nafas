@@ -35,6 +35,7 @@ class ProductController extends Controller
                     $query->where('status', 'approved')->where('is_approved', true);
                 })], 'rating')
             ->where('status', 'active');
+        $query->where('show_in_shop', true);
 
         if (! request('catalog') && ! request('product_type')) {
             $query->whereIn('product_type', ['nafas_signature', 'special_blend', 'inspired_blend']);
@@ -64,7 +65,10 @@ class ProductController extends Controller
             });
         }
 
-        return ProductResource::collection($query->get());
+        return ProductResource::collection($query
+            ->orderBy('shop_sort_order')
+            ->orderBy('id')
+            ->get());
     }
 
     public function show($slug)
@@ -107,7 +111,11 @@ class ProductController extends Controller
                 Product::with([
                     'variants' => fn ($builder) => $builder->where('is_active', true),
                     'media',
-                ])->where('status', 'active')->take(4)->get()
+                ])->where('status', 'active')
+                    ->where('show_on_home', true)
+                    ->orderBy('home_sort_order')
+                    ->take(8)
+                    ->get()
             ),
             'pages' => Page::where('is_active', true)->get(),
         ]);

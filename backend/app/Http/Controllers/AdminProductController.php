@@ -75,6 +75,12 @@ class AdminProductController extends Controller
             'tags' => 'nullable|array',
             'is_featured' => 'nullable|boolean',
             'show_on_home' => 'nullable|boolean',
+            'show_in_shop' => 'nullable|boolean',
+            'home_image_url' => 'nullable|string',
+            'home_mobile_image_url' => 'nullable|string',
+            'home_link_url' => 'nullable|string',
+            'home_sort_order' => 'nullable|integer',
+            'shop_sort_order' => 'nullable|integer',
         ]);
 
         $product = Product::create($validated);
@@ -123,6 +129,12 @@ class AdminProductController extends Controller
             'tags' => 'nullable|array',
             'is_featured' => 'nullable|boolean',
             'show_on_home' => 'nullable|boolean',
+            'show_in_shop' => 'nullable|boolean',
+            'home_image_url' => 'nullable|string',
+            'home_mobile_image_url' => 'nullable|string',
+            'home_link_url' => 'nullable|string',
+            'home_sort_order' => 'nullable|integer',
+            'shop_sort_order' => 'nullable|integer',
         ]);
 
         $product->update($validated);

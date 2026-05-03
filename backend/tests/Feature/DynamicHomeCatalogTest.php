@@ -123,15 +123,38 @@ class DynamicHomeCatalogTest extends TestCase
             'internal_reference' => 'PRIVATE-SHEET-ROW-9',
             'internal_notes' => 'Never public',
             'product_type' => 'nafas_signature',
+            'show_on_home' => true,
+            'show_in_shop' => true,
+            'home_link_url' => '/products/sharara',
+            'home_image_url' => 'https://cdn.nafas.test/sharara-home.jpg',
         ]);
 
         $this->getJson('/api/products/sharara')
             ->assertOk()
             ->assertJsonPath('data.product_type', 'nafas_signature')
+            ->assertJsonPath('data.show_in_shop', true)
+            ->assertJsonPath('data.show_on_home', true)
+            ->assertJsonPath('data.home_link_url', '/products/sharara')
+            ->assertJsonPath('data.home_image_url', 'https://cdn.nafas.test/sharara-home.jpg')
             ->assertJsonMissing(['PRIVATE-SHEET-ROW-9'])
             ->assertJsonMissing(['Never public'])
             ->assertJsonMissing(['internal_reference'])
             ->assertJsonMissing(['internal_notes']);
+    }
+
+    public function test_public_shop_respects_product_shop_visibility(): void
+    {
+        Product::where('slug', 'sharara')->firstOrFail()->update([
+            'show_in_shop' => false,
+        ]);
+
+        $this->getJson('/api/products')
+            ->assertOk()
+            ->assertJsonMissing(['slug' => 'sharara']);
+
+        $this->getJson('/api/products/sharara')
+            ->assertOk()
+            ->assertJsonPath('data.slug', 'sharara');
     }
 
     public function test_admin_can_add_product_media_from_uploads_and_url(): void

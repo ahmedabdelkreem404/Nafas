@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import { SECTION_LABELS } from '../constants';
-import { appleHomeCopy, scentCopy, text } from '../data/appleHomeCopy';
+import { appleHomeCopy, getScentCopy, text } from '../data/appleHomeCopy';
 import { useCinematicRitualCarousel } from '../hooks/useCinematicRitualCarousel';
 import type { Scent } from '../types';
 import { useLocale } from '../../../context/LocaleContext';
@@ -15,7 +15,7 @@ export default function CinematicRitualSection({ scents }: CinematicRitualSectio
   const { locale } = useLocale();
   const carousel = useCinematicRitualCarousel(scents.length);
   const activeScent = scents[carousel.activeIndex] ?? scents[0];
-  const activeCopy = scentCopy[activeScent.id];
+  const activeCopy = getScentCopy(activeScent);
   const copy = appleHomeCopy.ritual;
 
   const sceneStyle = {
@@ -93,7 +93,9 @@ export default function CinematicRitualSection({ scents }: CinematicRitualSectio
             <p className="anh-ritual-cinematic__description">{text(activeCopy.heroDescription, locale)}</p>
             <p className="anh-ritual-cinematic__mood">{text(activeCopy.mood, locale)}</p>
             <div className="anh-actions">
-              <a className="anh-button anh-button--primary" href="#choose">{text(copy.primaryCta, locale)}</a>
+              <a className="anh-button anh-button--primary" href={activeScent.href || `/products/${activeScent.id}`}>
+                {locale === 'ar' ? 'افتح المنتج' : 'Open product'}
+              </a>
               <a className="anh-button anh-button--secondary" href="#tester-path">{text(copy.secondaryCta, locale)}</a>
             </div>
           </div>

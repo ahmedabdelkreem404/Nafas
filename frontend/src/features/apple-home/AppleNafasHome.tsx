@@ -33,6 +33,12 @@ type CmsProduct = {
   public_label_ar?: string;
   public_label_en?: string;
   scent_family?: string;
+  hero_image_url?: string;
+  card_image_url?: string;
+  mobile_image_url?: string;
+  home_image_url?: string;
+  home_mobile_image_url?: string;
+  home_link_url?: string;
 };
 
 type CmsSectionItem = {
@@ -42,6 +48,8 @@ type CmsSectionItem = {
   subtitle_en?: string;
   body_ar?: string;
   body_en?: string;
+  image_url?: string;
+  mobile_image_url?: string;
   accent_color?: string;
   link_url?: string;
   product?: CmsProduct | null;
@@ -99,6 +107,9 @@ function buildScentFromItem(item: CmsSectionItem, index: number): Scent | null {
       line: product?.marketing_line_ar || item.subtitle_ar || staticMatch.line,
       mood: product?.scent_family || product?.personality || staticMatch.mood,
       notes: product?.scent_notes || staticMatch.notes,
+      href: product?.home_link_url || item.link_url || `/products/${slug}`,
+      image: item.image_url || product?.home_image_url || product?.card_image_url || product?.hero_image_url,
+      mobileImage: item.mobile_image_url || product?.home_mobile_image_url || product?.mobile_image_url,
     };
   }
 
@@ -119,6 +130,9 @@ function buildScentFromItem(item: CmsSectionItem, index: number): Scent | null {
     sizes: 'المقاسات والأسعار من بيانات المنتج.',
     gift: 'مناسب حسب الكتالوج الذي ينتمي له.',
     usage: product?.personality || 'حسب الطابع العطري.',
+    href: product?.home_link_url || item.link_url || `/products/${slug}`,
+    image: item.image_url || product?.home_image_url || product?.card_image_url || product?.hero_image_url,
+    mobileImage: item.mobile_image_url || product?.home_mobile_image_url || product?.mobile_image_url,
   };
 }
 

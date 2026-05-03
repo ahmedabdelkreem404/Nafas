@@ -1,6 +1,6 @@
 import { Pause, Play } from 'lucide-react';
 import { useLocale } from '../../../context/LocaleContext';
-import { appleHomeCopy, scentCopy, text } from '../data/appleHomeCopy';
+import { appleHomeCopy, getScentCopy, text } from '../data/appleHomeCopy';
 import type { Scent } from '../types';
 
 type RitualCarouselControlsProps = {
@@ -46,19 +46,24 @@ export default function RitualCarouselControls({
 
       <div className="anh-dots anh-ritual-dots" role="tablist" aria-label={text(copy.aria, locale)}>
         {scents.map((scent, index) => (
-          // Dots are intentionally compact; the full product name stays available to assistive tech.
-          <button
-            key={scent.id}
-            type="button"
-            className={index === activeIndex ? 'is-active' : ''}
-            onClick={() => onSelect(index)}
-            role="tab"
-            aria-label={`${text(copy.select, locale)} ${text(scentCopy[scent.id].name, locale)}`}
-            aria-selected={index === activeIndex}
-            data-testid={`cinematic-ritual-dot-${index}`}
-          >
-            <span className="anh-sr-only">{text(scentCopy[scent.id].name, locale)}</span>
-          </button>
+          (() => {
+            const localizedScent = getScentCopy(scent);
+
+            return (
+              <button
+                key={scent.id}
+                type="button"
+                className={index === activeIndex ? 'is-active' : ''}
+                onClick={() => onSelect(index)}
+                role="tab"
+                aria-label={`${text(copy.select, locale)} ${text(localizedScent.name, locale)}`}
+                aria-selected={index === activeIndex}
+                data-testid={`cinematic-ritual-dot-${index}`}
+              >
+                <span className="anh-sr-only">{text(localizedScent.name, locale)}</span>
+              </button>
+            );
+          })()
         ))}
       </div>
     </div>

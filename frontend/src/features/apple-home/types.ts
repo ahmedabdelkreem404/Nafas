@@ -28,6 +28,9 @@ export type Scent = {
   sizes: string;
   gift: string;
   usage: string;
+  href?: string;
+  image?: string;
+  mobileImage?: string;
 };
 
 export type Highlight = {

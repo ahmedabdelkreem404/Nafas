@@ -46,12 +46,21 @@ class Product extends Model
         'tags',
         'is_featured',
         'show_on_home',
+        'show_in_shop',
+        'home_image_url',
+        'home_mobile_image_url',
+        'home_link_url',
+        'home_sort_order',
+        'shop_sort_order',
     ];
 
     protected $casts = [
         'tags' => 'array',
         'is_featured' => 'boolean',
         'show_on_home' => 'boolean',
+        'show_in_shop' => 'boolean',
+        'home_sort_order' => 'integer',
+        'shop_sort_order' => 'integer',
     ];
 
     public function variants()

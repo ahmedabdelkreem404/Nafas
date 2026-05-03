@@ -1,5 +1,5 @@
 import type { Locale } from '../../../context/LocaleContext';
-import type { ChoiceId, Highlight, ScentId, ViewerTab } from '../types';
+import type { ChoiceId, Highlight, Scent, ScentId, ViewerTab } from '../types';
 
 type Localized<T = string> = Record<Locale, T>;
 
@@ -345,6 +345,23 @@ export const viewerTabCopy: Record<ViewerTab, Localized> = {
   gift: { ar: 'الهدية', en: 'Gift' },
   usage: { ar: 'الاستخدام', en: 'Use' },
 };
+
+export function getScentCopy(scent: Scent) {
+  return scentCopy[scent.id] || {
+    name: { ar: scent.nameAr, en: scent.name },
+    line: { ar: scent.line, en: scent.line },
+    mood: { ar: scent.mood, en: scent.mood },
+    aura: { ar: scent.aura, en: scent.aura },
+    heroDescription: { ar: scent.heroDescription, en: scent.heroDescription },
+    bestFor: { ar: scent.bestFor, en: scent.bestFor },
+    notes: { ar: scent.notes, en: scent.notes },
+    bottle: { ar: scent.bottle, en: scent.bottle },
+    sizes: { ar: scent.sizes, en: scent.sizes },
+    gift: { ar: scent.gift, en: scent.gift },
+    usage: { ar: scent.usage, en: scent.usage },
+    entry: { ar: scent.bestFor, en: scent.bestFor },
+  };
+}
 
 export const trustCopy: Record<string, { copy: Localized; title: Localized }> = {
   'fixed-formulas': {

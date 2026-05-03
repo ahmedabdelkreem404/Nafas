@@ -1,6 +1,6 @@
 import { useLocale } from '../../../context/LocaleContext';
 import { SECTION_LABELS } from '../constants';
-import { appleHomeCopy, scentCopy, text } from '../data/appleHomeCopy';
+import { appleHomeCopy, getScentCopy, text } from '../data/appleHomeCopy';
 import type { Scent } from '../types';
 import BottleVisual from './BottleVisual';
 
@@ -11,6 +11,7 @@ type HeroSectionProps = {
 export default function HeroSection({ scents }: HeroSectionProps) {
   const { locale } = useLocale();
   const featuredScent = scents[0];
+  const featuredCopy = getScentCopy(featuredScent);
   const copy = appleHomeCopy.hero;
 
   return (
@@ -43,7 +44,7 @@ export default function HeroSection({ scents }: HeroSectionProps) {
 
         <div className="anh-landing-hero__caption" aria-hidden="true">
           <span>{text(copy.caption, locale)}</span>
-          <strong>{text(scentCopy[featuredScent.id].name, locale)}</strong>
+          <strong>{text(featuredCopy.name, locale)}</strong>
         </div>
       </div>
     </section>

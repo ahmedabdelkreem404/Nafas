@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import type { Locale } from '../../../context/LocaleContext';
-import { appleHomeCopy, scentCopy, text } from '../data/appleHomeCopy';
+import { appleHomeCopy, getScentCopy, text } from '../data/appleHomeCopy';
 import type { Scent, ScentId, ViewerTab } from '../types';
 
 export function getViewerCopy(scent: Scent, tab: ViewerTab, locale: Locale) {
-  const localizedScent = scentCopy[scent.id];
+  const localizedScent = getScentCopy(scent);
   const tabCopy: Record<ViewerTab, string> = {
     scent: `${text(localizedScent.line, locale)} ${text(localizedScent.mood, locale)}.`,
     notes: text(localizedScent.notes, locale),

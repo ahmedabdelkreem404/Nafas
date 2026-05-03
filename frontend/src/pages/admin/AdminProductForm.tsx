@@ -19,13 +19,20 @@ const emptyState = {
   hero_image_url: '',
   card_image_url: '',
   mobile_image_url: '',
+  home_image_url: '',
+  home_mobile_image_url: '',
+  home_link_url: '',
+  home_sort_order: 0,
+  shop_sort_order: 0,
   scent_family: '',
   tags: [],
   is_featured: false,
   show_on_home: false,
+  show_in_shop: true,
   story: '',
   personality: '',
   marketing_line_ar: '',
+  marketing_line_en: '',
   scent_notes: '',
   season: '',
   time_of_day: '',
@@ -115,16 +122,41 @@ const AdminProductForm: React.FC = () => {
       {error ? <ErrorState message={error} /> : null}
       <Card tone="strong">
         <form onSubmit={submit} className="stack">
-          <div className="grid-auto">
-            <Field label="الاسم العربي"><Input value={form.name_ar} onChange={(event) => setForm({ ...form, name_ar: event.target.value })} /></Field>
-            <Field label="الاسم الإنجليزي"><Input value={form.name_en} onChange={(event) => setForm({ ...form, name_en: event.target.value })} /></Field>
+          <Card tone="soft" className="stack">
+            <strong>هوية المنتج</strong>
+            <div className="grid-auto">
+              <Field label="الاسم العربي"><Input value={form.name_ar} onChange={(event) => setForm({ ...form, name_ar: event.target.value })} /></Field>
+              <Field label="الاسم الإنجليزي"><Input value={form.name_en} onChange={(event) => setForm({ ...form, name_en: event.target.value })} /></Field>
             <Field label="الكود"><Input value={form.code} onChange={(event) => setForm({ ...form, code: event.target.value })} /></Field>
             <Field label="الرابط المختصر"><Input value={form.slug} onChange={(event) => setForm({ ...form, slug: event.target.value })} /></Field>
             <Field label="الجنس"><Select value={form.gender} onChange={(event) => setForm({ ...form, gender: event.target.value })}><option value="men">رجالي</option><option value="women">حريمي</option><option value="unisex">يونيسكس</option></Select></Field>
-            <Field label="الحالة"><Select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value })}><option value="active">نشط</option><option value="hidden">مخفي</option><option value="draft">مسودة</option></Select></Field>
+              <Field label="الحالة"><Select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value })}><option value="active">نشط</option><option value="hidden">مخفي</option><option value="draft">مسودة</option><option value="out_of_stock">نفد المخزون</option></Select></Field>
             <Field label="نوع المنتج"><Select value={form.product_type || 'nafas_signature'} onChange={(event) => setForm({ ...form, product_type: event.target.value })}><option value="nafas_signature">كولكشن نفس الأساسي</option><option value="special_blend">تركيبة خاصة</option><option value="inspired_blend">تركيبة خارجية</option><option value="tester">عينة</option><option value="gift_box">بوكس هدية</option><option value="discovery_set">مجموعة تجربة</option><option value="raw_oil">زيت خام</option><option value="other">أخرى</option></Select></Field>
-            <Field label="وسم عربي"><Input value={form.public_label_ar || ''} onChange={(event) => setForm({ ...form, public_label_ar: event.target.value })} /></Field>
-            <Field label="وسم إنجليزي"><Input value={form.public_label_en || ''} onChange={(event) => setForm({ ...form, public_label_en: event.target.value })} /></Field>
+              <Field label="وسم عربي"><Input value={form.public_label_ar || ''} onChange={(event) => setForm({ ...form, public_label_ar: event.target.value })} /></Field>
+              <Field label="وسم إنجليزي"><Input value={form.public_label_en || ''} onChange={(event) => setForm({ ...form, public_label_en: event.target.value })} /></Field>
+            </div>
+          </Card>
+
+          <Card tone="soft" className="stack">
+            <strong>ظهور المنتج في الموقع</strong>
+            <p className="copy-muted">تحكم هل المنتج يظهر في المتجر أو الهوم، وما الصورة والرابط المستخدمين عند عرضه في الرئيسية.</p>
+            <div className="grid-auto">
+              <Field label="ترتيب المتجر"><Input type="number" value={form.shop_sort_order || 0} onChange={(event) => setForm({ ...form, shop_sort_order: Number(event.target.value) })} /></Field>
+              <Field label="ترتيب الرئيسية"><Input type="number" value={form.home_sort_order || 0} onChange={(event) => setForm({ ...form, home_sort_order: Number(event.target.value) })} /></Field>
+              <Field label="صورة الرئيسية"><Input value={form.home_image_url || ''} onChange={(event) => setForm({ ...form, home_image_url: event.target.value })} placeholder="رابط صورة الهوم لهذا المنتج" /></Field>
+              <Field label="صورة الرئيسية للموبايل"><Input value={form.home_mobile_image_url || ''} onChange={(event) => setForm({ ...form, home_mobile_image_url: event.target.value })} placeholder="اختياري" /></Field>
+              <Field label="رابط الضغط من الرئيسية"><Input value={form.home_link_url || ''} onChange={(event) => setForm({ ...form, home_link_url: event.target.value })} placeholder={`/products/${form.slug || 'product-slug'}`} /></Field>
+            </div>
+            <div className="admin-toggle-grid">
+              <label className="checkbox-row"><input type="checkbox" checked={Boolean(form.show_in_shop)} onChange={(event) => setForm({ ...form, show_in_shop: event.target.checked })} /> يظهر في المتجر</label>
+              <label className="checkbox-row"><input type="checkbox" checked={Boolean(form.show_on_home)} onChange={(event) => setForm({ ...form, show_on_home: event.target.checked })} /> يظهر في الرئيسية</label>
+              <label className="checkbox-row"><input type="checkbox" checked={Boolean(form.is_featured)} onChange={(event) => setForm({ ...form, is_featured: event.target.checked })} /> منتج مميز</label>
+            </div>
+          </Card>
+
+          <Card tone="soft" className="stack">
+            <strong>المحتوى العطري والتسويقي</strong>
+            <div className="grid-auto">
             <Field label="عائلة العطر"><Input value={form.scent_family || ''} onChange={(event) => setForm({ ...form, scent_family: event.target.value })} /></Field>
             <Field label="كلمات عامة"><Input value={Array.isArray(form.tags) ? form.tags.join(', ') : form.tags || ''} onChange={(event) => setForm({ ...form, tags: event.target.value })} /></Field>
             <Field label="صورة الهيرو"><Input value={form.hero_image_url || ''} onChange={(event) => setForm({ ...form, hero_image_url: event.target.value })} /></Field>
@@ -138,9 +170,11 @@ const AdminProductForm: React.FC = () => {
             <Field label="الثبات"><Input value={form.longevity_label} onChange={(event) => setForm({ ...form, longevity_label: event.target.value })} /></Field>
             <Field label="الانطباع"><Input value={form.strength_label} onChange={(event) => setForm({ ...form, strength_label: event.target.value })} /></Field>
             <Field label="الجملة التسويقية"><Input value={form.marketing_line_ar} onChange={(event) => setForm({ ...form, marketing_line_ar: event.target.value })} /></Field>
-          </div>
+              <Field label="الجملة التسويقية بالإنجليزي"><Input value={form.marketing_line_en || ''} onChange={(event) => setForm({ ...form, marketing_line_en: event.target.value })} /></Field>
+            </div>
 
-          <Field label="القصة العطرية"><Textarea value={form.story} onChange={(event) => setForm({ ...form, story: event.target.value })} /></Field>
+            <Field label="القصة العطرية"><Textarea value={form.story} onChange={(event) => setForm({ ...form, story: event.target.value })} /></Field>
+          </Card>
 
           <Card tone="soft" className="stack">
             <strong>إعدادات الظهور والبيانات الداخلية</strong>
@@ -148,8 +182,6 @@ const AdminProductForm: React.FC = () => {
               <Field label="مرجع داخلي"><Input value={form.internal_reference || ''} onChange={(event) => setForm({ ...form, internal_reference: event.target.value })} /></Field>
               <Field label="ملاحظات داخلية"><Textarea value={form.internal_notes || ''} onChange={(event) => setForm({ ...form, internal_notes: event.target.value })} /></Field>
             </div>
-            <label className="checkbox-row"><input type="checkbox" checked={Boolean(form.is_featured)} onChange={(event) => setForm({ ...form, is_featured: event.target.checked })} /> منتج مميز</label>
-            <label className="checkbox-row"><input type="checkbox" checked={Boolean(form.show_on_home)} onChange={(event) => setForm({ ...form, show_on_home: event.target.checked })} /> يظهر في الرئيسية</label>
           </Card>
 
           <Card tone="soft" className="stack">
