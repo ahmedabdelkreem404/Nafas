@@ -450,6 +450,22 @@ test.describe('Apple Nafas homepage', () => {
             };
           });
 
+        const unevenImageGroups = [
+          '.apple-nafas-page .anh-chapter img',
+          '.apple-nafas-page .anh-compare-card__visual',
+        ].map((selector) => {
+          const heights = [...document.querySelectorAll(selector)]
+            .filter(visible)
+            .map((element) => element.getBoundingClientRect().height)
+            .filter((height) => height > 0);
+
+          return {
+            count: heights.length,
+            delta: heights.length > 1 ? Math.max(...heights) - Math.min(...heights) : 0,
+            selector,
+          };
+        }).filter((group) => group.count > 1 && group.delta > 2);
+
         return {
           cta: minRect('.apple-nafas-page .anh-button'),
           clippedImportantButtons,
@@ -466,6 +482,7 @@ test.describe('Apple Nafas homepage', () => {
           siteControls: minRect('.site-nav button, .site-nav a'),
           tinyHeadings,
           tooSmallText,
+          unevenImageGroups,
           viewerControls: minRect('[data-section="product-viewer"] button'),
         };
       });
@@ -489,6 +506,7 @@ test.describe('Apple Nafas homepage', () => {
       expect(metrics.compareColumns).toBeLessThanOrEqual(1);
       expect(metrics.multiColumnMobileCards).toEqual([]);
       expect(metrics.narrowHomepageCards).toEqual([]);
+      expect(metrics.unevenImageGroups).toEqual([]);
       expect(metrics.viewerControls.height).toBeGreaterThanOrEqual(44);
       expect(metrics.clippedImportantButtons).toEqual([]);
     });
